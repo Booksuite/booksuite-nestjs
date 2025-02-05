@@ -26,5 +26,4 @@ export class CompanyService {
     async deleteCompany(companyID: number){
         return this.prisma.company.delete({where: {id: companyID}})
     }
-
 }
