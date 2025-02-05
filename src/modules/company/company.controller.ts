@@ -22,9 +22,8 @@ export class CompanyController {
         } catch (error) { return res.status(500).json({ message: `(Internal Server Error) on creating company data: ${error}` }) }
     }
 
-    @Get("getCompany/:id")
+    @Get("getCompany/:id")g
     async getCompanyByID(@Param("id") id: string, @Res() res: Response) {
-        console.log(id)
         const returnedData = await this.companyService.getCompanyByID(parseInt(id))
 
         if (!!returnedData) {
