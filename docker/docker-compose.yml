@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:17.2
+    restart: always
+    environment:
+      POSTGRES_DB: booksuite
+      POSTGRES_USER: booksuite
+      POSTGRES_PASSWORD: dev
+    volumes:
+      - ./postgress-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'

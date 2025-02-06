@@ -1,9 +1,9 @@
 // @ts-check
 import eslint from "@eslint/js";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 export default tseslint.config(
   {
@@ -32,6 +32,7 @@ export default tseslint.config(
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-floating-promises": "warn",
       "@typescript-eslint/no-unsafe-argument": "warn",
+      "@typescript-eslint/no-unsafe-assignment": 0,
       "@typescript-eslint/no-unsafe-return": 0,
       "@typescript-eslint/no-unsafe-call": 0,
       "@typescript-eslint/no-unsafe-member-access": 0,

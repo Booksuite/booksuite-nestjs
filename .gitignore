@@ -3,6 +3,8 @@
 /node_modules
 /build
 
+docker/postgress-data
+
 # Logs
 logs
 *.log
