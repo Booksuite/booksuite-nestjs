@@ -8,30 +8,27 @@ import { ExperiencePayload } from './experience.interface'
 export class ExperienceService {
     constructor(private prisma: PrismaService) {}
 
-    async createExperience(experienceData: ExperiencePayload) {
+    createExperience(experienceData: ExperiencePayload) {
         const copy = experienceData.medias
         experienceData.medias = { create: [{ media: copy }] }
 
         return this.prisma.experience.create({ data: experienceData })
     }
 
-    async getExperience(experienceID: number) {
+    getExperience(experienceID: number) {
         return this.prisma.experience.findUnique({
             where: { id: experienceID },
         })
     }
 
-    async updateExperience(
-        experienceData: ExperiencePayload,
-        experienceID: number,
-    ) {
+    updateExperience(experienceData: ExperiencePayload, experienceID: number) {
         return this.prisma.experience.update({
             where: { id: experienceID },
             data: experienceData,
         })
     }
 
-    async deleteExperience(experienceID: number) {
+    deleteExperience(experienceID: number) {
         return this.prisma.experience.delete({ where: { id: experienceID } })
     }
 }
