@@ -7,6 +7,6 @@ services:
       POSTGRES_USER: booksuite
       POSTGRES_PASSWORD: dev
     volumes:
-      - ./postgress-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'

@@ -10,6 +10,8 @@ import {
 } from '@nestjs/common'
 import { Response } from 'express'
 
+import { Company } from '@/common/models/generated/models'
+
 import { SaveCompanyPayload } from './company.interface'
 import { CompanyService } from './company.service'
 
@@ -18,10 +20,7 @@ export class CompanyController {
     constructor(private companyService: CompanyService) {}
 
     @Post('signUpCompany')
-    async signUpCompany(
-        @Body() companyData: SaveCompanyPayload,
-        @Res() res: Response,
-    ) {
+    async signUpCompany(@Body() companyData: Company, @Res() res: Response) {
         try {
             //if the number of values in the data object is equals to 26 (number of keys in company.interface)
             if (Object.values(companyData).length == 26) {
