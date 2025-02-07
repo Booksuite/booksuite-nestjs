@@ -1,21 +1,6 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
-
-import {
-    Address,
-    Book,
-    Company,
-    Contact,
-    PaymentConfig,
-    PropertyConvenience,
-    PropertyMedia,
-    Rule,
-} from './'
+import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
 
 export class Property {
-    @IsDefined()
-    @IsInt()
-    id!: number
-
     @IsDefined()
     @IsString()
     name!: string
@@ -75,45 +60,9 @@ export class Property {
 
     @IsOptional()
     @IsInt()
-    addressId?: number
-
-    @IsOptional()
-    address?: Address
+    addressId: number
 
     @IsOptional()
     @IsInt()
     companyId?: number
-
-    @IsOptional()
-    company?: Company
-
-    @IsDefined()
-    medias!: PropertyMedia[]
-
-    @IsDefined()
-    conveniences!: PropertyConvenience[]
-
-    @IsOptional()
-    rules?: Rule
-
-    @IsDefined()
-    books!: Book[]
-
-    @IsOptional()
-    contact?: Contact
-
-    @IsOptional()
-    paymentConfig?: PaymentConfig
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
-
-    @IsOptional()
-    @IsDate()
-    deletedAt?: Date
 }

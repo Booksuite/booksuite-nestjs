@@ -1,22 +1,16 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
-
-import { BookExperience, BookExtra, Guest, Property } from './'
+import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
 
 export class Book {
-    @IsDefined()
-    @IsInt()
-    id!: number
-
     @IsDefined()
     @IsString()
     status!: string
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     startDate!: Date
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     endDate!: Date
 
     @IsOptional()
@@ -42,28 +36,4 @@ export class Book {
     @IsDefined()
     @IsInt()
     propertyId!: number
-
-    @IsDefined()
-    property!: Property
-
-    @IsOptional()
-    guests?: Guest
-
-    @IsDefined()
-    extras!: BookExtra[]
-
-    @IsDefined()
-    experiences!: BookExperience[]
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
-
-    @IsOptional()
-    @IsDate()
-    deletedAt?: Date
 }

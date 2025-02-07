@@ -1,17 +1,13 @@
 import { Injectable } from '@nestjs/common'
 
+import { Experience } from '@/common/models/generated/models'
 import { PrismaService } from '@/modules/prisma/prisma.service'
-
-import { ExperiencePayload } from './experience.interface'
 
 @Injectable()
 export class ExperienceService {
     constructor(private prisma: PrismaService) {}
 
-    createExperience(experienceData: ExperiencePayload) {
-        const copy = experienceData.medias
-        experienceData.medias = { create: [{ media: copy }] }
-
+    createExperience(experienceData: Experience) {
         return this.prisma.experience.create({ data: experienceData })
     }
 
@@ -21,7 +17,7 @@ export class ExperienceService {
         })
     }
 
-    updateExperience(experienceData: ExperiencePayload, experienceID: number) {
+    updateExperience(experienceData: Experience, experienceID: number) {
         return this.prisma.experience.update({
             where: { id: experienceID },
             data: experienceData,

@@ -1,29 +1,28 @@
 import { Injectable } from '@nestjs/common'
 
+import { Book } from '@/common/models/generated/models'
 import { PrismaService } from '@/modules/prisma/prisma.service'
-
-import { BookPayload } from './book.interface'
 
 @Injectable()
 export class BookService {
     constructor(private prisma: PrismaService) {}
 
-    async createBook(bookData: BookPayload) {
+    createBook(bookData: Book) {
         return this.prisma.book.create({ data: bookData })
     }
 
-    async getBook(bookID: number) {
+    getBook(bookID: number) {
         return this.prisma.book.findUnique({ where: { id: bookID } })
     }
 
-    async updateBook(bookData: BookPayload, bookID: number) {
+    updateBook(bookData: Book, bookID: number) {
         return this.prisma.book.update({
             where: { id: bookID },
             data: bookData,
         })
     }
 
-    async deleteBook(bookID: number) {
+    deleteBook(bookID: number) {
         return this.prisma.book.delete({ where: { id: bookID } })
     }
 }

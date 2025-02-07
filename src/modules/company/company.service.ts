@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common'
 
+import { Company } from '@/common/models/generated/models'
 import { PrismaService } from '@/modules/prisma/prisma.service'
-
-import { SaveCompanyPayload } from './company.interface'
 
 @Injectable()
 export class CompanyService {
     constructor(private prismaService: PrismaService) {}
 
-    createCompany(companyData: SaveCompanyPayload) {
+    createCompany(companyData: Company) {
         return this.prismaService.company.create({ data: companyData })
     }
 
@@ -18,7 +17,7 @@ export class CompanyService {
         })
     }
 
-    updateCompany(companyID: number, updatedData: SaveCompanyPayload) {
+    updateCompany(companyID: number, updatedData: Company) {
         return this.prismaService.company.update({
             where: { id: companyID },
             data: updatedData,
@@ -27,5 +26,12 @@ export class CompanyService {
 
     deleteCompany(companyID: number) {
         return this.prismaService.company.delete({ where: { id: companyID } })
+    }
+
+    getCompanyProperties(companyID: number) {
+        return this.prismaService.company.findMany({
+            where: { id: companyID },
+            include: { properties: true },
+        })
     }
 }

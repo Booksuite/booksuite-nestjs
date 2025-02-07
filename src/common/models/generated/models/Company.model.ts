@@ -1,12 +1,6 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
-
-import { AgePolicy, CancelPolicy, Property } from './'
+import { IsDefined, IsOptional, IsString } from 'class-validator'
 
 export class Company {
-    @IsDefined()
-    @IsInt()
-    id!: number
-
     @IsDefined()
     @IsString()
     name!: string
@@ -110,21 +104,4 @@ export class Company {
     @IsDefined()
     @IsString()
     city!: string
-
-    @IsDefined()
-    properties!: Property[]
-
-    @IsDefined()
-    cancelPolicies!: CancelPolicy[]
-
-    @IsDefined()
-    agePolicies!: AgePolicy[]
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
 }

@@ -1,26 +1,12 @@
-import { Prisma } from '@prisma/client'
 import {
     IsBoolean,
-    IsDate,
     IsDefined,
     IsInt,
     IsOptional,
     IsString,
 } from 'class-validator'
 
-import {
-    BookExperience,
-    ExperienceCategory,
-    ExperienceExtra,
-    ExperienceMedia,
-    OfferExtraExperience,
-} from './'
-
 export class Experience {
-    @IsDefined()
-    @IsInt()
-    id!: number
-
     @IsDefined()
     @IsString()
     name!: string
@@ -50,18 +36,12 @@ export class Experience {
     seasonalSale!: boolean
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     seasonStart!: Date
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     seasonEnd!: Date
-
-    @IsOptional()
-    hosting?: Prisma.JsonValue
-
-    @IsOptional()
-    nights?: Prisma.JsonValue
 
     @IsDefined()
     @IsString()
@@ -88,27 +68,4 @@ export class Experience {
     @IsDefined()
     @IsString()
     billType!: string
-
-    @IsDefined()
-    categories!: ExperienceCategory[]
-
-    @IsDefined()
-    medias!: ExperienceMedia[]
-
-    @IsDefined()
-    extras!: ExperienceExtra[]
-
-    @IsDefined()
-    books!: BookExperience[]
-
-    @IsDefined()
-    offers!: OfferExtraExperience[]
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
 }

@@ -6,85 +6,39 @@ import {
     Param,
     Patch,
     Post,
-    Res,
 } from '@nestjs/common'
-import { Response } from 'express'
 
-import { ExperiencePayload } from './experience.interface'
+import { Experience } from '@/common/models/generated/models'
+
 import { ExperienceService } from './experience.service'
 
 @Controller('experience')
 export class ExperienceController {
     constructor(private experienceService: ExperienceService) {}
 
-    @Post('createExperience')
-    async addExperience(
-        @Body() experienceData: ExperiencePayload,
-        @Res() res: Response,
-    ) {
-        try {
-            if (Object.values(experienceData).length === 19) {
-                const createdData =
-                    await this.experienceService.createExperience(
-                        experienceData,
-                    )
-
-                if (createdData) {
-                    return res.status(201).json(createdData)
-                }
-            }
-            return res
-                .status(400)
-                .json({ message: 'Data type is incorrectly formed.' })
-        } catch (error) {
-            return res.status(500).json({
-                message: `(Internal Server Error) on creating experience data: ${error}`,
-            })
-        }
+    @Post('create')
+    addExperience(@Body() experienceData: Experience) {
+        return this.experienceService.createExperience(experienceData)
     }
 
-    @Get('getExperience/:id')
-    async getExperienceByID(@Param('id') id: string, @Res() res: Response) {
-        const returnedData = await this.experienceService.getExperience(
-            parseInt(id),
-        )
-        if (returnedData) {
-            return res.status(200).json(returnedData)
-        }
-        return res.status(400).json({ message: 'Data not found.' })
+    @Get(':id')
+    getExperienceByID(@Param('id') id: string) {
+        return this.experienceService.getExperience(parseInt(id))
     }
 
-    @Patch('updateExperience/:id')
-    async updateExperienceData(
+    @Patch(':id')
+    updateExperienceData(
         @Param('id') id: string,
-        @Body() updatedData: ExperiencePayload,
-        @Res() res: Response,
+        @Body() updatedData: Experience,
     ) {
-        try {
-            const newData = await this.experienceService.updateExperience(
-                updatedData,
-                parseInt(id),
-            )
-            return res.status(200).json(newData)
-        } catch (error) {
-            return res.status(500).json({
-                message: `(Internal Server Error) on updating experience data: ${error}`,
-            })
-        }
-    }
-
-    @Delete('deleteExperience/:id')
-    async deleteExperience(@Param('id') id: string, @Res() res: Response) {
-        const deletedData = await this.experienceService.deleteExperience(
+        return this.experienceService.updateExperience(
+            updatedData,
             parseInt(id),
         )
-        if (deletedData) {
-            return res
-                .status(200)
-                .json({ message: `Experience deleted successfully.` })
-        }
-        return res
-            .status(400)
-            .json({ message: `Experience not found with id(${id})` })
+    }
+
+    @Delete(':id')
+    deleteExperience(@Param('id') id: string) {
+        return this.experienceService.deleteExperience(parseInt(id))
     }
 }

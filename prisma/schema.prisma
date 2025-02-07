@@ -196,7 +196,7 @@ model Company {
   state                 String
   city                  String
 
-  properties     Property[]
+  properties     Property[] 
   cancelPolicies CancelPolicy[]
   agePolicies    AgePolicy[]
 
