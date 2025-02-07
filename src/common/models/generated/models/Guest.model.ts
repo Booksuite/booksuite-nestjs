@@ -1,12 +1,6 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
-
-import { Book } from './'
+import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
 
 export class Guest {
-    @IsDefined()
-    @IsInt()
-    id!: number
-
     @IsDefined()
     @IsString()
     name!: string
@@ -22,19 +16,4 @@ export class Guest {
     @IsOptional()
     @IsInt()
     bookId?: number
-
-    @IsOptional()
-    book?: Book
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
-
-    @IsOptional()
-    @IsDate()
-    deletedAt?: Date
 }
