@@ -1,12 +1,6 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
-
-import { Property } from './'
+import { IsDefined, IsOptional, IsString } from 'class-validator'
 
 export class Address {
-    @IsDefined()
-    @IsInt()
-    id!: number
-
     @IsOptional()
     @IsString()
     zipCode?: string
@@ -34,15 +28,4 @@ export class Address {
     @IsOptional()
     @IsString()
     googleMapsUrl?: string
-
-    @IsOptional()
-    property?: Property
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
 }

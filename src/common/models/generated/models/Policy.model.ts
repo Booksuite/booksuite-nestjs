@@ -1,12 +1,8 @@
 import './'
 
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
+import { IsDefined, IsOptional, IsString } from 'class-validator'
 
 export class Policy {
-    @IsDefined()
-    @IsInt()
-    id!: number
-
     @IsOptional()
     @IsString()
     type?: string
@@ -14,12 +10,4 @@ export class Policy {
     @IsDefined()
     @IsString()
     description!: string
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
 }
