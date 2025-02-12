@@ -1,73 +1,69 @@
-import './'
-
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
+import { IsString, IsDefined, IsIn, IsInt, IsOptional, IsDate } from "class-validator";
+import { BannerMedia } from "./";
+import { getEnumValues } from "../helpers";
+import { BannerStatus, BannerPosition, BannerAction } from "../enums";
 
 export class Banner {
     @IsDefined()
+    @IsString()
+    id!: string;
+
+    @IsDefined()
+    @IsIn(getEnumValues(BannerStatus))
+    status!: BannerStatus;
+
+    @IsDefined()
+    @IsString()
+    name!: string;
+
+    @IsDefined()
+    @IsIn(getEnumValues(BannerPosition))
+    position!: BannerPosition;
+
+    @IsDefined()
     @IsInt()
-    id!: number
-
-    @IsDefined()
-    @IsString()
-    status!: string
-
-    @IsDefined()
-    @IsString()
-    identification!: string
-
-    @IsDefined()
-    @IsString()
-    position!: string
-
-    @IsDefined()
-    @IsString()
-    title!: string
-
-    @IsDefined()
-    @IsString()
-    description!: string
-
-    @IsDefined()
-    @IsString()
-    actionButton!: string
+    order!: number;
 
     @IsOptional()
     @IsString()
-    actionButtonText?: string
+    title?: string;
 
     @IsOptional()
     @IsString()
-    actionButtonLink?: string
+    description?: string;
 
     @IsDefined()
-    @IsString()
-    bannerFormat!: string
+    @IsIn(getEnumValues(BannerAction))
+    action!: BannerAction;
 
     @IsOptional()
     @IsString()
-    bannerImage?: string
+    actionButtonText?: string;
 
     @IsOptional()
     @IsString()
-    bannerVideoUrl?: string
+    actionButtonLink?: string;
 
     @IsDefined()
-    @IsDate()
-    startAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    endAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
+    BannerMedia!: BannerMedia[];
 
     @IsOptional()
     @IsDate()
-    deletedAt?: Date
+    startAt?: Date;
+
+    @IsOptional()
+    @IsDate()
+    endAt?: Date;
+
+    @IsDefined()
+    @IsDate()
+    createdAt!: Date;
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date;
+
+    @IsOptional()
+    @IsDate()
+    deletedAt?: Date;
 }

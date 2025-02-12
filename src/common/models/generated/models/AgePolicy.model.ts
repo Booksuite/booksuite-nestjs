@@ -1,40 +1,34 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
-
-import { Company } from './'
+import { IsString, IsDefined, IsBoolean, IsInt, IsDate } from "class-validator";
+import { Company, AgeGroup } from "./";
 
 export class AgePolicy {
     @IsDefined()
-    @IsInt()
-    id!: number
+    @IsString()
+    id!: string;
+
+    @IsDefined()
+    @IsBoolean()
+    acceptChildren!: boolean;
 
     @IsDefined()
     @IsInt()
-    initialAge!: number
-
-    @IsDefined()
-    @IsInt()
-    finalAge!: number
+    adultMinAge!: number;
 
     @IsDefined()
     @IsString()
-    chargeType!: string
+    companyId!: string;
 
-    @IsOptional()
-    @IsInt()
-    value?: number
+    @IsDefined()
+    company!: Company;
 
-    @IsOptional()
-    @IsInt()
-    companyId?: number
-
-    @IsOptional()
-    company?: Company
+    @IsDefined()
+    ageGroups!: AgeGroup[];
 
     @IsDefined()
     @IsDate()
-    createdAt!: Date
+    createdAt!: Date;
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date
+    updatedAt!: Date;
 }

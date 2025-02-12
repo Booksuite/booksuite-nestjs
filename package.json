@@ -27,6 +27,7 @@
 		"class-transformer": "^0.5.1",
 		"class-validator": "^0.14.1",
 		"prisma-class-validator-generator": "^5.0.0",
+		"radash": "^12.1.0",
 		"reflect-metadata": "^0.2.2",
 		"rxjs": "^7.8.1"
 	},

@@ -1,0 +1,53 @@
+datasource db {
+    provider = "postgres"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["prismaSchemaFolder"]
+}
+
+generator class_validator {
+    provider = "prisma-class-validator-generator"
+    output   = "../../src/common/models/generated"
+}
+
+// model Address {
+//     id String @id @default(uuid())
+
+//     zipCode       String?
+//     street        String
+//     number        String?
+//     country       String
+//     state         String
+//     city          String
+//     googleMapsUrl String?
+
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @updatedAt
+
+//     @@map("addresses")
+// }
+
+// model Rule {
+//     id String @id @default(uuid())
+
+//     checkIn       String
+//     checkOut      String
+//     minDaily      Int
+//     weekendNights Json?
+
+//     hostingSeason  String
+//     hosting        Json?
+//     hostingStartAt DateTime?
+//     hostingEndAt   DateTime?
+
+//     specificDays Boolean? @default(false)
+//     days         Json?
+
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @updatedAt
+
+//     @@map("rules")
+// }

@@ -1,0 +1,64 @@
+model HousingUnitType {
+    id               String  @id @default(uuid())
+    name             String
+    slug             String  @unique
+    shortDescription String?
+    description      String? @db.Text
+    order            Int     @default(0)
+
+    // guests
+    minGuests   Int? @default(1)
+    maxGuests   Int? @default(1)
+    maxAdults   Int? @default(0)
+    maxChildren Int? @default(0)
+
+    // pricing
+    weekdaysPrice              Float
+    weekendPrice               Float
+    extraAdultPrice            Float
+    chargeExtraAdultHigherThan Int // charge extra adult when adult guests is higher than this number
+
+    companyId String
+    company   Company? @relation(fields: [companyId], references: [id])
+
+    medias      HousingUnitTypeMedia[]
+    housingUnit HousingUnit[]
+
+    createdAt           DateTime                @default(now())
+    updatedAt           DateTime                @updatedAt
+    deletedAt           DateTime?
+    PropertyConvenience HouseUnitTypeFacility[]
+
+    @@map("housing_unit_types")
+}
+
+model HousingUnit {
+    id String @id @default(uuid())
+
+    name String
+
+    booking           Booking[]
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("housing_units")
+}
+
+model HousingUnitTypeMedia {
+    id         String  @id @default(uuid())
+    order      Int?    @default(0)
+    isFeatured Boolean @default(false)
+
+    propertyId String
+    property   HousingUnitType @relation(fields: [propertyId], references: [id])
+    mediaId    String
+    media      Media           @relation(fields: [mediaId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("housing_unit_type_medias")
+}

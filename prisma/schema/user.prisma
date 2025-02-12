@@ -1,0 +1,46 @@
+model User {
+    id               String  @id @default(uuid())
+    email            String  @unique
+    firstName        String
+    lastName         String?
+    phone            String?
+    password         String
+    confirmationCode String?
+    isAdmin          Boolean @default(false)
+
+    metaData Json? @db.JsonB
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    userCompanyRelation UserCompanyRelation[]
+
+    @@map("users")
+}
+
+model UserCompanyRelation {
+    id String @id @default(uuid())
+
+    userId      String
+    user        User     @relation(fields: [userId], references: [id])
+    companyId   String
+    company     Company  @relation(fields: [companyId], references: [id])
+    roleId      String
+    role        Role     @relation(fields: [roleId], references: [id])
+    permissions String[]
+
+    @@map("users_companies")
+}
+
+model Role {
+    id          String   @id @default(uuid())
+    name        String
+    slug        String   @unique
+    permissions String[]
+
+    createdAt           DateTime              @default(now())
+    userCompanyRelation UserCompanyRelation[]
+
+    @@map("roles")
+}

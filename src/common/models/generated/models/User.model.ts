@@ -1,52 +1,55 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
-
-import { Role } from './'
+import { Prisma } from "@prisma/client";
+import { IsString, IsDefined, IsOptional, IsBoolean, IsDate } from "class-validator";
+import { UserCompanyRelation } from "./";
 
 export class User {
     @IsDefined()
-    @IsInt()
-    id!: number
+    @IsString()
+    id!: string;
 
     @IsDefined()
     @IsString()
-    email!: string
+    email!: string;
 
     @IsDefined()
     @IsString()
-    name!: string
+    firstName!: string;
 
     @IsOptional()
     @IsString()
-    surName?: string
+    lastName?: string;
 
     @IsOptional()
     @IsString()
-    phone?: string
+    phone?: string;
 
     @IsDefined()
     @IsString()
-    password!: string
+    password!: string;
 
     @IsOptional()
     @IsString()
-    confirmationCode?: string
-
-    @IsOptional()
-    @IsInt()
-    roleId?: number
-
-    @IsOptional()
-    role?: Role
+    confirmationCode?: string;
 
     @IsDefined()
-    @IsDate()
-    createdAt!: Date
+    @IsBoolean()
+    isAdmin!: boolean;
+
+    @IsOptional()
+    metaData?: Prisma.JsonValue;
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date
+    createdAt!: Date;
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date;
 
     @IsOptional()
     @IsDate()
-    deletedAt?: Date
+    deletedAt?: Date;
+
+    @IsDefined()
+    userCompanyRelation!: UserCompanyRelation[];
 }

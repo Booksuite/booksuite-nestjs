@@ -1,0 +1,36 @@
+model Booking {
+    id String @id @default(uuid())
+
+    status      String
+    startDate   DateTime
+    endDate     DateTime
+    totalDays   Int?     @default(1)
+    adults      Int
+    children    Int
+    saleChannel String
+    notes       String   @db.Text
+
+    housingUnitId String
+    HousingUnit   HousingUnit @relation(fields: [housingUnitId], references: [id])
+
+    services BookingService[]
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    @@map("bookings")
+}
+
+model BookingService {
+    id         String @id @default(uuid())
+    qtd        Int    @default(1)
+    totalPrice Float  @default(0)
+
+    serviceId String
+    service   Service @relation(fields: [serviceId], references: [id])
+    bookId    String
+    booking   Booking @relation(fields: [bookId], references: [id])
+
+    @@map("booking_services")
+}

@@ -1,0 +1,89 @@
+model BookingPolicy {
+    id String @id @default(uuid())
+
+    type        String?
+    description String  @db.Text
+
+    companyId String  @unique
+    company   Company @relation(fields: [companyId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("booking_policies")
+}
+
+model CancellationPolicy {
+    id String @id @default(uuid())
+
+    text String @db.Text
+
+    defaultPenaltyBy CancellationPolicyPenalty
+    defaultValue     Int                       @default(0)
+
+    companyId String  @unique
+    company   Company @relation(fields: [companyId], references: [id])
+
+    penaltyRanges PenaltyRange[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("cancellation_policies")
+}
+
+model PenaltyRange {
+    id String @id @default(uuid())
+
+    daysBeforeCheckIn Int
+    penaltyBy         CancellationPolicyPenalty
+    value             Int                       @default(0)
+
+    cancellationPolicyId String
+    cancellationPolicy   CancellationPolicy @relation(fields: [cancellationPolicyId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("penalty_ranges")
+}
+
+model AgePolicy {
+    id String @id @default(uuid())
+
+    acceptChildren Boolean @default(false)
+    adultMinAge    Int     @default(12)
+
+    companyId String  @unique
+    company   Company @relation(fields: [companyId], references: [id])
+
+    ageGroups AgeGroup[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("age_policies")
+}
+
+model AgeGroup {
+    id String @id @default(uuid())
+
+    initialAge Int
+    finalAge   Int
+    chargeType String
+    value      Int?
+
+    agePolicyId String
+    agePolicies AgePolicy @relation(fields: [agePolicyId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("age_groups")
+}
+
+enum CancellationPolicyPenalty {
+    BOOKING_PERCENTAGE
+    FULL_DAILIES_PERCENTAGE
+    FIRST_NIGHT_AMOUNT
+}

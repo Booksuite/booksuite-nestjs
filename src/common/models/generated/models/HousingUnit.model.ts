@@ -1,7 +1,7 @@
 import { IsString, IsDefined, IsDate } from "class-validator";
-import { UserCompanyRelation } from "./";
+import { Booking, HousingUnitType } from "./";
 
-export class Role {
+export class HousingUnit {
     @IsDefined()
     @IsString()
     id!: string;
@@ -11,17 +11,20 @@ export class Role {
     name!: string;
 
     @IsDefined()
-    @IsString()
-    slug!: string;
+    booking!: Booking[];
 
     @IsDefined()
     @IsString()
-    permissions!: string[];
+    housingUnitTypeId!: string;
+
+    @IsDefined()
+    housingUnitType!: HousingUnitType;
 
     @IsDefined()
     @IsDate()
     createdAt!: Date;
 
     @IsDefined()
-    userCompanyRelation!: UserCompanyRelation[];
+    @IsDate()
+    updatedAt!: Date;
 }

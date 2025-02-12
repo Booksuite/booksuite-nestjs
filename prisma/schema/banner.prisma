@@ -1,0 +1,54 @@
+model Banner {
+    id String @id @default(uuid())
+
+    status   BannerStatus
+    name     String
+    position BannerPosition
+    order    Int            @default(0)
+
+    title       String?
+    description String? @db.Text
+
+    action           BannerAction
+    actionButtonText String?
+    actionButtonLink String?
+
+    BannerMedia BannerMedia[]
+
+    startAt DateTime?
+    endAt   DateTime?
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    @@map("banners")
+}
+
+model BannerMedia {
+    id String @id @default(uuid())
+
+    bannerId String
+    banner   Banner @relation(fields: [bannerId], references: [id])
+    mediaId  String
+    media    Media  @relation(fields: [mediaId], references: [id])
+
+    @@map("banner_medias")
+}
+
+enum BannerStatus {
+    ENABLED
+    DISABLED
+}
+
+enum BannerAction {
+    NONE
+    SMART_SEARCH
+    CUSTOM
+    SEND_TO_WHATSAPP
+}
+
+enum BannerPosition {
+    HOME_TOP
+    FEATURED_CONTENT
+}

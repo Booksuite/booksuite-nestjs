@@ -8,7 +8,7 @@ import {
     Post,
 } from '@nestjs/common'
 
-import { BookPayload } from './book.interface'
+import { BookingPayload } from './book.interface'
 import { BookService } from './book.service'
 
 @Controller('book')
@@ -16,7 +16,7 @@ export class BookController {
     constructor(private bookService: BookService) {}
 
     @Post('create')
-    async addBook(@Body() bookData: BookPayload) {
+    async addBook(@Body() bookData: BookingPayload) {
         return this.bookService.createBook(bookData)
     }
 
@@ -28,7 +28,7 @@ export class BookController {
     @Patch('update/:id')
     async updateBookData(
         @Param('id') id: string,
-        @Body() updatedData: BookPayload,
+        @Body() updatedData: BookingPayload,
     ) {
         return this.bookService.updateBook(updatedData, parseInt(id))
     }
