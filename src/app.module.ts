@@ -1,22 +1,22 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import { BookModule } from './modules/book/book.module'
+import { BookModule } from './modules/booking/book.module'
 import { CompanyModule } from './modules/company/company.module'
+import { HousingUnitModule } from './modules/housingUnit/housingUnit.module'
 import { HousingUnitTypeModule } from './modules/housingUnitType/housingUnitType.module'
 import { PrismaModule } from './modules/prisma/prisma.module'
-import { RoomsModule } from './modules/rooms/rooms.module'
 import { ServiceModule } from './modules/service/service.module'
 
 @Module({
     imports: [
         ConfigModule.forRoot(),
-        RoomsModule,
         PrismaModule,
         HousingUnitTypeModule,
         CompanyModule,
         BookModule,
         ServiceModule,
+        HousingUnitModule,
     ],
 })
 export class AppModule {}

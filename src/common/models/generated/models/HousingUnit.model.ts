@@ -1,30 +1,31 @@
-import { IsString, IsDefined, IsDate } from "class-validator";
-import { Booking, HousingUnitType } from "./";
+import { IsDate, IsDefined, IsString } from 'class-validator'
+
+import { Booking, HousingUnitType } from './'
 
 export class HousingUnit {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    name!: string;
+    name!: string
 
     @IsDefined()
-    booking!: Booking[];
+    booking!: Booking[]
 
     @IsDefined()
     @IsString()
-    housingUnitTypeId!: string;
+    housingUnitTypeId!: string
 
     @IsDefined()
-    housingUnitType!: HousingUnitType;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    housingUnitType!: HousingUnitType
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }
