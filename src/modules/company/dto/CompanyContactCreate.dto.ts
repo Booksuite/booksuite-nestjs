@@ -1,15 +1,9 @@
 import { Prisma } from '@prisma/client'
-import { IsDate, IsDefined, IsOptional, IsString } from 'class-validator'
+import { IsDefined, IsOptional, IsString } from 'class-validator'
 
-import { Company } from './'
-
-export class CompanyContact {
-    @IsDefined()
-    @IsString()
-    id!: string
-
+export class CompanyContactCreateDTO {
     @IsOptional()
-    email?: Prisma.JsonValue
+    email?: Prisma.InputJsonValue | Prisma.NullableJsonNullValueInput
 
     @IsOptional()
     @IsString()
@@ -28,7 +22,7 @@ export class CompanyContact {
     cellphone?: string
 
     @IsOptional()
-    otherPhones?: Prisma.JsonValue
+    otherPhones?: Prisma.InputJsonValue | Prisma.NullableJsonNullValueInput
 
     @IsOptional()
     @IsString()
@@ -51,20 +45,11 @@ export class CompanyContact {
     tripAdvisor?: string
 
     @IsOptional()
-    otherSocialMedias?: Prisma.JsonValue
+    otherSocialMedias?:
+        | Prisma.InputJsonValue
+        | Prisma.NullableJsonNullValueInput
 
     @IsDefined()
     @IsString()
     companyId!: string
-
-    @IsDefined()
-    company!: Company
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
 }

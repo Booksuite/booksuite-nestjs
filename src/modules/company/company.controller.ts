@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common'
 
 import { CompanyService } from './company.service'
-import { CompanyCreateDTO } from './dto/companyCreate.dto'
+import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
 
 @Controller('company')
 export class CompanyController {

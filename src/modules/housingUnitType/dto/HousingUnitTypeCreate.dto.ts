@@ -8,8 +8,6 @@ import {
     ValidateNested,
 } from 'class-validator'
 
-import { HousingUnitTypeMedia } from '@/common/models/generated/models'
-
 import { HousingUnitTypeMediaCreateDTO } from './HousingUnitTypeMediaCreate.dto'
 
 export class HousingUnitTypeCreateDTO {
@@ -69,6 +67,6 @@ export class HousingUnitTypeCreateDTO {
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
-    @Type(() => HousingUnitTypeMedia)
+    @Type(() => HousingUnitTypeMediaCreateDTO)
     medias?: HousingUnitTypeMediaCreateDTO[]
 }
