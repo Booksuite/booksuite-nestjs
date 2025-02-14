@@ -1,15 +1,16 @@
-import { IsString, IsDefined } from "class-validator";
-import { Service } from "./";
+import { IsDefined, IsString } from 'class-validator'
+
+import { Service } from './'
 
 export class ServiceCategory {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    name!: string;
+    name!: string
 
     @IsDefined()
-    services!: Service[];
+    services!: Service[]
 }

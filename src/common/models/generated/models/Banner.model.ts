@@ -1,69 +1,78 @@
-import { IsString, IsDefined, IsIn, IsInt, IsOptional, IsDate } from "class-validator";
-import { BannerMedia } from "./";
-import { getEnumValues } from "../helpers";
-import { BannerStatus, BannerPosition, BannerAction } from "../enums";
+import {
+    IsDate,
+    IsDefined,
+    IsIn,
+    IsInt,
+    IsOptional,
+    IsString,
+} from 'class-validator'
+
+import { BannerAction, BannerPosition, BannerStatus } from '../enums'
+import { getEnumValues } from '../helpers'
+
+import { BannerMedia } from './'
 
 export class Banner {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsIn(getEnumValues(BannerStatus))
-    status!: BannerStatus;
+    status!: BannerStatus
 
     @IsDefined()
     @IsString()
-    name!: string;
+    name!: string
 
     @IsDefined()
     @IsIn(getEnumValues(BannerPosition))
-    position!: BannerPosition;
+    position!: BannerPosition
 
     @IsDefined()
     @IsInt()
-    order!: number;
+    order!: number
 
     @IsOptional()
     @IsString()
-    title?: string;
+    title?: string
 
     @IsOptional()
     @IsString()
-    description?: string;
+    description?: string
 
     @IsDefined()
     @IsIn(getEnumValues(BannerAction))
-    action!: BannerAction;
+    action!: BannerAction
 
     @IsOptional()
     @IsString()
-    actionButtonText?: string;
+    actionButtonText?: string
 
     @IsOptional()
     @IsString()
-    actionButtonLink?: string;
+    actionButtonLink?: string
 
     @IsDefined()
-    BannerMedia!: BannerMedia[];
+    BannerMedia!: BannerMedia[]
 
     @IsOptional()
     @IsDate()
-    startAt?: Date;
+    startAt?: Date
 
     @IsOptional()
     @IsDate()
-    endAt?: Date;
+    endAt?: Date
 
     @IsDefined()
     @IsDate()
-    createdAt!: Date;
+    createdAt!: Date
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    updatedAt!: Date
 
     @IsOptional()
     @IsDate()
-    deletedAt?: Date;
+    deletedAt?: Date
 }

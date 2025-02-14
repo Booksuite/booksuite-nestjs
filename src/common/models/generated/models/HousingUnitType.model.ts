@@ -1,85 +1,91 @@
-import { IsString, IsDefined, IsOptional, IsInt, IsDate } from "class-validator";
-import { Company, HousingUnitTypeMedia, HousingUnit, HouseUnitTypeFacility } from "./";
+import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
+
+import {
+    Company,
+    HouseUnitTypeFacility,
+    HousingUnit,
+    HousingUnitTypeMedia,
+} from './'
 
 export class HousingUnitType {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    name!: string;
+    name!: string
 
     @IsDefined()
     @IsString()
-    slug!: string;
+    slug!: string
 
     @IsOptional()
     @IsString()
-    shortDescription?: string;
+    shortDescription?: string
 
     @IsOptional()
     @IsString()
-    description?: string;
+    description?: string
 
     @IsDefined()
     @IsInt()
-    order!: number;
+    order!: number
 
     @IsOptional()
     @IsInt()
-    minGuests?: number;
+    minGuests?: number
 
     @IsOptional()
     @IsInt()
-    maxGuests?: number;
+    maxGuests?: number
 
     @IsOptional()
     @IsInt()
-    maxAdults?: number;
+    maxAdults?: number
 
     @IsOptional()
     @IsInt()
-    maxChildren?: number;
+    maxChildren?: number
 
     @IsDefined()
-    weekdaysPrice!: number;
+    weekdaysPrice!: number
 
     @IsDefined()
-    weekendPrice!: number;
+    weekendPrice!: number
 
     @IsDefined()
-    extraAdultPrice!: number;
+    extraAdultPrice!: number
 
     @IsDefined()
     @IsInt()
-    chargeExtraAdultHigherThan!: number;
+    chargeExtraAdultHigherThan!: number
 
     @IsDefined()
     @IsString()
-    companyId!: string;
+    companyId!: string
 
     @IsOptional()
-    company?: Company;
+    company?: Company
 
     @IsDefined()
-    medias!: HousingUnitTypeMedia[];
+    medias!: HousingUnitTypeMedia[]
 
     @IsDefined()
-    housingUnit!: HousingUnit[];
+    housingUnit!: HousingUnit[]
 
     @IsDefined()
     @IsDate()
-    createdAt!: Date;
+    createdAt!: Date
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    updatedAt!: Date
 
     @IsOptional()
     @IsDate()
-    deletedAt?: Date;
+    deletedAt?: Date
 
     @IsDefined()
-    PropertyConvenience!: HouseUnitTypeFacility[];
+    PropertyConvenience!: HouseUnitTypeFacility[]
 }

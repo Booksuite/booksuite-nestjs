@@ -1,39 +1,40 @@
-import { IsString, IsDefined, IsInt, IsOptional, IsDate } from "class-validator";
-import { AgePolicy } from "./";
+import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
+
+import { AgePolicy } from './'
 
 export class AgeGroup {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsInt()
-    initialAge!: number;
+    initialAge!: number
 
     @IsDefined()
     @IsInt()
-    finalAge!: number;
+    finalAge!: number
 
     @IsDefined()
     @IsString()
-    chargeType!: string;
+    chargeType!: string
 
     @IsOptional()
     @IsInt()
-    value?: number;
+    value?: number
 
     @IsDefined()
     @IsString()
-    agePolicyId!: string;
+    agePolicyId!: string
 
     @IsDefined()
-    agePolicies!: AgePolicy;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    agePolicies!: AgePolicy
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

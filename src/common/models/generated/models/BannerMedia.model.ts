@@ -1,22 +1,23 @@
-import { IsString, IsDefined } from "class-validator";
-import { Banner, Media } from "./";
+import { IsDefined, IsString } from 'class-validator'
+
+import { Banner, Media } from './'
 
 export class BannerMedia {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    bannerId!: string;
+    bannerId!: string
 
     @IsDefined()
-    banner!: Banner;
+    banner!: Banner
 
     @IsDefined()
     @IsString()
-    mediaId!: string;
+    mediaId!: string
 
     @IsDefined()
-    media!: Media;
+    media!: Media
 }

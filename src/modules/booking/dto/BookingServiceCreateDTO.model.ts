@@ -1,12 +1,6 @@
 import { IsDefined, IsInt, IsString } from 'class-validator'
 
-import { Booking, Service } from './'
-
-export class BookingService {
-    @IsDefined()
-    @IsString()
-    id!: string
-
+export class BookingServiceCreateDTO {
     @IsDefined()
     @IsInt()
     qtd!: number
@@ -19,12 +13,6 @@ export class BookingService {
     serviceId!: string
 
     @IsDefined()
-    service!: Service
-
-    @IsDefined()
     @IsString()
     bookId!: string
-
-    @IsDefined()
-    booking!: Booking
 }

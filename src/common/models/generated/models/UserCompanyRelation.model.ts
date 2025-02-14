@@ -1,33 +1,34 @@
-import { IsString, IsDefined } from "class-validator";
-import { User, Company, Role } from "./";
+import { IsDefined, IsString } from 'class-validator'
+
+import { Company, Role, User } from './'
 
 export class UserCompanyRelation {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    userId!: string;
+    userId!: string
 
     @IsDefined()
-    user!: User;
-
-    @IsDefined()
-    @IsString()
-    companyId!: string;
-
-    @IsDefined()
-    company!: Company;
+    user!: User
 
     @IsDefined()
     @IsString()
-    roleId!: string;
+    companyId!: string
 
     @IsDefined()
-    role!: Role;
+    company!: Company
 
     @IsDefined()
     @IsString()
-    permissions!: string[];
+    roleId!: string
+
+    @IsDefined()
+    role!: Role
+
+    @IsDefined()
+    @IsString()
+    permissions!: string[]
 }

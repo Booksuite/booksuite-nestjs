@@ -1,37 +1,39 @@
-import { IsString, IsDefined, IsInt, IsIn, IsDate } from "class-validator";
-import { CancellationPolicy } from "./";
-import { getEnumValues } from "../helpers";
-import { CancellationPolicyPenalty } from "../enums";
+import { IsDate, IsDefined, IsIn, IsInt, IsString } from 'class-validator'
+
+import { CancellationPolicyPenalty } from '../enums'
+import { getEnumValues } from '../helpers'
+
+import { CancellationPolicy } from './'
 
 export class PenaltyRange {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsInt()
-    daysBeforeCheckIn!: number;
+    daysBeforeCheckIn!: number
 
     @IsDefined()
     @IsIn(getEnumValues(CancellationPolicyPenalty))
-    penaltyBy!: CancellationPolicyPenalty;
+    penaltyBy!: CancellationPolicyPenalty
 
     @IsDefined()
     @IsInt()
-    value!: number;
+    value!: number
 
     @IsDefined()
     @IsString()
-    cancellationPolicyId!: string;
+    cancellationPolicyId!: string
 
     @IsDefined()
-    cancellationPolicy!: CancellationPolicy;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    cancellationPolicy!: CancellationPolicy
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

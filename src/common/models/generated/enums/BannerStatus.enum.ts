@@ -1,4 +1,4 @@
 export enum BannerStatus {
-    ENABLED = "ENABLED",
-    DISABLED = "DISABLED"
+    ENABLED = 'ENABLED',
+    DISABLED = 'DISABLED',
 }
