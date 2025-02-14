@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import { BookModule } from './modules/booking/book.module'
+import { BookModule } from './modules/booking/booking.module'
 import { CompanyModule } from './modules/company/company.module'
 import { HousingUnitModule } from './modules/housingUnit/housingUnit.module'
 import { HousingUnitTypeModule } from './modules/housingUnitType/housingUnitType.module'

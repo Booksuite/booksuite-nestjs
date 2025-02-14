@@ -3,10 +3,6 @@ import { IsDefined, IsOptional, IsString } from 'class-validator'
 export class companyUpdateDTO {
     @IsDefined()
     @IsString()
-    id!: string
-
-    @IsDefined()
-    @IsString()
     name!: string
 
     @IsDefined()

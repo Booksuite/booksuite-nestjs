@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { HousingUnitDTO } from './dto/HousingUnitDTO'
+import { HousingUnitDTO } from './dto/HousingUnit.dto'
 
 @Injectable()
 export class HousingUnitService {
