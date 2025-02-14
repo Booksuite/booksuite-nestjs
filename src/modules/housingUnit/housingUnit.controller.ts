@@ -8,7 +8,7 @@ import {
     Post,
 } from '@nestjs/common'
 
-import { HousingUnitDTO } from './dto/HousingUnitDTO'
+import { HousingUnitDTO } from './dto/HousingUnit.dto'
 import { HousingUnitService } from './housingUnit.service'
 
 @Controller('housingUnit')

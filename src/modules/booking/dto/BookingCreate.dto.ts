@@ -7,7 +7,7 @@ import {
     IsString,
 } from 'class-validator'
 
-import { BookingServiceCreateDTO } from './BookingServiceCreateDTO.model'
+import { BookingServiceCreateDTO } from './BookingServiceCreate.dto.model'
 
 export class BookingCreateDTO {
     @IsDefined()

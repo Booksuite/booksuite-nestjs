@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common'
 
 import { CompanyService } from './company.service'
-import { CompanyCreateDTO } from './dto/companyCreateDTO'
-import { companyUpdateDTO } from './dto/companyUpdateDTO'
+import { CompanyCreateDTO } from './dto/companyCreate.dto'
+import { companyUpdateDTO } from './dto/companyUpdate.dto'
 
 @Controller('company')
 export class CompanyController {
@@ -35,7 +35,7 @@ export class CompanyController {
     }
 
     @Delete(':id')
-    async deleteCompany(@Param('id') id: string) {
+    deleteCompany(@Param('id') id: string) {
         return this.companyService.deleteCompany(id)
     }
 }

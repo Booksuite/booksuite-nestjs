@@ -3,11 +3,10 @@ import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { BookingCreateDTO } from './dto/BookingCreateDTO'
-import { BookingUpdateDTO } from './dto/BookingUpdateDTO'
+import { BookingCreateDTO } from './dto/BookingCreate.dto'
 
 @Injectable()
-export class BookService {
+export class BookingService {
     constructor(private prisma: PrismaService) {}
 
     create(rawData: BookingCreateDTO) {
@@ -31,18 +30,18 @@ export class BookService {
         return this.prisma.booking.findUnique({ where: { id: bookId } })
     }
 
-    update(bookId: string, rawData: BookingUpdateDTO) {
+    update(bookingId: string, rawData: BookingCreateDTO) {
         return this.prisma.$transaction(async (db) => {
             const ommited = omit(rawData, ['services'])
 
             await db.booking.update({
-                where: { id: rawData.id },
+                where: { id: bookingId },
                 data: ommited,
             })
 
             if (rawData.services) {
                 await db.bookingService.update({
-                    where: { id: rawData.services.id },
+                    where: { id: bookingId },
                     data: rawData.services,
                 })
             }

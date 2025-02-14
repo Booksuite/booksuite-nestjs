@@ -8,13 +8,12 @@ import {
     Post,
 } from '@nestjs/common'
 
-import { BookService } from './book.service'
-import { BookingCreateDTO } from './dto/BookingCreateDTO'
-import { BookingUpdateDTO } from './dto/BookingUpdateDTO'
+import { BookingService } from './booking.service'
+import { BookingCreateDTO } from './dto/BookingCreate.dto'
 
 @Controller('booking')
-export class BookController {
-    constructor(private bookService: BookService) {}
+export class BookingController {
+    constructor(private bookService: BookingService) {}
 
     @Post('create')
     create(@Body() bookData: BookingCreateDTO) {
@@ -27,7 +26,7 @@ export class BookController {
     }
 
     @Patch(':id')
-    update(@Param('id') id: string, @Body() updatedData: BookingUpdateDTO) {
+    update(@Param('id') id: string, @Body() updatedData: BookingCreateDTO) {
         return this.bookService.update(id, updatedData)
     }
 
