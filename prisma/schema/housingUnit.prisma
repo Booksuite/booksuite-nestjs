@@ -62,3 +62,19 @@ model HousingUnitTypeMedia {
 
     @@map("housing_unit_type_medias")
 }
+
+model HouseUnitTypeFacility {
+    id String @id @default(uuid())
+
+    isFeatured Boolean? @default(false)
+
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id])
+    facilityId        String
+    facility          Facility        @relation(fields: [facilityId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("house_unit_type_facility")
+}

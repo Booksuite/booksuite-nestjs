@@ -30,6 +30,7 @@ export default tseslint.config(
     plugins: { "simple-import-sort": simpleImportSort },
     rules: {
       "no-console": "error",
+      "no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-floating-promises": "warn",
       "@typescript-eslint/no-unsafe-argument": 0,
