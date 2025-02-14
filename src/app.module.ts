@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import { Booking } from './common/models/generated/models'
+import { BookingModule } from './modules/booking/booking.module'
 import { CompanyModule } from './modules/company/company.module'
 import { FacilityModule } from './modules/facility/facility.module'
 import { HousingUnitModule } from './modules/housingUnit/housingUnit.module'
@@ -17,8 +17,8 @@ import { ServiceModule } from './modules/service/service.module'
         CompanyModule,
         ServiceModule,
         HousingUnitModule,
+        BookingModule,
         FacilityModule,
-        Booking,
     ],
 })
 export class AppModule {}
