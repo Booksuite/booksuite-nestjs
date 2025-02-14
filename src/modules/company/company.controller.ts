@@ -10,7 +10,6 @@ import {
 
 import { CompanyService } from './company.service'
 import { CompanyCreateDTO } from './dto/companyCreate.dto'
-import { companyUpdateDTO } from './dto/companyUpdate.dto'
 
 @Controller('company')
 export class CompanyController {
@@ -29,7 +28,7 @@ export class CompanyController {
     @Patch(':id')
     updateCompany(
         @Param('id') id: string,
-        @Body() updatedData: companyUpdateDTO,
+        @Body() updatedData: CompanyCreateDTO,
     ) {
         return this.companyService.updateCompany(id, updatedData)
     }

@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { CompanyCreateDTO } from './dto/companyCreate.dto'
-import { companyUpdateDTO } from './dto/companyUpdate.dto'
 
 @Injectable()
 export class CompanyService {
@@ -21,7 +20,7 @@ export class CompanyService {
         })
     }
 
-    updateCompany(companyID: string, updatedData: companyUpdateDTO) {
+    updateCompany(companyID: string, updatedData: CompanyCreateDTO) {
         return this.prismaService.company.update({
             where: { id: companyID },
             data: updatedData,
