@@ -1,31 +1,32 @@
-import { IsString, IsDefined, IsOptional, IsDate } from "class-validator";
-import { Company } from "./";
+import { IsDate, IsDefined, IsOptional, IsString } from 'class-validator'
+
+import { Company } from './'
 
 export class BookingPolicy {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsOptional()
     @IsString()
-    type?: string;
+    type?: string
 
     @IsDefined()
     @IsString()
-    description!: string;
+    description!: string
 
     @IsDefined()
     @IsString()
-    companyId!: string;
+    companyId!: string
 
     @IsDefined()
-    company!: Company;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    company!: Company
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

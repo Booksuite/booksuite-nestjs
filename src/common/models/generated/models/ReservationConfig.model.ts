@@ -1,35 +1,37 @@
-import { IsString, IsDefined, IsOptional, IsIn, IsDate } from "class-validator";
-import { Company } from "./";
-import { getEnumValues } from "../helpers";
-import { ReservationDepositType } from "../enums";
+import { IsDate, IsDefined, IsIn, IsOptional, IsString } from 'class-validator'
+
+import { ReservationDepositType } from '../enums'
+import { getEnumValues } from '../helpers'
+
+import { Company } from './'
 
 export class ReservationConfig {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsOptional()
-    tax?: number;
+    tax?: number
 
     @IsDefined()
     @IsIn(getEnumValues(ReservationDepositType))
-    reservationDepositType!: ReservationDepositType;
+    reservationDepositType!: ReservationDepositType
 
     @IsOptional()
-    reservationDepositTypeValue?: number;
+    reservationDepositTypeValue?: number
 
     @IsDefined()
     @IsString()
-    companyId!: string;
+    companyId!: string
 
     @IsDefined()
-    company!: Company;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    company!: Company
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

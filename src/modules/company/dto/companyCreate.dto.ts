@@ -1,10 +1,6 @@
-import { IsDate, IsDefined, IsOptional, IsString } from 'class-validator'
+import { IsDefined, IsOptional, IsString } from 'class-validator'
 
 export class CompanyCreateDTO {
-    @IsDefined()
-    @IsString()
-    id!: string
-
     @IsDefined()
     @IsString()
     name!: string
@@ -100,33 +96,4 @@ export class CompanyCreateDTO {
     @IsDefined()
     @IsString()
     city!: string
-
-    // @IsDefined()
-    // userCompanyRelation!: UserCompanyRelation[]
-
-    // @IsDefined()
-    // houseUnitTypes!: HousingUnitType[]
-
-    // @IsDefined()
-    // Contact!: Contact[]
-
-    // @IsOptional()
-    // agePolicy?: AgePolicy
-
-    // @IsOptional()
-    // cancellationPolicy?: CancellationPolicy
-
-    // @IsOptional()
-    // bookingPolicy?: BookingPolicy
-
-    // @IsOptional()
-    // reservationConfig?: ReservationConfig
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
 }

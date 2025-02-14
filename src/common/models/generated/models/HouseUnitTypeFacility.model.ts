@@ -1,34 +1,41 @@
-import { IsString, IsDefined, IsBoolean, IsOptional, IsDate } from "class-validator";
-import { HousingUnitType, Facility } from "./";
+import {
+    IsBoolean,
+    IsDate,
+    IsDefined,
+    IsOptional,
+    IsString,
+} from 'class-validator'
+
+import { Facility, HousingUnitType } from './'
 
 export class HouseUnitTypeFacility {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsOptional()
     @IsBoolean()
-    isFeatured?: boolean;
+    isFeatured?: boolean
 
     @IsDefined()
     @IsString()
-    housingUnitTypeId!: string;
+    housingUnitTypeId!: string
 
     @IsDefined()
-    housingUnitType!: HousingUnitType;
+    housingUnitType!: HousingUnitType
 
     @IsDefined()
     @IsString()
-    facilityId!: string;
+    facilityId!: string
 
     @IsDefined()
-    facility!: Facility;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    facility!: Facility
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

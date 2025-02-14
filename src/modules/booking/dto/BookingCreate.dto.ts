@@ -1,22 +1,25 @@
-import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
+import { Type } from 'class-transformer'
+import {
+    IsArray,
+    IsDefined,
+    IsInt,
+    IsOptional,
+    IsString,
+} from 'class-validator'
 
-import { BookingService, HousingUnit } from './'
+import { BookingServiceCreateDTO } from './BookingServiceCreate.dto.model'
 
-export class Booking {
-    @IsDefined()
-    @IsString()
-    id!: string
-
+export class BookingCreateDTO {
     @IsDefined()
     @IsString()
     status!: string
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     startDate!: Date
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     endDate!: Date
 
     @IsOptional()
@@ -44,20 +47,7 @@ export class Booking {
     housingUnitId!: string
 
     @IsDefined()
-    HousingUnit!: HousingUnit
-
-    @IsDefined()
-    services!: BookingService[]
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date
-
-    @IsDefined()
-    @IsDate()
-    updatedAt!: Date
-
-    @IsOptional()
-    @IsDate()
-    deletedAt?: Date
+    @IsArray()
+    @Type(() => BookingServiceCreateDTO)
+    services!: BookingServiceCreateDTO
 }

@@ -1,133 +1,142 @@
-import { IsString, IsDefined, IsOptional, IsDate } from "class-validator";
-import { UserCompanyRelation, HousingUnitType, CompanyContact, AgePolicy, CancellationPolicy, BookingPolicy, ReservationConfig } from "./";
+import { IsDate, IsDefined, IsOptional, IsString } from 'class-validator'
+
+import {
+    AgePolicy,
+    BookingPolicy,
+    CancellationPolicy,
+    CompanyContact,
+    HousingUnitType,
+    ReservationConfig,
+    UserCompanyRelation,
+} from './'
 
 export class Company {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    name!: string;
+    name!: string
 
     @IsDefined()
     @IsString()
-    slug!: string;
+    slug!: string
 
     @IsOptional()
     @IsString()
-    shortDescription?: string;
+    shortDescription?: string
 
     @IsOptional()
     @IsString()
-    description?: string;
+    description?: string
 
     @IsOptional()
     @IsString()
-    branchBusiness?: string;
+    branchBusiness?: string
 
     @IsOptional()
     @IsString()
-    timezone?: string;
+    timezone?: string
 
     @IsOptional()
     @IsString()
-    thumbnail?: string;
+    thumbnail?: string
 
     @IsOptional()
     @IsString()
-    logo?: string;
+    logo?: string
 
     @IsOptional()
     @IsString()
-    logoFormat?: string;
+    logoFormat?: string
 
     @IsOptional()
     @IsString()
-    favIcon?: string;
+    favIcon?: string
 
     @IsOptional()
     @IsString()
-    theme?: string;
+    theme?: string
 
     @IsDefined()
     @IsString()
-    responsible!: string;
+    responsible!: string
 
     @IsOptional()
     @IsString()
-    responsibleEmail?: string;
+    responsibleEmail?: string
 
     @IsOptional()
     @IsString()
-    responsiblePhone?: string;
+    responsiblePhone?: string
 
     @IsDefined()
     @IsString()
-    docType!: string;
+    docType!: string
 
     @IsDefined()
     @IsString()
-    identification!: string;
+    identification!: string
 
     @IsDefined()
     @IsString()
-    companyName!: string;
+    companyName!: string
 
     @IsOptional()
     @IsString()
-    stateRegistration?: string;
+    stateRegistration?: string
 
     @IsOptional()
     @IsString()
-    municipalRegistration?: string;
+    municipalRegistration?: string
 
     @IsDefined()
     @IsString()
-    address!: string;
+    address!: string
 
     @IsDefined()
     @IsString()
-    number!: string;
+    number!: string
 
     @IsDefined()
     @IsString()
-    country!: string;
+    country!: string
 
     @IsDefined()
     @IsString()
-    state!: string;
+    state!: string
 
     @IsDefined()
     @IsString()
-    city!: string;
+    city!: string
 
     @IsDefined()
-    userCompanyRelation!: UserCompanyRelation[];
+    userCompanyRelation!: UserCompanyRelation[]
 
     @IsDefined()
-    housingUnitTypes!: HousingUnitType[];
+    housingUnitTypes!: HousingUnitType[]
 
     @IsDefined()
-    contacts!: CompanyContact[];
+    contacts!: CompanyContact[]
 
     @IsOptional()
-    agePolicy?: AgePolicy;
+    agePolicy?: AgePolicy
 
     @IsOptional()
-    cancellationPolicy?: CancellationPolicy;
+    cancellationPolicy?: CancellationPolicy
 
     @IsOptional()
-    bookingPolicy?: BookingPolicy;
+    bookingPolicy?: BookingPolicy
 
     @IsOptional()
-    reservationConfig?: ReservationConfig;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    reservationConfig?: ReservationConfig
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

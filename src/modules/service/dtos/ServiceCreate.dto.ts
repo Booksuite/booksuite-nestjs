@@ -2,7 +2,6 @@ import { Type } from 'class-transformer'
 import {
     IsArray,
     IsBoolean,
-    IsDate,
     IsDefined,
     IsInt,
     IsOptional,
@@ -51,11 +50,11 @@ export class ServiceCreateDTO {
     seasonalSale!: boolean
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     seasonStart!: Date
 
     @IsDefined()
-    @IsDate()
+    @IsString()
     seasonEnd!: Date
 
     // @IsOptional()

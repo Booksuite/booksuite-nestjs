@@ -1,33 +1,34 @@
-import { Prisma } from "@prisma/client";
-import { IsString, IsDefined, IsOptional, IsDate } from "class-validator";
-import { HousingUnitTypeMedia, ServiceMedia, BannerMedia } from "./";
+import { Prisma } from '@prisma/client'
+import { IsDate, IsDefined, IsOptional, IsString } from 'class-validator'
+
+import { BannerMedia, HousingUnitTypeMedia, ServiceMedia } from './'
 
 export class Media {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    url!: string;
+    url!: string
 
     @IsOptional()
-    metadata?: Prisma.JsonValue;
+    metadata?: Prisma.JsonValue
 
     @IsDefined()
     @IsDate()
-    createdAt!: Date;
+    createdAt!: Date
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    updatedAt!: Date
 
     @IsDefined()
-    housingUnitTypeMedias!: HousingUnitTypeMedia[];
+    housingUnitTypeMedias!: HousingUnitTypeMedia[]
 
     @IsDefined()
-    serviceMedias!: ServiceMedia[];
+    serviceMedias!: ServiceMedia[]
 
     @IsDefined()
-    bannerMedias!: BannerMedia[];
+    bannerMedias!: BannerMedia[]
 }

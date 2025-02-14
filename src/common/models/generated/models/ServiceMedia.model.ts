@@ -1,34 +1,35 @@
-import { IsString, IsDefined, IsInt, IsOptional, IsDate } from "class-validator";
-import { Service, Media } from "./";
+import { IsDate, IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
+
+import { Media, Service } from './'
 
 export class ServiceMedia {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsOptional()
     @IsInt()
-    order?: number;
+    order?: number
 
     @IsDefined()
     @IsString()
-    serviceId!: string;
+    serviceId!: string
 
     @IsDefined()
-    sevice!: Service;
+    sevice!: Service
 
     @IsDefined()
     @IsString()
-    mediaId!: string;
+    mediaId!: string
 
     @IsDefined()
-    media!: Media;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    media!: Media
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

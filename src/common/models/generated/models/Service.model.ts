@@ -1,95 +1,103 @@
-import { Prisma } from "@prisma/client";
-import { IsString, IsDefined, IsInt, IsBoolean, IsDate, IsOptional } from "class-validator";
-import { ServiceMedia, BookingService, ServiceCategory } from "./";
+import { Prisma } from '@prisma/client'
+import {
+    IsBoolean,
+    IsDate,
+    IsDefined,
+    IsInt,
+    IsOptional,
+    IsString,
+} from 'class-validator'
+
+import { BookingService, ServiceCategory, ServiceMedia } from './'
 
 export class Service {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    name!: string;
+    name!: string
 
     @IsDefined()
     @IsString()
-    billType!: string;
+    billType!: string
 
     @IsDefined()
-    price!: number;
+    price!: number
 
     @IsDefined()
     @IsInt()
-    adults!: number;
+    adults!: number
 
     @IsDefined()
     @IsInt()
-    minDaily!: number;
+    minDaily!: number
 
     @IsDefined()
     @IsInt()
-    minNotice!: number;
+    minNotice!: number
 
     @IsDefined()
     @IsBoolean()
-    onlineSale!: boolean;
+    onlineSale!: boolean
 
     @IsDefined()
     @IsBoolean()
-    panelSale!: boolean;
+    panelSale!: boolean
 
     @IsDefined()
     @IsBoolean()
-    seasonalSale!: boolean;
+    seasonalSale!: boolean
 
     @IsDefined()
     @IsDate()
-    seasonStart!: Date;
+    seasonStart!: Date
 
     @IsDefined()
     @IsDate()
-    seasonEnd!: Date;
+    seasonEnd!: Date
 
     @IsOptional()
-    hosting?: Prisma.JsonValue;
+    hosting?: Prisma.JsonValue
 
     @IsOptional()
-    nights?: Prisma.JsonValue;
+    nights?: Prisma.JsonValue
 
     @IsDefined()
     @IsString()
-    description!: string;
+    description!: string
 
     @IsDefined()
     @IsString()
-    included!: string;
+    included!: string
 
     @IsDefined()
     @IsString()
-    notes!: string;
+    notes!: string
 
     @IsOptional()
     @IsString()
-    videoUrl?: string;
+    videoUrl?: string
 
     @IsDefined()
-    medias!: ServiceMedia[];
+    medias!: ServiceMedia[]
 
     @IsDefined()
-    bookings!: BookingService[];
+    bookings!: BookingService[]
 
     @IsDefined()
     @IsString()
-    categoryId!: string;
+    categoryId!: string
 
     @IsDefined()
-    category!: ServiceCategory;
+    category!: ServiceCategory
 
     @IsDefined()
     @IsDate()
-    createdAt!: Date;
+    createdAt!: Date
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    updatedAt!: Date
 }

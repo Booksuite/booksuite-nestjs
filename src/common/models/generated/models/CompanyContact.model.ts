@@ -1,69 +1,70 @@
-import { Prisma } from "@prisma/client";
-import { IsString, IsDefined, IsOptional, IsDate } from "class-validator";
-import { Company } from "./";
+import { Prisma } from '@prisma/client'
+import { IsDate, IsDefined, IsOptional, IsString } from 'class-validator'
+
+import { Company } from './'
 
 export class CompanyContact {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsOptional()
-    email?: Prisma.JsonValue;
-
-    @IsOptional()
-    @IsString()
-    salesPhone?: string;
+    email?: Prisma.JsonValue
 
     @IsOptional()
     @IsString()
-    guestsPhone?: string;
+    salesPhone?: string
 
     @IsOptional()
     @IsString()
-    phone?: string;
+    guestsPhone?: string
 
     @IsOptional()
     @IsString()
-    cellphone?: string;
-
-    @IsOptional()
-    otherPhones?: Prisma.JsonValue;
+    phone?: string
 
     @IsOptional()
     @IsString()
-    instagram?: string;
+    cellphone?: string
+
+    @IsOptional()
+    otherPhones?: Prisma.JsonValue
 
     @IsOptional()
     @IsString()
-    facebook?: string;
+    instagram?: string
 
     @IsOptional()
     @IsString()
-    youtube?: string;
+    facebook?: string
 
     @IsOptional()
     @IsString()
-    tiktok?: string;
+    youtube?: string
 
     @IsOptional()
     @IsString()
-    tripAdvisor?: string;
+    tiktok?: string
 
     @IsOptional()
-    otherSocialMedias?: Prisma.JsonValue;
+    @IsString()
+    tripAdvisor?: string
+
+    @IsOptional()
+    otherSocialMedias?: Prisma.JsonValue
 
     @IsDefined()
     @IsString()
-    companyId!: string;
+    companyId!: string
 
     @IsDefined()
-    company!: Company;
-
-    @IsDefined()
-    @IsDate()
-    createdAt!: Date;
+    company!: Company
 
     @IsDefined()
     @IsDate()
-    updatedAt!: Date;
+    createdAt!: Date
+
+    @IsDefined()
+    @IsDate()
+    updatedAt!: Date
 }

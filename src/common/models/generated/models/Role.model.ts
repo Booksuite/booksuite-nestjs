@@ -1,27 +1,28 @@
-import { IsString, IsDefined, IsDate } from "class-validator";
-import { UserCompanyRelation } from "./";
+import { IsDate, IsDefined, IsString } from 'class-validator'
+
+import { UserCompanyRelation } from './'
 
 export class Role {
     @IsDefined()
     @IsString()
-    id!: string;
+    id!: string
 
     @IsDefined()
     @IsString()
-    name!: string;
+    name!: string
 
     @IsDefined()
     @IsString()
-    slug!: string;
+    slug!: string
 
     @IsDefined()
     @IsString()
-    permissions!: string[];
+    permissions!: string[]
 
     @IsDefined()
     @IsDate()
-    createdAt!: Date;
+    createdAt!: Date
 
     @IsDefined()
-    userCompanyRelation!: UserCompanyRelation[];
+    userCompanyRelation!: UserCompanyRelation[]
 }

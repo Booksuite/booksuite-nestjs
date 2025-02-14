@@ -15,7 +15,7 @@ import { HousingUnitTypeService } from './housingUnitType.service'
 export class HousingUnitTypeController {
     constructor(private housingUnitTypeService: HousingUnitTypeService) {}
 
-    @Post('createProperty')
+    @Post('create')
     create(@Body() propertyData: HousingUnitTypeCreateDTO) {
         return this.housingUnitTypeService.create(propertyData)
     }
