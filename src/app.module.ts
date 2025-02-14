@@ -17,8 +17,8 @@ import { ServiceModule } from './modules/service/service.module'
         CompanyModule,
         ServiceModule,
         HousingUnitModule,
-        FacilityModule,
         Booking,
+        FacilityModule,
     ],
 })
 export class AppModule {}
