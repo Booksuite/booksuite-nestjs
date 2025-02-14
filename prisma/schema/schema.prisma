@@ -8,11 +8,6 @@ generator client {
     previewFeatures = ["prismaSchemaFolder"]
 }
 
-generator class_validator {
-    provider = "prisma-class-validator-generator"
-    output   = "../../src/common/models/generated"
-}
-
 // model Address {
 //     id String @id @default(uuid())
 
