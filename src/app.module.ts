@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
+import { BannerModule } from './modules/banner/banner.module'
 import { BookingModule } from './modules/booking/booking.module'
 import { CancellationPolicyModule } from './modules/cancellationPolicy/cancellationPolicy.module'
 import { CompanyModule } from './modules/company/company.module'
@@ -23,6 +24,7 @@ import { ServiceModule } from './modules/service/service.module'
         FacilityModule,
         MediaModule,
         CancellationPolicyModule,
+        BannerModule,
     ],
 })
 export class AppModule {}
