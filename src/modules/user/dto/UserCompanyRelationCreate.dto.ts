@@ -1,10 +1,6 @@
 import { IsDefined, IsString } from 'class-validator'
 
-export class UserCompanyRelation {
-    @IsDefined()
-    @IsString()
-    id!: string
-
+export class UserCompanyRelationDTO {
     @IsDefined()
     @IsString()
     userId!: string
