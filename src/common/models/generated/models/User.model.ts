@@ -7,8 +7,6 @@ import {
     IsString,
 } from 'class-validator'
 
-import { UserCompanyRelation } from './'
-
 export class User {
     @IsDefined()
     @IsString()
@@ -56,7 +54,4 @@ export class User {
     @IsOptional()
     @IsDate()
     deletedAt?: Date
-
-    @IsDefined()
-    userCompanyRelation!: UserCompanyRelation[]
 }
