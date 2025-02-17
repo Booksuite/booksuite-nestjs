@@ -1,5 +1,4 @@
-import { IsDefined, IsIn, IsInt, IsString } from 'class-validator'
-import { getEnumValues } from 'src/common/models/generated/helpers/index'
+import { IsDefined, IsEnum, IsInt, IsString } from 'class-validator'
 
 import { CancellationPolicyPenalty } from '../enums/CancellationPolicyPenalty.enum'
 
@@ -10,8 +9,7 @@ export class CancellationPolicyCreateDTO {
     @IsString()
     text!: string
 
-    @IsDefined()
-    @IsIn(getEnumValues(CancellationPolicyPenalty))
+    @IsEnum(CancellationPolicyPenalty)
     defaultPenaltyBy!: CancellationPolicyPenalty
 
     @IsDefined()
