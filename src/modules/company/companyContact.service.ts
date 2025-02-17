@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
+import { CompanyContact, Prisma } from '@prisma/client'
 import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
@@ -19,6 +19,12 @@ export class CompanyContactService {
 
         return this.prismaService.$transaction(async (db) => {
             await db.companyContact.create({ data: normalizedData })
+        })
+    }
+
+    list(companyId: string): Promise<CompanyContact[]> {
+        return this.prismaService.companyContact.findMany({
+            where: { companyId },
         })
     }
 

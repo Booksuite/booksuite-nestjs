@@ -19,10 +19,6 @@ export class CompanyCreateDTO {
 
     @IsOptional()
     @IsString()
-    branchBusiness?: string
-
-    @IsOptional()
-    @IsString()
     timezone?: string
 
     @IsOptional()
