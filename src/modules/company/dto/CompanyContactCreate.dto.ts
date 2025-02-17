@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client'
-import { IsDefined, IsOptional, IsString } from 'class-validator'
+import { IsOptional, IsString } from 'class-validator'
 
 export class CompanyContactCreateDTO {
     @IsOptional()
@@ -48,8 +48,4 @@ export class CompanyContactCreateDTO {
     otherSocialMedias?:
         | Prisma.InputJsonValue
         | Prisma.NullableJsonNullValueInput
-
-    @IsDefined()
-    @IsString()
-    companyId!: string
 }

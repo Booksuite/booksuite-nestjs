@@ -6,41 +6,47 @@ import {
     Param,
     Patch,
     Post,
+    Query,
 } from '@nestjs/common'
+import { CompanyContact } from '@prisma/client'
+
+import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
+import { PaginatedResponse } from '@/common/types/pagination'
 
 import { CompanyContactService } from './companyContact.service'
 import { CompanyContactCreateDTO } from './dto/CompanyContactCreate.dto'
-import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
 
 @Controller('company/:companyId/contact')
 export class CompanyContactController {
     constructor(private companyContactService: CompanyContactService) {}
 
     @Post('create')
-    create(@Body() data: CompanyContactCreateDTO) {
-        return this.companyContactService.create(data)
+    create(
+        @Param('companyId') companyId: string,
+        @Body() data: CompanyContactCreateDTO,
+    ) {
+        return this.companyContactService.create(companyId, data)
     }
 
     @Get()
-    list(@Param('id') id: string) {
-        return this.companyContactService.getByID(id)
-    }
-
-    @Get(':id')
-    getById(@Param('id') id: string) {
-        return this.companyContactService.getByID(id)
+    list(
+        @Param('companyId') companyId: string,
+        @Query() paginationRequest: PaginationQueryDTO,
+    ): Promise<PaginatedResponse<CompanyContact>> {
+        return this.companyContactService.list(companyId, paginationRequest)
     }
 
     @Patch(':id')
-    updateCompany(
+    update(
+        @Param('companyId') companyId: string,
         @Param('id') id: string,
-        @Body() updatedData: CompanyCreateDTO,
+        @Body() updatedData: CompanyContactCreateDTO,
     ) {
-        return this.companyContactService.updateCompany(id, updatedData)
+        return this.companyContactService.update(companyId, id, updatedData)
     }
 
     @Delete(':id')
-    deleteCompany(@Param('id') id: string) {
-        return this.companyContactService.deleteCompany(id)
+    delete(@Param('companyId') companyId: string, @Param('id') id: string) {
+        return this.companyContactService.delete(companyId, id)
     }
 }
