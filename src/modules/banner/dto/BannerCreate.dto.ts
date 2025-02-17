@@ -1,6 +1,5 @@
-import { IsDefined, IsIn, IsInt, IsOptional, IsString } from 'class-validator'
+import { IsDefined, IsEnum, IsInt, IsOptional, IsString } from 'class-validator'
 
-import { getEnumValues } from '@/common/models/generated/helpers'
 import { BannerAction } from '../enum/BannerAction.enum'
 import { BannerPosition } from '../enum/BannerPosition.enum'
 import { BannerStatus } from '../enum/BannerStatus.enum'
@@ -9,7 +8,7 @@ import { BannerMediaCreateDTO } from './BannerMediaCreate.dto'
 
 export class BannerCreateDTO {
     @IsDefined()
-    @IsIn(getEnumValues(BannerStatus))
+    @IsEnum(BannerStatus)
     status!: BannerStatus
 
     @IsDefined()
@@ -17,7 +16,7 @@ export class BannerCreateDTO {
     name!: string
 
     @IsDefined()
-    @IsIn(getEnumValues(BannerPosition))
+    @IsEnum(BannerPosition)
     position!: BannerPosition
 
     @IsDefined()
@@ -33,7 +32,7 @@ export class BannerCreateDTO {
     description?: string
 
     @IsDefined()
-    @IsIn(getEnumValues(BannerAction))
+    @IsEnum(BannerAction)
     action!: BannerAction
 
     @IsOptional()
