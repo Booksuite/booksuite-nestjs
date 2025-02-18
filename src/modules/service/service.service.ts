@@ -1,17 +1,20 @@
 import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
+import { Prisma, Service } from '@prisma/client'
 import { omit } from 'radash'
 
+import { PaginatedResponse, PaginationQuery } from '@/common/types/pagination'
+import { buildPaginatedResponse } from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
+import { serviceQuerySearchDTO } from './dtos/serviceQuerySearch.dto'
 
 @Injectable()
 export class ServiceService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prismaService: PrismaService) {}
 
     create(rawData: ServiceCreateDTO) {
-        return this.prisma.$transaction(async (db) => {
+        return this.prismaService.$transaction(async (db) => {
             let categoryId = rawData.categoryId as string
             if (rawData.category) {
                 const newCategory = await db.serviceCategory.create({
@@ -23,7 +26,7 @@ export class ServiceService {
             const omitted = omit(rawData, ['medias', 'categoryId', 'category'])
 
             const normalizedData = Prisma.validator(
-                this.prisma,
+                this.prismaService,
                 'service',
                 'create',
                 'data',
@@ -40,25 +43,46 @@ export class ServiceService {
     }
 
     getById(id: string) {
-        return this.prisma.service.findUnique({ where: { id } })
+        return this.prismaService.service.findUnique({ where: { id } })
     }
 
     update(id: string, rawData: ServiceCreateDTO) {
         const omitted = omit(rawData, ['medias', 'categoryId', 'category'])
         const normalizedData = Prisma.validator(
-            this.prisma,
+            this.prismaService,
             'service',
             'update',
             'data',
         )(omitted)
 
-        return this.prisma.service.update({
+        return this.prismaService.service.update({
             where: { id },
             data: normalizedData,
         })
     }
 
     delete(id: string) {
-        return this.prisma.service.delete({ where: { id } })
+        return this.prismaService.service.delete({ where: { id } })
+    }
+
+    async searchServices(
+        companyId: string,
+        pagination: PaginationQuery,
+        queryString: serviceQuerySearchDTO,
+    ): Promise<PaginatedResponse<Service>> {
+        const [services, totalServices] =
+            await this.prismaService.service.findManyAndCount({
+                where: {
+                    name: { contains: queryString.name, mode: 'insensitive' },
+                    price: { lte: parseFloat(queryString.price), gte: 0 },
+                    adults: parseFloat(queryString.adults),
+                    minDaily: parseFloat(queryString.minDaily),
+                    minNotice: parseFloat(queryString.minNotice),
+                    seasonStart: { gte: queryString.seasonStart },
+                    seasonEnd: { lte: queryString.seasonEnd },
+                },
+            })
+
+        return buildPaginatedResponse(services, totalServices, pagination)
     }
 }
