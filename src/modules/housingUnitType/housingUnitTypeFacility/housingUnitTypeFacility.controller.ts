@@ -12,7 +12,7 @@ import { HouseUnitTypeFacilityCreateDTO } from '../dto/HouseUnitTypeFacilityCrea
 
 import { HousingUnitTypeFacilityService } from './housingUnitTypeFacility.service'
 
-@Controller('housingUnitType/housingUnitTypeFacility')
+@Controller('housingUnitType/:housingUnitTypeId/facility')
 export class HousingUnitTypeFacilityController {
     constructor(
         private houseUnitTypeFacilityService: HousingUnitTypeFacilityService,

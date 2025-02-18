@@ -27,7 +27,7 @@ export class AgePolicyService {
             .map((group) => group.id) as string[]
 
         await this.prismaService.ageGroup.deleteMany({
-            where: { id: { in: ageGroupsToKeep } },
+            where: { id: { notIn: ageGroupsToKeep } },
         })
 
         return this.prismaService.agePolicy.upsert({
