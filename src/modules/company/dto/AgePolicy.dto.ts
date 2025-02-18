@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
     IsArray,
@@ -7,20 +8,23 @@ import {
     ValidateNested,
 } from 'class-validator'
 
-import { AgeGroupCreateDTO } from './AgeGroupCreate.dto'
+import { AgeGroupDTO } from './AgeGroup.dto'
 
-export class AgePolicyCreateDTO {
+export class AgePolicyDTO {
+    @ApiProperty({ example: true })
     @IsDefined()
     @IsBoolean()
     acceptChildren!: boolean
 
+    @ApiProperty({ example: 12 })
     @IsDefined()
     @IsInt()
     adultMinAge!: number
 
+    @ApiProperty({ type: [AgeGroupDTO] })
     @IsDefined()
     @IsArray()
-    @Type(() => AgeGroupCreateDTO)
+    @Type(() => AgeGroupDTO)
     @ValidateNested({ each: true })
-    ageGroups!: AgeGroupCreateDTO[]
+    ageGroups!: AgeGroupDTO[]
 }

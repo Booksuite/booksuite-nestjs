@@ -17,24 +17,21 @@ export class CompanyController {
 
     @Post('create')
     createCompany(@Body() companyData: CompanyCreateDTO) {
-        return this.companyService.createCompany(companyData)
+        return this.companyService.create(companyData)
     }
 
-    @Get('/:id')
+    @Get(':id')
     getCompanyByID(@Param('id') id: string) {
-        return this.companyService.getCompanyByID(id)
+        return this.companyService.getById(id)
     }
 
     @Patch(':id')
-    updateCompany(
-        @Param('id') id: string,
-        @Body() updatedData: CompanyCreateDTO,
-    ) {
-        return this.companyService.updateCompany(id, updatedData)
+    update(@Param('id') id: string, @Body() updatedData: CompanyCreateDTO) {
+        return this.companyService.update(id, updatedData)
     }
 
     @Delete(':id')
     deleteCompany(@Param('id') id: string) {
-        return this.companyService.deleteCompany(id)
+        return this.companyService.detele(id)
     }
 }

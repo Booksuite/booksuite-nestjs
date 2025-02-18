@@ -4,15 +4,15 @@ import { AgePolicyController } from './agePolicy.controller'
 import { AgePolicyService } from './agePolicy.service'
 import { CompanyController } from './company.controller'
 import { CompanyService } from './company.service'
-import { CompanyContactController } from './companyContact.controller'
-import { CompanyContactService } from './companyContact.service'
+import { ReservationConfigController } from './reservationConfig.controller'
+import { ReservationConfigService } from './reservationConfig.service'
 
 @Module({
-    providers: [CompanyService, CompanyContactService, AgePolicyService],
+    providers: [CompanyService, AgePolicyService, ReservationConfigService],
     controllers: [
         CompanyController,
-        CompanyContactController,
         AgePolicyController,
+        ReservationConfigController,
     ],
 })
 export class CompanyModule {}
