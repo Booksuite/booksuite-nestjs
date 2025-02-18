@@ -28,6 +28,7 @@ export default tseslint.config(
   },
   {
     plugins: { "simple-import-sort": simpleImportSort },
+    ignores: ["src/common/models/generated/**/*"],
     rules: {
       "no-console": "error",
       "linebreak-style": ["error", "unix"],

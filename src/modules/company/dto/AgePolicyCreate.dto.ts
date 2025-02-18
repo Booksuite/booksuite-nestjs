@@ -4,11 +4,10 @@ import {
     IsBoolean,
     IsDefined,
     IsInt,
-    IsString,
     ValidateNested,
 } from 'class-validator'
 
-import { AgeGroupCreateDTO } from './AgeGrouCreate.dto'
+import { AgeGroupCreateDTO } from './AgeGroupCreate.dto'
 
 export class AgePolicyCreateDTO {
     @IsDefined()
@@ -18,10 +17,6 @@ export class AgePolicyCreateDTO {
     @IsDefined()
     @IsInt()
     adultMinAge!: number
-
-    @IsDefined()
-    @IsString()
-    companyId!: string
 
     @IsDefined()
     @IsArray()
