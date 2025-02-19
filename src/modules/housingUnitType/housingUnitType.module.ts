@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common'
 
 import { HousingUnitTypeController } from './housingUnitType.controller'
 import { HousingUnitTypeService } from './housingUnitType.service'
-import { HousingUnitTypeFacilityController } from './housingUnitTypeFacility/housingUnitTypeFacility.controller'
-import { HousingUnitTypeFacilityService } from './housingUnitTypeFacility/housingUnitTypeFacility.service'
+import { HousingUnitTypeFacilityController } from './housingUnitTypeFacility.controller'
+import { HousingUnitTypeFacilityService } from './housingUnitTypeFacility.service'
 
 @Module({
     providers: [HousingUnitTypeService, HousingUnitTypeFacilityService],
