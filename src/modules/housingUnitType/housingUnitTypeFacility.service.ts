@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
@@ -9,12 +10,17 @@ export class HousingUnitTypeFacilityService {
     constructor(private prismaService: PrismaService) {}
 
     upsert(id: string, UnitTypeFacilityData: HouseUnitTypeFacilityCreateDTO) {
+        const normalizedData =
+            Prisma.validator<Prisma.HouseUnitTypeFacilityUpsertArgs>()({
+                where: { id },
+                update: { facilityId: UnitTypeFacilityData.facilityId },
+                create: {
+                    ...UnitTypeFacilityData,
+                },
+            })
+
         return this.prismaService.houseUnitTypeFacility.upsert({
-            where: { id },
-            update: { facilityId: UnitTypeFacilityData.facilityId },
-            create: {
-                ...UnitTypeFacilityData,
-            },
+            ...normalizedData,
         })
     }
 
