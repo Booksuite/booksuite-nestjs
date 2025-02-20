@@ -43,6 +43,8 @@ model ReservationConfig {
     reservationDepositType      ReservationDepositType
     reservationDepositTypeValue Float?
 
+    reservationPolicy String @db.Text
+
     companyId String  @unique
     company   Company @relation(fields: [companyId], references: [id])
 

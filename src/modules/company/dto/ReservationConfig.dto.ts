@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDefined, IsEnum, IsNumber, IsOptional } from 'class-validator'
+import {
+    IsDefined,
+    IsEnum,
+    IsNumber,
+    IsOptional,
+    IsString,
+} from 'class-validator'
 
 import { ReservationDepositType } from '../enums/ReservationDepositType.enum'
 
@@ -26,4 +32,11 @@ export class ReservationConfigDTO {
     @IsOptional()
     @IsNumber()
     reservationDepositTypeValue?: number
+
+    @ApiProperty({
+        example: 'Reservation Policy, big text.',
+    })
+    @IsDefined()
+    @IsString()
+    reservationPolicy!: string
 }
