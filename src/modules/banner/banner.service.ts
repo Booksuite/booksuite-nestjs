@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
+import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
@@ -8,22 +10,38 @@ import { BannerCreateDTO } from './dto/BannerCreate.dto'
 export class BannerService {
     constructor(private prismaService: PrismaService) {}
 
-    create(bannerData: BannerCreateDTO) {
+    create(rawData: BannerCreateDTO) {
+        const normalizedData = Prisma.validator<Prisma.BannerCreateInput>()({
+            ...rawData,
+            medias: { createMany: { data: rawData.medias } },
+        })
+
         return this.prismaService.banner.create({
-            data: bannerData,
+            data: normalizedData,
         })
     }
 
     getById(id: string) {
         return this.prismaService.banner.findUnique({
-            where: { id: id },
+            where: { id },
         })
     }
 
-    update(id: string, bannerData: BannerCreateDTO) {
+    update(id: string, rawData: BannerCreateDTO) {
+        const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
+            ...rawData,
+            medias: {
+                upsert: rawData.medias.map((media) => ({
+                    create: media,
+                    where: { id: media.id },
+                    update: omit(media, ['bannerId', 'mediaId']),
+                })),
+            },
+        })
+
         return this.prismaService.banner.update({
-            where: { id: id },
-            data: bannerData,
+            where: { id },
+            data: normalizedData,
         })
     }
 

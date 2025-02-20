@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { BannerMediaCreateDTO } from './dto/BannerMediaCreate.dto'
+import { BannerMediaDTO } from './dto/BannerMedia.dto'
 
 @Injectable()
 export class BannerMediaService {
     constructor(private prismaService: PrismaService) {}
 
-    create(bannerMediaData: BannerMediaCreateDTO) {
+    create(bannerMediaData: BannerMediaDTO) {
         return this.prismaService.bannerMedia.create({
             data: {
                 media: { connect: { id: bannerMediaData.mediaId } },
@@ -23,7 +23,7 @@ export class BannerMediaService {
         })
     }
 
-    update(id: string, bannerMediaData: BannerMediaCreateDTO) {
+    update(id: string, bannerMediaData: BannerMediaDTO) {
         return this.prismaService.bannerMedia.update({
             where: { id },
             data: {

@@ -13,7 +13,7 @@ model Banner {
     actionButtonText String?
     actionButtonLink String?
 
-    BannerMedia BannerMedia[]
+    medias BannerMedia[]
 
     startAt DateTime?
     endAt   DateTime?
@@ -27,6 +27,8 @@ model Banner {
 
 model BannerMedia {
     id String @id @default(uuid())
+
+    order Int? @default(0)
 
     bannerId String
     banner   Banner @relation(fields: [bannerId], references: [id])
