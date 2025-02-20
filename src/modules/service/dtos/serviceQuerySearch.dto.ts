@@ -1,6 +1,6 @@
 import { IsDefined, IsString } from 'class-validator'
 
-export class ServiceSearchQueryDTO {
+export class serviceQuerySearchDTO {
     @IsDefined()
     @IsString()
     name!: string
