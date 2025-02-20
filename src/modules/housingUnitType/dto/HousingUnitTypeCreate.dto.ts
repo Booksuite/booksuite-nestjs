@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
     IsArray,
@@ -11,55 +12,72 @@ import {
 import { HousingUnitTypeMediaCreateDTO } from './HousingUnitTypeMediaCreate.dto'
 
 export class HousingUnitTypeCreateDTO {
+    @ApiProperty({ example: 'Deluxe' })
     @IsDefined()
     @IsString()
     name!: string
 
+    @ApiProperty({ example: 'deluxe-suite' })
     @IsDefined()
     @IsString()
     slug!: string
 
+    @ApiProperty({ example: 'a deluxe suite for 2 people' })
     @IsOptional()
     @IsString()
     shortDescription?: string
 
+    @ApiProperty({
+        example:
+            'The Deluxe Suite offers a spacious room with a king-size bed, a private balcony, and premium amenities.',
+    })
     @IsOptional()
     @IsString()
     description?: string
 
+    @ApiProperty({ example: '2' })
     @IsDefined()
     @IsInt()
     order!: number
 
+    @ApiProperty({ example: '2' })
     @IsOptional()
     @IsInt()
     minGuests?: number
 
+    @ApiProperty({ example: '6' })
     @IsOptional()
     @IsInt()
     maxGuests?: number
 
+    @ApiProperty({ example: '4' })
     @IsOptional()
     @IsInt()
     maxAdults?: number
 
+    @ApiProperty({ example: '3' })
     @IsOptional()
     @IsInt()
     maxChildren?: number
 
+    @ApiProperty({ example: '300' })
     @IsDefined()
     weekdaysPrice!: number
 
+    @ApiProperty({ example: '500' })
     @IsDefined()
     weekendPrice!: number
 
+    @ApiProperty({ example: '50' })
     @IsDefined()
     extraAdultPrice!: number
 
+    @ApiProperty({ example: '70' })
     @IsDefined()
     @IsInt()
     chargeExtraAdultHigherThan!: number
 
+    @ApiProperty({ type: HousingUnitTypeMediaCreateDTO })
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
