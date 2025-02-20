@@ -26,46 +26,38 @@ export class ServiceCreateDTO {
     @IsString()
     billType!: string
 
-    @ApiProperty({ example: 200 })
+    @ApiProperty({ example: '200' })
     @IsDefined()
     price!: number
 
-    @ApiProperty({ example: 3 })
     @IsDefined()
     @IsInt()
     adults!: number
 
-    @ApiProperty({ example: 1 })
     @IsDefined()
     @IsInt()
     minDaily!: number
 
-    @ApiProperty({ example: 1 })
     @IsDefined()
     @IsInt()
     minNotice!: number
 
-    @ApiProperty({ example: true })
     @IsDefined()
     @IsBoolean()
     onlineSale!: boolean
 
-    @ApiProperty({ example: false })
     @IsDefined()
     @IsBoolean()
     panelSale!: boolean
 
-    @ApiProperty({ example: true })
     @IsDefined()
     @IsBoolean()
     seasonalSale!: boolean
 
-    @ApiProperty({ example: '2025-02-21T14:30:00.000Z' })
     @IsDefined()
     @IsISO8601()
     seasonStart!: string
 
-    @ApiProperty({ example: '2025-02-22T14:30:00.000Z' })
     @IsDefined()
     @IsISO8601()
     seasonEnd!: string
@@ -93,12 +85,10 @@ export class ServiceCreateDTO {
     @IsString()
     notes!: string
 
-    @ApiProperty({ example: 'https://www.example.com/video', required: false })
     @IsOptional()
     @IsString()
     videoUrl?: string
 
-    @ApiProperty({ type: [ServiceMediaCreateDTO] })
     @IsDefined()
     @IsArray()
     @Type(() => ServiceMediaCreateDTO)
@@ -111,7 +101,6 @@ export class ServiceCreateDTO {
     @IsString()
     categoryId?: string
 
-    @ApiProperty({ type: [ServiceCategoryCreateDTO] })
     @ValidateIf((o) => !o.categoryId)
     @IsDefined()
     @ValidateNested()
