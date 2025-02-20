@@ -18,7 +18,7 @@ export class ReservationService {
             })
 
             if (rawData.services) {
-                rawData.services.bookId = newReservation.id
+                rawData.services.reservationId = newReservation.id
                 await db.reservationService.createMany({
                     data: rawData.services,
                 })
@@ -26,8 +26,8 @@ export class ReservationService {
         })
     }
 
-    get(bookId: string) {
-        return this.prisma.reservation.findUnique({ where: { id: bookId } })
+    get(id: string) {
+        return this.prisma.reservation.findUnique({ where: { id } })
     }
 
     update(id: string, rawData: ReservationCreateDTO) {
@@ -48,7 +48,7 @@ export class ReservationService {
         })
     }
 
-    delete(bookId: string) {
-        return this.prisma.reservation.delete({ where: { id: bookId } })
+    delete(id: string) {
+        return this.prisma.reservation.delete({ where: { id: id } })
     }
 }

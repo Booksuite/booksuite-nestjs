@@ -16,8 +16,8 @@ export class ReservationController {
     constructor(private reservationService: ReservationService) {}
 
     @Post('create')
-    create(@Body() bookData: ReservationCreateDTO) {
-        return this.reservationService.create(bookData)
+    create(@Body() data: ReservationCreateDTO) {
+        return this.reservationService.create(data)
     }
 
     @Get(':id')

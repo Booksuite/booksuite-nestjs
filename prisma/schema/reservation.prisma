@@ -27,10 +27,10 @@ model ReservationService {
     qtd        Int    @default(1)
     totalPrice Float  @default(0)
 
-    serviceId   String
-    service     Service     @relation(fields: [serviceId], references: [id])
-    bookId      String
-    reservation Reservation @relation(fields: [bookId], references: [id])
+    serviceId     String
+    service       Service     @relation(fields: [serviceId], references: [id])
+    reservationId String
+    reservation   Reservation @relation(fields: [reservationId], references: [id])
 
     @@map("reservation_services")
 }
