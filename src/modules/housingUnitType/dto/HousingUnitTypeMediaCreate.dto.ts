@@ -17,5 +17,9 @@ export class HousingUnitTypeMediaCreateDTO {
 
     @IsDefined()
     @IsString()
+    propertyId!: string
+
+    @IsDefined()
+    @IsString()
     mediaId!: string
 }

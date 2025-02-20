@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { omit } from 'radash'
+import { Prisma } from '@prisma/client'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
@@ -9,26 +9,19 @@ import { MediaCreateDTO } from './dto/MediaCreate.dto'
 export class MediaService {
     constructor(private prismaService: PrismaService) {}
 
-    create(mediaUrl: MediaCreateDTO) {
-        const omitted = omit(mediaUrl, ['metadata'])
-
-        return this.prismaService.media.create({
-            data: omitted,
+    upsert(mediaUrl: MediaCreateDTO) {
+        const normalizedData = Prisma.validator<Prisma.MediaUpsertArgs>()({
+            where: { id: mediaUrl.id },
+            update: { url: mediaUrl.id },
+            create: { ...mediaUrl },
         })
+
+        return this.prismaService.media.upsert({ ...normalizedData })
     }
 
     getById(id: string) {
         return this.prismaService.media.findUnique({
             where: { id },
-        })
-    }
-
-    update(id: string, mediaUrl) {
-        const omitted = omit(mediaUrl, ['metadata'])
-
-        return this.prismaService.media.update({
-            where: { id },
-            data: omitted,
         })
     }
 

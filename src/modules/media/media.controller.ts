@@ -1,12 +1,4 @@
-import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Patch,
-    Post,
-} from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
 
 import { MediaCreateDTO } from './dto/MediaCreate.dto'
 import { MediaService } from './media.service'
@@ -17,17 +9,12 @@ export class MediaController {
 
     @Post('create')
     create(@Body() mediaUrl: MediaCreateDTO) {
-        return this.mediaService.create(mediaUrl)
+        return this.mediaService.upsert(mediaUrl)
     }
 
     @Get(':id')
     getByID(@Param('id') id: string) {
         return this.mediaService.getById(id)
-    }
-
-    @Patch(':id')
-    update(@Param('id') id: string, @Body() mediaUrl: MediaCreateDTO) {
-        return this.mediaService.update(id, mediaUrl)
     }
 
     @Delete(':id')
