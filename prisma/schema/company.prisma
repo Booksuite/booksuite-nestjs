@@ -8,11 +8,13 @@ model Company {
 
     branchBusiness String?
     timezone       String?
-    thumbnail      String?
     logo           String?
-    logoFormat     String?
     favIcon        String?
-    theme          String?
+
+    /// [CompanySettings]
+    settings Json?
+    /// [CompanyContactDTO]
+    contacts Json[]
 
     responsible      String
     responsibleEmail String?
@@ -23,15 +25,15 @@ model Company {
     companyName           String
     stateRegistration     String?
     municipalRegistration String?
-    address               String
-    number                String
-    country               String
-    state                 String
-    city                  String
+
+    address String
+    number  String
+    country String
+    state   String
+    city    String
 
     userCompanyRelation UserCompanyRelation[]
     housingUnitTypes    HousingUnitType[]
-    contacts            CompanyContact[]
 
     agePolicy          AgePolicy?
     cancellationPolicy CancellationPolicy?
@@ -42,30 +44,4 @@ model Company {
     updatedAt DateTime @updatedAt
 
     @@map("companies")
-}
-
-model CompanyContact {
-    id String @id @default(uuid())
-
-    email       Json?
-    salesPhone  String?
-    guestsPhone String?
-    phone       String?
-    cellphone   String?
-    otherPhones Json?
-
-    instagram         String?
-    facebook          String?
-    youtube           String?
-    tiktok            String?
-    tripAdvisor       String?
-    otherSocialMedias Json?
-
-    companyId String
-    company   Company @relation(fields: [companyId], references: [id])
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@map("company_contacts")
 }

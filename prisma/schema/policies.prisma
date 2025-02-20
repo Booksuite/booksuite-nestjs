@@ -70,7 +70,7 @@ model AgeGroup {
 
     initialAge Int
     finalAge   Int
-    chargeType String
+    chargeType AgeGroupChargeType
     value      Int?
 
     agePolicyId String
@@ -80,6 +80,12 @@ model AgeGroup {
     updatedAt DateTime @updatedAt
 
     @@map("age_groups")
+}
+
+enum AgeGroupChargeType {
+    DAILY_PER_CHILDREN
+    DAILY_PERCENTAGE_PER_CHILDREN
+    FREE
 }
 
 enum CancellationPolicyPenalty {

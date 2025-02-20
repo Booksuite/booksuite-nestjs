@@ -1,10 +1,17 @@
-import { IsDefined, IsEnum, IsInt, IsOptional, IsString } from 'class-validator'
+import {
+    IsDefined,
+    IsEnum,
+    IsInt,
+    IsISO8601,
+    IsOptional,
+    IsString,
+} from 'class-validator'
 
 import { BannerAction } from '../enum/BannerAction.enum'
 import { BannerPosition } from '../enum/BannerPosition.enum'
 import { BannerStatus } from '../enum/BannerStatus.enum'
 
-import { BannerMediaCreateDTO } from './BannerMediaCreate.dto'
+import { BannerMediaDTO } from './BannerMedia.dto'
 
 export class BannerCreateDTO {
     @IsDefined()
@@ -44,13 +51,13 @@ export class BannerCreateDTO {
     actionButtonLink?: string
 
     @IsDefined()
-    BannerMedia!: BannerMediaCreateDTO[]
+    medias!: BannerMediaDTO[]
 
     @IsOptional()
-    @IsString()
-    startAt?: Date
+    @IsISO8601()
+    startAt?: string
 
     @IsOptional()
-    @IsString()
-    endAt?: Date
+    @IsISO8601()
+    endAt?: string
 }

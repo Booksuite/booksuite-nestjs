@@ -1,23 +1,19 @@
 import { IsDefined, IsInt, IsOptional, IsString, IsUUID } from 'class-validator'
 
-export class AgeGroupCreateDTO {
+export class BannerMediaDTO {
     @IsOptional()
     @IsUUID()
     id?: string
 
-    @IsDefined()
+    @IsOptional()
     @IsInt()
-    initialAge!: number
-
-    @IsDefined()
-    @IsInt()
-    finalAge!: number
+    order?: number
 
     @IsDefined()
     @IsString()
-    chargeType!: string
+    bannerId!: string
 
-    @IsOptional()
-    @IsInt()
-    value?: number
+    @IsDefined()
+    @IsString()
+    mediaId!: string
 }

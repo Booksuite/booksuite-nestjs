@@ -4,13 +4,24 @@ import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { AgePolicyCreateDTO } from './dto/AgePolicyCreate.dto'
+import { AgePolicyDTO } from './dto/AgePolicy.dto'
 
 @Injectable()
 export class AgePolicyService {
     constructor(private prismaService: PrismaService) {}
 
-    async upsert(companyId: string, rawData: AgePolicyCreateDTO) {
+    async getByCompanyId(
+        companyId: string,
+    ): Promise<Prisma.AgePolicyGetPayload<{
+        include: { ageGroups: true }
+    }> | null> {
+        return this.prismaService.agePolicy.findUnique({
+            where: { companyId },
+            include: { ageGroups: true },
+        })
+    }
+
+    async upsert(companyId: string, rawData: AgePolicyDTO) {
         const normalizedData = Prisma.validator<Prisma.AgePolicyCreateInput>()({
             ...omit(rawData, ['ageGroups']),
             company: { connect: { id: companyId } },

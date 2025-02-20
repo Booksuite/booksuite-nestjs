@@ -8,6 +8,10 @@ generator client {
     previewFeatures = ["prismaSchemaFolder"]
 }
 
+generator json {
+    provider = "prisma-json-types-generator"
+}
+
 // model Address {
 //     id String @id @default(uuid())
 

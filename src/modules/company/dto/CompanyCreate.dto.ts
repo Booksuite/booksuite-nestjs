@@ -1,5 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDefined, IsOptional, IsString } from 'class-validator'
+import { Type } from 'class-transformer'
+import {
+    IsArray,
+    IsDefined,
+    IsOptional,
+    IsString,
+    ValidateNested,
+} from 'class-validator'
+
+import { CompanyContactDTO } from './CompanyContact.dto'
+import { CompanySettingsDTO } from './CompanySettings.dto'
 
 export class CompanyCreateDTO {
     @ApiProperty({ example: 'Company name' })
@@ -12,54 +22,59 @@ export class CompanyCreateDTO {
     @IsString()
     slug!: string
 
-    @ApiProperty({ example: 'Company short Description' })
+    @ApiProperty({ example: 'Company short Description', required: false })
     @IsOptional()
     @IsString()
     shortDescription?: string
 
-    @ApiProperty({ example: 'Company Description' })
+    @ApiProperty({ example: 'Company Description', required: false })
     @IsOptional()
     @IsString()
     description?: string
 
-    @ApiProperty({ example: 'Timezone' })
+    @ApiProperty({ example: 'Timezone', required: false })
     @IsOptional()
     @IsString()
     timezone?: string
 
-    @IsOptional()
-    @IsString()
-    thumbnail?: string
-
-    @ApiProperty({ example: 'LogoURL' })
+    @ApiProperty({ example: 'LogoURL', required: false })
     @IsOptional()
     @IsString()
     logo?: string
 
-    @IsOptional()
-    @IsString()
-    logoFormat?: string
-
-    @ApiProperty({ example: 'Favicon' })
+    @ApiProperty({ example: 'Favicon', required: false })
     @IsOptional()
     @IsString()
     favIcon?: string
 
+    @ApiProperty({ type: CompanySettingsDTO, required: false })
     @IsOptional()
-    @IsString()
-    theme?: string
+    @Type(() => CompanySettingsDTO)
+    @ValidateNested()
+    settings?: CompanySettingsDTO
+
+    @ApiProperty({
+        type: [CompanyContactDTO],
+        required: false,
+        default: [{ type: 'phone', value: '00000000000' }],
+    })
+    @IsOptional()
+    @Type(() => CompanySettingsDTO)
+    @IsArray()
+    @ValidateNested({ each: true })
+    contacts?: CompanyContactDTO[]
 
     @ApiProperty({ example: 'Person resposible' })
     @IsDefined()
     @IsString()
     responsible!: string
 
-    @ApiProperty({ example: 'Resposible email address' })
+    @ApiProperty({ example: 'Resposible email address', required: false })
     @IsOptional()
     @IsString()
     responsibleEmail?: string
 
-    @ApiProperty({ example: 'Resposible phone number' })
+    @ApiProperty({ example: 'Resposible phone number', required: false })
     @IsOptional()
     @IsString()
     responsiblePhone?: string
@@ -78,12 +93,12 @@ export class CompanyCreateDTO {
     @IsString()
     companyName!: string
 
-    @ApiProperty({ example: 'State registration' })
+    @ApiProperty({ example: 'State registration', required: false })
     @IsOptional()
     @IsString()
     stateRegistration?: string
 
-    @ApiProperty({ example: 'Municipal registration' })
+    @ApiProperty({ example: 'Municipal registration', required: false })
     @IsOptional()
     @IsString()
     municipalRegistration?: string

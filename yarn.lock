@@ -1068,6 +1068,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/debug@npm:6.0.0":
+  version: 6.0.0
+  resolution: "@prisma/debug@npm:6.0.0"
+  checksum: 10c0/2adb1fe906ee12b0f39787ca9db39d6026e9611d9350a5b667a45bf3b6e5fa08d6f5d9a937286287eecb1a824292d156c093d3ae26c7db1a64fc3be3d085eadb
+  languageName: node
+  linkType: hard
+
 "@prisma/debug@npm:6.3.1":
   version: 6.3.1
   resolution: "@prisma/debug@npm:6.3.1"
@@ -1102,6 +1109,15 @@ __metadata:
     "@prisma/engines-version": "npm:6.3.0-17.acc0b9dd43eb689cbd20c9470515d719db10d0b0"
     "@prisma/get-platform": "npm:6.3.1"
   checksum: 10c0/6709979bf9d80d0632b4148b1637fb5b0630a4bcb217cbe414c9ffbf05b5a71f358039b6997f3ec8e009228d3504a46dccaadf35075681e087be2f5d70cf042b
+  languageName: node
+  linkType: hard
+
+"@prisma/generator-helper@npm:6.0.0":
+  version: 6.0.0
+  resolution: "@prisma/generator-helper@npm:6.0.0"
+  dependencies:
+    "@prisma/debug": "npm:6.0.0"
+  checksum: 10c0/7cf9b5d0e41f64deaf8893d8b9397ecfea17f09f9622cba2b27d463a007e9a5e691b92519ecc0f760670cdaf59fdd46affe6677d39187149954892a9f926bfdc
   languageName: node
   linkType: hard
 
@@ -2331,6 +2347,7 @@ __metadata:
     lint-staged: "npm:^15.4.3"
     prettier: "npm:^3.4.2"
     prisma: "npm:^6.3.1"
+    prisma-json-types-generator: "npm:^3.2.2"
     radash: "npm:^12.1.0"
     reflect-metadata: "npm:^0.2.2"
     rxjs: "npm:^7.8.1"
@@ -5546,6 +5563,21 @@ __metadata:
   bin:
     prettier: bin/prettier.cjs
   checksum: 10c0/9f6f810eae455d6e4213845151a484a2338f2e0d6a8b84ee8e13a83af8a2421ef6c1e31e61e4b135671fb57b9541f6624648880cc2061ac803e243ac898c0123
+  languageName: node
+  linkType: hard
+
+"prisma-json-types-generator@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "prisma-json-types-generator@npm:3.2.2"
+  dependencies:
+    "@prisma/generator-helper": "npm:6.0.0"
+    tslib: "npm:2.8.1"
+  peerDependencies:
+    prisma: ^5 || ^6
+    typescript: ^5.6.2
+  bin:
+    prisma-json-types-generator: index.js
+  checksum: 10c0/d232bb4397288ed2ac8a55c8194cb383b9b64a4e937676267f7cb2514533dc765ab256ba4b08aac3cb79d7bd2d1b3fc9bd108528b6e3f7e86545b7d328e0d8ca
   languageName: node
   linkType: hard
 
