@@ -17,6 +17,7 @@
 		"db:stop": "cd docker && docker compose down",
 		"db:seed": "ts-node prisma/seed.ts",
 		"db:gen": "prisma generate && yarn lint",
+		"postinstall": "prisma generate",
 		"prepare": "husky"
 	},
 	"dependencies": {
