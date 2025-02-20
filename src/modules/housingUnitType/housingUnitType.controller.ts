@@ -11,13 +11,16 @@ import {
 import { HousingUnitTypeCreateDTO } from './dto/HousingUnitTypeCreate.dto'
 import { HousingUnitTypeService } from './housingUnitType.service'
 
-@Controller('housingUnitType')
+@Controller('housingUnitType/:companyId')
 export class HousingUnitTypeController {
     constructor(private housingUnitTypeService: HousingUnitTypeService) {}
 
     @Post('create')
-    create(@Body() propertyData: HousingUnitTypeCreateDTO) {
-        return this.housingUnitTypeService.create(propertyData)
+    create(
+        @Param('companyId') id: string,
+        @Body() propertyData: HousingUnitTypeCreateDTO,
+    ) {
+        return this.housingUnitTypeService.create(id, propertyData)
     }
 
     @Get(':id')

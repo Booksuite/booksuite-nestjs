@@ -16,31 +16,16 @@ export class HousingUnitTypeService {
         private typeMediaService: HousingUnitTypeMediasService,
     ) {}
 
-    async create(rawData: HousingUnitTypeCreateDTO) {
-        const normalizedData: Prisma.HousingUnitTypeCreateInput = omit(
-            rawData,
-            ['medias'],
-        )
+    create(id: string, rawData: HousingUnitTypeCreateDTO) {
+        const normalizedData =
+            Prisma.validator<Prisma.HousingUnitTypeCreateInput>()({
+                ...omit(rawData, ['medias']),
+                company: { connect: { id: id } },
+            })
 
-        const createdData = await this.prismaService.housingUnitType.create({
+        return this.prismaService.housingUnitType.create({
             data: normalizedData,
         })
-
-        if (rawData.medias) {
-            await Promise.all(
-                rawData.medias.map(async (medias) => {
-                    const createdMedia = await this.mediaService.upsert({
-                        ...medias.media,
-                    })
-
-                    medias.mediaId = createdMedia.id
-
-                    await this.typeMediaService.upsert(medias)
-                }),
-            )
-        }
-
-        return createdData
     }
 
     getById(id: string) {

@@ -60,10 +60,6 @@ export class HousingUnitTypeCreateDTO {
     @IsInt()
     chargeExtraAdultHigherThan!: number
 
-    @IsDefined()
-    @IsString()
-    companyId!: string
-
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })

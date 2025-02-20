@@ -10,18 +10,16 @@ import { HousingUnitTypeMediaCreateDTO } from './dto/HousingUnitTypeMediaCreate.
 export class HousingUnitTypeMediasService {
     constructor(private prismaService: PrismaService) {}
 
-    async upsert(housingMediaData: HousingUnitTypeMediaCreateDTO) {
+    upsert(rawData: HousingUnitTypeMediaCreateDTO) {
         const normalizedData =
-            Prisma.validator<Prisma.HousingUnitTypeMediaUpsertArgs>()({
-                where: { id: housingMediaData.id },
-                update: { mediaId: housingMediaData.media.id },
-                create: {
-                    ...omit(housingMediaData, ['id', 'media']),
-                },
+            Prisma.validator<Prisma.HousingUnitTypeMediaCreateInput>()({
+                ...omit(rawData, ['mediaId', 'propertyId']),
+                media: { connect: { id: rawData.mediaId } },
+                property: { connect: { id: rawData.propertyId } },
             })
 
-        return await this.prismaService.housingUnitTypeMedia.upsert({
-            ...normalizedData,
+        return this.prismaService.housingUnitTypeMedia.create({
+            data: normalizedData,
         })
     }
 }

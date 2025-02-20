@@ -1,6 +1,4 @@
-import { IsDefined, IsObject, IsString } from 'class-validator'
-
-import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
+import { IsDefined, IsString } from 'class-validator'
 
 export class serviceQuerySearchDTO {
     @IsDefined()

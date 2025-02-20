@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client'
-import { IsDefined, IsOptional, IsString, IsUUID } from 'class-validator'
+import { IsDefined, IsOptional, IsString } from 'class-validator'
 
 export class MediaCreateDTO {
     @IsOptional()
