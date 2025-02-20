@@ -11,5 +11,5 @@ export class MediaCreateDTO {
     url!: string
 
     @IsOptional()
-    metadata?: Prisma.JsonValue
+    metadata?: Prisma.InputJsonValue
 }

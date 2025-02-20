@@ -40,9 +40,6 @@ export class HousingUnitTypeService {
             ['medias'],
         )
 
-        // if (rawData.medias)
-        //     normalizedData.medias = { createMany: { data: rawData.medias } }
-
         return this.prismaService.housingUnitType.update({
             where: { id },
             data: normalizedData,
