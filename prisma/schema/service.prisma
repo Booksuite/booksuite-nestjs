@@ -22,8 +22,8 @@ model Service {
     notes       String  @db.Text
     videoUrl    String?
 
-    medias   ServiceMedia[]
-    bookings BookingService[]
+    medias       ServiceMedia[]
+    reservations ReservationService[]
 
     categoryId String
     category   ServiceCategory @relation(fields: [categoryId], references: [id])

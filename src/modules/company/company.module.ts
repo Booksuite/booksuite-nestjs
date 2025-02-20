@@ -8,6 +8,8 @@ import { CompanyController } from './company.controller'
 import { CompanyService } from './company.service'
 import { ReservationConfigController } from './reservationConfig.controller'
 import { ReservationConfigService } from './reservationConfig.service'
+import { ReservationPolicyController } from './reservationPolicy.controller'
+import { ReservationPolicyService } from './reservationPolicy.service'
 
 @Module({
     providers: [
@@ -15,12 +17,14 @@ import { ReservationConfigService } from './reservationConfig.service'
         AgePolicyService,
         ReservationConfigService,
         CancellationPolicyService,
+        ReservationPolicyService,
     ],
     controllers: [
         CompanyController,
         AgePolicyController,
         ReservationConfigController,
         CancellationPolicyController,
+        ReservationPolicyController,
     ],
 })
 export class CompanyModule {}

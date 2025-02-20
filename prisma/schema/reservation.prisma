@@ -1,3 +1,40 @@
+model Reservation {
+    id String @id @default(uuid())
+
+    status      String
+    startDate   DateTime
+    endDate     DateTime
+    totalDays   Int?     @default(1)
+    adults      Int
+    children    Int
+    saleChannel String
+    notes       String   @db.Text
+
+    housingUnitId String
+    HousingUnit   HousingUnit @relation(fields: [housingUnitId], references: [id])
+
+    services ReservationService[]
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
+
+    @@map("reservations")
+}
+
+model ReservationService {
+    id         String @id @default(uuid())
+    qtd        Int    @default(1)
+    totalPrice Float  @default(0)
+
+    serviceId   String
+    service     Service     @relation(fields: [serviceId], references: [id])
+    bookId      String
+    reservation Reservation @relation(fields: [bookId], references: [id])
+
+    @@map("reservation_services")
+}
+
 model ReservationConfig {
     id String @id @default(uuid())
 
@@ -14,9 +51,9 @@ model ReservationConfig {
 }
 
 enum ReservationDepositType {
-    PERCENTAGE_ON_BOOKING
-    FULL_AMOUNT_ON_BOOKING
-    DAYLIES_FULL_AMOUNT_ON_BOOKING
-    FIRST_DAYLY_ON_BOOKING
+    PERCENTAGE_ON_RESERVATION
+    FULL_AMOUNT_ON_RESERVATION
+    DAYLIES_FULL_AMOUNT_ON_RESERVATION
+    FIRST_DAYLY_ON_RESERVATION
     NO_CHARGE
 }

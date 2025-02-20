@@ -5,7 +5,7 @@ import { CancellationPolicyPenalty } from '../enums/CancellationPolicyPenalty.en
 
 export class PenaltyRangeDTO {
     @ApiProperty({
-        example: 10,
+        example: '123e4567-e89b-12d3-a456-426614174000',
         description: 'Only defined if exists in the DB',
         required: false,
     })
@@ -20,7 +20,7 @@ export class PenaltyRangeDTO {
 
     @ApiProperty({
         enum: CancellationPolicyPenalty,
-        example: CancellationPolicyPenalty.BOOKING_PERCENTAGE,
+        example: CancellationPolicyPenalty.RESERVATION_PERCENTAGE,
     })
     @IsDefined()
     @IsEnum(CancellationPolicyPenalty)

@@ -1,4 +1,4 @@
-model BookingPolicy {
+model ReservationPolicy {
     id String @id @default(uuid())
 
     type        String?
@@ -10,7 +10,7 @@ model BookingPolicy {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@map("booking_policies")
+    @@map("reservation_policies")
 }
 
 model CancellationPolicy {
@@ -89,7 +89,7 @@ enum AgeGroupChargeType {
 }
 
 enum CancellationPolicyPenalty {
-    BOOKING_PERCENTAGE
+    RESERVATION_PERCENTAGE
     FULL_DAILIES_PERCENTAGE
     FIRST_NIGHT_AMOUNT
 }

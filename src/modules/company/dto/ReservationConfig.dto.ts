@@ -14,7 +14,7 @@ export class ReservationConfigDTO {
 
     @ApiProperty({
         enum: ReservationDepositType,
-        example: ReservationDepositType.PERCENTAGE_ON_BOOKING,
+        example: ReservationDepositType.PERCENTAGE_ON_RESERVATION,
     })
     @IsDefined()
     @IsEnum(ReservationDepositType)

@@ -37,7 +37,7 @@ model HousingUnit {
 
     name String
 
-    booking           Booking[]
+    reservation       Reservation[]
     housingUnitTypeId String
     housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id])
 
