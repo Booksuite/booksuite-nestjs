@@ -8,10 +8,9 @@ import {
     IsString,
 } from 'class-validator'
 
-import { BookingServiceCreateDTO } from './BookingServiceCreate.dto.model'
+import { ReservationServiceCreateDTO } from './ReservationServiceCreate.dto.model'
 
-export class BookingCreateDTO {
-    @ApiProperty({ example: 'Confirmed' })
+export class ReservationCreateDTO {
     @IsDefined()
     @IsString()
     status!: string
@@ -56,9 +55,9 @@ export class BookingCreateDTO {
     @IsString()
     housingUnitId!: string
 
-    @ApiProperty({ type: BookingServiceCreateDTO })
+    @ApiProperty({ type: ReservationServiceCreateDTO })
     @IsDefined()
     @IsArray()
-    @Type(() => BookingServiceCreateDTO)
-    services!: BookingServiceCreateDTO
+    @Type(() => ReservationServiceCreateDTO)
+    services!: ReservationServiceCreateDTO
 }

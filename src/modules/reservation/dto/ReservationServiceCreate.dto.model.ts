@@ -1,13 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsInt, IsString } from 'class-validator'
 
-export class BookingServiceCreateDTO {
-    @ApiProperty({ example: '4' })
+export class ReservationServiceCreateDTO {
     @IsDefined()
     @IsInt()
     qtd!: number
 
-    @ApiProperty({ example: '150' })
+    @ApiProperty({ example: 150 })
     @IsDefined()
     totalPrice!: number
 
@@ -19,5 +18,5 @@ export class BookingServiceCreateDTO {
     @ApiProperty({ example: '6ba7b810-9dad-11d1-80b4-00c04fd430c8' })
     @IsDefined()
     @IsString()
-    bookId!: string
+    reservationId!: string
 }
