@@ -3,13 +3,13 @@ import { Prisma } from '@prisma/client'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { MediaCreateDTO } from './dto/MediaCreate.dto'
+import { MediaDTO } from './dto/Media.dto'
 
 @Injectable()
 export class MediaService {
     constructor(private prismaService: PrismaService) {}
 
-    upsert(mediaUrl: MediaCreateDTO) {
+    upsert(mediaUrl: MediaDTO) {
         const normalizedData = Prisma.validator<Prisma.MediaUpsertArgs>()({
             where: { id: mediaUrl.id },
             update: { url: mediaUrl.id },

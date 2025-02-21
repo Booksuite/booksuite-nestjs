@@ -3,18 +3,12 @@ import { Prisma } from '@prisma/client'
 import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
-import { MediaService } from '../media/media.service'
 
 import { HousingUnitTypeCreateDTO } from './dto/HousingUnitTypeCreate.dto'
-import { HousingUnitTypeMediasService } from './housingUnitTypeMedias.service'
 
 @Injectable()
 export class HousingUnitTypeService {
-    constructor(
-        private prismaService: PrismaService,
-        private mediaService: MediaService,
-        private typeMediaService: HousingUnitTypeMediasService,
-    ) {}
+    constructor(private prismaService: PrismaService) {}
 
     create(id: string, rawData: HousingUnitTypeCreateDTO) {
         const normalizedData =

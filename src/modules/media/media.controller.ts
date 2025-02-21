@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
 
-import { MediaCreateDTO } from './dto/MediaCreate.dto'
+import { MediaDTO } from './dto/Media.dto'
 import { MediaService } from './media.service'
 
 @Controller('media')
@@ -8,7 +8,7 @@ export class MediaController {
     constructor(private mediaService: MediaService) {}
 
     @Post('create')
-    create(@Body() mediaUrl: MediaCreateDTO) {
+    create(@Body() mediaUrl: MediaDTO) {
         return this.mediaService.upsert(mediaUrl)
     }
 
