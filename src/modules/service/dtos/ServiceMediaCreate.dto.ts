@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
 
 export class ServiceMediaCreateDTO {
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ example: 1 })
     @IsOptional()
     @IsInt()
     order?: number

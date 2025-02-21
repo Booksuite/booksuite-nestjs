@@ -13,12 +13,12 @@ export class UserCreateDTO {
     @IsString()
     firstName!: string
 
-    @ApiProperty({ example: 'user' })
+    @ApiProperty({ example: 'user', required: false })
     @IsOptional()
     @IsString()
     lastName?: string
 
-    @ApiProperty({ example: '489831034' })
+    @ApiProperty({ example: '489831034', required: false })
     @IsOptional()
     @IsString()
     phone?: string

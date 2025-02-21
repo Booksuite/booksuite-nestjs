@@ -22,7 +22,7 @@ export class HousingUnitTypeCreateDTO {
     @IsString()
     slug!: string
 
-    @ApiProperty({ example: 'a deluxe suite for 2 people' })
+    @ApiProperty({ example: 'a deluxe suite for 2 people', required: false })
     @IsOptional()
     @IsString()
     shortDescription?: string
@@ -30,54 +30,55 @@ export class HousingUnitTypeCreateDTO {
     @ApiProperty({
         example:
             'The Deluxe Suite offers a spacious room with a king-size bed, a private balcony, and premium amenities.',
+        required: false,
     })
     @IsOptional()
     @IsString()
     description?: string
 
-    @ApiProperty({ example: '2' })
+    @ApiProperty({ example: 2 })
     @IsDefined()
     @IsInt()
     order!: number
 
-    @ApiProperty({ example: '2' })
+    @ApiProperty({ example: 2, required: false })
     @IsOptional()
     @IsInt()
     minGuests?: number
 
-    @ApiProperty({ example: '6' })
+    @ApiProperty({ example: 6, required: false })
     @IsOptional()
     @IsInt()
     maxGuests?: number
 
-    @ApiProperty({ example: '4' })
+    @ApiProperty({ example: 4, required: false })
     @IsOptional()
     @IsInt()
     maxAdults?: number
 
-    @ApiProperty({ example: '3' })
+    @ApiProperty({ example: 3, required: false })
     @IsOptional()
     @IsInt()
     maxChildren?: number
 
-    @ApiProperty({ example: '300' })
+    @ApiProperty({ example: 300 })
     @IsDefined()
     weekdaysPrice!: number
 
-    @ApiProperty({ example: '500' })
+    @ApiProperty({ example: 500 })
     @IsDefined()
     weekendPrice!: number
 
-    @ApiProperty({ example: '50' })
+    @ApiProperty({ example: 50 })
     @IsDefined()
     extraAdultPrice!: number
 
-    @ApiProperty({ example: '70' })
+    @ApiProperty({ example: 70 })
     @IsDefined()
     @IsInt()
     chargeExtraAdultHigherThan!: number
 
-    @ApiProperty({ type: HousingUnitTypeMediaCreateDTO })
+    @ApiProperty({ type: [HousingUnitTypeMediaCreateDTO] })
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
