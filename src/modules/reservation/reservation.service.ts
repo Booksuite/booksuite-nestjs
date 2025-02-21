@@ -3,52 +3,52 @@ import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { BookingCreateDTO } from './dto/BookingCreate.dto'
+import { ReservationCreateDTO } from './dto/ReservationCreate.dto'
 
 @Injectable()
-export class BookingService {
+export class ReservationService {
     constructor(private prisma: PrismaService) {}
 
-    create(rawData: BookingCreateDTO) {
+    create(rawData: ReservationCreateDTO) {
         return this.prisma.$transaction(async (db) => {
             const ommited = omit(rawData, ['services'])
 
-            const newBooking = await db.booking.create({
+            const newReservation = await db.reservation.create({
                 data: ommited,
             })
 
             if (rawData.services) {
-                rawData.services.bookId = newBooking.id
-                await db.bookingService.createMany({
+                rawData.services.reservationId = newReservation.id
+                await db.reservationService.createMany({
                     data: rawData.services,
                 })
             }
         })
     }
 
-    get(bookId: string) {
-        return this.prisma.booking.findUnique({ where: { id: bookId } })
+    get(id: string) {
+        return this.prisma.reservation.findUnique({ where: { id } })
     }
 
-    update(bookingId: string, rawData: BookingCreateDTO) {
+    update(id: string, rawData: ReservationCreateDTO) {
         return this.prisma.$transaction(async (db) => {
             const ommited = omit(rawData, ['services'])
 
-            await db.booking.update({
-                where: { id: bookingId },
+            await db.reservation.update({
+                where: { id: id },
                 data: ommited,
             })
 
             if (rawData.services) {
-                await db.bookingService.update({
-                    where: { id: bookingId },
+                await db.reservationService.update({
+                    where: { id: id },
                     data: rawData.services,
                 })
             }
         })
     }
 
-    delete(bookId: string) {
-        return this.prisma.booking.delete({ where: { id: bookId } })
+    delete(id: string) {
+        return this.prisma.reservation.delete({ where: { id: id } })
     }
 }

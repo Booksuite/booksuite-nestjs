@@ -7,7 +7,6 @@ import { buildPaginatedResponse } from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
-import { ServiceSearchQueryDTO } from './dtos/serviceQuerySearch.dto'
 
 @Injectable()
 export class ServiceService {

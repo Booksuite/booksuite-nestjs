@@ -35,7 +35,6 @@ export class CancellationPolicyDTO {
 
     @ApiProperty({
         type: [PenaltyRangeDTO],
-        description: 'Only defined if penalty is not FIRST_NIGHT_AMOUNT',
     })
     @IsArray()
     @Type(() => PenaltyRangeDTO)

@@ -1,18 +1,3 @@
-model BookingPolicy {
-    id String @id @default(uuid())
-
-    type        String?
-    description String  @db.Text
-
-    companyId String  @unique
-    company   Company @relation(fields: [companyId], references: [id])
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@map("booking_policies")
-}
-
 model CancellationPolicy {
     id String @id @default(uuid())
 
@@ -89,7 +74,7 @@ enum AgeGroupChargeType {
 }
 
 enum CancellationPolicyPenalty {
-    BOOKING_PERCENTAGE
+    RESERVATION_PERCENTAGE
     FULL_DAILIES_PERCENTAGE
     FIRST_NIGHT_AMOUNT
 }

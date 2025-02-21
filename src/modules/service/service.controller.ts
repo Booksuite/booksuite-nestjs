@@ -11,7 +11,6 @@ import {
 import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
 
 import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
-import { ServiceSearchQueryDTO } from './dtos/serviceQuerySearch.dto'
 import { ServiceService } from './service.service'
 
 @Controller('service/:companyId')
