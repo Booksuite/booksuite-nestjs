@@ -12,7 +12,7 @@ import {
 import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
 
 import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
-import { serviceQuerySearchDTO } from './dtos/serviceQuerySearch.dto'
+import { ServiceSearchQueryDTO } from './dtos/ServiceSearchQuery.dto'
 import { ServiceService } from './service.service'
 
 @Controller('service/:companyId')
@@ -42,7 +42,7 @@ export class SericeController {
     @Post('searchServices')
     async searchServices(
         @Param('companyId') companyId: string,
-        @Query() queryParams: serviceQuerySearchDTO,
+        @Query() queryParams: ServiceSearchQueryDTO,
     ) {
         const pagination: PaginationQueryDTO = {
             itemsPerPage: parseInt(queryParams.itemsPerPage),

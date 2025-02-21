@@ -7,6 +7,7 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
 
 import { BannerService } from './banner.service'
 import { BannerCreateDTO } from './dto/BannerCreate.dto'
@@ -21,7 +22,9 @@ export class BannerController {
     }
 
     @Get(':id')
-    getById(@Param('id') id: string) {
+    getById(
+        @Param('id') id: string,
+    ): Promise<Prisma.BannerGetPayload<{ include: { medias: true } }> | null> {
         return this.bannerService.getById(id)
     }
 

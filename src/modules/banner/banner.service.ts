@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { omit } from 'radash'
 
+import { extracBatchUpdateSet } from '@/common/utils/extracBatchUpdateSet'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { BannerCreateDTO } from './dto/BannerCreate.dto'
@@ -13,7 +13,14 @@ export class BannerService {
     create(rawData: BannerCreateDTO) {
         const normalizedData = Prisma.validator<Prisma.BannerCreateInput>()({
             ...rawData,
-            medias: { createMany: { data: rawData.medias } },
+            medias: {
+                create: rawData.medias.map((media) => ({
+                    media: {
+                        create: { url: media.url, metadata: media.metadata },
+                    },
+                    order: media.order,
+                })),
+            },
         })
 
         return this.prismaService.banner.create({
@@ -21,21 +28,42 @@ export class BannerService {
         })
     }
 
-    getById(id: string) {
+    getById(
+        id: string,
+    ): Promise<Prisma.BannerGetPayload<{ include: { medias: true } }> | null> {
         return this.prismaService.banner.findUnique({
             where: { id },
+            include: { medias: true },
         })
     }
 
     update(id: string, rawData: BannerCreateDTO) {
+        const { idsToNotDelete, toCreate, toUpdate } = extracBatchUpdateSet(
+            rawData.medias,
+        )
+
         const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
             ...rawData,
             medias: {
-                upsert: rawData.medias.map((media) => ({
-                    create: media,
-                    where: { id: media.id },
-                    update: omit(media, ['bannerId', 'mediaId']),
+                create: toCreate.map((media) => ({
+                    media: {
+                        create: { url: media.url, metadata: media.metadata },
+                    },
+                    order: media.order,
                 })),
+                update: toUpdate.map((media) => ({
+                    data: {
+                        media: {
+                            update: {
+                                url: media.url,
+                                metadata: media.metadata,
+                            },
+                        },
+                        order: media.order,
+                    },
+                    where: { id: media.id },
+                })),
+                deleteMany: { id: { notIn: idsToNotDelete }, bannerId: id },
             },
         })
 
@@ -47,7 +75,7 @@ export class BannerService {
 
     delete(id: string) {
         return this.prismaService.banner.delete({
-            where: { id: id },
+            where: { id },
         })
     }
 }
