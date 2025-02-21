@@ -79,7 +79,7 @@ export class HousingUnitTypeCreateDTO {
     @IsInt()
     chargeExtraAdultHigherThan!: number
 
-    @ApiProperty({ type: [HousingUnitTypeMediaCreateDTO] })
+    @ApiProperty({ type: [HousingUnitDTO] })
     @IsDefined()
     @IsArray()
     @ValidateNested({ each: true })
