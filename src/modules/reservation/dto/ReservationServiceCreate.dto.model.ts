@@ -6,7 +6,7 @@ export class ReservationServiceCreateDTO {
     @IsInt()
     qtd!: number
 
-    @ApiProperty({ example: '150' })
+    @ApiProperty({ example: 150 })
     @IsDefined()
     totalPrice!: number
 

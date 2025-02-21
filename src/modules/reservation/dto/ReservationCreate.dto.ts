@@ -55,7 +55,7 @@ export class ReservationCreateDTO {
     @IsString()
     housingUnitId!: string
 
-    @ApiProperty({ type: BookingServiceCreateDTO })
+    @ApiProperty({ type: ReservationServiceCreateDTO })
     @IsDefined()
     @IsArray()
     @Type(() => ReservationServiceCreateDTO)
