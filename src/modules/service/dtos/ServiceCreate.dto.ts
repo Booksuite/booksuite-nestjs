@@ -60,12 +60,12 @@ export class ServiceCreateDTO {
     @IsBoolean()
     seasonalSale!: boolean
 
-    @ApiProperty({ example: '05/04/2025' })
+    @ApiProperty({ example: '2025-02-21T14:30:00.000Z' })
     @IsDefined()
     @IsISO8601()
     seasonStart!: string
 
-    @ApiProperty({ example: '05/06/2025' })
+    @ApiProperty({ example: '2025-02-22T14:30:00.000Z' })
     @IsDefined()
     @IsISO8601()
     seasonEnd!: string

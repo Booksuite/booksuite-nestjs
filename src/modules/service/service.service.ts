@@ -68,18 +68,18 @@ export class ServiceService {
     async searchServices(
         companyId: string,
         pagination: PaginationQuery,
-        queryString: ServiceSearchQueryDTO,
+        queryParams: ServiceSearchQueryDTO,
     ): Promise<PaginatedResponse<Service>> {
         const [services, totalServices] =
             await this.prismaService.service.findManyAndCount({
                 where: {
-                    name: { contains: queryString.name, mode: 'insensitive' },
-                    price: { lte: parseFloat(queryString.price), gte: 0 },
-                    adults: parseFloat(queryString.adults),
-                    minDaily: parseFloat(queryString.minDaily),
-                    minNotice: parseFloat(queryString.minNotice),
-                    seasonStart: { gte: queryString.seasonStart },
-                    seasonEnd: { lte: queryString.seasonEnd },
+                    name: { contains: queryParams.name, mode: 'insensitive' },
+                    price: { lte: queryParams.price, gte: 0 },
+                    adults: queryParams.adults,
+                    minDaily: queryParams.minDaily,
+                    minNotice: queryParams.minNotice,
+                    seasonStart: { gte: queryParams.seasonStart },
+                    seasonEnd: { lte: queryParams.seasonEnd },
                 },
             })
 

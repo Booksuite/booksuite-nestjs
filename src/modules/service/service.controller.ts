@@ -6,7 +6,6 @@ import {
     Param,
     Patch,
     Post,
-    Query,
 } from '@nestjs/common'
 
 import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
@@ -42,17 +41,17 @@ export class SericeController {
     @Post('searchServices')
     async searchServices(
         @Param('companyId') companyId: string,
-        @Query() queryParams: ServiceSearchQueryDTO,
+        @Body() searchParams: ServiceSearchQueryDTO,
     ) {
         const pagination: PaginationQueryDTO = {
-            itemsPerPage: parseInt(queryParams.itemsPerPage),
-            page: parseInt(queryParams.page),
+            itemsPerPage: searchParams.itemsPerPage,
+            page: searchParams.page,
         }
 
         return await this.serviceService.searchServices(
             companyId,
             pagination,
-            queryParams,
+            searchParams,
         )
     }
 }

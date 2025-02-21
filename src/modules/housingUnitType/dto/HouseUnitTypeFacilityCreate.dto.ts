@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsBoolean, IsDefined, IsOptional, IsString } from 'class-validator'
 
 export class HouseUnitTypeFacilityCreateDTO {
-    @ApiProperty({ example: 'true', required: false })
+    @ApiProperty({ example: true, required: false })
     @IsOptional()
     @IsBoolean()
     isFeatured?: boolean
