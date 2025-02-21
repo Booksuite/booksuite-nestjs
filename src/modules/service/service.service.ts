@@ -7,7 +7,7 @@ import { buildPaginatedResponse } from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
-import { ServiceQuerySearchDTO } from './dtos/ServiceQuerySearch.dto'
+import { ServiceSearchQueryDTO } from './dtos/ServiceSearchQuery.dto'
 
 @Injectable()
 export class ServiceService {
@@ -68,7 +68,7 @@ export class ServiceService {
     async searchServices(
         companyId: string,
         pagination: PaginationQuery,
-        queryString: ServiceQuerySearchDTO,
+        queryString: ServiceSearchQueryDTO,
     ): Promise<PaginatedResponse<Service>> {
         const [services, totalServices] =
             await this.prismaService.service.findManyAndCount({
