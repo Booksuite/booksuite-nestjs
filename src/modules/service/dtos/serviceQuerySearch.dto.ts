@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDefined, IsString } from 'class-validator'
+import { IsDefined, IsISO8601, IsString } from 'class-validator'
 
 export class serviceQuerySearchDTO {
     @ApiProperty({ example: 'deluxe suite' })
@@ -7,21 +7,21 @@ export class serviceQuerySearchDTO {
     @IsString()
     name!: string
 
-    @ApiProperty({ example: '350' })
+    @ApiProperty({ example: 350 })
     @IsDefined()
     price!: string
 
-    @ApiProperty({ example: '2' })
+    @ApiProperty({ example: 2 })
     @IsDefined()
     adults!: string
 
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ example: 1 })
     @IsDefined()
-    minDaily!: string
+    minDaily!: number
 
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ example: 1 })
     @IsDefined()
-    minNotice!: string
+    minNotice!: number
 
     @ApiProperty({ example: '03/04/2025' })
     @IsDefined()
@@ -30,12 +30,11 @@ export class serviceQuerySearchDTO {
 
     @ApiProperty({ example: '10/07/2025' })
     @IsDefined()
-    @IsString()
-    seasonEnd!: Date
+    @IsISO8601()
+    seasonEnd!: string
 
     @ApiProperty({ example: '1' })
     @IsDefined()
-    @IsString()
     page: string
 
     @ApiProperty({ example: '5' })

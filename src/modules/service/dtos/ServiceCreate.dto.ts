@@ -5,6 +5,7 @@ import {
     IsBoolean,
     IsDefined,
     IsInt,
+    IsISO8601,
     IsOptional,
     IsString,
     ValidateIf,
@@ -25,49 +26,49 @@ export class ServiceCreateDTO {
     @IsString()
     billType!: string
 
-    @ApiProperty({ example: '200' })
+    @ApiProperty({ example: 200 })
     @IsDefined()
     price!: number
 
-    @ApiProperty({ example: '3' })
+    @ApiProperty({ example: 3 })
     @IsDefined()
     @IsInt()
     adults!: number
 
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ example: 1 })
     @IsDefined()
     @IsInt()
     minDaily!: number
 
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ example: 1 })
     @IsDefined()
     @IsInt()
     minNotice!: number
 
-    @ApiProperty({ example: 'true' })
+    @ApiProperty({ example: true })
     @IsDefined()
     @IsBoolean()
     onlineSale!: boolean
 
-    @ApiProperty({ example: 'false' })
+    @ApiProperty({ example: false })
     @IsDefined()
     @IsBoolean()
     panelSale!: boolean
 
-    @ApiProperty({ example: 'true' })
+    @ApiProperty({ example: true })
     @IsDefined()
     @IsBoolean()
     seasonalSale!: boolean
 
     @ApiProperty({ example: '05/04/2025' })
     @IsDefined()
-    @IsString()
-    seasonStart!: Date
+    @IsISO8601()
+    seasonStart!: string
 
     @ApiProperty({ example: '05/06/2025' })
     @IsDefined()
-    @IsString()
-    seasonEnd!: Date
+    @IsISO8601()
+    seasonEnd!: string
 
     // @IsOptional()
     // hosting?: Prisma.JsonValue
@@ -92,12 +93,12 @@ export class ServiceCreateDTO {
     @IsString()
     notes!: string
 
-    @ApiProperty({ example: 'https://www.example.com/video' })
+    @ApiProperty({ example: 'https://www.example.com/video', required: false })
     @IsOptional()
     @IsString()
     videoUrl?: string
 
-    @ApiProperty({ type: ServiceMediaCreateDTO })
+    @ApiProperty({ type: [ServiceMediaCreateDTO] })
     @IsDefined()
     @IsArray()
     @Type(() => ServiceMediaCreateDTO)
@@ -110,7 +111,7 @@ export class ServiceCreateDTO {
     @IsString()
     categoryId?: string
 
-    @ApiProperty({ type: ServiceCategoryCreateDTO })
+    @ApiProperty({ type: [ServiceCategoryCreateDTO] })
     @ValidateIf((o) => !o.categoryId)
     @IsDefined()
     @ValidateNested()
