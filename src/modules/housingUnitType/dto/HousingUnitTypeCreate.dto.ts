@@ -9,6 +9,7 @@ import {
     ValidateNested,
 } from 'class-validator'
 
+import { HousingUnitDTO } from './HousingUnit.dto'
 import { HousingUnitTypeMediaCreateDTO } from './HousingUnitTypeMediaCreate.dto'
 
 export class HousingUnitTypeCreateDTO {
@@ -78,7 +79,13 @@ export class HousingUnitTypeCreateDTO {
     @IsInt()
     chargeExtraAdultHigherThan!: number
 
-    @ApiProperty({ type: [HousingUnitTypeMediaCreateDTO] })
+    @ApiProperty({ type: [HousingUnitDTO] })
+    @IsDefined()
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => HousingUnitDTO)
+    housingUnits!: HousingUnitDTO[]
+
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
