@@ -16,7 +16,7 @@ export class HousingUnitTypeMediaCreateDTO {
     @IsBoolean()
     isFeatured!: boolean
 
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ example: 1, required: false })
     @IsOptional()
     @IsInt()
     order?: number
