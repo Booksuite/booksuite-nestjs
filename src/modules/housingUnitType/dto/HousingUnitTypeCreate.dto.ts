@@ -10,7 +10,7 @@ import {
 } from 'class-validator'
 
 import { HousingUnitDTO } from './HousingUnit.dto'
-import { HousingUnitTypeMediaCreateDTO } from './HousingUnitTypeMediaCreate.dto'
+import { HousingUnitTypeMediaDTO } from './HousingUnitTypeMedia.dto'
 
 export class HousingUnitTypeCreateDTO {
     @ApiProperty({ example: 'Deluxe' })
@@ -89,6 +89,6 @@ export class HousingUnitTypeCreateDTO {
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
-    @Type(() => HousingUnitTypeMediaCreateDTO)
-    medias?: HousingUnitTypeMediaCreateDTO[]
+    @Type(() => HousingUnitTypeMediaDTO)
+    medias?: HousingUnitTypeMediaDTO[]
 }

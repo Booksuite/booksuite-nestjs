@@ -2,21 +2,16 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 
 import { NonOptionalId } from '@/common/types/helpers'
+import { BaseMediaService } from '../media/helpers/BaseMediaService'
 
 import { BannerMediaDTO } from './dto/BannerMedia.dto'
 
 @Injectable()
-export class BannerMediaService {
+export class BannerMediaService extends BaseMediaService {
     normalizeMediasToCreate(
         medias: BannerMediaDTO[],
     ): Prisma.BannerMediaCreateWithoutBannerInput[] {
-        return medias.map((media) => ({
-            media: {
-                create: {
-                    url: media.url,
-                    metadata: media.metadata,
-                },
-            },
+        return super.normalizeCreate(medias, (media) => ({
             order: media.order,
         }))
     }
@@ -24,14 +19,8 @@ export class BannerMediaService {
     normalizeMediasToUpdate(
         medias: NonOptionalId<BannerMediaDTO>[],
     ): Prisma.BannerMediaUpdateWithWhereUniqueWithoutBannerInput[] {
-        return medias.map((media) => ({
-            data: {
-                media: {
-                    update: { url: media.url, metadata: media.metadata },
-                },
-                order: media.order,
-            },
-            where: { id: media.id },
+        return super.normalizeToUpdate(medias, (media) => ({
+            order: media.order,
         }))
     }
 }
