@@ -1,6 +1,5 @@
-import { Injectable } from '@nestjs/common'
-
-import { NonOptionalId } from '@/common/types/helpers'
+import { HasProps } from '@/common/types/helpers'
+import { DataHandlerHelper } from '@/common/utils/DataHandlerHelper'
 import { MediaDTO } from '../dto/Media.dto'
 import {
     ExtraFieldExtra,
@@ -8,10 +7,7 @@ import {
     MediaUpdateNormalized,
 } from '../types'
 
-type HasProps<T extends object> = keyof T extends never ? never : T
-
-@Injectable()
-export abstract class BaseMediaService {
+export abstract class BaseMediaService extends DataHandlerHelper {
     protected normalizeCreate<
         T extends MediaDTO,
         R extends MediaCreateNormalized<Omit<T, keyof MediaDTO>>,
@@ -34,8 +30,8 @@ export abstract class BaseMediaService {
         )
     }
 
-    normalizeToUpdate<
-        T extends NonOptionalId<MediaDTO>,
+    protected normalizeToUpdate<
+        T extends MediaDTO,
         R extends MediaUpdateNormalized<Omit<T, keyof MediaDTO>>,
         E extends HasProps<Omit<T, keyof MediaDTO>> extends never
             ? undefined

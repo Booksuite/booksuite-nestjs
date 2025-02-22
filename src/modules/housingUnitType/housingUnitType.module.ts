@@ -3,7 +3,6 @@ import { Module } from '@nestjs/common'
 import { HousingUnitService } from './housingUnit.service'
 import { HousingUnitTypeController } from './housingUnitType.controller'
 import { HousingUnitTypeService } from './housingUnitType.service'
-import { HousingUnitTypeFacilityController } from './housingUnitTypeFacility.controller'
 import { HousingUnitTypeFacilityService } from './housingUnitTypeFacility.service'
 import { HousingUnitTypeMediaService } from './housingUnitTypeMedias.service'
 
@@ -14,6 +13,6 @@ import { HousingUnitTypeMediaService } from './housingUnitTypeMedias.service'
         HousingUnitTypeMediaService,
         HousingUnitService,
     ],
-    controllers: [HousingUnitTypeController, HousingUnitTypeFacilityController],
+    controllers: [HousingUnitTypeController],
 })
 export class HousingUnitTypeModule {}

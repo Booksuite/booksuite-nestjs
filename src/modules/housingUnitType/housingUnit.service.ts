@@ -1,24 +1,34 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 
-import { NonOptionalId } from '@/common/types/helpers'
+import { DataHandlerHelper } from '@/common/utils/DataHandlerHelper'
 
 import { HousingUnitDTO } from './dto/HousingUnit.dto'
 
 @Injectable()
-export class HousingUnitService {
-    normalizeMediasToCreateMany(
+export class HousingUnitService extends DataHandlerHelper {
+    normalizeHousingUnitsToCreateMany(
         housingUnits: HousingUnitDTO[],
     ): Prisma.HousingUnitCreateManyHousingUnitTypeInputEnvelope {
-        return { data: housingUnits }
+        const toCreate = this.extractToCreate(housingUnits)
+        return { data: toCreate }
     }
 
-    normalizeMediasToUpdate(
-        medias: NonOptionalId<HousingUnitDTO>[],
+    normalizeHousingUnitsToUpdate(
+        medias: HousingUnitDTO[],
     ): Prisma.HousingUnitUpdateWithWhereUniqueWithoutHousingUnitTypeInput[] {
-        return medias.map((unit) => ({
+        const toUpdate = this.extractToUpdate(medias)
+        return toUpdate.map((unit) => ({
             data: { name: unit.name },
             where: { id: unit.id },
         }))
+    }
+
+    normalizeHousingUnitsToDelete(
+        housingUnitTypeId: string,
+        housingUnits: HousingUnitDTO[],
+    ): Prisma.HousingUnitScalarWhereInput {
+        const idsToNotDelete = this.extractIdsToNotDelete(housingUnits)
+        return { housingUnitTypeId, id: { notIn: idsToNotDelete } }
     }
 }

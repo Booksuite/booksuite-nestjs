@@ -8,7 +8,7 @@ import {
     Post,
 } from '@nestjs/common'
 
-import { FacilityCreateDTO } from './dto/FacilityCreate.dto'
+import { FacilityDTO } from './dto/Facility.dto'
 import { FacilityService } from './facility.service'
 
 @Controller('facility')
@@ -16,7 +16,7 @@ export class FacilityController {
     constructor(private facilityService: FacilityService) {}
 
     @Post('create')
-    create(@Body() facilityData: FacilityCreateDTO) {
+    create(@Body() facilityData: FacilityDTO) {
         return this.facilityService.create(facilityData)
     }
 
@@ -26,7 +26,7 @@ export class FacilityController {
     }
 
     @Patch(':id')
-    update(@Param('id') facilityId: string, facilityData: FacilityCreateDTO) {
+    update(@Param('id') facilityId: string, facilityData: FacilityDTO) {
         return this.facilityService.update(facilityId, facilityData)
     }
 
