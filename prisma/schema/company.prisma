@@ -13,7 +13,7 @@ model Company {
 
     /// [CompanySettings]
     settings Json?
-    /// [CompanyContactDTO]
+    /// [CompanyContact]
     contacts Json[]
 
     responsible      String

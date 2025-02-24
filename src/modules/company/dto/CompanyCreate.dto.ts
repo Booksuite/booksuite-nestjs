@@ -60,7 +60,7 @@ export class CompanyCreateDTO {
         default: [{ type: 'phone', value: '00000000000' }],
     })
     @IsOptional()
-    @Type(() => CompanySettingsDTO)
+    @Type(() => CompanyContactDTO)
     @IsArray()
     @ValidateNested({ each: true })
     contacts?: CompanyContactDTO[]

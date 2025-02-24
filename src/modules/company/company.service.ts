@@ -52,7 +52,6 @@ export class CompanyService {
                         rawData.facilities,
                     ),
             },
-            contacts: rawData.contacts || [],
         })
 
         return this.prismaService.company.update({
