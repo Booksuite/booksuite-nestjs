@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { FacilityCreateDTO } from './dto/FacilityCreate.dto'
+import { FacilityDTO } from './dto/Facility.dto'
 
 @Injectable()
 export class FacilityService {
     constructor(private prismaService: PrismaService) {}
 
-    create(facilityData: FacilityCreateDTO) {
+    create(facilityData: FacilityDTO) {
         return this.prismaService.facility.create({
             data: facilityData,
         })
@@ -20,7 +20,7 @@ export class FacilityService {
         })
     }
 
-    update(facilityId: string, facilityData: FacilityCreateDTO) {
+    update(facilityId: string, facilityData: FacilityDTO) {
         return this.prismaService.facility.update({
             where: { id: facilityId },
             data: facilityData,

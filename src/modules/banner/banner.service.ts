@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 
-import { extracBatchUpdateSet } from '@/common/utils/extracBatchUpdateSet'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
+import { BannerMediaService } from './bannerMedia.service'
 import { BannerCreateDTO } from './dto/BannerCreate.dto'
 
 @Injectable()
 export class BannerService {
-    constructor(private prismaService: PrismaService) {}
+    constructor(
+        private prismaService: PrismaService,
+        private bannerMediaService: BannerMediaService,
+    ) {}
 
     create(rawData: BannerCreateDTO) {
         const normalizedData = Prisma.validator<Prisma.BannerCreateInput>()({
@@ -38,32 +41,19 @@ export class BannerService {
     }
 
     update(id: string, rawData: BannerCreateDTO) {
-        const { idsToNotDelete, toCreate, toUpdate } = extracBatchUpdateSet(
-            rawData.medias,
-        )
-
         const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
             ...rawData,
             medias: {
-                create: toCreate.map((media) => ({
-                    media: {
-                        create: { url: media.url, metadata: media.metadata },
-                    },
-                    order: media.order,
-                })),
-                update: toUpdate.map((media) => ({
-                    data: {
-                        media: {
-                            update: {
-                                url: media.url,
-                                metadata: media.metadata,
-                            },
-                        },
-                        order: media.order,
-                    },
-                    where: { id: media.id },
-                })),
-                deleteMany: { id: { notIn: idsToNotDelete }, bannerId: id },
+                create: this.bannerMediaService.normalizeMediasToCreate(
+                    rawData.medias,
+                ),
+                update: this.bannerMediaService.normalizeMediasToUpdate(
+                    rawData.medias,
+                ),
+                deleteMany: this.bannerMediaService.normalizeMediasToDelete(
+                    id,
+                    rawData.medias,
+                ),
             },
         })
 

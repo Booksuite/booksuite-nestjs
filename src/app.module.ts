@@ -17,7 +17,6 @@ import { ServiceModule } from './modules/service/service.module'
         HousingUnitTypeModule,
         CompanyModule,
         ServiceModule,
-
         ReservationModule,
         FacilityModule,
         MediaModule,

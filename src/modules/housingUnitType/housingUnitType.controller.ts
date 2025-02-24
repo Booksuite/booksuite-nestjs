@@ -7,6 +7,10 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
+import { HousingUnitType, Prisma } from '@prisma/client'
+
+import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
+import { PaginatedResponse } from '@/common/types/pagination'
 
 import { HousingUnitTypeCreateDTO } from './dto/HousingUnitTypeCreate.dto'
 import { HousingUnitTypeService } from './housingUnitType.service'
@@ -24,7 +28,13 @@ export class HousingUnitTypeController {
     }
 
     @Get(':id')
-    getByID(@Param('id') id: string) {
+    getByID(@Param('id') id: string): Promise<Prisma.HousingUnitTypeGetPayload<{
+        include: {
+            facilities: true
+            medias: true
+            housingUnits: true
+        }
+    }> | null> {
         return this.housingUnitTypeService.getById(id)
     }
 
@@ -41,8 +51,14 @@ export class HousingUnitTypeController {
         return this.housingUnitTypeService.delete(id)
     }
 
-    @Get('listByCompany/:companyId')
-    listByCompanyId(@Param('companyId') companyId: string) {
-        return this.housingUnitTypeService.listByCompanyId(companyId)
+    @Post('listByCompany')
+    listByCompanyId(
+        @Param('companyId') companyId: string,
+        @Body('pagination') paginationQuery: PaginationQueryDTO,
+    ): Promise<PaginatedResponse<HousingUnitType>> {
+        return this.housingUnitTypeService.listByCompanyId(
+            companyId,
+            paginationQuery,
+        )
     }
 }

@@ -1,34 +1,42 @@
 import { Injectable } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
 
-import { PrismaService } from '@/modules/prisma/prisma.service'
+import { BaseFacilityService } from '../facility/helpers/BaseFacilityService'
 
-import { HouseUnitTypeFacilityCreateDTO } from './dto/HouseUnitTypeFacilityCreate.dto'
+import { HousingUnitTypeFacilityDTO } from './dto/HousingUnitTypeFacility.dto'
 
 @Injectable()
-export class HousingUnitTypeFacilityService {
-    constructor(private prismaService: PrismaService) {}
+export class HousingUnitTypeFacilityService extends BaseFacilityService {
+    normalizeFacilitiesToCreate(
+        facilities: HousingUnitTypeFacilityDTO[] | undefined,
+    ):
+        | Prisma.HousingUnitTypeFacilityCreateWithoutHousingUnitTypeInput[]
+        | undefined {
+        if (!facilities) return undefined
 
-    upsert(id: string, UnitTypeFacilityData: HouseUnitTypeFacilityCreateDTO) {
-        return this.prismaService.houseUnitTypeFacility.upsert({
-            where: { id },
-            update: { facilityId: UnitTypeFacilityData.facilityId },
-            create: {
-                ...UnitTypeFacilityData,
-            },
-        })
+        return super.normalizeCreate(facilities, (facility) => ({
+            isFeatured: facility.isFeatured,
+        }))
     }
 
-    listByUnitType(id: string) {
-        return this.prismaService.houseUnitTypeFacility.findMany({
-            where: { id },
-        })
+    normalizeFacilitiesToUpdate(
+        medias: HousingUnitTypeFacilityDTO[] | undefined,
+    ):
+        | Prisma.HousingUnitTypeFacilityUpdateWithWhereUniqueWithoutHousingUnitTypeInput[]
+        | undefined {
+        if (!medias) return undefined
+
+        return super.normalizeToUpdate(medias, (media) => ({
+            isFeatured: media.isFeatured,
+        }))
     }
 
-    delete(id: string) {
-        return this.prismaService.$transaction(async (db) => {
-            await db.houseUnitTypeFacility.delete({
-                where: { id: id },
-            })
-        })
+    normalizeFacilitiesToDelete(
+        housingUnitTypeId: string,
+        facilities: HousingUnitTypeFacilityDTO[],
+    ): Prisma.HousingUnitTypeFacilityScalarWhereInput {
+        const idsToNotDelete = this.extractIdsToNotDelete(facilities)
+
+        return { housingUnitTypeId, id: { notIn: idsToNotDelete } }
     }
 }

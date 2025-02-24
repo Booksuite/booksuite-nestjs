@@ -23,11 +23,11 @@ model HousingUnitType {
 
     medias       HousingUnitTypeMedia[]
     housingUnits HousingUnit[]
+    facilities   HousingUnitTypeFacility[]
 
-    createdAt           DateTime                @default(now())
-    updatedAt           DateTime                @updatedAt
-    deletedAt           DateTime?
-    PropertyConvenience HouseUnitTypeFacility[]
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
 
     @@map("housing_unit_types")
 }
@@ -52,10 +52,10 @@ model HousingUnitTypeMedia {
     order      Int?    @default(0)
     isFeatured Boolean @default(false)
 
-    propertyId String
-    property   HousingUnitType @relation(fields: [propertyId], references: [id])
-    mediaId    String
-    media      Media           @relation(fields: [mediaId], references: [id])
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id])
+    mediaId           String
+    media             Media           @relation(fields: [mediaId], references: [id])
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -63,7 +63,7 @@ model HousingUnitTypeMedia {
     @@map("housing_unit_type_medias")
 }
 
-model HouseUnitTypeFacility {
+model HousingUnitTypeFacility {
     id String @id @default(uuid())
 
     isFeatured Boolean? @default(false)
