@@ -9,6 +9,7 @@ import {
 } from 'class-validator'
 
 import { CompanyContactDTO } from './CompanyContact.dto'
+import { CompanyFacilityDTO } from './CompanyFacility.dto'
 import { CompanySettingsDTO } from './CompanySettings.dto'
 
 export class CompanyCreateDTO {
@@ -122,6 +123,12 @@ export class CompanyCreateDTO {
     @IsDefined()
     @IsString()
     state!: string
+
+    @ApiProperty({ type: [CompanyFacilityDTO] })
+    @IsDefined()
+    @Type(() => CompanyFacilityDTO)
+    @ValidateNested({ each: true })
+    facilities!: CompanyFacilityDTO[]
 
     @ApiProperty({ example: 'City' })
     @IsDefined()

@@ -31,9 +31,9 @@ model BannerMedia {
     order Int? @default(0)
 
     bannerId String
-    banner   Banner @relation(fields: [bannerId], references: [id])
+    banner   Banner @relation(fields: [bannerId], references: [id], onDelete: Cascade)
     mediaId  String
-    media    Media  @relation(fields: [mediaId], references: [id])
+    media    Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade)
 
     @@map("banner_medias")
 }
