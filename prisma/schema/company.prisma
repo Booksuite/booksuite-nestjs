@@ -38,9 +38,24 @@ model Company {
     agePolicy          AgePolicy?
     cancellationPolicy CancellationPolicy?
     reservationConfig  ReservationConfig?
+    facilities         CompanyFacility[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@map("companies")
+}
+
+model CompanyFacility {
+    id String @id @default(uuid())
+
+    companyId  String
+    company    Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    facilityId String
+    facility   Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("company_facilities")
 }

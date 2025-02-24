@@ -4,6 +4,7 @@ model Facility {
     icon String?
 
     houseUnitTypeFacilities HousingUnitTypeFacility[]
+    companyFacilities       CompanyFacility[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

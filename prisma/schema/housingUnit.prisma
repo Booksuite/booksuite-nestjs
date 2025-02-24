@@ -39,7 +39,7 @@ model HousingUnit {
 
     reservation       Reservation[]
     housingUnitTypeId String
-    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id])
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -53,9 +53,9 @@ model HousingUnitTypeMedia {
     isFeatured Boolean @default(false)
 
     housingUnitTypeId String
-    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id])
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
     mediaId           String
-    media             Media           @relation(fields: [mediaId], references: [id])
+    media             Media           @relation(fields: [mediaId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -69,12 +69,12 @@ model HousingUnitTypeFacility {
     isFeatured Boolean? @default(false)
 
     housingUnitTypeId String
-    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id])
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
     facilityId        String
-    facility          Facility        @relation(fields: [facilityId], references: [id])
+    facility          Facility        @relation(fields: [facilityId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@map("house_unit_type_facility")
+    @@map("housing_unit_type_facilities")
 }
