@@ -17,7 +17,7 @@ export class CancellationPolicyController {
         return this.cancellationPolicyService.getByCompanyId(companyId)
     }
 
-    @Patch('create')
+    @Patch()
     create(
         @Param('companyId') companyId: string,
         @Body() data: CancellationPolicyDTO,

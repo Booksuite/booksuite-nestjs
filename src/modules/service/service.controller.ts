@@ -14,8 +14,8 @@ import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
 import { ServiceSearchQueryDTO } from './dtos/ServiceSearchQuery.dto'
 import { ServiceService } from './service.service'
 
-@Controller('service/:companyId')
-export class SericeController {
+@Controller('service')
+export class ServiceController {
     constructor(private serviceService: ServiceService) {}
 
     @Post('create')
@@ -38,8 +38,8 @@ export class SericeController {
         return this.serviceService.delete(id)
     }
 
-    @Post('searchServices')
-    async searchServices(
+    @Post('search')
+    async search(
         @Param('companyId') companyId: string,
         @Body() searchParams: ServiceSearchQueryDTO,
     ) {
