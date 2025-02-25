@@ -2,12 +2,17 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
+import { UploadService } from '../upload/upload.service'
 
+import { MEDIA_BUCKET_NAME } from './constants'
 import { MediaDTO } from './dto/Media.dto'
 
 @Injectable()
 export class MediaService {
-    constructor(private prismaService: PrismaService) {}
+    constructor(
+        private prismaService: PrismaService,
+        private uploadService: UploadService,
+    ) {}
 
     upsert(mediaUrl: MediaDTO) {
         const normalizedData = Prisma.validator<Prisma.MediaUpsertArgs>()({
@@ -29,5 +34,15 @@ export class MediaService {
         return this.prismaService.media.delete({
             where: { id },
         })
+    }
+
+    async uploadFile(files: Express.Multer.File) {
+        const result = await this.uploadService.upload(MEDIA_BUCKET_NAME, files)
+
+        const response = await this.prismaService.media.create({
+            data: { url: result.url },
+        })
+
+        return response
     }
 }
