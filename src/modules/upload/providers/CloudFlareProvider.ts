@@ -1,4 +1,9 @@
-import { S3Client } from '@aws-sdk/client-s3'
+import {
+    CreateBucketCommand,
+    GetBucketAclCommand,
+    PutObjectCommand,
+    S3Client,
+} from '@aws-sdk/client-s3'
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
@@ -67,15 +72,13 @@ export class CloudFlareProvider implements UploadProvider {
         bucket: string,
         file: Express.Multer.File,
     ): Promise<UploadResponse> {
-        await this.client
-            .upload({
+        await this.client.send(
+            new PutObjectCommand({
                 Bucket: bucket,
                 Key: file.originalname,
                 Body: file.buffer,
-                ACL: 'public-read',
-            })
-            .promise()
-
+            }),
+        )
         return {
             url: `${this.accountBaseUrl}/${bucket}/${file.originalname}`,
         }
@@ -83,7 +86,11 @@ export class CloudFlareProvider implements UploadProvider {
 
     private async bucketExists(bucket: string): Promise<boolean> {
         try {
-            await this.client.headBucket({ Bucket: bucket }).promise()
+            await this.client.send(
+                new GetBucketAclCommand({
+                    Bucket: bucket,
+                }),
+            )
             return true
         } catch (error) {
             if (error['$metadata'].httpStatusCode === 404) {
@@ -94,8 +101,10 @@ export class CloudFlareProvider implements UploadProvider {
     }
 
     private createBucket(bucket: string) {
-        return this.client
-            .createBucket({ Bucket: bucket, ACL: 'public-read' })
-            .promise()
+        return this.client.send(
+            new CreateBucketCommand({
+                Bucket: bucket,
+            }),
+        )
     }
 }

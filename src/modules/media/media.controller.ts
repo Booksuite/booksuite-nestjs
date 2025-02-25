@@ -7,7 +7,7 @@ import {
     Param,
     ParseFilePipe,
     Post,
-    UploadedFiles,
+    UploadedFile,
     UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
@@ -38,7 +38,7 @@ export class MediaController {
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
     uploadFiles(
-        @UploadedFiles(
+        @UploadedFile(
             new ParseFilePipe({
                 validators: [
                     new MaxFileSizeValidator({
