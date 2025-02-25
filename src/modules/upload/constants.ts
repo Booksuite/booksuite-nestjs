@@ -1,0 +1,1 @@
+export const UPLOAD_PROVIDER = 'UPLOAD_PROVIDER'
