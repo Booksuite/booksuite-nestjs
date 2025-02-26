@@ -1,5 +1,8 @@
 export type UploadResponse = {
     url: string
+    key: string
+    mimetype: string
+    bucket: string
 }
 
 export interface UploadProvider {

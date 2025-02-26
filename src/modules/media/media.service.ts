@@ -18,7 +18,7 @@ export class MediaService {
         const normalizedData = Prisma.validator<Prisma.MediaUpsertArgs>()({
             where: { id: mediaUrl.id },
             update: { url: mediaUrl.id },
-            create: { ...mediaUrl },
+            create: mediaUrl,
         })
 
         return this.prismaService.media.upsert({ ...normalizedData })
@@ -36,11 +36,18 @@ export class MediaService {
         })
     }
 
-    async uploadFile(files: Express.Multer.File) {
+    async uploadFile(files: Express.Multer.File): Promise<Media> {
         const result = await this.uploadService.upload(MEDIA_BUCKET_NAME, files)
 
         const response = await this.prismaService.media.create({
-            data: { url: result.url },
+            data: {
+                url: result.url,
+                metadata: {
+                    mimetype: result.mimetype,
+                    key: result.key,
+                    bucket: result.bucket,
+                },
+            },
         })
 
         return response

@@ -6,6 +6,7 @@ import {
 } from '@aws-sdk/client-s3'
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import slugify from 'slugify'
 
 import { UploadProvider, UploadResponse } from '../types/UploadProvider'
 
@@ -13,6 +14,7 @@ import { UploadProvider, UploadResponse } from '../types/UploadProvider'
 export class CloudFlareProvider implements UploadProvider {
     private client: S3Client
     private accountBaseUrl: string
+    private r2DevUrl: string
 
     constructor(private configService: ConfigService) {
         const accessKeyId = this.configService.get<string>(
@@ -24,11 +26,15 @@ export class CloudFlareProvider implements UploadProvider {
         const baseUrl = this.configService.get<string>(
             'CLOUDFLARE_UPLOAD_PROVIDER_BASE_URL',
         )
+        const r2DevUrl = this.configService.get<string>(
+            'CLOUDFLARE_FILE_BASE_URL',
+        )
 
-        if (!accessKeyId || !secretAccessKey || !baseUrl)
+        if (!accessKeyId || !secretAccessKey || !baseUrl || !r2DevUrl)
             throw new Error('Missing S3 credentials')
 
         this.accountBaseUrl = baseUrl
+        this.r2DevUrl = r2DevUrl
 
         this.client = new S3Client({
             region: 'auto',
@@ -72,15 +78,22 @@ export class CloudFlareProvider implements UploadProvider {
         bucket: string,
         file: Express.Multer.File,
     ): Promise<UploadResponse> {
+        const key = `${Date.now()}-${slugify(file.originalname, { lower: true })}`
+
         await this.client.send(
             new PutObjectCommand({
                 Bucket: bucket,
-                Key: file.originalname,
+                Key: key,
                 Body: file.buffer,
+                ContentType: file.mimetype,
             }),
         )
+
         return {
-            url: `${this.accountBaseUrl}/${bucket}/${file.originalname}`,
+            url: `${this.r2DevUrl}/${key}`,
+            bucket,
+            key,
+            mimetype: file.mimetype,
         }
     }
 
@@ -104,6 +117,7 @@ export class CloudFlareProvider implements UploadProvider {
         return this.client.send(
             new CreateBucketCommand({
                 Bucket: bucket,
+                ACL: 'public-read',
             }),
         )
     }
