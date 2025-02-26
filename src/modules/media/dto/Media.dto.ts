@@ -1,12 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Prisma } from '@prisma/client'
+import { Type } from 'class-transformer'
 import {
     IsDefined,
-    IsObject,
     IsOptional,
     IsString,
     IsUUID,
+    ValidateNested,
 } from 'class-validator'
+
+import { MetadataDto } from './Metadata.dto'
 
 export class MediaDTO {
     @ApiProperty({
@@ -22,11 +24,9 @@ export class MediaDTO {
     @IsString()
     url!: string
 
-    @ApiProperty({
-        example: { key: 'value' },
-        required: false,
-    })
-    @IsObject()
-    @IsOptional()
-    metadata?: Prisma.InputJsonValue
+    @ApiProperty({ type: MetadataDto })
+    @Type(() => MetadataDto)
+    @IsDefined()
+    @ValidateNested({ each: true })
+    metadata: MetadataDto
 }

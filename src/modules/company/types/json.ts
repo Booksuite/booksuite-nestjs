@@ -1,3 +1,5 @@
+import { Prisma } from '@prisma/client'
+
 import { ValidContact } from '../enums/ValidContact.enum'
 
 export type CompanySettings = {
@@ -7,4 +9,8 @@ export type CompanySettings = {
 export type CompanyContact = {
     type: ValidContact
     value: string
+}
+
+export type MediaMetadata = Prisma.InputJsonValue & {
+    mimetype: string
 }
