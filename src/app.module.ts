@@ -9,7 +9,6 @@ import { MediaModule } from './modules/media/media.module'
 import { PrismaModule } from './modules/prisma/prisma.module'
 import { ReservationModule } from './modules/reservation/reservation.module'
 import { ServiceModule } from './modules/service/service.module'
-import { UploadModule } from './modules/upload/upload.module'
 
 @Module({
     imports: [
@@ -22,7 +21,6 @@ import { UploadModule } from './modules/upload/upload.module'
         FacilityModule,
         MediaModule,
         BannerModule,
-        UploadModule,
     ],
 })
 export class AppModule {}
