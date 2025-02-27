@@ -5,7 +5,7 @@ export class ServiceMediaCreateDTO {
     @ApiProperty({ example: 1 })
     @IsOptional()
     @IsInt()
-    order?: number
+    order?: number | null
 
     @ApiProperty({ example: 'd68ffa59-0c42-49a6-b6d8-312569e33505' })
     @IsDefined()
