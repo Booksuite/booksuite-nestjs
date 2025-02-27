@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import { HousingUnitType, Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
-import { PaginatedResponse, PaginationQuery } from '@/common/types/pagination'
+import { PaginationQuery } from '@/common/types/pagination'
 import {
     buildPaginatedResponse,
     getPaginatedParams,
@@ -9,6 +9,9 @@ import {
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { HousingUnitTypeCreateDTO } from './dto/HousingUnitTypeCreate.dto'
+import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePaginatedResponse.dto'
+import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
+import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitService } from './housingUnit.service'
 import { HousingUnitTypeFacilityService } from './housingUnitTypeFacility.service'
 import { HousingUnitTypeMediaService } from './housingUnitTypeMedias.service'
@@ -22,7 +25,10 @@ export class HousingUnitTypeService {
         private housingUnitTypeFacilityService: HousingUnitTypeFacilityService,
     ) {}
 
-    create(id: string, rawData: HousingUnitTypeCreateDTO) {
+    async create(
+        id: string,
+        rawData: HousingUnitTypeCreateDTO,
+    ): Promise<HousingUnitTypeResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeCreateInput>()({
                 ...rawData,
@@ -45,29 +51,28 @@ export class HousingUnitTypeService {
                 company: { connect: { id } },
             })
 
-        return this.prismaService.housingUnitType.create({
+        const createdData = await this.prismaService.housingUnitType.create({
             data: normalizedData,
         })
+
+        return createdData
     }
 
-    getById(id: string): Promise<Prisma.HousingUnitTypeGetPayload<{
-        include: {
-            facilities: true
-            medias: true
-            housingUnits: true
-        }
-    }> | null> {
+    getById(id: string): Promise<HousingUnitTypeResponseFullDTO | null> {
         return this.prismaService.housingUnitType.findUnique({
             where: { id },
             include: {
-                facilities: true,
-                medias: true,
                 housingUnits: true,
+                facilities: { include: { facility: true } },
+                medias: { include: { media: true } },
             },
         })
     }
 
-    update(id: string, rawData: HousingUnitTypeCreateDTO) {
+    update(
+        id: string,
+        rawData: HousingUnitTypeCreateDTO,
+    ): Promise<HousingUnitTypeResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeUpdateInput>()({
                 ...rawData,
@@ -127,7 +132,7 @@ export class HousingUnitTypeService {
     async listByCompanyId(
         companyId: string,
         pagination: PaginationQuery,
-    ): Promise<PaginatedResponse<HousingUnitType>> {
+    ): Promise<HousingUnitTypePaginatedResponseDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
         const [housingUnitTypes, total] =

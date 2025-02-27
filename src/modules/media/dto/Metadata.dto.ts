@@ -1,9 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Prisma } from '@prisma/client'
 import { IsDefined, IsString } from 'class-validator'
 
-export class MetadataDto implements Prisma.InputJsonObject {
-    readonly [x: string]: Prisma.InputJsonValue | null | undefined
+import { MediaMetadata } from '@/modules/company/types/json'
+
+export class MetadataDto implements MediaMetadata {
+    readonly [x: string]: string
 
     @ApiProperty({
         example: 'image/png',

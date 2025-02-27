@@ -94,6 +94,7 @@ export class HousingUnitTypeCreateDTO {
     @Type(() => HousingUnitTypeFacilityDTO)
     facilities!: HousingUnitTypeFacilityDTO[]
 
+    @ApiProperty({ type: [HousingUnitTypeMediaDTO] })
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
