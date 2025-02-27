@@ -46,4 +46,10 @@ export class HousingUnitTypeResponseDTO {
 
     @ApiProperty({ example: 70 })
     chargeExtraAdultHigherThan!: number
+
+    @ApiProperty({ example: '2024-01-01T00:00:00.000Z' })
+    createdAt: Date
+
+    @ApiProperty({ example: '2024-01-01T00:00:00.000Z' })
+    updatedAt: Date
 }
