@@ -36,12 +36,6 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: '2025-02-22T14:30:00.000Z' })
     seasonEnd!: Date
 
-    // @IsOptional()
-    // hosting?: Prisma.JsonValue
-
-    // @IsOptional()
-    // nights?: Prisma.JsonValue
-
     @ApiProperty({
         example: 'Enjoy a soothing massage during your stay',
     })
