@@ -50,9 +50,6 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: 'https://www.example.com/video', required: false })
     videoUrl?: string | null
 
-    @ApiProperty({ example: '3c39db8f-ec01-4bf1-89e3-a4b458903b2c' })
-    categoryId?: string | null
-
     @ApiProperty({ type: [ServiceCategoryCreateDTO] })
     category?: ServiceCategoryCreateDTO
 }
