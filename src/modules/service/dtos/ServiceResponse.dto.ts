@@ -3,6 +3,9 @@ import { ApiProperty } from '@nestjs/swagger'
 import { ServiceCategoryCreateDTO } from './ServiceCategoryCreate.dto'
 
 export class ServiceResponseDTO {
+    @ApiProperty({ example: 'M8c8ab0cb-7689-4357-b446-1348cfe3842d' })
+    id!: string
+
     @ApiProperty({ example: 'Massage' })
     name!: string
 

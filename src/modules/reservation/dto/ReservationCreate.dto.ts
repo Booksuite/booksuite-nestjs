@@ -4,6 +4,7 @@ import {
     IsArray,
     IsDefined,
     IsInt,
+    IsISO8601,
     IsOptional,
     IsString,
 } from 'class-validator'
@@ -17,12 +18,12 @@ export class ReservationCreateDTO {
 
     @ApiProperty({ example: '02/08/2025' })
     @IsDefined()
-    @IsString()
+    @IsISO8601()
     startDate!: Date
 
     @ApiProperty({ example: '02/10/2025' })
     @IsDefined()
-    @IsString()
+    @IsISO8601()
     endDate!: Date
 
     @ApiProperty({ example: '7' })
