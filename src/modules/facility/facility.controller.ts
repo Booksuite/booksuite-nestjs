@@ -7,12 +7,13 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ApiOkResponse } from '@nestjs/swagger'
+import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
 
 import { FacilityDTO } from './dto/Facility.dto'
 import { FacilityResponseDTO } from './dto/FacilityResponse.dto'
 import { FacilityService } from './facility.service'
 
+@ApiExtraModels(FacilityResponseDTO)
 @Controller('facility')
 export class FacilityController {
     constructor(private facilityService: FacilityService) {}
@@ -23,7 +24,16 @@ export class FacilityController {
         return this.facilityService.create(facilityData)
     }
 
-    @ApiOkResponse({ type: FacilityResponseDTO })
+    @ApiOkResponse({
+        schema: {
+            oneOf: [
+                {
+                    $ref: getSchemaPath(FacilityResponseDTO),
+                },
+                { type: 'null' },
+            ],
+        },
+    })
     @Get(':id')
     getById(
         @Param('id') facilityId: string,
