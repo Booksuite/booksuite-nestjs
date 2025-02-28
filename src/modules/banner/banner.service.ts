@@ -6,6 +6,7 @@ import { PrismaService } from '@/modules/prisma/prisma.service'
 import { BannerMediaService } from './bannerMedia.service'
 import { BannerCreateDTO } from './dto/BannerCreate.dto'
 import { BannerResponseDTO } from './dto/BannerResponse.dto'
+import { BannerResponseFullDTO } from './dto/BannerResponseFull.dto'
 
 @Injectable()
 export class BannerService {
@@ -14,7 +15,7 @@ export class BannerService {
         private bannerMediaService: BannerMediaService,
     ) {}
 
-    create(rawData: BannerCreateDTO): Promise<BannerResponseDTO> {
+    create(rawData: BannerCreateDTO): Promise<BannerResponseFullDTO> {
         const normalizedData = Prisma.validator<Prisma.BannerCreateInput>()({
             ...rawData,
             medias: {
@@ -33,14 +34,14 @@ export class BannerService {
         })
     }
 
-    getById(id: string): Promise<BannerResponseDTO | null> {
+    getById(id: string): Promise<BannerResponseFullDTO | null> {
         return this.prismaService.banner.findUnique({
             where: { id },
             include: { medias: true },
         })
     }
 
-    update(id: string, rawData: BannerCreateDTO) {
+    update(id: string, rawData: BannerCreateDTO): Promise<BannerResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
             ...rawData,
             medias: {

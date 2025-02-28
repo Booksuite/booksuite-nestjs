@@ -1,8 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { BannerAction, BannerPosition, BannerStatus } from '@prisma/client'
 
-import { BannerMediaResponseDTO } from './BannerMediaResponse.dto'
-
 export class BannerResponseDTO {
     @ApiProperty({ example: 'a89f8dc0-4d03-483a-8803-9c4a4c2ab878' })
     id!: string
@@ -33,9 +31,6 @@ export class BannerResponseDTO {
 
     @ApiProperty({ example: 'https://via.placeholder.com', required: false })
     actionButtonLink?: string | null
-
-    @ApiProperty({ type: [BannerMediaResponseDTO] })
-    medias!: BannerMediaResponseDTO[]
 
     @ApiProperty({
         example: '2024-03-14T00:00:00Z',
