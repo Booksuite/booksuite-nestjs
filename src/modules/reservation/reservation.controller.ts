@@ -7,13 +7,14 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ApiOkResponse } from '@nestjs/swagger'
+import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
 
 import { ReservationCreateDTO } from './dto/ReservationCreate.dto'
 import { ReservationResponseDTO } from './dto/ReservationResponse.dto'
 import { ReservationResponseFullDTO } from './dto/ReservationResponseFull.dto'
 import { ReservationService } from './reservation.service'
 
+@ApiExtraModels(ReservationResponseDTO)
 @Controller('reservation')
 export class ReservationController {
     constructor(private reservationService: ReservationService) {}
@@ -26,7 +27,14 @@ export class ReservationController {
         return this.reservationService.create(data)
     }
 
-    @ApiOkResponse({ type: ReservationResponseFullDTO })
+    @ApiOkResponse({
+        schema: {
+            oneOf: [
+                { $ref: getSchemaPath(ReservationResponseFullDTO) },
+                { type: 'null' },
+            ],
+        },
+    })
     @Get(':id')
     getByID(
         @Param('id') id: string,
