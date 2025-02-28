@@ -33,7 +33,7 @@ export class ReservationService {
         })
     }
 
-    get(id: string): Promise<ReservationResponseFullDTO | null> {
+    getById(id: string): Promise<ReservationResponseFullDTO | null> {
         return this.prisma.reservation.findUnique({
             where: { id },
             include: {

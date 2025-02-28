@@ -16,12 +16,12 @@ export class ReservationCreateDTO {
     @IsString()
     status!: string
 
-    @ApiProperty({ example: '02/08/2025' })
+    @ApiProperty({ example: '2025-01-14T13:19:15.271598Z' })
     @IsDefined()
     @IsISO8601()
     startDate!: Date
 
-    @ApiProperty({ example: '02/10/2025' })
+    @ApiProperty({ example: '2024-10-10T13:19:15.271627Z' })
     @IsDefined()
     @IsISO8601()
     endDate!: Date

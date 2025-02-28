@@ -7,10 +7,10 @@ export class ReservationResponseDTO {
     @ApiProperty({ example: 'CONFIRMED' })
     status!: string
 
-    @ApiProperty({ example: '02/08/2025' })
+    @ApiProperty({ example: '2024-10-17T13:19:15.271634Z' })
     startDate!: Date
 
-    @ApiProperty({ example: '02/10/2025' })
+    @ApiProperty({ example: '2025-01-14T13:19:15.271598Z' })
     endDate!: Date
 
     @ApiProperty({ example: '7' })
@@ -27,4 +27,10 @@ export class ReservationResponseDTO {
 
     @ApiProperty({ example: 'Featured booking' })
     notes!: string
+
+    @ApiProperty({ example: '2024-07-19T13:19:15.271637Z' })
+    createdAt!: Date
+
+    @ApiProperty({ example: '2024-07-29T13:19:15.271631Z' })
+    updatedAt!: Date
 }

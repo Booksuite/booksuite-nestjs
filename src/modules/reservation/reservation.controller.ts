@@ -31,7 +31,7 @@ export class ReservationController {
     getByID(
         @Param('id') id: string,
     ): Promise<ReservationResponseFullDTO | null> {
-        return this.reservationService.get(id)
+        return this.reservationService.getById(id)
     }
 
     @ApiOkResponse({ type: ReservationResponseDTO })
