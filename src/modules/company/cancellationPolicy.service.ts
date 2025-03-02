@@ -5,6 +5,8 @@ import { omit } from 'radash'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { CancellationPolicyDTO } from './dto/CancellationPolicy.dto'
+import { CancellationPolicyResponseDTO } from './dto/CancellationPolicyResponse.dto'
+import { CancellationPolicyResponseFullDTO } from './dto/CancellationPolicyResponseFull.dto'
 
 @Injectable()
 export class CancellationPolicyService {
@@ -12,16 +14,17 @@ export class CancellationPolicyService {
 
     getByCompanyId(
         companyId: string,
-    ): Promise<Prisma.CancellationPolicyGetPayload<{
-        include: { penaltyRanges: true }
-    }> | null> {
+    ): Promise<CancellationPolicyResponseFullDTO | null> {
         return this.prismaService.cancellationPolicy.findUnique({
             where: { companyId },
             include: { penaltyRanges: true },
         })
     }
 
-    upsert(companyId: string, rawData: CancellationPolicyDTO) {
+    upsert(
+        companyId: string,
+        rawData: CancellationPolicyDTO,
+    ): Promise<CancellationPolicyResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.CancellationPolicyCreateInput>()({
                 ...rawData,
