@@ -1,16 +1,19 @@
 import { Injectable } from '@nestjs/common'
-import { Prisma, ReservationConfig } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { ReservationConfigDTO } from './dto/ReservationConfig.dto'
+import { ReservationConfigResponseDTO } from './dto/ReservationConfigResponse.dto'
 
 @Injectable()
 export class ReservationConfigService {
     constructor(private prismaService: PrismaService) {}
 
-    getByCompanyId(companyId: string): Promise<ReservationConfig | null> {
+    getByCompanyId(
+        companyId: string,
+    ): Promise<ReservationConfigResponseDTO | null> {
         return this.prismaService.reservationConfig.findUnique({
             where: { companyId },
         })
@@ -19,7 +22,7 @@ export class ReservationConfigService {
     upsert(
         companyId: string,
         rawData: ReservationConfigDTO,
-    ): Promise<ReservationConfig> {
+    ): Promise<ReservationConfigResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.ReservationConfigUpdateInput>()({
                 ...rawData,
