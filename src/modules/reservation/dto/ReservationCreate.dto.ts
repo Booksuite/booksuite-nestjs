@@ -60,5 +60,5 @@ export class ReservationCreateDTO {
     @IsDefined()
     @IsArray()
     @Type(() => ReservationServiceCreateDTO)
-    services!: ReservationServiceCreateDTO
+    services!: ReservationServiceCreateDTO[]
 }
