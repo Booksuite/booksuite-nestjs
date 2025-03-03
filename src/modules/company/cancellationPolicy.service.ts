@@ -5,7 +5,6 @@ import { omit } from 'radash'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { CancellationPolicyDTO } from './dto/CancellationPolicy.dto'
-import { CancellationPolicyResponseDTO } from './dto/CancellationPolicyResponse.dto'
 import { CancellationPolicyResponseFullDTO } from './dto/CancellationPolicyResponseFull.dto'
 
 @Injectable()
@@ -24,7 +23,7 @@ export class CancellationPolicyService {
     upsert(
         companyId: string,
         rawData: CancellationPolicyDTO,
-    ): Promise<CancellationPolicyResponseDTO> {
+    ): Promise<CancellationPolicyResponseFullDTO> {
         const normalizedData =
             Prisma.validator<Prisma.CancellationPolicyCreateInput>()({
                 ...rawData,
@@ -41,6 +40,7 @@ export class CancellationPolicyService {
             update: omit(normalizedData, ['company']),
             create: normalizedData,
             where: { companyId },
+            include: { penaltyRanges: true },
         })
     }
 

@@ -7,7 +7,7 @@ export class PenaltyRangeResponseDTO {
         description: 'Only defined if exists in the DB',
         required: false,
     })
-    id?: string
+    id: string
 
     @ApiProperty({ example: 10 })
     daysBeforeCheckIn!: number

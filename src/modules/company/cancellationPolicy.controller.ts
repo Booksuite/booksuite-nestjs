@@ -3,7 +3,6 @@ import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
 
 import { CancellationPolicyService } from './cancellationPolicy.service'
 import { CancellationPolicyDTO } from './dto/CancellationPolicy.dto'
-import { CancellationPolicyResponseDTO } from './dto/CancellationPolicyResponse.dto'
 import { CancellationPolicyResponseFullDTO } from './dto/CancellationPolicyResponseFull.dto'
 
 @ApiExtraModels(CancellationPolicyResponseFullDTO)
@@ -28,12 +27,12 @@ export class CancellationPolicyController {
         return this.cancellationPolicyService.getByCompanyId(companyId)
     }
 
-    @ApiOkResponse({ type: CancellationPolicyResponseDTO })
+    @ApiOkResponse({ type: CancellationPolicyResponseFullDTO })
     @Patch()
     create(
         @Param('companyId') companyId: string,
         @Body() data: CancellationPolicyDTO,
-    ): Promise<CancellationPolicyResponseDTO> {
+    ): Promise<CancellationPolicyResponseFullDTO> {
         return this.cancellationPolicyService.upsert(companyId, data)
     }
 
