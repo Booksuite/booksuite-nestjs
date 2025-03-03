@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
 import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
@@ -9,32 +10,26 @@ import { ReservationResponseFullDTO } from './dto/ReservationResponseFull.dto'
 
 @Injectable()
 export class ReservationService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prismaService: PrismaService) {}
 
     create(rawData: ReservationCreateDTO): Promise<ReservationResponseFullDTO> {
-        return this.prisma.$transaction(async (db) => {
-            const ommited = omit(rawData, ['services'])
-
-            const newReservation = await db.reservation.create({
-                data: ommited,
-                include: {
-                    services: { include: { service: true } },
-                    housingUnit: true,
-                },
+        const normalizedData =
+            Prisma.validator<Prisma.ReservationCreateInput>()({
+                ...rawData,
+                services: { createMany: { data: rawData.services } },
             })
 
-            if (rawData.services) {
-                await db.reservationService.createMany({
-                    data: rawData.services,
-                })
-            }
-
-            return newReservation
+        return this.prismaService.reservation.create({
+            data: normalizedData,
+            include: {
+                housingUnit: true,
+                services: { include: { service: true } },
+            },
         })
     }
 
     getById(id: string): Promise<ReservationResponseFullDTO | null> {
-        return this.prisma.reservation.findUnique({
+        return this.prismaService.reservation.findUnique({
             where: { id },
             include: {
                 housingUnit: true,
@@ -47,13 +42,13 @@ export class ReservationService {
         id: string,
         rawData: ReservationCreateDTO,
     ): Promise<ReservationResponseDTO | null> {
-        return this.prisma.$transaction(async (db) => {
+        return this.prismaService.$transaction(async (db) => {
             const ommited = omit(rawData, ['services'])
 
             if (rawData.services) {
-                await db.reservationService.update({
+                await db.reservationService.updateMany({
                     where: { id: id },
-                    data: rawData.services,
+                    data: { ...rawData.services },
                 })
             }
 
@@ -65,6 +60,6 @@ export class ReservationService {
     }
 
     delete(id: string) {
-        return this.prisma.reservation.delete({ where: { id: id } })
+        return this.prismaService.reservation.delete({ where: { id: id } })
     }
 }
