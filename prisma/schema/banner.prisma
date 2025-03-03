@@ -13,6 +13,9 @@ model Banner {
     actionButtonText String?
     actionButtonLink String?
 
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
     medias BannerMedia[]
 
     startAt DateTime?

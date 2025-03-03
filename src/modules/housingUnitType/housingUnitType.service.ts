@@ -22,7 +22,7 @@ export class HousingUnitTypeService {
     ) {}
 
     async create(
-        id: string,
+        companyId: string,
         rawData: HousingUnitTypeCreateDTO,
     ): Promise<HousingUnitTypeResponseDTO> {
         const normalizedData =
@@ -36,7 +36,7 @@ export class HousingUnitTypeService {
                             rawData.housingUnits,
                         ),
                 },
-                company: { connect: { id } },
+                company: { connect: { id: companyId } },
             })
 
         const createdData = await this.prismaService.housingUnitType.create({
