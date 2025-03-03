@@ -13,14 +13,12 @@ import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePagina
 import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
 import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitService } from './housingUnit.service'
-import { HousingUnitTypeMediaService } from './housingUnitTypeMedias.service'
 
 @Injectable()
 export class HousingUnitTypeService {
     constructor(
         private prismaService: PrismaService,
         private housingUnitService: HousingUnitService,
-        private housingUnitMediaService: HousingUnitTypeMediaService,
     ) {}
 
     async create(
@@ -31,12 +29,7 @@ export class HousingUnitTypeService {
             Prisma.validator<Prisma.HousingUnitTypeCreateInput>()({
                 ...rawData,
                 facilities: { createMany: { data: rawData.facilities } },
-
-                medias: {
-                    create: this.housingUnitMediaService.normalizeMediasToCreate(
-                        rawData.medias,
-                    ),
-                },
+                medias: { createMany: { data: rawData.medias || [] } },
                 housingUnits: {
                     createMany:
                         this.housingUnitService.normalizeHousingUnitsToCreateMany(
@@ -72,7 +65,6 @@ export class HousingUnitTypeService {
             Prisma.validator<Prisma.HousingUnitTypeUpdateInput>()({
                 ...rawData,
                 facilities: {
-                    createMany: { data: rawData.facilities },
                     deleteMany: {
                         housingUnitTypeId: id,
                         facilityId: {
@@ -81,6 +73,18 @@ export class HousingUnitTypeService {
                             ),
                         },
                     },
+                    createMany: { data: rawData.facilities },
+                },
+                medias: {
+                    deleteMany: {
+                        housingUnitTypeId: id,
+                        mediaId: {
+                            notIn: rawData.medias?.map(
+                                (facility) => facility.mediaId,
+                            ),
+                        },
+                    },
+                    createMany: { data: rawData.medias || [] },
                 },
                 housingUnits: {
                     deleteMany:
@@ -95,20 +99,6 @@ export class HousingUnitTypeService {
                     updateMany:
                         this.housingUnitService.normalizeHousingUnitsToUpdate(
                             rawData.housingUnits,
-                        ),
-                },
-
-                medias: {
-                    create: this.housingUnitMediaService.normalizeMediasToCreate(
-                        rawData.medias,
-                    ),
-                    update: this.housingUnitMediaService.normalizeMediasToUpdate(
-                        rawData.medias,
-                    ),
-                    deleteMany:
-                        this.housingUnitMediaService.normalizeMediasToDelete(
-                            id,
-                            rawData.medias,
                         ),
                 },
             })

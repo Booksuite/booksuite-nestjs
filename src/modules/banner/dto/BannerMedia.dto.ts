@@ -1,9 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsInt, IsOptional } from 'class-validator'
+import { IsDefined, IsInt, IsOptional, IsUUID } from 'class-validator'
 
-import { MediaDTO } from '@/modules/media/dto/Media.dto'
+export class BannerMediaDTO {
+    @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174000' })
+    @IsDefined()
+    @IsUUID()
+    mediaId: string
 
-export class BannerMediaDTO extends MediaDTO {
     @ApiProperty({ example: 2, required: false })
     @IsOptional()
     @IsInt()
