@@ -13,7 +13,6 @@ import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePagina
 import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
 import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitService } from './housingUnit.service'
-import { HousingUnitTypeFacilityService } from './housingUnitTypeFacility.service'
 import { HousingUnitTypeMediaService } from './housingUnitTypeMedias.service'
 
 @Injectable()
@@ -22,7 +21,6 @@ export class HousingUnitTypeService {
         private prismaService: PrismaService,
         private housingUnitService: HousingUnitService,
         private housingUnitMediaService: HousingUnitTypeMediaService,
-        private housingUnitTypeFacilityService: HousingUnitTypeFacilityService,
     ) {}
 
     async create(
@@ -32,11 +30,8 @@ export class HousingUnitTypeService {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeCreateInput>()({
                 ...rawData,
-                facilities: {
-                    create: this.housingUnitTypeFacilityService.normalizeFacilitiesToCreate(
-                        rawData.facilities,
-                    ),
-                },
+                facilities: { createMany: { data: rawData.facilities } },
+
                 medias: {
                     create: this.housingUnitMediaService.normalizeMediasToCreate(
                         rawData.medias,
@@ -76,6 +71,17 @@ export class HousingUnitTypeService {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeUpdateInput>()({
                 ...rawData,
+                facilities: {
+                    createMany: { data: rawData.facilities },
+                    deleteMany: {
+                        housingUnitTypeId: id,
+                        facilityId: {
+                            notIn: rawData.facilities.map(
+                                (facility) => facility.facilityId,
+                            ),
+                        },
+                    },
+                },
                 housingUnits: {
                     deleteMany:
                         this.housingUnitService.normalizeHousingUnitsToDelete(
@@ -91,19 +97,7 @@ export class HousingUnitTypeService {
                             rawData.housingUnits,
                         ),
                 },
-                facilities: {
-                    create: this.housingUnitTypeFacilityService.normalizeFacilitiesToCreate(
-                        rawData.facilities,
-                    ),
-                    update: this.housingUnitTypeFacilityService.normalizeFacilitiesToUpdate(
-                        rawData.facilities,
-                    ),
-                    deleteMany:
-                        this.housingUnitTypeFacilityService.normalizeFacilitiesToDelete(
-                            id,
-                            rawData.facilities,
-                        ),
-                },
+
                 medias: {
                     create: this.housingUnitMediaService.normalizeMediasToCreate(
                         rawData.medias,

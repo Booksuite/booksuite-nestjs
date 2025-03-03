@@ -3,25 +3,19 @@ import { Prisma } from '@prisma/client'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { CompanyFacilityService } from './companyFacility.service'
 import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
 import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 
 @Injectable()
 export class CompanyService {
-    constructor(
-        private prismaService: PrismaService,
-        private companyFacilityService: CompanyFacilityService,
-    ) {}
+    constructor(private prismaService: PrismaService) {}
 
     create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyCreateInput>()({
             ...rawData,
             facilities: {
-                create: this.companyFacilityService.normalizeFacilitiesToCreate(
-                    rawData.facilities,
-                ),
+                createMany: { data: rawData.facilities },
             },
             contacts: rawData.contacts || [],
         })
@@ -41,18 +35,17 @@ export class CompanyService {
     update(id: string, rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyUpdateInput>()({
             ...rawData,
+            contacts: rawData.contacts || [],
             facilities: {
-                create: this.companyFacilityService.normalizeFacilitiesToCreate(
-                    rawData.facilities,
-                ),
-                update: this.companyFacilityService.normalizeFacilitiesToUpdate(
-                    rawData.facilities,
-                ),
-                deleteMany:
-                    this.companyFacilityService.normalizeFacilitiesToDelete(
-                        id,
-                        rawData.facilities,
-                    ),
+                createMany: { data: rawData.facilities },
+                deleteMany: {
+                    companyId: id,
+                    facilityId: {
+                        notIn: rawData.facilities.map(
+                            (facility) => facility.facilityId,
+                        ),
+                    },
+                },
             },
         })
 
