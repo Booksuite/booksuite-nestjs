@@ -15,7 +15,7 @@ export class AgePolicyController {
         schema: {
             oneOf: [
                 {
-                    $ref: getSchemaPath(AgePolicyResponseDTO),
+                    $ref: getSchemaPath(AgePolicyResponseFullDTO),
                 },
                 { type: 'null' },
             ],
@@ -24,7 +24,7 @@ export class AgePolicyController {
     @Get()
     getByCompanyId(
         @Param('companyId') companyId: string,
-    ): Promise<AgePolicyResponseDTO | null> {
+    ): Promise<AgePolicyResponseFullDTO | null> {
         return this.agePolicyService.getByCompanyId(companyId)
     }
 

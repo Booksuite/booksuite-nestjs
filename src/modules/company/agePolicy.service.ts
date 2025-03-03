@@ -5,7 +5,6 @@ import { omit } from 'radash'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { AgePolicyDTO } from './dto/AgePolicy.dto'
-import { AgePolicyResponseDTO } from './dto/AgePolicyResponse.dto'
 import { AgePolicyResponseFullDTO } from './dto/AgePolicyResponseFull.dto'
 
 @Injectable()
@@ -14,7 +13,7 @@ export class AgePolicyService {
 
     async getByCompanyId(
         companyId: string,
-    ): Promise<AgePolicyResponseDTO | null> {
+    ): Promise<AgePolicyResponseFullDTO | null> {
         return this.prismaService.agePolicy.findUnique({
             where: { companyId },
             include: { ageGroups: true },
