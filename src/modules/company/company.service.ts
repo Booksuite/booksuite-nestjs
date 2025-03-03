@@ -5,6 +5,8 @@ import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { CompanyFacilityService } from './companyFacility.service'
 import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
+import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
+import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 
 @Injectable()
 export class CompanyService {
@@ -13,7 +15,7 @@ export class CompanyService {
         private companyFacilityService: CompanyFacilityService,
     ) {}
 
-    create(rawData: CompanyCreateDTO) {
+    create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyCreateInput>()({
             ...rawData,
             facilities: {
@@ -27,16 +29,16 @@ export class CompanyService {
         return this.prismaService.company.create({ data: normalizedData })
     }
 
-    getById(id: string) {
+    getById(id: string): Promise<CompanyResponseFullDTO | null> {
         return this.prismaService.company.findUnique({
             where: { id },
             include: {
-                facilities: true,
+                facilities: { include: { facility: true } },
             },
         })
     }
 
-    update(id: string, rawData: CompanyCreateDTO) {
+    update(id: string, rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyUpdateInput>()({
             ...rawData,
             facilities: {
