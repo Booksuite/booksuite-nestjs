@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common'
 
+import { PaginationQuery } from '@/common/types/pagination'
+import {
+    buildPaginatedResponse,
+    getPaginatedParams,
+} from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { FacilityDTO } from './dto/Facility.dto'
+import { FacilityOrderByDTO } from './dto/FacilityOrderBy.dto'
 import { FacilityResponseDTO } from './dto/FacilityResponse.dto'
+import { FacilityResponsePaginatedDTO } from './dto/FacilityResponsePaginated.dto'
 
 @Injectable()
 export class FacilityService {
@@ -13,6 +20,21 @@ export class FacilityService {
         return this.prismaService.facility.create({
             data: facilityData,
         })
+    }
+
+    async list(
+        pagination: PaginationQuery,
+        order: FacilityOrderByDTO,
+    ): Promise<FacilityResponsePaginatedDTO> {
+        const paginatedParams = getPaginatedParams(pagination)
+
+        const [facilities, total] =
+            await this.prismaService.facility.findManyAndCount({
+                ...paginatedParams,
+                orderBy: { [order.orderBy]: order.order },
+            })
+
+        return buildPaginatedResponse(facilities, total, pagination)
     }
 
     getById(faciltyId: string): Promise<FacilityResponseDTO | null> {
