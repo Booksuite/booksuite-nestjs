@@ -3,41 +3,29 @@ import { Prisma } from '@prisma/client'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { BannerMediaService } from './bannerMedia.service'
 import { BannerCreateDTO } from './dto/BannerCreate.dto'
 import { BannerResponseDTO } from './dto/BannerResponse.dto'
 import { BannerResponseFullDTO } from './dto/BannerResponseFull.dto'
 
 @Injectable()
 export class BannerService {
-    constructor(
-        private prismaService: PrismaService,
-        private bannerMediaService: BannerMediaService,
-    ) {}
+    constructor(private prismaService: PrismaService) {}
 
-    create(rawData: BannerCreateDTO): Promise<BannerResponseFullDTO> {
+    create(rawData: BannerCreateDTO): Promise<BannerResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.BannerCreateInput>()({
             ...rawData,
-            medias: {
-                create: rawData.medias.map((media) => ({
-                    media: {
-                        create: { url: media.url, metadata: media.metadata },
-                    },
-                    order: media.order,
-                })),
-            },
+            medias: { createMany: { data: rawData.medias } },
         })
 
         return this.prismaService.banner.create({
             data: normalizedData,
-            include: { medias: { include: { media: true } } },
         })
     }
 
     getById(id: string): Promise<BannerResponseFullDTO | null> {
         return this.prismaService.banner.findUnique({
             where: { id },
-            include: { medias: true },
+            include: { medias: { include: { media: true } } },
         })
     }
 
@@ -45,16 +33,13 @@ export class BannerService {
         const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
             ...rawData,
             medias: {
-                create: this.bannerMediaService.normalizeMediasToCreate(
-                    rawData.medias,
-                ),
-                update: this.bannerMediaService.normalizeMediasToUpdate(
-                    rawData.medias,
-                ),
-                deleteMany: this.bannerMediaService.normalizeMediasToDelete(
-                    id,
-                    rawData.medias,
-                ),
+                deleteMany: {
+                    bannerId: id,
+                    mediaId: {
+                        notIn: rawData.medias.map((media) => media.mediaId),
+                    },
+                },
+                createMany: { data: rawData.medias },
             },
         })
 

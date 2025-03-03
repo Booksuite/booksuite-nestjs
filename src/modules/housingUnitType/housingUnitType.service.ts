@@ -13,16 +13,12 @@ import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePagina
 import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
 import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitService } from './housingUnit.service'
-import { HousingUnitTypeFacilityService } from './housingUnitTypeFacility.service'
-import { HousingUnitTypeMediaService } from './housingUnitTypeMedias.service'
 
 @Injectable()
 export class HousingUnitTypeService {
     constructor(
         private prismaService: PrismaService,
         private housingUnitService: HousingUnitService,
-        private housingUnitMediaService: HousingUnitTypeMediaService,
-        private housingUnitTypeFacilityService: HousingUnitTypeFacilityService,
     ) {}
 
     async create(
@@ -32,16 +28,8 @@ export class HousingUnitTypeService {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeCreateInput>()({
                 ...rawData,
-                facilities: {
-                    create: this.housingUnitTypeFacilityService.normalizeFacilitiesToCreate(
-                        rawData.facilities,
-                    ),
-                },
-                medias: {
-                    create: this.housingUnitMediaService.normalizeMediasToCreate(
-                        rawData.medias,
-                    ),
-                },
+                facilities: { createMany: { data: rawData.facilities } },
+                medias: { createMany: { data: rawData.medias || [] } },
                 housingUnits: {
                     createMany:
                         this.housingUnitService.normalizeHousingUnitsToCreateMany(
@@ -76,6 +64,28 @@ export class HousingUnitTypeService {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeUpdateInput>()({
                 ...rawData,
+                facilities: {
+                    deleteMany: {
+                        housingUnitTypeId: id,
+                        facilityId: {
+                            notIn: rawData.facilities.map(
+                                (facility) => facility.facilityId,
+                            ),
+                        },
+                    },
+                    createMany: { data: rawData.facilities },
+                },
+                medias: {
+                    deleteMany: {
+                        housingUnitTypeId: id,
+                        mediaId: {
+                            notIn: rawData.medias?.map(
+                                (facility) => facility.mediaId,
+                            ),
+                        },
+                    },
+                    createMany: { data: rawData.medias || [] },
+                },
                 housingUnits: {
                     deleteMany:
                         this.housingUnitService.normalizeHousingUnitsToDelete(
@@ -89,32 +99,6 @@ export class HousingUnitTypeService {
                     updateMany:
                         this.housingUnitService.normalizeHousingUnitsToUpdate(
                             rawData.housingUnits,
-                        ),
-                },
-                facilities: {
-                    create: this.housingUnitTypeFacilityService.normalizeFacilitiesToCreate(
-                        rawData.facilities,
-                    ),
-                    update: this.housingUnitTypeFacilityService.normalizeFacilitiesToUpdate(
-                        rawData.facilities,
-                    ),
-                    deleteMany:
-                        this.housingUnitTypeFacilityService.normalizeFacilitiesToDelete(
-                            id,
-                            rawData.facilities,
-                        ),
-                },
-                medias: {
-                    create: this.housingUnitMediaService.normalizeMediasToCreate(
-                        rawData.medias,
-                    ),
-                    update: this.housingUnitMediaService.normalizeMediasToUpdate(
-                        rawData.medias,
-                    ),
-                    deleteMany:
-                        this.housingUnitMediaService.normalizeMediasToDelete(
-                            id,
-                            rawData.medias,
                         ),
                 },
             })

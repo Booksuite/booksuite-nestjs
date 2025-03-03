@@ -1,9 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsDefined, IsInt, IsOptional } from 'class-validator'
+import {
+    IsBoolean,
+    IsDefined,
+    IsInt,
+    IsOptional,
+    IsUUID,
+} from 'class-validator'
 
-import { MediaDTO } from '@/modules/media/dto/Media.dto'
+export class HousingUnitTypeMediaDTO {
+    @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174000' })
+    @IsDefined()
+    @IsUUID()
+    mediaId: string
 
-export class HousingUnitTypeMediaDTO extends MediaDTO {
     @ApiProperty({ example: true })
     @IsDefined()
     @IsBoolean()

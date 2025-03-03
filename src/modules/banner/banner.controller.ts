@@ -20,9 +20,7 @@ export class BannerController {
     constructor(private bannerService: BannerService) {}
 
     @Post('create')
-    create(
-        @Body() bannerData: BannerCreateDTO,
-    ): Promise<BannerResponseFullDTO> {
+    create(@Body() bannerData: BannerCreateDTO): Promise<BannerResponseDTO> {
         return this.bannerService.create(bannerData)
     }
 
