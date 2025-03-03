@@ -10,6 +10,9 @@ model Reservation {
     saleChannel String
     notes       String   @db.Text
 
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
     housingUnitId String?
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 

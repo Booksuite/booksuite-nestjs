@@ -2,30 +2,57 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { omit } from 'radash'
 
+import { PaginationQuery } from '@/common/types/pagination'
+import {
+    buildPaginatedResponse,
+    getPaginatedParams,
+} from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { ReservationCreateDTO } from './dto/ReservationCreate.dto'
+import { ReservationOrderByDTO } from './dto/ReservationOrderBy.dto'
 import { ReservationResponseDTO } from './dto/ReservationResponse.dto'
 import { ReservationResponseFullDTO } from './dto/ReservationResponseFull.dto'
+import { ReservationResponsePaginatedDTO } from './dto/ReservationResponsePaginated.dto'
 
 @Injectable()
 export class ReservationService {
     constructor(private prismaService: PrismaService) {}
 
-    create(rawData: ReservationCreateDTO): Promise<ReservationResponseFullDTO> {
-        const normalizedData =
-            Prisma.validator<Prisma.ReservationCreateInput>()({
-                ...rawData,
-                services: { createMany: { data: rawData.services } },
-            })
+    create(
+        companyId: string,
+        rawData: ReservationCreateDTO,
+    ): Promise<ReservationResponseDTO> {
+        const normalizedData = Prisma.validator<
+            Prisma.ReservationCreateArgs['data']
+        >()({
+            ...rawData,
+            companyId,
+            services: {
+                createMany: { data: rawData.services },
+            },
+        })
 
         return this.prismaService.reservation.create({
             data: normalizedData,
-            include: {
-                housingUnit: true,
-                services: { include: { service: true } },
-            },
         })
+    }
+
+    async list(
+        companyId: string,
+        pagination: PaginationQuery,
+        order: ReservationOrderByDTO,
+    ): Promise<ReservationResponsePaginatedDTO> {
+        const paginationParams = getPaginatedParams(pagination)
+
+        const [reservations, total] =
+            await this.prismaService.reservation.findManyAndCount({
+                where: { companyId },
+                ...paginationParams,
+                orderBy: { [order.orderBy]: order.order },
+            })
+
+        return buildPaginatedResponse(reservations, total, pagination)
     }
 
     getById(id: string): Promise<ReservationResponseFullDTO | null> {
