@@ -18,5 +18,5 @@ export class FacilityDTO {
     @ApiProperty({ example: 'wifi-icon', required: false })
     @IsDefined()
     @IsString()
-    icon?: string
+    icon?: string | null
 }
