@@ -39,6 +39,7 @@ model Company {
     cancellationPolicy CancellationPolicy?
     reservationConfig  ReservationConfig?
     facilities         CompanyFacility[]
+    banners            Banner[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
