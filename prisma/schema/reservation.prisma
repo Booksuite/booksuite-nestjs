@@ -11,7 +11,7 @@ model Reservation {
     notes       String   @db.Text
 
     housingUnitId String?
-    HousingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
+    housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
     services ReservationService[]
 

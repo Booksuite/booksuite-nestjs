@@ -19,7 +19,7 @@ export class ReservationService {
                 data: ommited,
                 include: {
                     services: { include: { service: true } },
-                    HousingUnit: true,
+                    housingUnit: true,
                 },
             })
 
@@ -37,7 +37,7 @@ export class ReservationService {
         return this.prisma.reservation.findUnique({
             where: { id },
             include: {
-                HousingUnit: true,
+                housingUnit: true,
                 services: { include: { service: true } },
             },
         })

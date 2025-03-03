@@ -7,7 +7,7 @@ import { ReservationServiceResponseDTO } from './ReservationServiceResponse.dto'
 
 export class ReservationResponseFullDTO extends ReservationResponseDTO {
     @ApiProperty({ type: HousingUnitResponseDTO })
-    HousingUnit!: HousingUnitResponseDTO | null
+    housingUnit!: HousingUnitResponseDTO | null
 
     @ApiProperty({ type: [ReservationServiceResponseDTO] })
     services!: ReservationServiceResponseDTO[]
