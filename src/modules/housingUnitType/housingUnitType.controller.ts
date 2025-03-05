@@ -53,14 +53,11 @@ export class HousingUnitTypeController {
     }
 
     @ApiOkResponse({ type: HousingUnitTypePaginatedResponseDTO })
-    @Post('list')
-    listByCompanyId(
+    @Post('search')
+    search(
         @Param('companyId') companyId: string,
         @Body('pagination') paginationQuery: PaginationQueryDTO,
     ): Promise<HousingUnitTypePaginatedResponseDTO> {
-        return this.housingUnitTypeService.listByCompanyId(
-            companyId,
-            paginationQuery,
-        )
+        return this.housingUnitTypeService.search(companyId, paginationQuery)
     }
 }
