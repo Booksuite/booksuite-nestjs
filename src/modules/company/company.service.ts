@@ -1,11 +1,19 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 
+import { PaginationQuery } from '@/common/types/pagination'
+import {
+    buildPaginatedResponse,
+    getPaginatedParams,
+} from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
+import { CompanyOrderByDTO } from './dto/CompanyOrderBy.dto'
+import { CompanyQueryDTO } from './dto/CompanyQuery.dto'
 import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
+import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
 
 @Injectable()
 export class CompanyService {
@@ -30,6 +38,23 @@ export class CompanyService {
                 facilities: { include: { facility: true } },
             },
         })
+    }
+
+    async search(
+        pagination: PaginationQuery,
+        order: CompanyOrderByDTO,
+        queryParams: CompanyQueryDTO,
+    ): Promise<CompanyResponsePaginatedDTO> {
+        const paginationParams = getPaginatedParams(pagination)
+
+        const [companies, total] =
+            await this.prismaService.company.findManyAndCount({
+                where: { ...queryParams },
+                ...paginationParams,
+                orderBy: { [order.orderBy]: order.order },
+            })
+
+        return buildPaginatedResponse(companies, total, pagination)
     }
 
     update(id: string, rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
