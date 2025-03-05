@@ -18,7 +18,7 @@ import { ServiceResponseFullDTO } from './dtos/ServiceResponseFull.dto'
 import { ServiceSearchQueryDTO } from './dtos/ServiceSearchQuery.dto'
 import { ServiceService } from './service.service'
 
-@Controller('service')
+@Controller('company/:companyId/service')
 export class ServiceController {
     constructor(private serviceService: ServiceService) {}
 
