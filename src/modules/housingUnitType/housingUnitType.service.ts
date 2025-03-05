@@ -113,7 +113,7 @@ export class HousingUnitTypeService {
         return this.prismaService.housingUnitType.delete({ where: { id: id } })
     }
 
-    async listByCompanyId(
+    async search(
         companyId: string,
         pagination: PaginationQuery,
     ): Promise<HousingUnitTypePaginatedResponseDTO> {
