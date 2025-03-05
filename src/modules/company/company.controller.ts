@@ -15,7 +15,6 @@ import { PaginationQuery } from '@/common/types/pagination'
 import { CompanyService } from './company.service'
 import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
 import { CompanyOrderByDTO } from './dto/CompanyOrderBy.dto'
-import { CompanyQueryDTO } from './dto/CompanyQuery.dto'
 import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
@@ -61,9 +60,10 @@ export class CompanyController {
     search(
         @Body() pagination: PaginationQuery,
         @Body() order: CompanyOrderByDTO,
-        @Query() queryParams: CompanyQueryDTO,
+        @Query('query') query: string,
+        // @Body() filters: CompanySearchFilterDTO,
     ): Promise<CompanyResponsePaginatedDTO> {
-        return this.companyService.search(pagination, order, queryParams)
+        return this.companyService.search(pagination, order, query)
     }
     @Delete(':id')
     deleteCompany(@Param('id') id: string) {
