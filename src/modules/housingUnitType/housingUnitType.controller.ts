@@ -17,7 +17,7 @@ import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
 import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitTypeService } from './housingUnitType.service'
 
-@Controller('housingUnitType/:companyId')
+@Controller('company/:companyId/housingUnitType')
 export class HousingUnitTypeController {
     constructor(private housingUnitTypeService: HousingUnitTypeService) {}
 
@@ -53,14 +53,11 @@ export class HousingUnitTypeController {
     }
 
     @ApiOkResponse({ type: HousingUnitTypePaginatedResponseDTO })
-    @Post('listByCompany')
-    listByCompanyId(
+    @Post('search')
+    search(
         @Param('companyId') companyId: string,
         @Body('pagination') paginationQuery: PaginationQueryDTO,
     ): Promise<HousingUnitTypePaginatedResponseDTO> {
-        return this.housingUnitTypeService.listByCompanyId(
-            companyId,
-            paginationQuery,
-        )
+        return this.housingUnitTypeService.search(companyId, paginationQuery)
     }
 }

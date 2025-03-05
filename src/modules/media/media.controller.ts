@@ -16,7 +16,7 @@ import { MEDIA_MAX_UPLOAD_SIZE } from './constants'
 import { MediaDTO } from './dto/Media.dto'
 import { MediaService } from './media.service'
 
-@Controller('media')
+@Controller('company/:companyId/media')
 export class MediaController {
     constructor(private mediaService: MediaService) {}
 
