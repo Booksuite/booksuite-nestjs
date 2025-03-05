@@ -1,8 +1,8 @@
 export enum CompanyOrderBy {
-    name = 'name',
-    shortDescription = 'shortDescription',
-    description = 'description',
-    companyName = 'companyName',
-    state = 'state',
-    city = 'city',
+    NAME = 'name',
+    SHORTDESCRIPTION = 'shortDescription',
+    DESCRIPTION = 'description',
+    COMPANYNAME = 'companyName',
+    STATE = 'state',
+    CITY = 'city',
 }

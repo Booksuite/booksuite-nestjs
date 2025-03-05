@@ -10,7 +10,6 @@ import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
 import { CompanyOrderByDTO } from './dto/CompanyOrderBy.dto'
-import { CompanyQueryDTO } from './dto/CompanyQuery.dto'
 import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
@@ -43,13 +42,36 @@ export class CompanyService {
     async search(
         pagination: PaginationQuery,
         order: CompanyOrderByDTO,
-        queryParams: CompanyQueryDTO,
+        query: string,
+        // filters: CompanySearchFilterDTO,
     ): Promise<CompanyResponsePaginatedDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
         const [companies, total] =
             await this.prismaService.company.findManyAndCount({
-                where: { ...queryParams },
+                where: {
+                    OR: [
+                        {
+                            name: { contains: query, mode: 'insensitive' },
+                            description: {
+                                contains: query,
+                                mode: 'insensitive',
+                            },
+                            shortDescription: {
+                                contains: query,
+                                mode: 'insensitive',
+                            },
+                            companyName: {
+                                contains: query,
+                                mode: 'insensitive',
+                            },
+                            state: { contains: query, mode: 'insensitive' },
+                            city: { contains: query, mode: 'insensitive' },
+                        },
+                    ],
+
+                    // AND: [{ ...filters }],
+                },
                 ...paginationParams,
                 orderBy: { [order.orderBy]: order.order },
             })
