@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
     IsArray,
+    IsBoolean,
     IsDefined,
     IsOptional,
     IsString,
@@ -17,6 +18,11 @@ export class CompanyCreateDTO {
     @IsDefined()
     @IsString()
     name!: string
+
+    @ApiProperty({ example: true })
+    @IsDefined()
+    @IsBoolean()
+    published!: boolean
 
     @ApiProperty({ example: 'Company simplified name' })
     @IsDefined()

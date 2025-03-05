@@ -1,12 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { BannerAction, BannerPosition, BannerStatus } from '@prisma/client'
+import { BannerAction, BannerPosition } from '@prisma/client'
 
 export class BannerResponseDTO {
     @ApiProperty({ example: 'a89f8dc0-4d03-483a-8803-9c4a4c2ab878' })
     id!: string
 
-    @ApiProperty({ enum: BannerStatus, example: BannerStatus.ENABLED })
-    status!: BannerStatus
+    @ApiProperty({ example: true })
+    published: boolean
 
     @ApiProperty({ example: 'Banner name' })
     name!: string

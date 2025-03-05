@@ -1,20 +1,46 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
     IsDefined,
+    IsEnum,
     IsInt,
     IsISO8601,
     IsOptional,
     IsString,
+    IsUUID,
 } from 'class-validator'
 
 import { ReservationServiceCreateDTO } from './ReservationServiceCreate.dto.model'
 
 export class ReservationCreateDTO {
+    @ApiProperty({
+        enum: ReservationStatus,
+        example: ReservationStatus.CONFIRMED,
+    })
     @IsDefined()
-    @IsString()
-    status!: string
+    @IsEnum(ReservationStatus)
+    status!: ReservationStatus
+
+    @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
+    @IsDefined()
+    @IsUUID()
+    userId: string
+
+    @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
+    @IsOptional()
+    @IsUUID()
+    sellerUserId?: string
+
+    @ApiProperty({
+        enum: ReservationSaleChannel,
+        example: ReservationSaleChannel.BOOKSUITE,
+        required: false,
+    })
+    @IsOptional()
+    @IsEnum(ReservationSaleChannel)
+    saleChannel?: ReservationSaleChannel
 
     @ApiProperty({ example: '2025-01-14T13:19:15.271598Z' })
     @IsDefined()
@@ -41,11 +67,6 @@ export class ReservationCreateDTO {
     @IsInt()
     children!: number
 
-    @ApiProperty({ example: 'Online' })
-    @IsDefined()
-    @IsString()
-    saleChannel!: string
-
     @ApiProperty({ example: 'Featured booking' })
     @IsDefined()
     @IsString()
@@ -53,7 +74,7 @@ export class ReservationCreateDTO {
 
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsDefined()
-    @IsString()
+    @IsUUID()
     housingUnitId: string
 
     @ApiProperty({ type: [ReservationServiceCreateDTO] })

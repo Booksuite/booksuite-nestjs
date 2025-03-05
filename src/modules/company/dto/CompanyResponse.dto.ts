@@ -4,6 +4,9 @@ export class CompanyResponseDTO {
     @ApiProperty({ example: 'Company name' })
     name!: string
 
+    @ApiProperty({ example: true })
+    published!: boolean
+
     @ApiProperty({ example: 'Company simplified name' })
     slug!: string
 

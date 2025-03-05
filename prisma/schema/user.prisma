@@ -15,6 +15,8 @@ model User {
     deletedAt DateTime?
 
     userCompanyRelation UserCompanyRelation[]
+    soldReservetions    Reservation[]         @relation("sellerUser")
+    reservations        Reservation[]         @relation("reservations")
 
     @@map("users")
 }

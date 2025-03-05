@@ -21,6 +21,11 @@ export class ServiceCreateDTO {
     @IsString()
     name!: string
 
+    @ApiProperty({ example: true })
+    @IsDefined()
+    @IsBoolean()
+    published: boolean
+
     @ApiProperty({ example: 'PER_PERSON' })
     @IsDefined()
     @IsString()

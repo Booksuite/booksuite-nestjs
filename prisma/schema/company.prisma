@@ -5,6 +5,7 @@ model Company {
     slug             String  @unique
     shortDescription String?
     description      String? @db.Text
+    published        Boolean @default(false)
 
     branchBusiness String?
     timezone       String?

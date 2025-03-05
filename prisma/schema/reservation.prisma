@@ -1,18 +1,25 @@
 model Reservation {
     id String @id @default(uuid())
 
-    status      String
-    startDate   DateTime
-    endDate     DateTime
-    totalDays   Int?     @default(1)
-    adults      Int
-    children    Int
-    saleChannel String
-    notes       String   @db.Text
+    reservationCode String // PATTERN 2 LETTER CHANNEL + 6 SEQUENTIAL NUMERIC (PER COMPANY)
 
-    companyId String
-    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    startDate DateTime
+    endDate   DateTime
+    totalDays Int?              @default(1)
+    adults    Int
+    children  Int
+    notes     String            @db.Text
+    status    ReservationStatus
 
+    saleChannel ReservationSaleChannel @default(BOOKSUITE)
+
+    sellerUserId String?
+    sellerUser   User?   @relation("sellerUser", fields: [sellerUserId], references: [id], onDelete: SetNull)
+    userId       String?
+    user         User?   @relation("reservations", fields: [userId], references: [id], onDelete: SetNull)
+
+    companyId     String
+    company       Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
     housingUnitId String?
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
@@ -23,6 +30,30 @@ model Reservation {
     deletedAt DateTime?
 
     @@map("reservations")
+}
+
+enum ReservationSaleChannel {
+    RECEPTION
+    PHONE
+    WHATSAPP
+    INSTAGRAM
+    TIKTOK
+    EMAIL
+    BOOKSUITE
+    OTHER
+}
+
+enum ReservationStatus {
+    WAITING_PAYMENT
+    CONFIRMED
+    CHECKED_IN
+    CHECKED_OUT
+
+    ABANDONED
+    CANCELLED
+    PAYMENT_FAILED
+    OVERBOOKED
+    WAITING_LIST
 }
 
 model ReservationService {

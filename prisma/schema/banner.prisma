@@ -1,10 +1,10 @@
 model Banner {
     id String @id @default(uuid())
 
-    status   BannerStatus
-    name     String
-    position BannerPosition
-    order    Int            @default(0)
+    name      String
+    position  BannerPosition
+    order     Int            @default(0)
+    published Boolean        @default(false)
 
     title       String?
     description String? @db.Text
@@ -39,11 +39,6 @@ model BannerMedia {
     media    Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade)
 
     @@map("banner_medias")
-}
-
-enum BannerStatus {
-    ENABLED
-    DISABLED
 }
 
 enum BannerAction {

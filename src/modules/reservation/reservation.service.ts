@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
+import { Prisma, ReservationSaleChannel } from '@prisma/client'
 import { omit } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
@@ -28,6 +28,9 @@ export class ReservationService {
         >()({
             ...rawData,
             companyId,
+            reservationCode: `${rawData.saleChannel}-${rawData.startDate.getFullYear()}`,
+            saleChannel:
+                rawData.saleChannel || ReservationSaleChannel.BOOKSUITE,
             services: {
                 createMany: { data: rawData.services },
             },
@@ -55,12 +58,14 @@ export class ReservationService {
         return buildPaginatedResponse(reservations, total, pagination)
     }
 
-    getById(id: string): Promise<ReservationResponseFullDTO | null> {
+    async getById(id: string): Promise<ReservationResponseFullDTO | null> {
         return this.prismaService.reservation.findUnique({
             where: { id },
             include: {
                 housingUnit: true,
                 services: { include: { service: true } },
+                sellerUser: true,
+                user: true,
             },
         })
     }
@@ -69,24 +74,30 @@ export class ReservationService {
         id: string,
         rawData: ReservationCreateDTO,
     ): Promise<ReservationResponseDTO | null> {
-        return this.prismaService.$transaction(async (db) => {
-            const ommited = omit(rawData, ['services'])
+        const normalizedData = Prisma.validator<
+            Prisma.ReservationUpdateArgs['data']
+        >()({
+            ...omit(rawData, ['saleChannel', 'userId']),
+            services: {
+                deleteMany: {
+                    reservationId: id,
+                    serviceId: {
+                        notIn: rawData.services.map(
+                            (service) => service.serviceId,
+                        ),
+                    },
+                },
+                createMany: { data: rawData.services },
+            },
+        })
 
-            if (rawData.services) {
-                await db.reservationService.updateMany({
-                    where: { id: id },
-                    data: { ...rawData.services },
-                })
-            }
-
-            return await db.reservation.update({
-                where: { id: id },
-                data: ommited,
-            })
+        return this.prismaService.reservation.update({
+            where: { id: id },
+            data: normalizedData,
         })
     }
 
     delete(id: string) {
-        return this.prismaService.reservation.delete({ where: { id: id } })
+        return this.prismaService.reservation.delete({ where: { id } })
     }
 }

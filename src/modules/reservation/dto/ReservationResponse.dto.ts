@@ -1,11 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
+import { IsDefined, IsEnum, IsOptional } from 'class-validator'
 
 export class ReservationResponseDTO {
-    @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
-    id!: string
+    @ApiProperty({
+        enum: ReservationStatus,
+        example: ReservationStatus.CONFIRMED,
+    })
+    @IsDefined()
+    @IsEnum(ReservationStatus)
+    status!: ReservationStatus
 
-    @ApiProperty({ example: 'CONFIRMED' })
-    status!: string
+    @ApiProperty({
+        enum: ReservationSaleChannel,
+        example: ReservationSaleChannel.BOOKSUITE,
+        required: false,
+    })
+    @IsOptional()
+    @IsEnum(ReservationSaleChannel)
+    saleChannel?: ReservationSaleChannel
 
     @ApiProperty({ example: '2024-10-17T13:19:15.271634Z' })
     startDate!: Date
@@ -21,9 +34,6 @@ export class ReservationResponseDTO {
 
     @ApiProperty({ example: '1' })
     children!: number | null
-
-    @ApiProperty({ example: 'Online' })
-    saleChannel!: string
 
     @ApiProperty({ example: 'Featured booking' })
     notes!: string

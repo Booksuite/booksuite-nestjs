@@ -9,6 +9,9 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: 'Massage' })
     name!: string
 
+    @ApiProperty({ example: true })
+    published!: boolean
+
     @ApiProperty({ example: 'PER_PERSON' })
     billType!: string
 

@@ -5,6 +5,7 @@ model HousingUnitType {
     shortDescription String?
     description      String? @db.Text
     order            Int     @default(0)
+    published        Boolean @default(false)
 
     // guests
     minGuests   Int? @default(1)

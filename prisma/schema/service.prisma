@@ -8,6 +8,7 @@ model Service {
     minDaily  Int
     minNotice Int
 
+    published    Boolean @default(false)
     onlineSale   Boolean @default(false)
     panelSale    Boolean @default(false)
     seasonalSale Boolean @default(false)

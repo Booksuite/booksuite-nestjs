@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDefined, IsOptional, IsString, IsUUID } from 'class-validator'
+import { FacilityType } from '@prisma/client'
+import {
+    IsDefined,
+    IsEnum,
+    IsOptional,
+    IsString,
+    IsUUID,
+} from 'class-validator'
 
 export class FacilityDTO {
     @ApiProperty({
@@ -9,6 +16,14 @@ export class FacilityDTO {
     @IsOptional()
     @IsUUID()
     id?: string
+
+    @ApiProperty({
+        enum: FacilityType,
+        example: FacilityType.HOUSING_UNIT_TYPE,
+    })
+    @IsDefined()
+    @IsEnum(FacilityType)
+    type!: FacilityType
 
     @ApiProperty({ example: 'WiFi' })
     @IsDefined()

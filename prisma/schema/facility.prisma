@@ -3,6 +3,8 @@ model Facility {
     name String
     icon String?
 
+    type FacilityType
+
     houseUnitTypeFacilities HousingUnitTypeFacility[]
     companyFacilities       CompanyFacility[]
 
@@ -10,4 +12,9 @@ model Facility {
     updatedAt DateTime @updatedAt
 
     @@map("facilities")
+}
+
+enum FacilityType {
+    HOUSING_UNIT_TYPE
+    COMPANY
 }

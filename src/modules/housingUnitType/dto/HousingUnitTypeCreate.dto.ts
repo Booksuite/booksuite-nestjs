@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
     IsArray,
+    IsBoolean,
     IsDefined,
     IsInt,
     IsOptional,
@@ -18,6 +19,11 @@ export class HousingUnitTypeCreateDTO {
     @IsDefined()
     @IsString()
     name!: string
+
+    @ApiProperty({ example: true })
+    @IsDefined()
+    @IsBoolean()
+    published: boolean
 
     @ApiProperty({ example: 'deluxe-suite' })
     @IsDefined()

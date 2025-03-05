@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import {
     IsArray,
+    IsBoolean,
     IsDefined,
     IsEnum,
     IsInt,
@@ -13,20 +14,19 @@ import {
 
 import { BannerAction } from '../enum/BannerAction.enum'
 import { BannerPosition } from '../enum/BannerPosition.enum'
-import { BannerStatus } from '../enum/BannerStatus.enum'
 
 import { BannerMediaDTO } from './BannerMedia.dto'
 
 export class BannerCreateDTO {
-    @ApiProperty({ enum: BannerStatus, example: BannerStatus.ENABLED })
-    @IsDefined()
-    @IsEnum(BannerStatus)
-    status!: BannerStatus
-
     @ApiProperty({ example: 'Banner name' })
     @IsDefined()
     @IsString()
     name!: string
+
+    @ApiProperty({ example: true })
+    @IsDefined()
+    @IsBoolean()
+    published: boolean
 
     @ApiProperty({ enum: BannerPosition, example: BannerPosition.HOME_TOP })
     @IsDefined()
