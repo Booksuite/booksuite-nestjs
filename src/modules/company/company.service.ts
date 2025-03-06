@@ -89,7 +89,7 @@ export class CompanyService {
         query: string,
         filters: CompanySearchFilterDTO,
         mode: Prisma.QueryMode,
-    ) {
+    ): Prisma.CompanyWhereInput {
         const data: Prisma.CompanyWhereInput = {
             OR: [
                 {
