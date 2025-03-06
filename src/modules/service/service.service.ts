@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 
 import { PaginationQuery } from '@/common/types/pagination'
-import { buildPaginatedResponse } from '@/common/utils/pagination'
+import {
+    buildPaginatedResponse,
+    getPaginatedParams,
+} from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
+import { ServiceOrderByDTO } from './dtos/ServiceOrderBy.dto'
 import { ServicePaginatedResponseDTO } from './dtos/ServicePaginatedResponse.dto'
 import { ServiceResponseDTO } from './dtos/ServiceResponse.dto'
 import { ServiceResponseFullDTO } from './dtos/ServiceResponseFull.dto'
@@ -81,24 +85,51 @@ export class ServiceService {
         return this.prismaService.service.delete({ where: { id } })
     }
 
-    async searchServices(
+    async search(
         companyId: string,
         pagination: PaginationQuery,
-        queryParams: ServiceSearchQueryDTO,
+        order: ServiceOrderByDTO,
+        filter: ServiceSearchQueryDTO,
+        query: string,
     ): Promise<ServicePaginatedResponseDTO> {
+        const paginationParams = getPaginatedParams(pagination)
+
         const [services, totalServices] =
             await this.prismaService.service.findManyAndCount({
-                where: {
-                    name: { contains: queryParams.name, mode: 'insensitive' },
-                    price: { lte: queryParams.price, gte: 0 },
-                    adults: queryParams.adults,
-                    minDaily: queryParams.minDaily,
-                    minNotice: queryParams.minNotice,
-                    seasonStart: { gte: queryParams.seasonStart },
-                    seasonEnd: { lte: queryParams.seasonEnd },
-                },
+                where: this.buildSearchParams(query, filter, companyId),
+                ...paginationParams,
+                orderBy: order ? { [order.orderBy]: order.order } : undefined,
             })
 
         return buildPaginatedResponse(services, totalServices, pagination)
+    }
+
+    private buildSearchParams(
+        query: string,
+        filters: ServiceSearchQueryDTO,
+        companyId: string,
+    ): Prisma.ServiceWhereInput {
+        const data: Prisma.ServiceWhereInput = {
+            companyId: companyId,
+            OR: [
+                {
+                    name: { contains: query, mode: 'insensitive' },
+                    description: {
+                        contains: query,
+                        mode: 'insensitive',
+                    },
+                    included: { contains: query, mode: 'insensitive' },
+                    notes: { contains: query, mode: 'insensitive' },
+                },
+            ],
+
+            AND: [
+                {
+                    published: filters?.published,
+                },
+            ],
+        }
+
+        return data
     }
 }
