@@ -9,7 +9,7 @@ export class FacilityResponseDTO {
 
     @ApiProperty({
         enum: FacilityType,
-        example: FacilityType.HOUSING_UNIT_TYPE,
+        example: FacilityType.COMPANY,
     })
     type!: FacilityType
 
