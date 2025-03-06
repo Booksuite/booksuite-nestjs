@@ -85,7 +85,7 @@ export class CompanyService {
         return this.prismaService.company.delete({ where: { id } })
     }
 
-    buildSearchParams(
+    private buildSearchParams(
         query?: string,
         filters?: CompanySearchFilterDTO,
     ): Prisma.CompanyWhereInput {
