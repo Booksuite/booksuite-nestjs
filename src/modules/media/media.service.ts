@@ -36,12 +36,13 @@ export class MediaService {
         })
     }
 
-    async uploadFile(files: Express.Multer.File) {
+    async uploadFile(files: Express.Multer.File, companyId: string) {
         const result = await this.uploadService.upload(MEDIA_BUCKET_NAME, files)
 
         const response = await this.prismaService.media.create({
             data: {
                 url: result.url,
+                companyId: companyId,
                 metadata: {
                     mimetype: result.mimetype,
                     key: result.key,

@@ -11,6 +11,9 @@ export class MediaResponseDTO {
     @ApiProperty({ example: 'https://example.com/image.jpg' })
     url!: string
 
+    @ApiProperty({ example: '55fa1f18-4cd0-47cb-81ac-414d96e16f3c' })
+    companyId!: string
+
     @ApiProperty({ type: MetadataDto })
     metadata: MetadataDto
 }

@@ -38,6 +38,7 @@ export class MediaController {
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
     uploadFiles(
+        companyId: string,
         @UploadedFile(
             new ParseFilePipe({
                 validators: [
@@ -49,6 +50,6 @@ export class MediaController {
         )
         file: Express.Multer.File,
     ) {
-        return this.mediaService.uploadFile(file)
+        return this.mediaService.uploadFile(file, companyId)
     }
 }
