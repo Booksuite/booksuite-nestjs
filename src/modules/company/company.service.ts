@@ -89,37 +89,23 @@ export class CompanyService {
         query?: string,
         filters?: CompanySearchFilterDTO,
     ): Prisma.CompanyWhereInput {
-        const data: Prisma.CompanyWhereInput = {
-            OR: [
-                {
-                    name: { contains: query, mode: 'insensitive' },
-                    description: {
-                        contains: query,
-                        mode: 'insensitive',
-                    },
-                    shortDescription: {
-                        contains: query,
-                        mode: 'insensitive',
-                    },
-                    companyName: {
-                        contains: query,
-                        mode: 'insensitive',
-                    },
-                    state: { contains: query, mode: 'insensitive' },
-                    city: { contains: query, mode: 'insensitive' },
-                },
-            ],
+        const data: Prisma.CompanyWhereInput = {}
 
-            AND: filters
-                ? [
-                      {
-                          published: filters?.published,
-                          userCompanyRelation: filters?.userId
-                              ? { every: { userId: filters.userId } }
-                              : undefined,
-                      },
-                  ]
-                : undefined,
+        if (query) {
+            data.OR = [
+                { name: { contains: query, mode: 'insensitive' } },
+                { description: { contains: query, mode: 'insensitive' } },
+                { shortDescription: { contains: query, mode: 'insensitive' } },
+                { companyName: { contains: query, mode: 'insensitive' } },
+                { state: { contains: query, mode: 'insensitive' } },
+                { city: { contains: query, mode: 'insensitive' } },
+            ]
+        }
+
+        if (filters) {
+            data.published = filters?.published
+            if (filters.userId)
+                data.userCompanyRelation = { every: { userId: filters.userId } }
         }
 
         return data

@@ -96,7 +96,10 @@ export class ServiceService {
 
         const [services, totalServices] =
             await this.prismaService.service.findManyAndCount({
-                where: this.buildSearchParams(companyId, query, filter),
+                where: {
+                    ...this.buildSearchParams(query, filter),
+                    companyId,
+                },
                 ...paginationParams,
                 orderBy: order ? { [order.orderBy]: order.order } : undefined,
             })
@@ -105,30 +108,21 @@ export class ServiceService {
     }
 
     private buildSearchParams(
-        companyId: string,
         query?: string,
         filters?: ServiceSearchFilterDTO,
     ): Prisma.ServiceWhereInput {
-        const data: Prisma.ServiceWhereInput = {
-            companyId: companyId,
-            OR: [
-                {
-                    name: { contains: query, mode: 'insensitive' },
-                    description: {
-                        contains: query,
-                        mode: 'insensitive',
-                    },
-                    included: { contains: query, mode: 'insensitive' },
-                    notes: { contains: query, mode: 'insensitive' },
-                },
-            ],
+        const data: Prisma.ServiceWhereInput = {}
 
-            AND: [
-                {
-                    published: filters?.published,
-                },
-            ],
+        if (query) {
+            data.OR = [
+                { name: { contains: query, mode: 'insensitive' } },
+                { description: { contains: query, mode: 'insensitive' } },
+                { included: { contains: query, mode: 'insensitive' } },
+                { notes: { contains: query, mode: 'insensitive' } },
+            ]
         }
+
+        if (filters) data.published = filters?.published
 
         return data
     }
