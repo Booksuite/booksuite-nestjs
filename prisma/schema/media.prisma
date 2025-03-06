@@ -12,5 +12,8 @@ model Media {
     serviceMedias         ServiceMedia[]
     bannerMedias          BannerMedia[]
 
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
     @@map("medias")
 }

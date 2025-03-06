@@ -26,6 +26,8 @@ model Service {
     medias       ServiceMedia[]
     reservations ReservationService[]
 
+    companyId  String
+    company    Company          @relation(fields: [companyId], references: [id], onDelete: Cascade)
     categoryId String?
     category   ServiceCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 
