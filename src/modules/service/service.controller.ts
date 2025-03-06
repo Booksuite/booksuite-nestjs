@@ -6,18 +6,24 @@ import {
     Param,
     Patch,
     Post,
+    Query,
 } from '@nestjs/common'
-import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
-
-import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
+import {
+    ApiBody,
+    ApiExtraModels,
+    ApiOkResponse,
+    ApiParam,
+    getSchemaPath,
+} from '@nestjs/swagger'
 
 import { ServiceCreateDTO } from './dtos/ServiceCreate.dto'
 import { ServicePaginatedResponseDTO } from './dtos/ServicePaginatedResponse.dto'
 import { ServiceResponseDTO } from './dtos/ServiceResponse.dto'
 import { ServiceResponseFullDTO } from './dtos/ServiceResponseFull.dto'
-import { ServiceSearchQueryDTO } from './dtos/ServiceSearchQuery.dto'
+import { ServiceSearchBodyDTO } from './dtos/ServiceSearchBody.dto'
 import { ServiceService } from './service.service'
 
+@ApiExtraModels(ServiceResponseFullDTO)
 @Controller('company/:companyId/service')
 export class ServiceController {
     constructor(private serviceService: ServiceService) {}
@@ -31,7 +37,14 @@ export class ServiceController {
         return this.serviceService.create(companyId, experienceData)
     }
 
-    @ApiOkResponse({ type: ServiceResponseFullDTO })
+    @ApiOkResponse({
+        schema: {
+            oneOf: [
+                { $ref: getSchemaPath(ServiceResponseFullDTO) },
+                { type: 'null' },
+            ],
+        },
+    })
     @ApiParam({ name: 'companyId', type: String })
     @Get(':id')
     getById(@Param('id') id: string): Promise<ServiceResponseFullDTO | null> {
@@ -54,22 +67,21 @@ export class ServiceController {
         return this.serviceService.delete(id)
     }
 
+    @ApiBody({ type: ServiceSearchBodyDTO })
     @ApiOkResponse({ type: ServicePaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @Post('search')
     async search(
         @Param('companyId') companyId: string,
-        @Body() searchParams: ServiceSearchQueryDTO,
+        @Body() body: ServiceSearchBodyDTO,
+        @Query('query') query: string,
     ): Promise<ServicePaginatedResponseDTO> {
-        const pagination: PaginationQueryDTO = {
-            itemsPerPage: searchParams.itemsPerPage,
-            page: searchParams.page,
-        }
-
-        return await this.serviceService.searchServices(
+        return await this.serviceService.search(
             companyId,
-            pagination,
-            searchParams,
+            body.pagination,
+            body.order,
+            body.filter,
+            query,
         )
     }
 }
