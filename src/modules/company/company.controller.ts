@@ -6,15 +6,32 @@ import {
     Param,
     Patch,
     Post,
+    Query,
 } from '@nestjs/common'
-import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
+import {
+    ApiBody,
+    ApiExtraModels,
+    ApiOkResponse,
+    getSchemaPath,
+} from '@nestjs/swagger'
+
+import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
 
 import { CompanyService } from './company.service'
 import { CompanyCreateDTO } from './dto/CompanyCreate.dto'
+import { CompanyOrderByDTO } from './dto/CompanyOrderBy.dto'
 import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
+import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
+import { CompanySearchBodyDTO } from './dto/CompanySearchBody.dto'
+import { CompanySearchFilterDTO } from './dto/CompanySearchFilter.dto'
 
-@ApiExtraModels(CompanyResponseFullDTO)
+@ApiExtraModels(
+    CompanyResponseFullDTO,
+    PaginationQueryDTO,
+    CompanyOrderByDTO,
+    CompanySearchFilterDTO,
+)
 @Controller('company')
 export class CompanyController {
     constructor(private companyService: CompanyService) {}
@@ -51,6 +68,19 @@ export class CompanyController {
         return this.companyService.update(id, updatedData)
     }
 
+    @ApiBody({ type: CompanySearchBodyDTO })
+    @Post('search')
+    search(
+        @Query('query') query: string,
+        @Body() body: CompanySearchBodyDTO,
+    ): Promise<CompanyResponsePaginatedDTO> {
+        return this.companyService.search(
+            body.pagination,
+            body.order,
+            query,
+            body.filter,
+        )
+    }
     @Delete(':id')
     deleteCompany(@Param('id') id: string) {
         return this.companyService.detele(id)
