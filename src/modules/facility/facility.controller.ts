@@ -6,8 +6,14 @@ import {
     Param,
     Patch,
     Post,
+    Query,
 } from '@nestjs/common'
-import { ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
+import {
+    ApiBody,
+    ApiOkResponse,
+    ApiQuery,
+    getSchemaPath,
+} from '@nestjs/swagger'
 
 import { PaginationQuery } from '@/common/types/pagination'
 
@@ -15,6 +21,7 @@ import { FacilityDTO } from './dto/Facility.dto'
 import { FacilityOrderByDTO } from './dto/FacilityOrderBy.dto'
 import { FacilityResponseDTO } from './dto/FacilityResponse.dto'
 import { FacilityResponsePaginatedDTO } from './dto/FacilityResponsePaginated.dto'
+import { FacilitySearchBodyDTO } from './dto/FacilitySearchBody.dto'
 import { FacilityService } from './facility.service'
 
 @Controller('facility')
@@ -57,9 +64,25 @@ export class FacilityController {
     @Patch(':id')
     update(
         @Param('id') facilityId: string,
-        facilityData: FacilityDTO,
+        @Body() facilityData: FacilityDTO,
     ): Promise<FacilityResponseDTO> {
         return this.facilityService.update(facilityId, facilityData)
+    }
+
+    @Post('search')
+    @ApiBody({ type: FacilitySearchBodyDTO })
+    @ApiOkResponse({ type: FacilityResponsePaginatedDTO })
+    @ApiQuery({ name: 'query', required: false, type: String })
+    search(
+        @Body() body: FacilitySearchBodyDTO,
+        @Query('query') query?: string,
+    ): Promise<FacilityResponsePaginatedDTO> {
+        return this.facilityService.search(
+            body.pagination,
+            body.order,
+            body.filter,
+            query,
+        )
     }
 
     @Delete(':id')

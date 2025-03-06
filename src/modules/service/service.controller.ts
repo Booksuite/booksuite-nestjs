@@ -13,6 +13,7 @@ import {
     ApiExtraModels,
     ApiOkResponse,
     ApiParam,
+    ApiQuery,
     getSchemaPath,
 } from '@nestjs/swagger'
 
@@ -70,6 +71,7 @@ export class ServiceController {
     @ApiBody({ type: ServiceSearchBodyDTO })
     @ApiOkResponse({ type: ServicePaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiQuery({ name: 'query', type: String, required: false })
     @Post('search')
     async search(
         @Param('companyId') companyId: string,
