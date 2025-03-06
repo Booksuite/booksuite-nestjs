@@ -13,7 +13,7 @@ import { ServiceOrderByDTO } from './dtos/ServiceOrderBy.dto'
 import { ServicePaginatedResponseDTO } from './dtos/ServicePaginatedResponse.dto'
 import { ServiceResponseDTO } from './dtos/ServiceResponse.dto'
 import { ServiceResponseFullDTO } from './dtos/ServiceResponseFull.dto'
-import { ServiceSearchQueryDTO } from './dtos/ServiceSearchQuery.dto'
+import { ServiceSearchFilterDTO } from './dtos/ServiceSearchFilter.dto'
 
 @Injectable()
 export class ServiceService {
@@ -88,15 +88,15 @@ export class ServiceService {
     async search(
         companyId: string,
         pagination: PaginationQuery,
-        order: ServiceOrderByDTO,
-        filter: ServiceSearchQueryDTO,
-        query: string,
+        order?: ServiceOrderByDTO,
+        filter?: ServiceSearchFilterDTO,
+        query?: string,
     ): Promise<ServicePaginatedResponseDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
         const [services, totalServices] =
             await this.prismaService.service.findManyAndCount({
-                where: this.buildSearchParams(query, filter, companyId),
+                where: this.buildSearchParams(companyId, query, filter),
                 ...paginationParams,
                 orderBy: order ? { [order.orderBy]: order.order } : undefined,
             })
@@ -105,9 +105,9 @@ export class ServiceService {
     }
 
     private buildSearchParams(
-        query: string,
-        filters: ServiceSearchQueryDTO,
         companyId: string,
+        query?: string,
+        filters?: ServiceSearchFilterDTO,
     ): Prisma.ServiceWhereInput {
         const data: Prisma.ServiceWhereInput = {
             companyId: companyId,
