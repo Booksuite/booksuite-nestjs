@@ -7,7 +7,12 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
+import {
+    ApiExtraModels,
+    ApiOkResponse,
+    ApiParam,
+    getSchemaPath,
+} from '@nestjs/swagger'
 
 import { PaginationQuery } from '@/common/types/pagination'
 
@@ -18,12 +23,13 @@ import { ReservationResponseFullDTO } from './dto/ReservationResponseFull.dto'
 import { ReservationResponsePaginatedDTO } from './dto/ReservationResponsePaginated.dto'
 import { ReservationService } from './reservation.service'
 
-@ApiExtraModels(ReservationResponseDTO)
+@ApiExtraModels(ReservationResponseFullDTO)
 @Controller('company/:companyId/reservation')
 export class ReservationController {
     constructor(private reservationService: ReservationService) {}
 
     @ApiOkResponse({ type: ReservationResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Post('create')
     create(
         @Param('companyId') companyId: string,
@@ -33,6 +39,7 @@ export class ReservationController {
     }
 
     @ApiOkResponse({ type: ReservationResponsePaginatedDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Post('list')
     list(
         @Param('companyId') companyId: string,
@@ -50,6 +57,7 @@ export class ReservationController {
             ],
         },
     })
+    @ApiParam({ name: 'companyId', type: String })
     @Get(':id')
     getByID(
         @Param('id') id: string,
@@ -58,6 +66,7 @@ export class ReservationController {
     }
 
     @ApiOkResponse({ type: ReservationResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -66,6 +75,7 @@ export class ReservationController {
         return this.reservationService.update(id, updatedData)
     }
 
+    @ApiParam({ name: 'companyId', type: String })
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.reservationService.delete(id)
