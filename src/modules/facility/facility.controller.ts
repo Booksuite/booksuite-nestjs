@@ -75,7 +75,7 @@ export class FacilityController {
     @ApiQuery({ name: 'query', required: false, type: String })
     search(
         @Body() body: FacilitySearchBodyDTO,
-        @Query('query') query: string,
+        @Query('query') query?: string,
     ): Promise<FacilityResponsePaginatedDTO> {
         return this.facilityService.search(
             body.pagination,

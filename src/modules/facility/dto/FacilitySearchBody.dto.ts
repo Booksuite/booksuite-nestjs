@@ -14,13 +14,13 @@ export class FacilitySearchBodyDTO {
     @Type(() => PaginationQueryDTO)
     pagination: PaginationQueryDTO
 
-    @ApiProperty({ type: FacilityOrderByDTO })
+    @ApiProperty({ type: FacilityOrderByDTO, required: false })
     @ValidateNested()
     @IsDefined()
     @Type(() => FacilityOrderByDTO)
     order?: FacilityOrderByDTO
 
-    @ApiProperty({ type: FacilitySearchFilterDTO })
+    @ApiProperty({ type: FacilitySearchFilterDTO, required: false })
     @ValidateNested()
     @IsDefined()
     @Type(() => FacilitySearchFilterDTO)
