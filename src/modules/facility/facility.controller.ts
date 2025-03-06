@@ -8,7 +8,12 @@ import {
     Post,
     Query,
 } from '@nestjs/common'
-import { ApiBody, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
+import {
+    ApiBody,
+    ApiOkResponse,
+    ApiQuery,
+    getSchemaPath,
+} from '@nestjs/swagger'
 
 import { PaginationQuery } from '@/common/types/pagination'
 
@@ -67,6 +72,7 @@ export class FacilityController {
     @Post('search')
     @ApiBody({ type: FacilitySearchBodyDTO })
     @ApiOkResponse({ type: FacilityResponsePaginatedDTO })
+    @ApiQuery({ name: 'query', required: false, type: String })
     search(
         @Body() body: FacilitySearchBodyDTO,
         @Query('query') query: string,
