@@ -42,17 +42,17 @@ export class CompanyService {
 
     async search(
         pagination: PaginationQuery,
-        order: CompanyOrderByDTO,
-        query: string,
-        filters: CompanySearchFilterDTO,
+        order?: CompanyOrderByDTO,
+        query?: string,
+        filters?: CompanySearchFilterDTO,
     ): Promise<CompanyResponsePaginatedDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
         const [companies, total] =
             await this.prismaService.company.findManyAndCount({
-                where: this.buildSearchParams(query, filters, 'insensitive'),
+                where: this.buildSearchParams(query, filters),
                 ...paginationParams,
-                orderBy: { [order.orderBy]: order.order },
+                orderBy: order ? { [order.orderBy]: order.order } : undefined,
             })
 
         return buildPaginatedResponse(companies, total, pagination)
@@ -86,37 +86,40 @@ export class CompanyService {
     }
 
     buildSearchParams(
-        query: string,
-        filters: CompanySearchFilterDTO,
-        mode: Prisma.QueryMode,
+        query?: string,
+        filters?: CompanySearchFilterDTO,
     ): Prisma.CompanyWhereInput {
         const data: Prisma.CompanyWhereInput = {
             OR: [
                 {
-                    name: { contains: query, mode: mode },
+                    name: { contains: query, mode: 'insensitive' },
                     description: {
                         contains: query,
-                        mode: mode,
+                        mode: 'insensitive',
                     },
                     shortDescription: {
                         contains: query,
-                        mode: mode,
+                        mode: 'insensitive',
                     },
                     companyName: {
                         contains: query,
-                        mode: mode,
+                        mode: 'insensitive',
                     },
-                    state: { contains: query, mode: mode },
-                    city: { contains: query, mode: mode },
+                    state: { contains: query, mode: 'insensitive' },
+                    city: { contains: query, mode: 'insensitive' },
                 },
             ],
 
-            AND: [
-                {
-                    published: filters.published,
-                    userCompanyRelation: { some: { userId: filters.userId } },
-                },
-            ],
+            AND: filters
+                ? [
+                      {
+                          published: filters?.published,
+                          userCompanyRelation: filters?.userId
+                              ? { every: { userId: filters.userId } }
+                              : undefined,
+                      },
+                  ]
+                : undefined,
         }
 
         return data
