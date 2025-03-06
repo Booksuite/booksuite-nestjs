@@ -7,7 +7,7 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ApiOkResponse } from '@nestjs/swagger'
+import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
 
 import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
 
@@ -31,6 +31,7 @@ export class HousingUnitTypeController {
     }
 
     @ApiOkResponse({ type: HousingUnitTypeResponseFullDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Get(':id')
     getByID(
         @Param('id') id: string,
@@ -40,6 +41,7 @@ export class HousingUnitTypeController {
 
     @ApiOkResponse({ type: HousingUnitTypeResponseDTO })
     @Patch(':id')
+    @ApiParam({ name: 'companyId', type: String })
     update(
         @Param('id') id: string,
         @Body() updatedData: HousingUnitTypeCreateDTO,
@@ -48,11 +50,13 @@ export class HousingUnitTypeController {
     }
 
     @Delete(':id')
+    @ApiParam({ name: 'companyId', type: String })
     delete(@Param('id') id: string) {
         return this.housingUnitTypeService.delete(id)
     }
 
     @ApiOkResponse({ type: HousingUnitTypePaginatedResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Post('search')
     search(
         @Param('companyId') companyId: string,

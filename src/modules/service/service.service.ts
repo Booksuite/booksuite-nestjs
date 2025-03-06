@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { omit } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import { buildPaginatedResponse } from '@/common/utils/pagination'
@@ -16,42 +15,34 @@ import { ServiceSearchQueryDTO } from './dtos/ServiceSearchQuery.dto'
 export class ServiceService {
     constructor(private prismaService: PrismaService) {}
 
-    create(rawData: ServiceCreateDTO): Promise<ServiceResponseDTO> {
-        return this.prismaService.$transaction(async (db) => {
-            let categoryId = rawData.categoryId as string
-            if (rawData.category) {
-                const newCategory = await db.serviceCategory.create({
-                    data: rawData.category,
-                })
-                categoryId = newCategory.id
-            }
-
-            const omitted = omit(rawData, ['medias', 'categoryId', 'category'])
-
-            const normalizedData = Prisma.validator(
-                this.prismaService,
-                'service',
-                'create',
-                'data',
-            )({
-                ...omitted,
-                categoryId,
-                medias: rawData.medias
-                    ? { createMany: { data: rawData.medias } }
-                    : undefined,
-            })
-
-            return db.service.create({
-                data: normalizedData,
-                include: { medias: { include: { media: true } } },
-            })
+    create(
+        companyId: string,
+        rawData: ServiceCreateDTO,
+    ): Promise<ServiceResponseDTO> {
+        const normalizedData = Prisma.validator<
+            Prisma.ServiceCreateArgs['data']
+        >()({
+            ...rawData,
+            company: { connect: { id: companyId } },
+            category: {
+                connectOrCreate: {
+                    where: { id: rawData.category.id },
+                    create: rawData.category,
+                },
+            },
+            medias: { createMany: { data: rawData.medias } },
         })
+
+        return this.prismaService.service.create({ data: normalizedData })
     }
 
     getById(id: string): Promise<ServiceResponseFullDTO | null> {
         return this.prismaService.service.findUnique({
             where: { id },
-            include: { medias: { include: { media: true } } },
+            include: {
+                medias: { include: { media: true } },
+                category: true,
+            },
         })
     }
 
@@ -59,13 +50,26 @@ export class ServiceService {
         id: string,
         rawData: ServiceCreateDTO,
     ): Promise<ServiceResponseDTO | null> {
-        const omitted = omit(rawData, ['medias', 'categoryId', 'category'])
-        const normalizedData = Prisma.validator(
-            this.prismaService,
-            'service',
-            'update',
-            'data',
-        )(omitted)
+        const normalizedData = Prisma.validator<
+            Prisma.ServiceUpdateArgs['data']
+        >()({
+            ...rawData,
+            category: {
+                connectOrCreate: {
+                    where: { id: rawData.category.id },
+                    create: rawData.category,
+                },
+            },
+            medias: {
+                deleteMany: {
+                    serviceId: id,
+                    mediaId: {
+                        notIn: rawData.medias.map((media) => media.mediaId),
+                    },
+                },
+                createMany: { data: rawData.medias },
+            },
+        })
 
         return this.prismaService.service.update({
             where: { id },

@@ -7,7 +7,12 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ApiExtraModels, ApiOkResponse } from '@nestjs/swagger'
+import {
+    ApiExtraModels,
+    ApiOkResponse,
+    ApiParam,
+    getSchemaPath,
+} from '@nestjs/swagger'
 
 import { PaginationQuery } from '@/common/types/pagination'
 
@@ -23,6 +28,7 @@ import { BannerResponsePaginatedDTO } from './dto/BannerResponsePaginated.dto'
 export class BannerController {
     constructor(private bannerService: BannerService) {}
 
+    @ApiOkResponse({ type: BannerResponseDTO })
     @Post('create')
     create(
         @Param('companyId') companyId: string,
@@ -32,6 +38,7 @@ export class BannerController {
     }
 
     @ApiOkResponse({ type: BannerResponsePaginatedDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Post('list')
     listByCompanyId(
         @Param('companyId') companyId: string,
@@ -41,11 +48,22 @@ export class BannerController {
         return this.bannerService.listByCompanyId(companyId, pagination, order)
     }
 
+    @ApiOkResponse({
+        schema: {
+            oneOf: [
+                { $ref: getSchemaPath(BannerResponseFullDTO) },
+                { type: 'null' },
+            ],
+        },
+    })
+    @ApiParam({ name: 'companyId', type: String })
     @Get(':id')
     getById(@Param('id') id: string): Promise<BannerResponseFullDTO | null> {
         return this.bannerService.getById(id)
     }
 
+    @ApiOkResponse({ type: BannerResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -54,6 +72,7 @@ export class BannerController {
         return this.bannerService.update(id, bannerData)
     }
 
+    @ApiParam({ name: 'companyId', type: String })
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.bannerService.delete(id)

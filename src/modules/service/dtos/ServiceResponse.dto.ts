@@ -1,7 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-import { ServiceCategoryCreateDTO } from './ServiceCategoryCreate.dto'
-
 export class ServiceResponseDTO {
     @ApiProperty({ example: 'M8c8ab0cb-7689-4357-b446-1348cfe3842d' })
     id!: string
@@ -55,7 +53,4 @@ export class ServiceResponseDTO {
 
     @ApiProperty({ example: 'https://www.example.com/video', required: false })
     videoUrl?: string | null
-
-    @ApiProperty({ type: [ServiceCategoryCreateDTO] })
-    category?: ServiceCategoryCreateDTO
 }

@@ -8,11 +8,10 @@ import {
     IsISO8601,
     IsOptional,
     IsString,
-    ValidateIf,
     ValidateNested,
 } from 'class-validator'
 
-import { ServiceCategoryCreateDTO } from './ServiceCategoryCreate.dto'
+import { ServiceCategoryDTO } from './ServiceCategoryCreate.dto'
 import { ServiceMediaCreateDTO } from './ServiceMediaCreate.dto'
 
 export class ServiceCreateDTO {
@@ -110,16 +109,9 @@ export class ServiceCreateDTO {
     @ValidateNested({ each: true })
     medias!: ServiceMediaCreateDTO[]
 
-    @ApiProperty({ example: '3c39db8f-ec01-4bf1-89e3-a4b458903b2c' })
-    @ValidateIf((o) => !o.category)
-    @IsDefined()
-    @IsString()
-    categoryId?: string
-
-    @ApiProperty({ type: [ServiceCategoryCreateDTO] })
-    @ValidateIf((o) => !o.categoryId)
+    @ApiProperty({ type: [ServiceCategoryDTO] })
     @IsDefined()
     @ValidateNested()
-    @Type(() => ServiceCategoryCreateDTO)
-    category?: ServiceCategoryCreateDTO
+    @Type(() => ServiceCategoryDTO)
+    category: ServiceCategoryDTO
 }

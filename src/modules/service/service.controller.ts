@@ -7,7 +7,7 @@ import {
     Patch,
     Post,
 } from '@nestjs/common'
-import { ApiOkResponse } from '@nestjs/swagger'
+import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
 
 import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
 
@@ -25,18 +25,21 @@ export class ServiceController {
     @ApiOkResponse({ type: ServiceResponseDTO })
     @Post('create')
     create(
+        @Param('companyId') companyId: string,
         @Body() experienceData: ServiceCreateDTO,
     ): Promise<ServiceResponseDTO> {
-        return this.serviceService.create(experienceData)
+        return this.serviceService.create(companyId, experienceData)
     }
 
     @ApiOkResponse({ type: ServiceResponseFullDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Get(':id')
     getById(@Param('id') id: string): Promise<ServiceResponseFullDTO | null> {
         return this.serviceService.getById(id)
     }
 
     @ApiOkResponse({ type: ServiceResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -45,12 +48,14 @@ export class ServiceController {
         return this.serviceService.update(id, data)
     }
 
+    @ApiParam({ name: 'companyId', type: String })
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.serviceService.delete(id)
     }
 
     @ApiOkResponse({ type: ServicePaginatedResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Post('search')
     async search(
         @Param('companyId') companyId: string,

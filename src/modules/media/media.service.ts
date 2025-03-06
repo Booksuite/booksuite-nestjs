@@ -14,14 +14,14 @@ export class MediaService {
         private uploadService: UploadService,
     ) {}
 
-    upsert(mediaUrl: MediaDTO) {
+    upsert(rawData: MediaDTO) {
         const normalizedData = Prisma.validator<Prisma.MediaUpsertArgs>()({
-            where: { id: mediaUrl.id },
-            update: { url: mediaUrl.id },
-            create: mediaUrl,
+            where: { id: rawData.id },
+            update: { url: rawData.url, metadata: rawData.metadata },
+            create: rawData,
         })
 
-        return this.prismaService.media.upsert({ ...normalizedData })
+        return this.prismaService.media.upsert(normalizedData)
     }
 
     getById(id: string) {
@@ -36,13 +36,13 @@ export class MediaService {
         })
     }
 
-    async uploadFile(files: Express.Multer.File, companyId: string) {
+    async uploadFile(companyId: string, files: Express.Multer.File) {
         const result = await this.uploadService.upload(MEDIA_BUCKET_NAME, files)
 
         const response = await this.prismaService.media.create({
             data: {
                 url: result.url,
-                companyId: companyId,
+                companyId,
                 metadata: {
                     mimetype: result.mimetype,
                     key: result.key,
