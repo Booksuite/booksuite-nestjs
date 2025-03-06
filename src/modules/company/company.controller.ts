@@ -18,6 +18,7 @@ import { CompanyOrderByDTO } from './dto/CompanyOrderBy.dto'
 import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
+import { CompanySearchFilterDTO } from './dto/CompanySearchFilter.dto'
 
 @ApiExtraModels(CompanyResponseFullDTO)
 @Controller('company')
@@ -58,12 +59,13 @@ export class CompanyController {
 
     @Post('search')
     search(
-        @Body() pagination: PaginationQuery,
-        @Body() order: CompanyOrderByDTO,
+        @Body('pagination') pagination: PaginationQuery,
+        @Body('order') order: CompanyOrderByDTO,
+        @Body('filter') filter: CompanySearchFilterDTO,
         @Query('query') query: string,
         // @Body() filters: CompanySearchFilterDTO,
     ): Promise<CompanyResponsePaginatedDTO> {
-        return this.companyService.search(pagination, order, query)
+        return this.companyService.search(pagination, order, query, filter)
     }
     @Delete(':id')
     deleteCompany(@Param('id') id: string) {

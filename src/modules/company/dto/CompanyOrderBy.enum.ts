@@ -5,4 +5,5 @@ export enum CompanyOrderBy {
     COMPANYNAME = 'companyName',
     STATE = 'state',
     CITY = 'city',
+    USER = 'user',
 }

@@ -13,6 +13,7 @@ import { CompanyOrderByDTO } from './dto/CompanyOrderBy.dto'
 import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
+import { CompanySearchFilterDTO } from './dto/CompanySearchFilter.dto'
 
 @Injectable()
 export class CompanyService {
@@ -43,35 +44,13 @@ export class CompanyService {
         pagination: PaginationQuery,
         order: CompanyOrderByDTO,
         query: string,
-        // filters: CompanySearchFilterDTO,
+        filters: CompanySearchFilterDTO,
     ): Promise<CompanyResponsePaginatedDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
         const [companies, total] =
             await this.prismaService.company.findManyAndCount({
-                where: {
-                    OR: [
-                        {
-                            name: { contains: query, mode: 'insensitive' },
-                            description: {
-                                contains: query,
-                                mode: 'insensitive',
-                            },
-                            shortDescription: {
-                                contains: query,
-                                mode: 'insensitive',
-                            },
-                            companyName: {
-                                contains: query,
-                                mode: 'insensitive',
-                            },
-                            state: { contains: query, mode: 'insensitive' },
-                            city: { contains: query, mode: 'insensitive' },
-                        },
-                    ],
-
-                    // AND: [{ ...filters }],
-                },
+                where: this.buildSearchParams(query, filters, 'insensitive'),
                 ...paginationParams,
                 orderBy: { [order.orderBy]: order.order },
             })
@@ -104,5 +83,42 @@ export class CompanyService {
 
     detele(id: string) {
         return this.prismaService.company.delete({ where: { id } })
+    }
+
+    buildSearchParams(
+        query: string,
+        filters: CompanySearchFilterDTO,
+        mode: Prisma.QueryMode,
+    ) {
+        const data: Prisma.CompanyWhereInput = {
+            OR: [
+                {
+                    name: { contains: query, mode: mode },
+                    description: {
+                        contains: query,
+                        mode: mode,
+                    },
+                    shortDescription: {
+                        contains: query,
+                        mode: mode,
+                    },
+                    companyName: {
+                        contains: query,
+                        mode: mode,
+                    },
+                    state: { contains: query, mode: mode },
+                    city: { contains: query, mode: mode },
+                },
+            ],
+
+            AND: [
+                {
+                    published: filters.published,
+                    userCompanyRelation: { some: { userId: filters.userId } },
+                },
+            ],
+        }
+
+        return data
     }
 }
