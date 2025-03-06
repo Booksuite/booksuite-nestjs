@@ -6,15 +6,15 @@ import {
     Param,
     Patch,
     Post,
+    Query,
 } from '@nestjs/common'
-import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
-
-import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
+import { ApiBody, ApiOkResponse, ApiParam, ApiQuery } from '@nestjs/swagger'
 
 import { HousingUnitTypeCreateDTO } from './dto/HousingUnitTypeCreate.dto'
 import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePaginatedResponse.dto'
 import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
 import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
+import { HousingUnitTypeSearchBodyDTO } from './dto/HousingUnitTypeSearchBody.dto'
 import { HousingUnitTypeService } from './housingUnitType.service'
 
 @Controller('company/:companyId/housingUnitType')
@@ -55,13 +55,22 @@ export class HousingUnitTypeController {
         return this.housingUnitTypeService.delete(id)
     }
 
+    @ApiBody({ type: HousingUnitTypeSearchBodyDTO })
     @ApiOkResponse({ type: HousingUnitTypePaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiQuery({ name: 'query', type: String, required: false })
     @Post('search')
     search(
         @Param('companyId') companyId: string,
-        @Body('pagination') paginationQuery: PaginationQueryDTO,
+        @Body() body: HousingUnitTypeSearchBodyDTO,
+        @Query() query?: string,
     ): Promise<HousingUnitTypePaginatedResponseDTO> {
-        return this.housingUnitTypeService.search(companyId, paginationQuery)
+        return this.housingUnitTypeService.search(
+            companyId,
+            body.pagination,
+            body.order,
+            query,
+            body.filter,
+        )
     }
 }
