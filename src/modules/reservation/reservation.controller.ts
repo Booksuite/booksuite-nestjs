@@ -6,21 +6,21 @@ import {
     Param,
     Patch,
     Post,
+    Query,
 } from '@nestjs/common'
 import {
     ApiExtraModels,
     ApiOkResponse,
     ApiParam,
+    ApiQuery,
     getSchemaPath,
 } from '@nestjs/swagger'
 
-import { PaginationQuery } from '@/common/types/pagination'
-
 import { ReservationCreateDTO } from './dto/ReservationCreate.dto'
-import { ReservationOrderByDTO } from './dto/ReservationOrderBy.dto'
 import { ReservationResponseDTO } from './dto/ReservationResponse.dto'
 import { ReservationResponseFullDTO } from './dto/ReservationResponseFull.dto'
 import { ReservationResponsePaginatedDTO } from './dto/ReservationResponsePaginated.dto'
+import { ReservationSearchBodyDTO } from './dto/ReservationSearchBody.dto'
 import { ReservationService } from './reservation.service'
 
 @ApiExtraModels(ReservationResponseFullDTO)
@@ -40,13 +40,20 @@ export class ReservationController {
 
     @ApiOkResponse({ type: ReservationResponsePaginatedDTO })
     @ApiParam({ name: 'companyId', type: String })
-    @Post('list')
-    list(
+    @ApiQuery({ name: 'query', type: String, required: false })
+    @Post('search')
+    search(
         @Param('companyId') companyId: string,
-        @Body() pagination: PaginationQuery,
-        @Body() order: ReservationOrderByDTO,
+        @Body() body: ReservationSearchBodyDTO,
+        @Query('query') query?: string,
     ): Promise<ReservationResponsePaginatedDTO> {
-        return this.reservationService.list(companyId, pagination, order)
+        return this.reservationService.search(
+            companyId,
+            body.pagination,
+            body.filter,
+            body.order,
+            query,
+        )
     }
 
     @ApiOkResponse({

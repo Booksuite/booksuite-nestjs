@@ -6,7 +6,7 @@ import { PaginationQuery } from '../types/pagination'
 export class PaginationQueryDTO implements PaginationQuery {
     @ApiProperty({
         description: 'The page number',
-        example: 0,
+        example: 1,
     })
     @IsNumber()
     @IsDefined()
