@@ -13,6 +13,7 @@ import { BannerOrderByDTO } from './dto/BannerOrderBy.dto'
 import { BannerResponseDTO } from './dto/BannerResponse.dto'
 import { BannerResponseFullDTO } from './dto/BannerResponseFull.dto'
 import { BannerResponsePaginatedDTO } from './dto/BannerResponsePaginated.dto'
+import { BannerSearchFilterDTO } from './dto/BannerSearchFilter.dto'
 
 @Injectable()
 export class BannerService {
@@ -33,20 +34,26 @@ export class BannerService {
         })
     }
 
-    async listByCompanyId(
+    async search(
         companyId: string,
         pagination: PaginationQuery,
-        order: BannerOrderByDTO,
+        filter?: BannerSearchFilterDTO,
+        order?: BannerOrderByDTO,
+        query?: string,
     ): Promise<BannerResponsePaginatedDTO> {
         const paginationParams = getPaginatedParams(pagination)
-        const [banners, totalItems] =
+
+        const [banners, total] =
             await this.prismaService.banner.findManyAndCount({
-                where: { companyId },
-                orderBy: { [order.orderBy]: order.order },
+                where: {
+                    ...this.buildSearchParams(query, filter),
+                    companyId: companyId,
+                },
                 ...paginationParams,
+                orderBy: order ? { [order.orderBy]: order.order } : undefined,
             })
 
-        return buildPaginatedResponse(banners, totalItems, pagination)
+        return buildPaginatedResponse(banners, total, pagination)
     }
 
     getById(id: string): Promise<BannerResponseFullDTO | null> {
@@ -80,5 +87,24 @@ export class BannerService {
         return this.prismaService.banner.delete({
             where: { id },
         })
+    }
+
+    private buildSearchParams(
+        query?: string,
+        filters?: BannerSearchFilterDTO,
+    ): Prisma.BannerWhereInput {
+        const data: Prisma.BannerWhereInput = {}
+
+        if (query) {
+            data.OR = [
+                { name: { contains: query, mode: 'insensitive' } },
+                { description: { contains: query, mode: 'insensitive' } },
+                { title: { contains: query, mode: 'insensitive' } },
+            ]
+        }
+
+        if (filters) data.position = filters.position
+
+        return data
     }
 }

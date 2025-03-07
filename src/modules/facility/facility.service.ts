@@ -78,7 +78,6 @@ export class FacilityService {
         filter?: FacilitySearchFilterDTO,
     ): Prisma.FacilityWhereInput {
         const data: Prisma.FacilityWhereInput = {}
-
         if (query) {
             data.OR = [{ name: { contains: query, mode: 'insensitive' } }]
         }

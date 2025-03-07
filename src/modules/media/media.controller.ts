@@ -8,15 +8,18 @@ import {
     ParseFilePipe,
     Patch,
     Post,
+    Query,
     UploadedFile,
     UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { ApiOkResponse, ApiParam } from '@nestjs/swagger'
+import { ApiBody, ApiOkResponse, ApiParam, ApiQuery } from '@nestjs/swagger'
 
 import { MEDIA_MAX_UPLOAD_SIZE } from './constants'
 import { MediaDTO } from './dto/Media.dto'
 import { MediaResponseDTO } from './dto/MediaResponse.dto'
+import { MediaResponsePaginatedDTO } from './dto/MediaResponsePaginated.dto'
+import { MediaSearchBodyDTO } from './dto/MediaSearchBody.dto'
 import { MediaService } from './media.service'
 
 @Controller('company/:companyId/media')
@@ -35,6 +38,24 @@ export class MediaController {
     @Get(':id')
     getByID(@Param('id') id: string) {
         return this.mediaService.getById(id)
+    }
+
+    @Post('search')
+    @ApiParam({ name: 'companyId', type: String })
+    @ApiBody({ type: MediaSearchBodyDTO })
+    @ApiOkResponse({ type: MediaResponsePaginatedDTO })
+    @ApiQuery({ name: 'query', type: String, required: false })
+    search(
+        @Param('companyId') companyId: string,
+        @Body() body: MediaSearchBodyDTO,
+        @Query('query') query?: string,
+    ): Promise<MediaResponsePaginatedDTO> {
+        return this.mediaService.search(
+            companyId,
+            body.pagination,
+            body.order,
+            query,
+        )
     }
 
     @ApiParam({ name: 'companyId', type: String })
