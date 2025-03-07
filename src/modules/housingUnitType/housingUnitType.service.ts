@@ -158,7 +158,7 @@ export class HousingUnitTypeService {
             ]
         }
 
-        if (filters) data.published = filters?.published
+        if (filters) data.published = filters.published
 
         return data
     }
