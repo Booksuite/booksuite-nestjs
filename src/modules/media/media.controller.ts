@@ -48,7 +48,7 @@ export class MediaController {
     search(
         @Param('companyId') companyId: string,
         @Body() body: MediaSearchBodyDTO,
-        @Query() query?: string,
+        @Query('query') query?: string,
     ): Promise<MediaResponsePaginatedDTO> {
         return this.mediaService.search(
             companyId,
