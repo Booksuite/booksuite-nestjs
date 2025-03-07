@@ -62,8 +62,8 @@ export class BannerService {
         const [banners, total] =
             await this.prismaService.banner.findManyAndCount({
                 where: {
-                    companyId: companyId,
                     ...this.buildSearchParams(query, filter),
+                    companyId: companyId,
                 },
                 ...paginationParams,
                 orderBy: order ? { [order.orderBy]: order.order } : undefined,

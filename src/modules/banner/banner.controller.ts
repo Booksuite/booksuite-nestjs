@@ -23,7 +23,6 @@ import { BannerResponseDTO } from './dto/BannerResponse.dto'
 import { BannerResponseFullDTO } from './dto/BannerResponseFull.dto'
 import { BannerResponsePaginatedDTO } from './dto/BannerResponsePaginated.dto'
 import { BannerSearchBodyDTO } from './dto/BannerSearchBody.dto'
-import { BannerSearchParamsDTO } from './dto/BannerSearchParams.dto'
 
 @ApiExtraModels(BannerResponseFullDTO)
 @Controller('company/:companyId/banner')
@@ -38,21 +37,6 @@ export class BannerController {
         @Body() bannerData: BannerCreateDTO,
     ): Promise<BannerResponseDTO> {
         return this.bannerService.create(companyId, bannerData)
-    }
-
-    @ApiOkResponse({ type: BannerResponsePaginatedDTO })
-    @ApiParam({ name: 'companyId', type: String })
-    @ApiBody({ type: BannerSearchParamsDTO })
-    @Post('list')
-    listByCompanyId(
-        @Param('companyId') companyId: string,
-        @Body() paginationParams: BannerSearchParamsDTO,
-    ): Promise<BannerResponsePaginatedDTO> {
-        return this.bannerService.listByCompanyId(
-            companyId,
-            paginationParams.pagination,
-            paginationParams.order,
-        )
     }
 
     @ApiOkResponse({
