@@ -13,6 +13,7 @@ import { BannerOrderByDTO } from './dto/BannerOrderBy.dto'
 import { BannerResponseDTO } from './dto/BannerResponse.dto'
 import { BannerResponseFullDTO } from './dto/BannerResponseFull.dto'
 import { BannerResponsePaginatedDTO } from './dto/BannerResponsePaginated.dto'
+import { BannerSearchFilterDTO } from './dto/BannerSearchFilter.dto'
 
 @Injectable()
 export class BannerService {
@@ -49,6 +50,28 @@ export class BannerService {
         return buildPaginatedResponse(banners, totalItems, pagination)
     }
 
+    async search(
+        companyId: string,
+        pagination: PaginationQuery,
+        filter?: BannerSearchFilterDTO,
+        order?: BannerOrderByDTO,
+        query?: string,
+    ): Promise<BannerResponsePaginatedDTO> {
+        const paginationParams = getPaginatedParams(pagination)
+
+        const [banners, total] =
+            await this.prismaService.banner.findManyAndCount({
+                where: {
+                    companyId: companyId,
+                    ...this.buildSearchParams(query, filter),
+                },
+                ...paginationParams,
+                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+            })
+
+        return buildPaginatedResponse(banners, total, pagination)
+    }
+
     getById(id: string): Promise<BannerResponseFullDTO | null> {
         return this.prismaService.banner.findUnique({
             where: { id },
@@ -80,5 +103,24 @@ export class BannerService {
         return this.prismaService.banner.delete({
             where: { id },
         })
+    }
+
+    private buildSearchParams(
+        query?: string,
+        filters?: BannerSearchFilterDTO,
+    ): Prisma.BannerWhereInput {
+        const data: Prisma.BannerWhereInput = {}
+
+        if (query) {
+            data.OR = [
+                { name: { contains: query, mode: 'insensitive' } },
+                { description: { contains: query, mode: 'insensitive' } },
+                { title: { contains: query, mode: 'insensitive' } },
+            ]
+        }
+
+        if (filters) data.position = filters.position
+
+        return data
     }
 }
