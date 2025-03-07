@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { ReservationDepositType } from '@prisma/client'
 import {
     IsDefined,
     IsEnum,
@@ -6,8 +7,6 @@ import {
     IsOptional,
     IsString,
 } from 'class-validator'
-
-import { ReservationDepositType } from '../enums/ReservationDepositType.enum'
 
 export class ReservationConfigDTO {
     @ApiProperty({

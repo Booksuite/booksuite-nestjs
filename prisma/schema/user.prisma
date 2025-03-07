@@ -16,7 +16,7 @@ model User {
 
     userCompanyRelation UserCompanyRelation[]
     soldReservetions    Reservation[]         @relation("sellerUser")
-    reservations        Reservation[]         @relation("reservations")
+    reservations        Reservation[]         @relation("guestUser")
 
     @@map("users")
 }

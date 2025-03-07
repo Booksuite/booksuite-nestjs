@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { FacilityType } from '@prisma/client'
+import { FacilityCategory, FacilityType } from '@prisma/client'
 
 export class FacilityResponseDTO {
     @ApiProperty({
@@ -13,9 +13,15 @@ export class FacilityResponseDTO {
     })
     type!: FacilityType
 
+    @ApiProperty({
+        enum: FacilityCategory,
+        example: FacilityCategory.GENERAL,
+    })
+    category!: FacilityCategory
+
     @ApiProperty({ example: 'WiFi' })
     name!: string
 
-    @ApiProperty({ example: 'wifi-icon', required: false })
+    @ApiProperty({ example: 'wifi-icon', nullable: true })
     icon: string | null
 }

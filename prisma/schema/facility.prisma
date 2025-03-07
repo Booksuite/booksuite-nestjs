@@ -3,7 +3,8 @@ model Facility {
     name String
     icon String?
 
-    type FacilityType
+    type     FacilityType
+    category FacilityCategory
 
     houseUnitTypeFacilities HousingUnitTypeFacility[]
     companyFacilities       CompanyFacility[]
@@ -17,4 +18,16 @@ model Facility {
 enum FacilityType {
     HOUSING_UNIT_TYPE
     COMPANY
+}
+
+enum FacilityCategory {
+    GENERAL
+    FOOD_AND_BEVERAGES
+    LEISURE_AREAS
+    ACTIVITIES
+    STRUCTURE
+    LANGUAGES_SPOKEN
+    INTERNET
+    SERVICES
+    BED_TYPES
 }

@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { BannerAction, BannerPosition } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
@@ -11,9 +12,6 @@ import {
     IsString,
     ValidateNested,
 } from 'class-validator'
-
-import { BannerAction } from '../enum/BannerAction.enum'
-import { BannerPosition } from '../enum/BannerPosition.enum'
 
 import { BannerMediaDTO } from './BannerMedia.dto'
 

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { FacilityType } from '@prisma/client'
+import { FacilityCategory, FacilityType } from '@prisma/client'
 import {
     IsDefined,
     IsEnum,
@@ -24,6 +24,14 @@ export class FacilityDTO {
     @IsDefined()
     @IsEnum(FacilityType)
     type!: FacilityType
+
+    @ApiProperty({
+        enum: FacilityCategory,
+        example: FacilityCategory.GENERAL,
+    })
+    @IsDefined()
+    @IsEnum(FacilityCategory)
+    category!: FacilityCategory
 
     @ApiProperty({ example: 'WiFi' })
     @IsDefined()

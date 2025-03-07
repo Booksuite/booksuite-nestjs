@@ -13,8 +13,8 @@ export class ReservationResponseFullDTO extends ReservationResponseDTO {
     @ApiProperty({ type: [ReservationServiceResponseDTO] })
     services!: ReservationServiceResponseDTO[]
 
-    @ApiProperty({ type: UserResponseDTO })
-    user: UserResponseDTO | null | undefined
+    @ApiProperty({ type: UserResponseDTO, nullable: true })
+    guestUser: UserResponseDTO | null
 
     @ApiProperty({ type: UserResponseDTO, nullable: true })
     sellerUser: UserResponseDTO | null

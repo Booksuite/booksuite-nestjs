@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { AgeGroupChargeType } from '@prisma/client'
 import { IsDefined, IsInt, IsNumber, IsOptional } from 'class-validator'
-
-import { AgeGroupChargeType } from '../enums/AgeGroupChargeType.enum'
 
 export class AgeGroupDTO {
     @ApiProperty({

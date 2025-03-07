@@ -103,7 +103,7 @@ export class ReservationService {
                     },
                 },
                 {
-                    user: {
+                    guestUser: {
                         OR: [
                             {
                                 firstName: {
@@ -165,7 +165,7 @@ export class ReservationService {
                 housingUnit: true,
                 services: { include: { service: true } },
                 sellerUser: true,
-                user: true,
+                guestUser: true,
             },
         })
     }
@@ -192,7 +192,7 @@ export class ReservationService {
         })
 
         return this.prismaService.reservation.update({
-            where: { id: id },
+            where: { id },
             data: normalizedData,
         })
     }

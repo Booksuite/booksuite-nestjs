@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { CancellationPolicyPenalty } from '@prisma/client'
 import { IsDefined, IsEnum, IsInt, IsOptional, IsUUID } from 'class-validator'
-
-import { CancellationPolicyPenalty } from '../enums/CancellationPolicyPenalty.enum'
 
 export class PenaltyRangeDTO {
     @ApiProperty({

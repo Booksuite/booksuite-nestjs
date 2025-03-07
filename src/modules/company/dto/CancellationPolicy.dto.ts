@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { CancellationPolicyPenalty } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
@@ -9,8 +10,6 @@ import {
     IsString,
     ValidateNested,
 } from 'class-validator'
-
-import { CancellationPolicyPenalty } from '../enums/CancellationPolicyPenalty.enum'
 
 import { PenaltyRangeDTO } from './PenaltyRange.dto'
 
