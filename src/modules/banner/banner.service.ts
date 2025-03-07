@@ -34,22 +34,6 @@ export class BannerService {
         })
     }
 
-    async listByCompanyId(
-        companyId: string,
-        pagination: PaginationQuery,
-        order: BannerOrderByDTO,
-    ): Promise<BannerResponsePaginatedDTO> {
-        const paginationParams = getPaginatedParams(pagination)
-        const [banners, totalItems] =
-            await this.prismaService.banner.findManyAndCount({
-                where: { companyId },
-                orderBy: { [order.orderBy]: order.order },
-                ...paginationParams,
-            })
-
-        return buildPaginatedResponse(banners, totalItems, pagination)
-    }
-
     async search(
         companyId: string,
         pagination: PaginationQuery,
