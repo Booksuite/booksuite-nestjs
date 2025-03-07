@@ -29,6 +29,28 @@ async function setUserAndRoles() {
 
     console.log('Added default roles data')
 
+    const user1 = await client.user.create({
+        data: {
+            email: 'john.doe@gmail.com',
+            firstName: 'John',
+            lastName: 'Doe',
+            phone: '489831034',
+            password: 'securePassword123',
+            metaData: { preferences: { notifications: true } },
+        },
+    })
+
+    const user2 = await client.user.create({
+        data: {
+            email: 'jane.smith@gmail.com',
+            firstName: 'Jane',
+            lastName: 'Smith',
+            phone: '479831024',
+            password: 'anotherSecurePassword456',
+            metaData: { preferences: { notifications: false } },
+        },
+    })
+
     const dbRole = await client.role.findUnique({
         where: {
             slug: 'admin',
@@ -45,7 +67,7 @@ async function setUserAndRoles() {
             state: 'SP',
             country: 'Brasil',
             logo: 'https://booksuite.com.br/logo.png',
-            slug: 'booksuite',
+            slug: 'booksuites',
             responsible: 'BookSuite',
             docType: 'CNPJ',
             identification: '1234567890',
@@ -62,7 +84,7 @@ async function setUserAndRoles() {
     const suiteDiamante = await client.housingUnitType.create({
         data: {
             name: 'Suite Diamante',
-            slug: 'suite',
+            slug: 'suitess',
             companyId: company.id,
             weekdaysPrice: 100,
             weekendPrice: 150,
@@ -244,8 +266,8 @@ async function setUserAndRoles() {
     await client.reservation.create({
         data: {
             status: 'CONFIRMED',
-            userId: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
-            sellerUserId: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+            userId: user1.id,
+            sellerUserId: user2.id,
             saleChannel: 'BOOKSUITE',
             startDate: new Date('2025-01-14T13:19:15.271598Z'),
             endDate: new Date('2025-01-14T13:19:15.271598Z'),
