@@ -1,0 +1,97 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main] # or whatever branch you want to deploy from
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.x'
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build application
+        run: yarn build
+
+      - name: Create .env file
+        run: |
+          cat > .env << EOL
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          CLOUDFLARE_ACCESS_KEY_ID=${{ secrets.CLOUDFLARE_ACCESS_KEY_ID }}
+          CLOUDFLARE_SECRET_ACCESS_KEY=${{ secrets.CLOUDFLARE_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_UPLOAD_PROVIDER_BASE_URL=${{ secrets.CLOUDFLARE_UPLOAD_PROVIDER_BASE_URL }}
+          CLOUDFLARE_FILE_BASE_URL=${{ secrets.CLOUDFLARE_FILE_BASE_URL }}
+          NODE_ENV=production
+          EOL
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            # Create backup of current deployment (optional)
+            if [ -d api-deploy ]; then
+              mv api-deploy api-deploy.backup
+            fi
+
+            # Create deployment directory if it doesn't exist
+            mkdir -p api-deploy
+
+      - name: Transfer build artifacts and .env
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          source: 'prisma/,dist/,package.json,.env,.yarn,.yarnrc.yml,.yarn.lock'
+          target: 'api-deploy'
+
+      - name: Finalize deployment
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            # Workaround to set correct node version
+            export PATH="/root/.nvm/versions/node/v22.14.0/bin:$PATH"
+
+            cd api-deploy
+
+            # Install production dependencies only
+            yarn
+
+            # Stop old version of application
+            pm2 stop ${{ secrets.PM2_APP_NAME }}
+
+            # Start your application
+            pm2 start dist/src/main.js --name ${{ secrets.PM2_APP_NAME }}
+
+            # Migrate DATABASE_URL
+            yarn prisma db push
+
+            # Remove backup if everything is successful
+            cd ..
+            if [ -d api-deploy.backup ]; then
+              rm -rf api-deploy.backup
+            fi
