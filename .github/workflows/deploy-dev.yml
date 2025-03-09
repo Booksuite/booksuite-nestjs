@@ -44,7 +44,6 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
-          script_stop: true
           script: |
             # Create backup of current deployment (optional)
             if [ -d api-deploy ]; then
@@ -71,7 +70,6 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
-          script_stop: true
           script: |
             # Workaround to set correct node version
             export PATH="/root/.nvm/versions/node/v22.14.0/bin:$PATH"
