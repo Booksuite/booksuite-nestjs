@@ -21,10 +21,10 @@ export function withPaginatedResponse<T extends Constructor>(
         @ApiProperty({ example: 1 })
         currentPage: number
 
-        @ApiProperty({ example: 1 })
+        @ApiProperty({ example: 1, type: Number, nullable: true })
         prevPage: number | null
 
-        @ApiProperty({ example: 2 })
+        @ApiProperty({ example: 2, type: Number, nullable: true })
         nextPage: number | null
     }
 
