@@ -15,6 +15,12 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, documentFactory)
 
     app.useGlobalPipes(new ValidationPipe())
+
+    app.enableCors({
+        origin: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    })
+
     await app.listen(process.env.PORT ?? 3000)
 }
 void bootstrap()
