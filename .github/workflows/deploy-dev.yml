@@ -86,7 +86,7 @@ jobs:
             pm2 start dist/src/main.js --name ${{ secrets.PM2_APP_NAME }}
 
             # Migrate DATABASE_URL
-            yarn prisma db push
+            npx prisma migrate deploy
 
             # Remove backup if everything is successful
             cd ..
