@@ -71,6 +71,7 @@ export class CompanyController {
 
     @ApiBody({ type: CompanySearchBodyDTO })
     @ApiQuery({ name: 'query', type: String, required: false })
+    @ApiOkResponse({ type: CompanyResponsePaginatedDTO })
     @Post('search')
     search(
         @Query('query') query: string,

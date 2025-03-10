@@ -15,10 +15,7 @@ import {
     getSchemaPath,
 } from '@nestjs/swagger'
 
-import { PaginationQuery } from '@/common/types/pagination'
-
 import { FacilityDTO } from './dto/Facility.dto'
-import { FacilityOrderByDTO } from './dto/FacilityOrderBy.dto'
 import { FacilityResponseDTO } from './dto/FacilityResponse.dto'
 import { FacilityResponsePaginatedDTO } from './dto/FacilityResponsePaginated.dto'
 import { FacilitySearchBodyDTO } from './dto/FacilitySearchBody.dto'
@@ -32,15 +29,6 @@ export class FacilityController {
     @Post('create')
     create(@Body() facilityData: FacilityDTO): Promise<FacilityResponseDTO> {
         return this.facilityService.create(facilityData)
-    }
-
-    @ApiOkResponse({ type: FacilityResponsePaginatedDTO })
-    @Post('list')
-    list(
-        @Body() pagination: PaginationQuery,
-        @Body() order: FacilityOrderByDTO,
-    ): Promise<FacilityResponsePaginatedDTO> {
-        return this.facilityService.list(pagination, order)
     }
 
     @ApiOkResponse({

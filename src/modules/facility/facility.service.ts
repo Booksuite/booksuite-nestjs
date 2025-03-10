@@ -24,21 +24,6 @@ export class FacilityService {
         })
     }
 
-    async list(
-        pagination: PaginationQuery,
-        order: FacilityOrderByDTO,
-    ): Promise<FacilityResponsePaginatedDTO> {
-        const paginatedParams = getPaginatedParams(pagination)
-
-        const [facilities, total] =
-            await this.prismaService.facility.findManyAndCount({
-                ...paginatedParams,
-                orderBy: { [order.orderBy]: order.order },
-            })
-
-        return buildPaginatedResponse(facilities, total, pagination)
-    }
-
     getById(faciltyId: string): Promise<FacilityResponseDTO | null> {
         return this.prismaService.facility.findUnique({
             where: { id: faciltyId },
