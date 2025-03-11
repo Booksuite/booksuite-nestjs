@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
-import { IsDefined, ValidateNested } from 'class-validator'
+import { IsDefined, IsOptional, ValidateNested } from 'class-validator'
 
 import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
 
@@ -16,13 +16,13 @@ export class FacilitySearchBodyDTO {
 
     @ApiProperty({ type: FacilityOrderByDTO, required: false })
     @ValidateNested()
-    @IsDefined()
+    @IsOptional()
     @Type(() => FacilityOrderByDTO)
     order?: FacilityOrderByDTO
 
     @ApiProperty({ type: FacilitySearchFilterDTO, required: false })
     @ValidateNested()
-    @IsDefined()
+    @IsOptional()
     @Type(() => FacilitySearchFilterDTO)
     filter?: FacilitySearchFilterDTO
 }

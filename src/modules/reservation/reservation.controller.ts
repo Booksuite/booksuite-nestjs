@@ -11,6 +11,7 @@ import {
 import {
     ApiExtraModels,
     ApiOkResponse,
+    ApiOperation,
     ApiParam,
     ApiQuery,
     getSchemaPath,
@@ -30,6 +31,7 @@ export class ReservationController {
 
     @ApiOkResponse({ type: ReservationResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'createReservation' })
     @Post('create')
     create(
         @Param('companyId') companyId: string,
@@ -41,6 +43,7 @@ export class ReservationController {
     @ApiOkResponse({ type: ReservationResponsePaginatedDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
+    @ApiOperation({ operationId: 'searchReservations' })
     @Post('search')
     search(
         @Param('companyId') companyId: string,
@@ -65,6 +68,7 @@ export class ReservationController {
         },
     })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'getReservationById' })
     @Get(':id')
     getByID(
         @Param('id') id: string,
@@ -74,6 +78,7 @@ export class ReservationController {
 
     @ApiOkResponse({ type: ReservationResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'updateReservation' })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -83,6 +88,7 @@ export class ReservationController {
     }
 
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'deleteReservation' })
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.reservationService.delete(id)

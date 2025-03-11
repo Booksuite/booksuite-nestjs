@@ -86,6 +86,7 @@ export class CompanyCreateDTO {
     @IsString()
     responsiblePhone?: string
 
+    @ApiProperty({ example: 'CNPJ' })
     @IsDefined()
     @IsString()
     docType!: string

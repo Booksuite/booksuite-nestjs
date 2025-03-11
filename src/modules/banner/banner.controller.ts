@@ -12,6 +12,7 @@ import {
     ApiBody,
     ApiExtraModels,
     ApiOkResponse,
+    ApiOperation,
     ApiParam,
     ApiQuery,
     getSchemaPath,
@@ -31,6 +32,7 @@ export class BannerController {
 
     @ApiOkResponse({ type: BannerResponseDTO })
     @ApiBody({ type: BannerCreateDTO })
+    @ApiOperation({ operationId: 'createBanner' })
     @Post('create')
     create(
         @Param('companyId') companyId: string,
@@ -48,6 +50,7 @@ export class BannerController {
         },
     })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'getBannerById' })
     @Get(':id')
     getById(@Param('id') id: string): Promise<BannerResponseFullDTO | null> {
         return this.bannerService.getById(id)
@@ -56,6 +59,7 @@ export class BannerController {
     @ApiBody({ type: BannerCreateDTO })
     @ApiOkResponse({ type: BannerResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'updateBanner' })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -69,6 +73,7 @@ export class BannerController {
     @ApiBody({ type: BannerSearchBodyDTO })
     @ApiOkResponse({ type: BannerResponsePaginatedDTO })
     @ApiQuery({ name: 'query', type: String, required: false })
+    @ApiOperation({ operationId: 'searchBanners' })
     search(
         @Param('companyId') companyId: string,
         @Body() body: BannerSearchBodyDTO,
@@ -84,6 +89,7 @@ export class BannerController {
     }
 
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'deleteBanner' })
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.bannerService.delete(id)

@@ -1,5 +1,10 @@
 import { Body, Controller, Get, Param, Patch } from '@nestjs/common'
-import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
+import {
+    ApiExtraModels,
+    ApiOkResponse,
+    ApiOperation,
+    getSchemaPath,
+} from '@nestjs/swagger'
 
 import { AgePolicyService } from './agePolicy.service'
 import { AgePolicyDTO } from './dto/AgePolicy.dto'
@@ -21,6 +26,7 @@ export class AgePolicyController {
             ],
         },
     })
+    @ApiOperation({ operationId: 'getCompanyAgePolicy' })
     @Get()
     getByCompanyId(
         @Param('companyId') companyId: string,
@@ -29,6 +35,7 @@ export class AgePolicyController {
     }
 
     @ApiOkResponse({ type: AgePolicyResponseFullDTO })
+    @ApiOperation({ operationId: 'upsertCompanyAgePolicy' })
     @Patch()
     upsert(
         @Param('companyId') companyId: string,

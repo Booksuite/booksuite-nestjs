@@ -13,7 +13,13 @@ import {
     UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { ApiBody, ApiOkResponse, ApiParam, ApiQuery } from '@nestjs/swagger'
+import {
+    ApiBody,
+    ApiOkResponse,
+    ApiOperation,
+    ApiParam,
+    ApiQuery,
+} from '@nestjs/swagger'
 
 import { MEDIA_MAX_UPLOAD_SIZE } from './constants'
 import { MediaDTO } from './dto/Media.dto'
@@ -28,6 +34,7 @@ export class MediaController {
 
     @ApiOkResponse({ type: MediaResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'upsertMedia' })
     @Patch('upsert')
     upsert(@Body() data: MediaDTO) {
         return this.mediaService.upsert(data)
@@ -35,6 +42,7 @@ export class MediaController {
 
     @ApiOkResponse({ type: MediaResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'getMediaById' })
     @Get(':id')
     getByID(@Param('id') id: string) {
         return this.mediaService.getById(id)
@@ -45,6 +53,7 @@ export class MediaController {
     @ApiBody({ type: MediaSearchBodyDTO })
     @ApiOkResponse({ type: MediaResponsePaginatedDTO })
     @ApiQuery({ name: 'query', type: String, required: false })
+    @ApiOperation({ operationId: 'searchMedia' })
     search(
         @Param('companyId') companyId: string,
         @Body() body: MediaSearchBodyDTO,
@@ -59,6 +68,7 @@ export class MediaController {
     }
 
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'deleteMedia' })
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.mediaService.delete(id)
@@ -66,6 +76,7 @@ export class MediaController {
 
     @ApiOkResponse({ type: MediaResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'uploadMedia' })
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
     uploadFiles(

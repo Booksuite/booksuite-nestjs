@@ -8,7 +8,13 @@ import {
     Post,
     Query,
 } from '@nestjs/common'
-import { ApiBody, ApiOkResponse, ApiParam, ApiQuery } from '@nestjs/swagger'
+import {
+    ApiBody,
+    ApiOkResponse,
+    ApiOperation,
+    ApiParam,
+    ApiQuery,
+} from '@nestjs/swagger'
 
 import { HousingUnitTypeCreateDTO } from './dto/HousingUnitTypeCreate.dto'
 import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePaginatedResponse.dto'
@@ -22,6 +28,7 @@ export class HousingUnitTypeController {
     constructor(private housingUnitTypeService: HousingUnitTypeService) {}
 
     @ApiOkResponse({ type: HousingUnitTypeResponseDTO })
+    @ApiOperation({ operationId: 'createHousingUnitType' })
     @Post('create')
     create(
         @Param('companyId') id: string,
@@ -32,6 +39,7 @@ export class HousingUnitTypeController {
 
     @ApiOkResponse({ type: HousingUnitTypeResponseFullDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'getHousingUnitTypeById' })
     @Get(':id')
     getByID(
         @Param('id') id: string,
@@ -42,6 +50,7 @@ export class HousingUnitTypeController {
     @ApiOkResponse({ type: HousingUnitTypeResponseDTO })
     @Patch(':id')
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'updateHousingUnitType' })
     update(
         @Param('id') id: string,
         @Body() updatedData: HousingUnitTypeCreateDTO,
@@ -51,6 +60,7 @@ export class HousingUnitTypeController {
 
     @Delete(':id')
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'deleteHousingUnitType' })
     delete(@Param('id') id: string) {
         return this.housingUnitTypeService.delete(id)
     }
@@ -59,6 +69,7 @@ export class HousingUnitTypeController {
     @ApiOkResponse({ type: HousingUnitTypePaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
+    @ApiOperation({ operationId: 'searchHousingUnitTypes' })
     @Post('search')
     search(
         @Param('companyId') companyId: string,

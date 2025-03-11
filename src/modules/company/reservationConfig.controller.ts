@@ -1,5 +1,10 @@
 import { Body, Controller, Get, Param, Patch } from '@nestjs/common'
-import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
+import {
+    ApiExtraModels,
+    ApiOkResponse,
+    ApiOperation,
+    getSchemaPath,
+} from '@nestjs/swagger'
 
 import { ReservationConfigDTO } from './dto/ReservationConfig.dto'
 import { ReservationConfigResponseDTO } from './dto/ReservationConfigResponse.dto'
@@ -20,6 +25,7 @@ export class ReservationConfigController {
             ],
         },
     })
+    @ApiOperation({ operationId: 'getCompanyReservationConfig' })
     @Get()
     getByCompanyId(
         @Param('companyId') companyId: string,
@@ -28,6 +34,7 @@ export class ReservationConfigController {
     }
 
     @ApiOkResponse({ type: ReservationConfigResponseDTO })
+    @ApiOperation({ operationId: 'upsertCompanyReservationConfig' })
     @Patch()
     upsert(
         @Param('companyId') companyId: string,

@@ -12,6 +12,7 @@ import {
     ApiBody,
     ApiExtraModels,
     ApiOkResponse,
+    ApiOperation,
     ApiParam,
     ApiQuery,
     getSchemaPath,
@@ -30,12 +31,13 @@ export class ServiceController {
     constructor(private serviceService: ServiceService) {}
 
     @ApiOkResponse({ type: ServiceResponseDTO })
+    @ApiOperation({ operationId: 'createService' })
     @Post('create')
     create(
         @Param('companyId') companyId: string,
-        @Body() experienceData: ServiceCreateDTO,
+        @Body() data: ServiceCreateDTO,
     ): Promise<ServiceResponseDTO> {
-        return this.serviceService.create(companyId, experienceData)
+        return this.serviceService.create(companyId, data)
     }
 
     @ApiOkResponse({
@@ -47,6 +49,7 @@ export class ServiceController {
         },
     })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'getServiceById' })
     @Get(':id')
     getById(@Param('id') id: string): Promise<ServiceResponseFullDTO | null> {
         return this.serviceService.getById(id)
@@ -54,6 +57,7 @@ export class ServiceController {
 
     @ApiOkResponse({ type: ServiceResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'updateService' })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -63,6 +67,7 @@ export class ServiceController {
     }
 
     @ApiParam({ name: 'companyId', type: String })
+    @ApiOperation({ operationId: 'deleteService' })
     @Delete(':id')
     delete(@Param('id') id: string) {
         return this.serviceService.delete(id)
@@ -72,6 +77,7 @@ export class ServiceController {
     @ApiOkResponse({ type: ServicePaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
+    @ApiOperation({ operationId: 'searchServices' })
     @Post('search')
     async search(
         @Param('companyId') companyId: string,

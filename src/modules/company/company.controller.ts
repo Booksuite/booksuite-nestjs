@@ -12,6 +12,7 @@ import {
     ApiBody,
     ApiExtraModels,
     ApiOkResponse,
+    ApiOperation,
     ApiQuery,
     getSchemaPath,
 } from '@nestjs/swagger'
@@ -38,6 +39,7 @@ export class CompanyController {
     constructor(private companyService: CompanyService) {}
 
     @ApiOkResponse({ type: CompanyResponseDTO })
+    @ApiOperation({ operationId: 'createCompany' })
     @Post('create')
     createCompany(
         @Body() companyData: CompanyCreateDTO,
@@ -53,6 +55,7 @@ export class CompanyController {
             ],
         },
     })
+    @ApiOperation({ operationId: 'getCompanyById' })
     @Get(':id')
     getCompanyByID(
         @Param('id') id: string,
@@ -61,6 +64,7 @@ export class CompanyController {
     }
 
     @ApiOkResponse({ type: CompanyResponseDTO })
+    @ApiOperation({ operationId: 'updateCompany' })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -72,6 +76,7 @@ export class CompanyController {
     @ApiBody({ type: CompanySearchBodyDTO })
     @ApiQuery({ name: 'query', type: String, required: false })
     @ApiOkResponse({ type: CompanyResponsePaginatedDTO })
+    @ApiOperation({ operationId: 'searchCompanies' })
     @Post('search')
     search(
         @Query('query') query: string,
@@ -84,6 +89,8 @@ export class CompanyController {
             body.filter,
         )
     }
+
+    @ApiOperation({ operationId: 'deleteCompany' })
     @Delete(':id')
     deleteCompany(@Param('id') id: string) {
         return this.companyService.detele(id)
