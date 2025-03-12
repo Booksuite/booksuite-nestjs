@@ -43,6 +43,7 @@ export class HousingUnitTypeService {
 
         const createdData = await this.prismaService.housingUnitType.create({
             data: normalizedData,
+            include: { medias: { include: { media: true } } },
         })
 
         return createdData
