@@ -6,4 +6,5 @@ export enum CompanyOrderBy {
     STATE = 'state',
     CITY = 'city',
     USER = 'user',
+    CREATED_AT = 'createdAt',
 }

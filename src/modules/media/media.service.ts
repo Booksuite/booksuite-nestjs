@@ -46,7 +46,9 @@ export class MediaService {
                     ...this.buildSearchParams(query),
                 },
                 ...paginationParams,
-                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
             },
         )
 

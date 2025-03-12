@@ -3,4 +3,5 @@ export enum HousingUnitTypeOrderBy {
     DESCRIPTION = 'description',
     SHORTDESCRIPTION = 'shortDescription',
     HOUSINGUNITS = 'housingUnits',
+    CREATED_AT = 'createdAt',
 }

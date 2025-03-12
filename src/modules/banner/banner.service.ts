@@ -50,7 +50,9 @@ export class BannerService {
                     companyId: companyId,
                 },
                 ...paginationParams,
-                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
             })
 
         return buildPaginatedResponse(banners, total, pagination)

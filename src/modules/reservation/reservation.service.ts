@@ -73,7 +73,9 @@ export class ReservationService {
         const [reservations, total] =
             await this.prismaService.reservation.findManyAndCount({
                 where: { ...this.buildSearchParams(query, filter), companyId },
-                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
                 ...paginationParams,
             })
 

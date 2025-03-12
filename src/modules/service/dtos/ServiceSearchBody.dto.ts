@@ -16,7 +16,6 @@ export class ServiceSearchBodyDTO {
 
     @ApiProperty({ type: ServiceSearchFilterDTO, required: false })
     @ValidateNested()
-    @IsDefined()
     @IsOptional()
     @Type(() => ServiceSearchFilterDTO)
     filter?: ServiceSearchFilterDTO

@@ -1,6 +1,6 @@
-import { Order } from '../enum/Order'
+import { OrderDirection } from '../enum/Order'
 
 export interface OrderByRequest {
     orderBy: string
-    order: Order
+    direction: OrderDirection
 }

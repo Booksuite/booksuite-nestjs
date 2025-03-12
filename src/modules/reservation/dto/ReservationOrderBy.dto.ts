@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsEnum } from 'class-validator'
 
-import { Order } from '@/common/enum/Order'
+import { OrderDirection } from '@/common/enum/Order'
 import { OrderByRequest } from '@/common/types/orderBy'
 import { ReservationOrderBy } from '../enum/ReservationOrderBy.enum'
 
@@ -11,8 +11,8 @@ export class ReservationOrderByDTO implements OrderByRequest {
     @IsEnum(ReservationOrderBy)
     orderBy: ReservationOrderBy
 
-    @ApiProperty({ enum: Order })
+    @ApiProperty({ enum: OrderDirection })
     @IsDefined()
-    @IsEnum(Order)
-    order: Order
+    @IsEnum(OrderDirection)
+    direction: OrderDirection
 }

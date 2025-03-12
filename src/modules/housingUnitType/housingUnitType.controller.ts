@@ -74,7 +74,7 @@ export class HousingUnitTypeController {
     search(
         @Param('companyId') companyId: string,
         @Body() body: HousingUnitTypeSearchBodyDTO,
-        @Query() query?: string,
+        @Query('query') query?: string,
     ): Promise<HousingUnitTypePaginatedResponseDTO> {
         return this.housingUnitTypeService.search(
             companyId,
