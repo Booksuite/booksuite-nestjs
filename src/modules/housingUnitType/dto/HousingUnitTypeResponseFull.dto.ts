@@ -13,5 +13,5 @@ export class HousingUnitTypeResponseFullDTO extends HousingUnitTypeResponseDTO {
     facilities!: HousingUnitTypeFacilityResponseDTO[]
 
     @ApiProperty({ type: [HousingUnitTypeMediaResponseDTO] })
-    medias?: HousingUnitTypeMediaResponseDTO[]
+    medias: HousingUnitTypeMediaResponseDTO[]
 }
