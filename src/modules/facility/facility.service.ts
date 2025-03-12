@@ -52,7 +52,9 @@ export class FacilityService {
             await this.prismaService.facility.findManyAndCount({
                 where: { ...this.buildSearchParams(query, filter) },
                 ...paginationParams,
-                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
             })
 
         return buildPaginatedResponse(facilities, total, pagination)

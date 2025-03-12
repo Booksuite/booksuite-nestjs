@@ -130,11 +130,22 @@ export class HousingUnitTypeService {
                     companyId: companyId,
                     ...this.buildSearchParams(query, filter),
                 },
+                include: {
+                    housingUnits: true,
+                    facilities: { include: { facility: true } },
+                    medias: { include: { media: true } },
+                },
                 ...paginationParams,
-                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
             })
 
-        return buildPaginatedResponse(housingUnitTypes, total, pagination)
+        return buildPaginatedResponse(
+            housingUnitTypes as unknown as HousingUnitTypeResponseFullDTO[],
+            total,
+            pagination,
+        )
     }
 
     private buildSearchParams(

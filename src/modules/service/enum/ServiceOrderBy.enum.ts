@@ -1,6 +1,5 @@
 export enum ServiceOrderBy {
     NAME = 'name',
-    DESCRIPTION = 'description',
-    INCLUED = 'included',
-    NOTES = 'notes',
+    INCLUDED = 'included',
+    CREATED_AT = 'createdAt',
 }

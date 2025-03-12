@@ -52,7 +52,9 @@ export class CompanyService {
             await this.prismaService.company.findManyAndCount({
                 where: this.buildSearchParams(query, filters),
                 ...paginationParams,
-                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
             })
 
         return buildPaginatedResponse(companies, total, pagination)

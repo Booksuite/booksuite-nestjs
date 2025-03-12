@@ -101,7 +101,9 @@ export class ServiceService {
                     companyId,
                 },
                 ...paginationParams,
-                orderBy: order ? { [order.orderBy]: order.order } : undefined,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
             })
 
         return buildPaginatedResponse(services, totalServices, pagination)

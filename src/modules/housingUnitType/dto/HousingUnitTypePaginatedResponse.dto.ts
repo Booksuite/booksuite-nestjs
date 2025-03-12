@@ -1,7 +1,7 @@
 import { withPaginatedResponse } from '@/common/dto/PaginatedResponse.dto'
 
-import { HousingUnitTypeResponseDTO } from './HousingUnitTypeResponse.dto'
+import { HousingUnitTypeResponseFullDTO } from './HousingUnitTypeResponseFull.dto'
 
 export class HousingUnitTypePaginatedResponseDTO extends withPaginatedResponse(
-    HousingUnitTypeResponseDTO,
+    HousingUnitTypeResponseFullDTO,
 ) {}
