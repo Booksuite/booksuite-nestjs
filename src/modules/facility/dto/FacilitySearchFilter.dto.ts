@@ -1,10 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { FacilityType } from '@prisma/client'
-import { IsDefined, IsEnum } from 'class-validator'
+import { IsEnum, IsOptional } from 'class-validator'
 
 export class FacilitySearchFilterDTO {
-    @ApiProperty({ enum: FacilityType, example: FacilityType.COMPANY })
-    @IsDefined()
+    @ApiProperty({
+        enum: FacilityType,
+        example: FacilityType.COMPANY,
+        required: false,
+    })
+    @IsOptional()
     @IsEnum(FacilityType)
-    type: FacilityType
+    type?: FacilityType
 }
