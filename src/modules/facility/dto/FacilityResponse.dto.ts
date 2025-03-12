@@ -22,6 +22,6 @@ export class FacilityResponseDTO {
     @ApiProperty({ example: 'WiFi' })
     name!: string
 
-    @ApiProperty({ example: 'wifi-icon', nullable: true })
+    @ApiProperty({ example: 'wifi-icon', nullable: true, type: String })
     icon: string | null
 }

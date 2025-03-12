@@ -17,6 +17,6 @@ export class AgeGroupResponseDTO {
     })
     chargeType!: AgeGroupChargeType
 
-    @ApiProperty({ example: 50, required: false })
-    value?: number | null
+    @ApiProperty({ example: 50, nullable: true, type: Number })
+    value: number | null
 }

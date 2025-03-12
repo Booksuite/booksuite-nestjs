@@ -6,7 +6,7 @@ export class HousingUnitTypeMediaResponseDTO {
     @ApiProperty({ example: true })
     isFeatured!: boolean
 
-    @ApiProperty({ example: 1 })
+    @ApiProperty({ example: 1, nullable: true, type: Number })
     order: number | null
 
     @ApiProperty({ type: MediaResponseDTO })

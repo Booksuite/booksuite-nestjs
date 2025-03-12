@@ -7,10 +7,10 @@ export class UserResponseDTO {
     @ApiProperty({ example: 'user' })
     firstName!: string
 
-    @ApiProperty({ example: 'user', nullable: true })
+    @ApiProperty({ example: 'user', nullable: true, type: String })
     lastName: string | null
 
-    @ApiProperty({ example: '489831034', nullable: true })
+    @ApiProperty({ example: '489831034', nullable: true, type: String })
     phone: string | null
 
     @ApiProperty({ example: '123' })

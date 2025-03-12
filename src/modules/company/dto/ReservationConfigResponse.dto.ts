@@ -9,9 +9,11 @@ export class ReservationConfigResponseDTO {
 
     @ApiProperty({
         example: 5,
+        type: Number,
+        nullable: true,
         description: 'Percentage added at the end of purchase',
     })
-    tax?: number | null
+    tax: number | null
 
     @ApiProperty({
         enum: ReservationDepositType,
@@ -21,8 +23,10 @@ export class ReservationConfigResponseDTO {
 
     @ApiProperty({
         example: 50,
+        type: Number,
+        nullable: true,
     })
-    reservationDepositTypeValue?: number | null
+    reservationDepositTypeValue: number | null
 
     @ApiProperty({
         example: 'Reservation Policy, big text.',

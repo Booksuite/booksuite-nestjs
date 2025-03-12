@@ -10,41 +10,46 @@ export class HousingUnitTypeResponseDTO {
     @ApiProperty({ example: 'deluxe-suite' })
     slug!: string
 
-    @ApiProperty({ example: 'a deluxe suite for 2 people', required: false })
-    shortDescription?: string | null
+    @ApiProperty({
+        example: 'a deluxe suite for 2 people',
+        type: String,
+        nullable: true,
+    })
+    shortDescription: string | null
 
     @ApiProperty({
         example:
             'The Deluxe Suite offers a spacious room with a king-size bed, a private balcony, and premium amenities.',
-        required: false,
+        type: String,
+        nullable: true,
     })
-    description?: string | null
+    description: string | null
 
-    @ApiProperty({ example: 2 })
+    @ApiProperty({ example: 2, type: Number })
     order!: number
 
-    @ApiProperty({ example: 2, required: false })
-    minGuests?: number | null
+    @ApiProperty({ example: 2, type: Number, nullable: true })
+    minGuests: number | null
 
-    @ApiProperty({ example: 6, required: false })
-    maxGuests?: number | null
+    @ApiProperty({ example: 6, type: Number, nullable: true })
+    maxGuests: number | null
 
-    @ApiProperty({ example: 4, required: false })
-    maxAdults?: number | null
+    @ApiProperty({ example: 4, type: Number, nullable: true })
+    maxAdults: number | null
 
-    @ApiProperty({ example: 3, required: false })
-    maxChildren?: number | null
+    @ApiProperty({ example: 3, type: Number, nullable: true })
+    maxChildren: number | null
 
-    @ApiProperty({ example: 300 })
+    @ApiProperty({ example: 300, type: Number, nullable: true })
     weekdaysPrice!: number | null
 
-    @ApiProperty({ example: 500 })
+    @ApiProperty({ example: 500, type: Number, nullable: true })
     weekendPrice!: number | null
 
-    @ApiProperty({ example: 50 })
+    @ApiProperty({ example: 50, type: Number, nullable: true })
     extraAdultPrice!: number | null
 
-    @ApiProperty({ example: 70 })
+    @ApiProperty({ example: 70, type: Number })
     chargeExtraAdultHigherThan!: number
 
     @ApiProperty({ example: '2024-01-01T00:00:00.000Z' })

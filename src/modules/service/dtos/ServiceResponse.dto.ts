@@ -51,6 +51,10 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: 'Seasonal availability, blackout dates apply.' })
     notes!: string
 
-    @ApiProperty({ example: 'https://www.example.com/video', required: false })
-    videoUrl?: string | null
+    @ApiProperty({
+        example: 'https://www.example.com/video',
+        nullable: true,
+        type: String,
+    })
+    videoUrl: string | null
 }

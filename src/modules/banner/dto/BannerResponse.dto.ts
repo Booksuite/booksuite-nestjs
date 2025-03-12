@@ -14,35 +14,45 @@ export class BannerResponseDTO {
     @ApiProperty({ enum: BannerPosition, example: BannerPosition.HOME_TOP })
     position!: BannerPosition
 
-    @ApiProperty({ example: 1 })
+    @ApiProperty({ example: 1, type: Number, nullable: true })
     order!: number | null
 
-    @ApiProperty({ example: 'Banner title', required: false })
-    title?: string | null
+    @ApiProperty({ example: 'Banner title', nullable: true, type: String })
+    title: string | null
 
-    @ApiProperty({ example: 'Banner description', required: false })
-    description?: string | null
+    @ApiProperty({
+        example: 'Banner description',
+        nullable: true,
+        type: String,
+    })
+    description: string | null
 
     @ApiProperty({ enum: BannerAction, example: BannerAction.SMART_SEARCH })
     action!: BannerAction
 
-    @ApiProperty({ example: 'search', required: false })
-    actionButtonText?: string | null
+    @ApiProperty({ example: 'search', nullable: true, type: String })
+    actionButtonText: string | null
 
-    @ApiProperty({ example: 'https://via.placeholder.com', required: false })
-    actionButtonLink?: string | null
+    @ApiProperty({
+        example: 'https://via.placeholder.com',
+        nullable: true,
+        type: String,
+    })
+    actionButtonLink: string | null
 
     @ApiProperty({
         example: '2024-03-14T00:00:00Z',
-        description: 'ISO format',
-        required: false,
+        type: String,
+        format: 'date-time',
+        nullable: true,
     })
-    startAt?: Date | null
+    startAt: Date | null
 
     @ApiProperty({
         example: '2025-08-14T23:59:59Z',
-        description: 'ISO format',
-        required: false,
+        type: String,
+        format: 'date-time',
+        nullable: true,
     })
-    endAt?: Date | null
+    endAt: Date | null
 }

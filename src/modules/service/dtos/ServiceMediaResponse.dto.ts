@@ -9,10 +9,10 @@ export class ServiceMediaResponseDTO {
     @IsInt()
     id!: string
 
-    @ApiProperty({ example: 1 })
+    @ApiProperty({ example: 1, nullable: true, type: Number })
     @IsOptional()
     @IsInt()
-    order?: number | null
+    order: number | null
 
     @ApiProperty({ type: [MediaResponseDTO] })
     @IsDefined()
