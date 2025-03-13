@@ -15,6 +15,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express'
 import {
     ApiBody,
+    ApiConsumes,
     ApiOkResponse,
     ApiOperation,
     ApiParam,
@@ -77,8 +78,21 @@ export class MediaController {
     @ApiOkResponse({ type: MediaResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'uploadMedia' })
+    @ApiConsumes('multipart/form-data')
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
+    @ApiBody({
+        required: true,
+        schema: {
+            type: 'object',
+            properties: {
+                file: {
+                    type: 'string',
+                    format: 'binary',
+                },
+            },
+        },
+    })
     uploadFiles(
         @Param('companyId') companyId: string,
         @UploadedFile(
