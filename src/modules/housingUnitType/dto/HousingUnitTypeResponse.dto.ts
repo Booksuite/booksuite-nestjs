@@ -18,6 +18,12 @@ export class HousingUnitTypeResponseDTO {
     shortDescription: string | null
 
     @ApiProperty({
+        example: true,
+        type: Boolean,
+    })
+    published: boolean
+
+    @ApiProperty({
         example:
             'The Deluxe Suite offers a spacious room with a king-size bed, a private balcony, and premium amenities.',
         type: String,
