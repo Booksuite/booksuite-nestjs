@@ -14,7 +14,7 @@ export class ServiceMediaResponseDTO {
     @IsInt()
     order: number | null
 
-    @ApiProperty({ type: [MediaResponseDTO] })
+    @ApiProperty({ type: MediaResponseDTO })
     @IsDefined()
     @IsString()
     media!: MediaResponseDTO
