@@ -9,5 +9,6 @@ declare global {
         type CompanySettings = TypeCompanySettings
         type CompanyContact = TypeCompanyContact
         type MediaMetadata = TypeMediaMetadata
+        type WeekDays = number[]
     }
 }

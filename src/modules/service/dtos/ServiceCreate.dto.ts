@@ -11,7 +11,7 @@ import {
     ValidateNested,
 } from 'class-validator'
 
-import { ServiceCategoryDTO } from './ServiceCategoryCreate.dto'
+import { ServiceHousingUnitTypeCreateDTO } from './ServiceHousingUnitTypeCreate.dto'
 import { ServiceMediaCreateDTO } from './ServiceMediaCreate.dto'
 
 export class ServiceCreateDTO {
@@ -77,8 +77,12 @@ export class ServiceCreateDTO {
     // @IsOptional()
     // hosting?: Prisma.JsonValue
 
-    // @IsOptional()
-    // nights?: Prisma.JsonValue
+    @IsOptional()
+    @Type(() => Number)
+    @IsArray()
+    @ApiProperty({ type: Number, isArray: true })
+    @ValidateNested({ each: true })
+    availableWeekDays?: PrismaJson.WeekDays
 
     @ApiProperty({
         example: 'Enjoy a soothing massage during your stay',
@@ -100,7 +104,7 @@ export class ServiceCreateDTO {
     @ApiProperty({ example: 'https://www.example.com/video', required: false })
     @IsOptional()
     @IsString()
-    videoUrl?: string
+    coverMediaId?: string
 
     @ApiProperty({ type: [ServiceMediaCreateDTO] })
     @IsDefined()
@@ -109,9 +113,10 @@ export class ServiceCreateDTO {
     @ValidateNested({ each: true })
     medias!: ServiceMediaCreateDTO[]
 
-    @ApiProperty({ type: [ServiceCategoryDTO] })
+    @ApiProperty({ type: [ServiceHousingUnitTypeCreateDTO] })
     @IsDefined()
+    @IsArray()
     @ValidateNested()
-    @Type(() => ServiceCategoryDTO)
-    category: ServiceCategoryDTO
+    @Type(() => ServiceHousingUnitTypeCreateDTO)
+    availableHousingUnitTypes: ServiceHousingUnitTypeCreateDTO[]
 }

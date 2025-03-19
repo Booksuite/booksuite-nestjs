@@ -1,4 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { Type } from 'class-transformer'
+import { IsArray } from 'class-validator'
+
+import { MediaResponseDTO } from '@/modules/media/dto/MediaResponse.dto'
 
 export class ServiceResponseDTO {
     @ApiProperty({ example: 'M8c8ab0cb-7689-4357-b446-1348cfe3842d' })
@@ -51,10 +55,13 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: 'Seasonal availability, blackout dates apply.' })
     notes!: string
 
+    @Type(() => Number)
+    @IsArray()
+    availableWeekDays: PrismaJson.WeekDays | null
+
     @ApiProperty({
-        example: 'https://www.example.com/video',
         nullable: true,
-        type: String,
+        type: MediaResponseDTO,
     })
-    videoUrl: string | null
+    coverMedia?: MediaResponseDTO
 }
