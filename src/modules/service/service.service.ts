@@ -28,11 +28,8 @@ export class ServiceService {
         >()({
             ...rawData,
             company: { connect: { id: companyId } },
-            category: {
-                connectOrCreate: {
-                    where: { id: rawData.category.id },
-                    create: rawData.category,
-                },
+            housingUnitType: {
+                createMany: { data: rawData.housingUnitType },
             },
             medias: { createMany: { data: rawData.medias } },
         })
@@ -45,7 +42,9 @@ export class ServiceService {
             where: { id },
             include: {
                 medias: { include: { media: true } },
-                category: true,
+                housingUnitType: {
+                    include: { housingUnitType: true },
+                },
             },
         })
     }
@@ -58,11 +57,17 @@ export class ServiceService {
             Prisma.ServiceUpdateArgs['data']
         >()({
             ...rawData,
-            category: {
-                connectOrCreate: {
-                    where: { id: rawData.category.id },
-                    create: rawData.category,
+            housingUnitType: {
+                deleteMany: {
+                    serviceId: id,
+                    housingUnitTypeId: {
+                        notIn: rawData.housingUnitType?.map(
+                            (housingUnitType) =>
+                                housingUnitType.housingUnitTypeId,
+                        ),
+                    },
                 },
+                createMany: { data: rawData.housingUnitType },
             },
             medias: {
                 deleteMany: {
@@ -105,7 +110,7 @@ export class ServiceService {
                     ? { [order.orderBy]: order.direction }
                     : undefined,
                 include: {
-                    category: true,
+                    housingUnitType: true,
                     medias: { include: { media: true } },
                 },
             })

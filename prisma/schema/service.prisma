@@ -1,62 +1,66 @@
 model Service {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    name      String
-    billType  String
-    price     Float
-    adults    Int
-    minDaily  Int
-    minNotice Int
+  name      String
+  billType  String
+  price     Float
+  adults    Int
+  minDaily  Int
+  minNotice Int
 
-    published    Boolean @default(false)
-    onlineSale   Boolean @default(false)
-    panelSale    Boolean @default(false)
-    seasonalSale Boolean @default(false)
+  published    Boolean @default(false)
+  onlineSale   Boolean @default(false)
+  panelSale    Boolean @default(false)
+  seasonalSale Boolean @default(false)
 
-    seasonStart DateTime
-    seasonEnd   DateTime
-    hosting     Json?
-    nights      Json?
+  seasonStart DateTime
+  seasonEnd   DateTime
+  hosting     Json?
+  nights      Json?
 
-    description String  @db.Text
-    included    String  @db.Text
-    notes       String  @db.Text
-    videoUrl    String?
+  description String  @db.Text
+  included    String  @db.Text
+  notes       String  @db.Text
+  videoUrl    String?
 
-    medias       ServiceMedia[]
-    reservations ReservationService[]
+  medias                ServiceMedia[]
+  reservations          ReservationService[]
+  housingUnitType ServiceHousingUnitType[]
 
-    companyId  String
-    company    Company          @relation(fields: [companyId], references: [id], onDelete: Cascade)
-    categoryId String?
-    category   ServiceCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    @@map("services")
+  @@map("services")
 }
 
-model ServiceCategory {
-    id String @id @default(uuid())
+model ServiceHousingUnitType {
+  id String @id @default(uuid())
 
-    name     String
-    services Service[]
+  housingUnitTypeId String          @map("housingUniTypeId")
+  housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+  serviceId         String          @map("serviceId")
+  service           Service         @relation(fields: [serviceId], references: [id], onDelete: Cascade)
 
-    @@map("service_categories")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("service_housingunittype")
 }
 
 model ServiceMedia {
-    id    String @id @default(uuid())
-    order Int?   @default(0)
+  id    String @id @default(uuid())
+  order Int?   @default(0)
 
-    serviceId String  @map("serviceId")
-    sevice    Service @relation(fields: [serviceId], references: [id])
-    mediaId   String
-    media     Media   @relation(fields: [mediaId], references: [id])
+  serviceId String  @map("serviceId")
+  sevice    Service @relation(fields: [serviceId], references: [id])
+  mediaId   String
+  media     Media   @relation(fields: [mediaId], references: [id])
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    @@map("service_medias")
+  @@map("service_medias")
 }

@@ -77,10 +77,6 @@ async function setUserAndRoles() {
             },
         })
 
-        const categorie = await tx.serviceCategory.create({
-            data: { name: 'Aventura' },
-        })
-
         //HousingUnitTypes And HousingUnits
         const suiteDiamante = await tx.housingUnitType.create({
             include: { housingUnits: true },
@@ -185,7 +181,7 @@ async function setUserAndRoles() {
                 included: 'Free Wi-Fi, Breakfast, Swimming Pool Access',
                 notes: 'Seasonal availability, blackout dates apply.',
                 videoUrl: 'https://www.example.com/video',
-                categoryId: categorie.id,
+                housingUnitType: {},
                 companyId: company.id,
                 medias: {
                     create: {
@@ -220,7 +216,7 @@ async function setUserAndRoles() {
                 included: 'Yoga Mats, Water, Towel',
                 notes: 'Bring your own yoga mat if preferred.',
                 videoUrl: 'https://www.example.com/yoga-video',
-                categoryId: categorie.id,
+                housingUnitType: {},
                 companyId: company.id,
                 medias: {
                     create: {
