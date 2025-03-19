@@ -11,5 +11,5 @@ export class ServiceResponseFullDTO extends ServiceResponseDTO {
     medias!: ServiceMediaResponseDTO[]
 
     @ApiProperty({ type: [HousingUnitTypeResponseDTO], nullable: true })
-    housingUnitType: ServiceHousingUnitTypeResponseDTO[]
+    availableHousingUnitTypes: ServiceHousingUnitTypeResponseDTO[]
 }

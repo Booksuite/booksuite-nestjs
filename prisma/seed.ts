@@ -77,7 +77,7 @@ async function setUserAndRoles() {
             },
         })
 
-        //HousingUnitTypes And HousingUnits
+        //availableHousingUnitTypes And HousingUnits
         const suiteDiamante = await tx.housingUnitType.create({
             include: { housingUnits: true },
             data: {
@@ -180,8 +180,8 @@ async function setUserAndRoles() {
                 description: 'Enjoy a soothing massage during your stay',
                 included: 'Free Wi-Fi, Breakfast, Swimming Pool Access',
                 notes: 'Seasonal availability, blackout dates apply.',
-                videoUrl: 'https://www.example.com/video',
-                housingUnitType: {},
+                coverMediaId: 'fe036f0d-f742-4343-afd2-9b67356d4b95',
+                availableHousingUnitTypes: {},
                 companyId: company.id,
                 medias: {
                     create: {
@@ -215,8 +215,8 @@ async function setUserAndRoles() {
                     'Join our calming yoga sessions to start your day right.',
                 included: 'Yoga Mats, Water, Towel',
                 notes: 'Bring your own yoga mat if preferred.',
-                videoUrl: 'https://www.example.com/yoga-video',
-                housingUnitType: {},
+                coverMediaId: 'fe036f0d-f742-4343-afd2-9b67356d4b95',
+                availableHousingUnitTypes: {},
                 companyId: company.id,
                 medias: {
                     create: {

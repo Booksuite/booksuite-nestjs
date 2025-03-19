@@ -1,82 +1,82 @@
 model HousingUnitType {
-  id               String  @id @default(uuid())
-  name             String
-  slug             String  @unique
-  shortDescription String?
-  description      String? @db.Text
-  order            Int     @default(0)
-  published        Boolean @default(false)
+    id               String  @id @default(uuid())
+    name             String
+    slug             String  @unique
+    shortDescription String?
+    description      String? @db.Text
+    order            Int     @default(0)
+    published        Boolean @default(false)
 
-  // guests
-  minGuests   Int? @default(1)
-  maxGuests   Int? @default(1)
-  maxAdults   Int? @default(0)
-  maxChildren Int? @default(0)
+    // guests
+    minGuests   Int? @default(1)
+    maxGuests   Int? @default(1)
+    maxAdults   Int? @default(0)
+    maxChildren Int? @default(0)
 
-  // pricing
-  weekdaysPrice              Float
-  weekendPrice               Float
-  extraAdultPrice            Float
-  chargeExtraAdultHigherThan Int // charge extra adult when adult guests is higher than this number
+    // pricing
+    weekdaysPrice              Float
+    weekendPrice               Float
+    extraAdultPrice            Float
+    chargeExtraAdultHigherThan Int // charge extra adult when adult guests is higher than this number
 
-  companyId String
-  company   Company? @relation(fields: [companyId], references: [id])
+    companyId String
+    company   Company? @relation(fields: [companyId], references: [id])
 
-  medias       HousingUnitTypeMedia[]
-  housingUnits HousingUnit[]
-  facilities   HousingUnitTypeFacility[]
+    medias       HousingUnitTypeMedia[]
+    housingUnits HousingUnit[]
+    facilities   HousingUnitTypeFacility[]
+    services     ServiceHousingUnitType[]
 
-  createdAt              DateTime                 @default(now())
-  updatedAt              DateTime                 @updatedAt
-  deletedAt              DateTime?
-  ServiceHousingUnitType ServiceHousingUnitType[]
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    deletedAt DateTime?
 
-  @@map("housing_unit_types")
+    @@map("housing_unit_types")
 }
 
 model HousingUnit {
-  id String @id @default(uuid())
+    id String @id @default(uuid())
 
-  name String
+    name String
 
-  reservation       Reservation[]
-  housingUnitTypeId String
-  housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    reservation       Reservation[]
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  @@map("housing_units")
+    @@map("housing_units")
 }
 
 model HousingUnitTypeMedia {
-  id         String  @id @default(uuid())
-  order      Int?    @default(0)
-  isFeatured Boolean @default(false)
+    id         String  @id @default(uuid())
+    order      Int?    @default(0)
+    isFeatured Boolean @default(false)
 
-  housingUnitTypeId String
-  housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
-  mediaId           String
-  media             Media           @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    mediaId           String
+    media             Media           @relation(fields: [mediaId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  @@map("housing_unit_type_medias")
+    @@map("housing_unit_type_medias")
 }
 
 model HousingUnitTypeFacility {
-  id String @id @default(uuid())
+    id String @id @default(uuid())
 
-  isFeatured Boolean? @default(false)
+    isFeatured Boolean? @default(false)
 
-  housingUnitTypeId String
-  housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
-  facilityId        String
-  facility          Facility        @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    facilityId        String
+    facility          Facility        @relation(fields: [facilityId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  @@map("housing_unit_type_facilities")
+    @@map("housing_unit_type_facilities")
 }

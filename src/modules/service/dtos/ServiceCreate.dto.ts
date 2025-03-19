@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Prisma } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
@@ -79,7 +78,11 @@ export class ServiceCreateDTO {
     // hosting?: Prisma.JsonValue
 
     @IsOptional()
-    nights?: Prisma.JsonValue
+    @Type(() => Number)
+    @IsArray()
+    @ApiProperty({ type: Number, isArray: true })
+    @ValidateNested({ each: true })
+    availableWeekDays?: PrismaJson.WeekDays
 
     @ApiProperty({
         example: 'Enjoy a soothing massage during your stay',
@@ -101,7 +104,7 @@ export class ServiceCreateDTO {
     @ApiProperty({ example: 'https://www.example.com/video', required: false })
     @IsOptional()
     @IsString()
-    videoUrl?: string
+    coverMediaId?: string
 
     @ApiProperty({ type: [ServiceMediaCreateDTO] })
     @IsDefined()
@@ -115,5 +118,5 @@ export class ServiceCreateDTO {
     @IsArray()
     @ValidateNested()
     @Type(() => ServiceHousingUnitTypeCreateDTO)
-    housingUnitType: ServiceHousingUnitTypeCreateDTO[]
+    availableHousingUnitTypes: ServiceHousingUnitTypeCreateDTO[]
 }

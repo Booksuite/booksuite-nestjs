@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import { omit } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -26,12 +27,13 @@ export class ServiceService {
         const normalizedData = Prisma.validator<
             Prisma.ServiceCreateArgs['data']
         >()({
-            ...rawData,
+            ...omit(rawData, ['coverMediaId']),
             company: { connect: { id: companyId } },
-            housingUnitType: {
-                createMany: { data: rawData.housingUnitType },
+            availableHousingUnitTypes: {
+                createMany: { data: rawData.availableHousingUnitTypes },
             },
             medias: { createMany: { data: rawData.medias } },
+            coverMedia: { connect: { id: rawData.coverMediaId } },
         })
 
         return this.prismaService.service.create({ data: normalizedData })
@@ -42,7 +44,7 @@ export class ServiceService {
             where: { id },
             include: {
                 medias: { include: { media: true } },
-                housingUnitType: {
+                availableHousingUnitTypes: {
                     include: { housingUnitType: true },
                 },
             },
@@ -57,17 +59,17 @@ export class ServiceService {
             Prisma.ServiceUpdateArgs['data']
         >()({
             ...rawData,
-            housingUnitType: {
+            availableHousingUnitTypes: {
                 deleteMany: {
                     serviceId: id,
                     housingUnitTypeId: {
-                        notIn: rawData.housingUnitType?.map(
+                        notIn: rawData.availableHousingUnitTypes?.map(
                             (housingUnitType) =>
                                 housingUnitType.housingUnitTypeId,
                         ),
                     },
                 },
-                createMany: { data: rawData.housingUnitType },
+                createMany: { data: rawData.availableHousingUnitTypes },
             },
             medias: {
                 deleteMany: {
@@ -110,7 +112,7 @@ export class ServiceService {
                     ? { [order.orderBy]: order.direction }
                     : undefined,
                 include: {
-                    housingUnitType: true,
+                    availableHousingUnitTypes: true,
                     medias: { include: { media: true } },
                 },
             })
