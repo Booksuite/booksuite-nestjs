@@ -61,12 +61,21 @@ async function setUserAndRoles() {
         })
         console.log('Added default role')
         //Company Data
+
+        const companyId = 'c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd'
+
         const company = await tx.company.create({
             data: {
+                id: companyId,
                 name: 'BookSuite',
                 address: 'Rua das Flores, 123',
                 number: '123',
                 city: 'São Paulo',
+                zipcode: '1234567890',
+                mapCoordinates: {
+                    latitude: 123.456,
+                    longitude: 78.91,
+                },
                 state: 'SP',
                 country: 'Brasil',
                 logo: 'https://booksuite.com.br/logo.png',
@@ -78,6 +87,20 @@ async function setUserAndRoles() {
                 published: true,
             },
         })
+
+        await tx.company.update({
+            where: { id: companyId },
+            data: {
+                bannerImage: {
+                    create: {
+                        companyId: companyId,
+                        metadata: { mimetype: 'image/jpg' },
+                        url: 'https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE',
+                    },
+                },
+            },
+        })
+
         console.log('Added default company')
         //availableHousingUnitTypes And HousingUnits
         const suiteDiamante = await tx.housingUnitType.create({

@@ -7,10 +7,11 @@ model Company {
     description      String? @db.Text
     published        Boolean @default(false)
 
-    branchBusiness String?
-    timezone       String?
-    logo           String?
-    favIcon        String?
+    type CompanyType @default(HOTEL)
+
+    timezone String?
+    logo     String?
+    favIcon  String?
 
     /// [CompanySettings]
     settings Json?
@@ -28,10 +29,14 @@ model Company {
     municipalRegistration String?
 
     address String
+    zipcode String
     number  String
     country String
     state   String
     city    String
+
+    /// [MapCoordinates]
+    mapCoordinates Json
 
     userCompanyRelation UserCompanyRelation[]
     housingUnitTypes    HousingUnitType[]
@@ -45,10 +50,28 @@ model Company {
     services           Service[]
     medias             Media[]
 
+    bannerImageId     String?
+    bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
+    bannerTitle       String?
+    bannerDescription String?
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@map("companies")
+}
+
+enum CompanyType {
+    INN
+    HOTEL
+    RESORT
+    CHALET
+    FARM_HOTEL
+    AIRBNB
+    HOSTEL
+    FLAT_APART_HOTEL
+    CAMPING
+    OTHER
 }
 
 model CompanyFacility {

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import { omit } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -22,21 +23,28 @@ export class CompanyService {
 
     create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyCreateInput>()({
-            ...rawData,
+            ...omit(rawData, ['bannerImageId']),
+            bannerImage: {
+                connect: { id: rawData.bannerImageId },
+            },
             facilities: {
                 createMany: { data: rawData.facilities },
             },
             contacts: rawData.contacts || [],
         })
 
-        return this.prismaService.company.create({ data: normalizedData })
+        return this.prismaService.company.create({
+            data: normalizedData,
+            include: { bannerImage: true },
+        })
     }
 
-    getById(id: string): Promise<CompanyResponseFullDTO | null> {
+    async getById(id: string): Promise<CompanyResponseFullDTO | null> {
         return this.prismaService.company.findUnique({
             where: { id },
             include: {
                 facilities: { include: { facility: true } },
+                bannerImage: true,
             },
         })
     }
@@ -51,6 +59,9 @@ export class CompanyService {
 
         const [companies, total] =
             await this.prismaService.company.findManyAndCount({
+                include: {
+                    bannerImage: true,
+                },
                 where: this.buildSearchParams(query, filters),
                 ...paginationParams,
                 orderBy: order
@@ -87,6 +98,7 @@ export class CompanyService {
         return this.prismaService.company.update({
             where: { id },
             data: normalizedData,
+            include: { bannerImage: true },
         })
     }
 

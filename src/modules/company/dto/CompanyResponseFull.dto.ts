@@ -6,15 +6,15 @@ import { CompanyResponseDTO } from './CompanyResponse.dto'
 import { CompanySettingsResponseDTO } from './CompanySettingsResponse.dto'
 
 export class CompanyResponseFullDTO extends CompanyResponseDTO {
-    @ApiProperty({ type: CompanySettingsResponseDTO, required: false })
+    @ApiProperty({ type: CompanySettingsResponseDTO, nullable: true })
     settings: CompanySettingsResponseDTO | null
 
     @ApiProperty({
         type: [CompanyContactResponseDTO],
-        required: false,
+        nullable: true,
         default: [{ type: 'phone', value: '00000000000' }],
     })
-    contacts: CompanyContactResponseDTO[]
+    contacts: CompanyContactResponseDTO[] | null
 
     @ApiProperty({ type: [CompanyFacilityResponseDTO] })
     facilities!: CompanyFacilityResponseDTO[]

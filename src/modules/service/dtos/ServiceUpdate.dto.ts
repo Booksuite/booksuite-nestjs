@@ -14,61 +14,69 @@ import { ServiceHousingUnitTypeDTO } from './ServiceHousingUnitType.dto'
 import { ServiceMediaDTO } from './ServiceMedia.dto'
 
 export class ServiceUpdateDTO {
-    @ApiProperty({ example: 'massage', required: false })
+    @ApiProperty({ example: 'massage', required: false, type: String })
     @IsOptional()
     @IsString()
     name?: string
 
-    @ApiProperty({ example: true, required: false })
+    @ApiProperty({ example: true, required: false, type: Boolean })
     @IsOptional()
     @IsBoolean()
     published?: boolean
 
-    @ApiProperty({ example: 'PER_PERSON', required: false })
+    @ApiProperty({ example: 'PER_PERSON', required: false, type: String })
     @IsOptional()
     @IsString()
     billType?: string
 
-    @ApiProperty({ example: 200, required: false })
+    @ApiProperty({ example: 200, required: false, type: Number })
     @IsOptional()
     price?: number
 
-    @ApiProperty({ example: 3, required: false })
+    @ApiProperty({ example: 3, required: false, type: Number })
     @IsOptional()
     @IsInt()
     adults?: number
 
-    @ApiProperty({ example: 1, required: false })
+    @ApiProperty({ example: 1, required: false, type: Number })
     @IsOptional()
     @IsInt()
     minDaily?: number
 
-    @ApiProperty({ example: 1, required: false })
+    @ApiProperty({ example: 1, required: false, type: Number })
     @IsOptional()
     @IsInt()
     minNotice?: number
 
-    @ApiProperty({ example: true, required: false })
+    @ApiProperty({ example: true, required: false, type: Boolean })
     @IsOptional()
     @IsBoolean()
     onlineSale?: boolean
 
-    @ApiProperty({ example: false, required: false })
+    @ApiProperty({ example: false, required: false, type: Boolean })
     @IsOptional()
     @IsBoolean()
     panelSale?: boolean
 
-    @ApiProperty({ example: true, required: false })
+    @ApiProperty({ example: true, required: false, type: Boolean })
     @IsOptional()
     @IsBoolean()
     seasonalSale?: boolean
 
-    @ApiProperty({ example: '2025-02-21T14:30:00.000Z', required: false })
+    @ApiProperty({
+        example: '2025-02-21T14:30:00.000Z',
+        required: false,
+        type: String,
+    })
     @IsOptional()
     @IsISO8601()
     seasonStart?: string
 
-    @ApiProperty({ example: '2025-02-22T14:30:00.000Z', required: false })
+    @ApiProperty({
+        example: '2025-02-22T14:30:00.000Z',
+        required: false,
+        type: String,
+    })
     @IsOptional()
     @IsISO8601()
     seasonEnd?: string
@@ -87,6 +95,7 @@ export class ServiceUpdateDTO {
     @ApiProperty({
         example: 'Enjoy a soothing massage during your stay',
         required: false,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -95,6 +104,7 @@ export class ServiceUpdateDTO {
     @ApiProperty({
         example: 'Free Wi-Fi, Breakfast, Swimming Pool Access',
         required: false,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -103,6 +113,7 @@ export class ServiceUpdateDTO {
     @ApiProperty({
         example: 'Seasonal availability, blackout dates apply.',
         required: false,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -112,6 +123,7 @@ export class ServiceUpdateDTO {
         example: 'https://www.example.com/video',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()

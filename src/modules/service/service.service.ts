@@ -114,16 +114,14 @@ export class ServiceService {
                     ? { [order.orderBy]: order.direction }
                     : undefined,
                 include: {
-                    availableHousingUnitTypes: true,
+                    availableHousingUnitTypes: {
+                        include: { housingUnitType: true },
+                    },
                     medias: { include: { media: true } },
                 },
             })
 
-        return buildPaginatedResponse(
-            services as unknown as ServiceResponseFullDTO[],
-            totalServices,
-            pagination,
-        )
+        return buildPaginatedResponse(services, totalServices, pagination)
     }
 
     private buildSearchParams(

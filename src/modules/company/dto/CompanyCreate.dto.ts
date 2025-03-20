@@ -6,8 +6,11 @@ import {
     IsDefined,
     IsOptional,
     IsString,
+    IsUUID,
     ValidateNested,
 } from 'class-validator'
+
+import { MapCoordinatesDTO } from '@/common/dto/MapCoodinates.dto'
 
 import { CompanyContactDTO } from './CompanyContact.dto'
 import { CompanyFacilityDTO } from './CompanyFacility.dto'
@@ -116,6 +119,11 @@ export class CompanyCreateDTO {
     @IsString()
     address!: string
 
+    @ApiProperty({ example: 'Zipcode' })
+    @IsDefined()
+    @IsString()
+    zipcode!: string
+
     @ApiProperty({ example: 'Number' })
     @IsDefined()
     @IsString()
@@ -141,4 +149,31 @@ export class CompanyCreateDTO {
     @IsDefined()
     @IsString()
     city!: string
+
+    @ApiProperty({
+        type: MapCoordinatesDTO,
+        example: 'Map coordinates',
+    })
+    @IsDefined()
+    @Type(() => MapCoordinatesDTO)
+    @ValidateNested()
+    mapCoordinates: MapCoordinatesDTO
+
+    @ApiProperty({
+        example: 'e23d2e3e-6bf9-4b7c-8aec-73c37a5b9d8f',
+        type: String,
+    })
+    @IsOptional()
+    @IsUUID()
+    bannerImageId?: string
+
+    @ApiProperty({ example: 'Banner title', required: false })
+    @IsOptional()
+    @IsString()
+    bannerTitle?: string
+
+    @ApiProperty({ example: 'Banner description', required: false })
+    @IsOptional()
+    @IsString()
+    bannerDescription?: string
 }

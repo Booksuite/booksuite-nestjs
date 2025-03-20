@@ -5,6 +5,9 @@ CREATE TYPE "BannerAction" AS ENUM ('NONE', 'SMART_SEARCH', 'CUSTOM', 'SEND_TO_W
 CREATE TYPE "BannerPosition" AS ENUM ('HOME_TOP', 'FEATURED_CONTENT');
 
 -- CreateEnum
+CREATE TYPE "CompanyType" AS ENUM ('INN', 'HOTEL', 'RESORT', 'CHALET', 'FARM_HOTEL', 'AIRBNB', 'HOSTEL', 'FLAT_APART_HOTEL', 'CAMPING', 'OTHER');
+
+-- CreateEnum
 CREATE TYPE "FacilityType" AS ENUM ('HOUSING_UNIT_TYPE', 'COMPANY');
 
 -- CreateEnum
@@ -65,7 +68,7 @@ CREATE TABLE "companies" (
     "shortDescription" TEXT,
     "description" TEXT,
     "published" BOOLEAN NOT NULL DEFAULT false,
-    "branchBusiness" TEXT,
+    "type" "CompanyType" NOT NULL DEFAULT 'HOTEL',
     "timezone" TEXT,
     "logo" TEXT,
     "favIcon" TEXT,
@@ -80,10 +83,15 @@ CREATE TABLE "companies" (
     "stateRegistration" TEXT,
     "municipalRegistration" TEXT,
     "address" TEXT NOT NULL,
+    "zipcode" TEXT NOT NULL,
     "number" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "city" TEXT NOT NULL,
+    "mapCoordinates" JSONB NOT NULL,
+    "bannerImageId" TEXT,
+    "bannerTitle" TEXT,
+    "bannerDescription" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -304,13 +312,12 @@ CREATE TABLE "services" (
     "seasonStart" TIMESTAMP(3) NOT NULL,
     "seasonEnd" TIMESTAMP(3) NOT NULL,
     "hosting" JSONB,
-    "nights" JSONB,
+    "availableWeekDays" JSONB,
     "description" TEXT NOT NULL,
     "included" TEXT NOT NULL,
     "notes" TEXT NOT NULL,
-    "videoUrl" TEXT,
+    "coverMediaId" TEXT,
     "companyId" TEXT NOT NULL,
-    "categoryId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -318,11 +325,12 @@ CREATE TABLE "services" (
 );
 
 -- CreateTable
-CREATE TABLE "service_categories" (
+CREATE TABLE "service_housingunittype" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "housingUniTypeId" TEXT NOT NULL,
+    "serviceId" TEXT NOT NULL,
 
-    CONSTRAINT "service_categories_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "service_housingunittype_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -408,6 +416,9 @@ ALTER TABLE "banner_medias" ADD CONSTRAINT "banner_medias_bannerId_fkey" FOREIGN
 ALTER TABLE "banner_medias" ADD CONSTRAINT "banner_medias_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "medias"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "companies" ADD CONSTRAINT "companies_bannerImageId_fkey" FOREIGN KEY ("bannerImageId") REFERENCES "medias"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "company_facilities" ADD CONSTRAINT "company_facilities_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -468,10 +479,16 @@ ALTER TABLE "reservation_services" ADD CONSTRAINT "reservation_services_reservat
 ALTER TABLE "ReservationConfig" ADD CONSTRAINT "ReservationConfig_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "services" ADD CONSTRAINT "services_coverMediaId_fkey" FOREIGN KEY ("coverMediaId") REFERENCES "medias"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "services" ADD CONSTRAINT "services_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "services" ADD CONSTRAINT "services_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "service_categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "service_housingunittype" ADD CONSTRAINT "service_housingunittype_housingUniTypeId_fkey" FOREIGN KEY ("housingUniTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "service_housingunittype" ADD CONSTRAINT "service_housingunittype_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "service_medias" ADD CONSTRAINT "service_medias_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -26,6 +26,7 @@ export class ReservationUpdateDTO {
     @ApiProperty({
         example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         required: false,
+        type: String,
     })
     @IsOptional()
     @IsUUID()
@@ -35,6 +36,7 @@ export class ReservationUpdateDTO {
         example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsUUID()
@@ -49,32 +51,47 @@ export class ReservationUpdateDTO {
     @IsEnum(ReservationSaleChannel)
     saleChannel?: ReservationSaleChannel
 
-    @ApiProperty({ example: '2025-01-14T13:19:15.271598Z', required: false })
+    @ApiProperty({
+        example: '2025-01-14T13:19:15.271598Z',
+        required: false,
+        nullable: true,
+        type: String,
+    })
     @IsOptional()
     @IsISO8601()
-    startDate?: Date
+    startDate?: Date | null
 
-    @ApiProperty({ example: '2024-10-10T13:19:15.271627Z', required: false })
+    @ApiProperty({
+        example: '2024-10-10T13:19:15.271627Z',
+        required: false,
+        nullable: true,
+        type: String,
+    })
     @IsOptional()
     @IsISO8601()
-    endDate?: Date
+    endDate?: Date | null
 
-    @ApiProperty({ example: '7', required: false, nullable: true })
+    @ApiProperty({
+        example: '7',
+        required: false,
+        nullable: true,
+        type: Number,
+    })
     @IsOptional()
     @IsInt()
     totalDays?: number | null
 
-    @ApiProperty({ example: '2', required: false })
+    @ApiProperty({ example: '2', required: false, type: Number })
     @IsOptional()
     @IsInt()
     adults?: number
 
-    @ApiProperty({ example: '1', required: false })
+    @ApiProperty({ example: '1', required: false, type: Number })
     @IsOptional()
     @IsInt()
     children?: number
 
-    @ApiProperty({ example: 'Featured booking', required: false })
+    @ApiProperty({ example: 'Featured booking', required: false, type: String })
     @IsOptional()
     @IsString()
     notes?: string
@@ -83,6 +100,7 @@ export class ReservationUpdateDTO {
         example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsUUID()

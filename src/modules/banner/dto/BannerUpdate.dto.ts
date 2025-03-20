@@ -15,12 +15,12 @@ import {
 import { BannerMediaDTO } from './BannerMedia.dto'
 
 export class BannerUpdateDTO {
-    @ApiProperty({ example: 'Banner name', required: false })
+    @ApiProperty({ example: 'Banner name', required: false, type: String })
     @IsOptional()
     @IsString()
     name?: string
 
-    @ApiProperty({ example: true, required: false })
+    @ApiProperty({ example: true, required: false, type: Boolean })
     @IsOptional()
     @IsBoolean()
     published?: boolean
@@ -34,12 +34,17 @@ export class BannerUpdateDTO {
     @IsEnum(BannerPosition)
     position?: BannerPosition
 
-    @ApiProperty({ example: 1, required: false })
+    @ApiProperty({ example: 1, required: false, type: Number })
     @IsOptional()
     @IsInt()
     order?: number
 
-    @ApiProperty({ example: 'Banner title', required: false, nullable: true })
+    @ApiProperty({
+        example: 'Banner title',
+        required: false,
+        nullable: true,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     title?: string | null
@@ -48,6 +53,7 @@ export class BannerUpdateDTO {
         example: 'Banner description',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -62,7 +68,12 @@ export class BannerUpdateDTO {
     @IsEnum(BannerAction)
     action?: BannerAction
 
-    @ApiProperty({ example: 'search', required: false, nullable: true })
+    @ApiProperty({
+        example: 'search',
+        required: false,
+        nullable: true,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     actionButtonText?: string | null
@@ -71,6 +82,7 @@ export class BannerUpdateDTO {
         example: 'https://via.placeholder.com',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -88,6 +100,7 @@ export class BannerUpdateDTO {
         description: 'ISO format',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsISO8601()
@@ -98,6 +111,7 @@ export class BannerUpdateDTO {
         description: 'ISO format',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsISO8601()
