@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsInt, IsOptional, IsString } from 'class-validator'
 
-export class ServiceMediaCreateDTO {
+export class ServiceMediaDTO {
     @ApiProperty({ example: 1 })
     @IsOptional()
     @IsInt()

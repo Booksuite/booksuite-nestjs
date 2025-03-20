@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsInt, IsString } from 'class-validator'
 
-export class ReservationServiceCreateDTO {
+export class ReservationServiceDTO {
     @IsDefined()
     @IsInt()
     qtd!: number

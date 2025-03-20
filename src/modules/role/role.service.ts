@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { RoleCreateDTO } from './dto/RoleCreate.dto'
+import { RoleUpdateDTO } from './dto/RoleUpdate.dto'
 
 @Injectable()
 export class RoleService {
@@ -24,13 +25,10 @@ export class RoleService {
         })
     }
 
-    update(id: string, rawData: RoleCreateDTO) {
-        const normalizedData =
-            Prisma.validator<Prisma.RoleUpdateInput>()(rawData)
-
+    update(id: string, rawData: RoleUpdateDTO) {
         return this.prismaService.role.update({
             where: { id },
-            data: normalizedData,
+            data: rawData,
         })
     }
 

@@ -27,6 +27,7 @@ import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
 import { CompanySearchBodyDTO } from './dto/CompanySearchBody.dto'
 import { CompanySearchFilterDTO } from './dto/CompanySearchFilter.dto'
+import { CompanyUpdateDTO } from './dto/CompanyUpdate.dto'
 
 @ApiExtraModels(
     CompanyResponseFullDTO,
@@ -63,12 +64,13 @@ export class CompanyController {
         return this.companyService.getById(id)
     }
 
+    @ApiBody({ type: CompanyUpdateDTO })
     @ApiOkResponse({ type: CompanyResponseDTO })
     @ApiOperation({ operationId: 'updateCompany' })
     @Patch(':id')
     update(
         @Param('id') id: string,
-        @Body() updatedData: CompanyCreateDTO,
+        @Body() updatedData: CompanyUpdateDTO,
     ): Promise<CompanyResponseDTO> {
         return this.companyService.update(id, updatedData)
     }

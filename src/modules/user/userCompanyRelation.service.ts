@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { omit, pick } from 'radash'
+import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { UserCompanyRelationDTO } from './dto/UserCompanyRelationCreate.dto'
+import { UserCompanyRelationUpdateDTO } from './dto/UserCompanyRelationUpdate.dto'
 
 @Injectable()
 export class UserCompanyRelationService {
@@ -30,11 +31,10 @@ export class UserCompanyRelationService {
         })
     }
 
-    update(id: string, rawData: UserCompanyRelationDTO) {
+    update(id: string, rawData: UserCompanyRelationUpdateDTO) {
         const normalizedData =
             Prisma.validator<Prisma.UserCompanyRelationUpdateInput>()({
-                ...pick(rawData, ['permissions']),
-                role: { connect: { id: rawData.roleId } },
+                ...omit(rawData, ['companyId', 'roleId', 'userId']),
             })
 
         return this.prismaService.userCompanyRelation.update({

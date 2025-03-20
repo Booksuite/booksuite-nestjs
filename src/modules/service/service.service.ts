@@ -15,6 +15,7 @@ import { ServicePaginatedResponseDTO } from './dtos/ServicePaginatedResponse.dto
 import { ServiceResponseDTO } from './dtos/ServiceResponse.dto'
 import { ServiceResponseFullDTO } from './dtos/ServiceResponseFull.dto'
 import { ServiceSearchFilterDTO } from './dtos/ServiceSearchFilter.dto'
+import { ServiceUpdateDTO } from './dtos/ServiceUpdate.dto'
 
 @Injectable()
 export class ServiceService {
@@ -51,35 +52,36 @@ export class ServiceService {
         })
     }
 
-    update(
-        id: string,
-        rawData: ServiceCreateDTO,
-    ): Promise<ServiceResponseDTO | null> {
-        const normalizedData = Prisma.validator<
-            Prisma.ServiceUpdateArgs['data']
-        >()({
+    update(id: string, rawData: ServiceUpdateDTO): Promise<ServiceResponseDTO> {
+        const normalizedData = Prisma.validator<Prisma.ServiceUpdateInput>()({
             ...rawData,
-            availableHousingUnitTypes: {
-                deleteMany: {
-                    serviceId: id,
-                    housingUnitTypeId: {
-                        notIn: rawData.availableHousingUnitTypes?.map(
-                            (housingUnitType) =>
-                                housingUnitType.housingUnitTypeId,
-                        ),
-                    },
-                },
-                createMany: { data: rawData.availableHousingUnitTypes },
-            },
-            medias: {
-                deleteMany: {
-                    serviceId: id,
-                    mediaId: {
-                        notIn: rawData.medias.map((media) => media.mediaId),
-                    },
-                },
-                createMany: { data: rawData.medias },
-            },
+            availableHousingUnitTypes: rawData.availableHousingUnitTypes
+                ? {
+                      deleteMany: {
+                          serviceId: id,
+                          housingUnitTypeId: {
+                              notIn: rawData.availableHousingUnitTypes?.map(
+                                  (housingUnitType) =>
+                                      housingUnitType.housingUnitTypeId,
+                              ),
+                          },
+                      },
+                      createMany: { data: rawData.availableHousingUnitTypes },
+                  }
+                : undefined,
+            medias: rawData.medias
+                ? {
+                      deleteMany: {
+                          serviceId: id,
+                          mediaId: {
+                              notIn: rawData.medias.map(
+                                  (media) => media.mediaId,
+                              ),
+                          },
+                      },
+                      createMany: { data: rawData.medias },
+                  }
+                : undefined,
         })
 
         return this.prismaService.service.update({

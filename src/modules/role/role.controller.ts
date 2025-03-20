@@ -9,29 +9,30 @@ import {
 } from '@nestjs/common'
 
 import { RoleCreateDTO } from './dto/RoleCreate.dto'
+import { RoleUpdateDTO } from './dto/RoleUpdate.dto'
 import { RoleService } from './role.service'
 
 @Controller('role')
 export class RoleController {
-    constructor(private userService: RoleService) {}
+    constructor(private roleService: RoleService) {}
 
     @Post('create')
     create(@Body() data: RoleCreateDTO) {
-        return this.userService.create(data)
+        return this.roleService.create(data)
     }
 
     @Get(':id')
     getById(@Param('id') id: string) {
-        return this.userService.getById(id)
+        return this.roleService.getById(id)
     }
 
     @Patch(':id')
-    update(@Param('id') id: string, data: RoleCreateDTO) {
-        return this.userService.update(id, data)
+    update(@Param('id') id: string, @Body() data: RoleUpdateDTO) {
+        return this.roleService.update(id, data)
     }
 
     @Delete(':id')
     delete(@Param('id') id: string) {
-        return this.userService.delete(id)
+        return this.roleService.delete(id)
     }
 }

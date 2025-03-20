@@ -11,8 +11,8 @@ import {
     ValidateNested,
 } from 'class-validator'
 
-import { ServiceHousingUnitTypeCreateDTO } from './ServiceHousingUnitTypeCreate.dto'
-import { ServiceMediaCreateDTO } from './ServiceMediaCreate.dto'
+import { ServiceHousingUnitTypeDTO } from './ServiceHousingUnitType.dto'
+import { ServiceMediaDTO } from './ServiceMedia.dto'
 
 export class ServiceCreateDTO {
     @ApiProperty({ example: 'massage' })
@@ -106,17 +106,17 @@ export class ServiceCreateDTO {
     @IsString()
     coverMediaId?: string
 
-    @ApiProperty({ type: [ServiceMediaCreateDTO] })
+    @ApiProperty({ type: [ServiceMediaDTO] })
     @IsDefined()
     @IsArray()
-    @Type(() => ServiceMediaCreateDTO)
+    @Type(() => ServiceMediaDTO)
     @ValidateNested({ each: true })
-    medias!: ServiceMediaCreateDTO[]
+    medias!: ServiceMediaDTO[]
 
-    @ApiProperty({ type: [ServiceHousingUnitTypeCreateDTO] })
+    @ApiProperty({ type: [ServiceHousingUnitTypeDTO] })
     @IsDefined()
     @IsArray()
     @ValidateNested()
-    @Type(() => ServiceHousingUnitTypeCreateDTO)
-    availableHousingUnitTypes: ServiceHousingUnitTypeCreateDTO[]
+    @Type(() => ServiceHousingUnitTypeDTO)
+    availableHousingUnitTypes: ServiceHousingUnitTypeDTO[]
 }

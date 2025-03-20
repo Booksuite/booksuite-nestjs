@@ -14,6 +14,7 @@ import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePagina
 import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
 import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitTypeSearchFilterDTO } from './dto/HousingUnitTypeSearchFilter.dto'
+import { HousingUnitTypeUpdateDTO } from './dto/HousingUnitTypeUpdate.dto'
 import { HousingUnitService } from './housingUnit.service'
 
 @Injectable()
@@ -61,48 +62,54 @@ export class HousingUnitTypeService {
 
     update(
         id: string,
-        rawData: HousingUnitTypeCreateDTO,
+        rawData: HousingUnitTypeUpdateDTO,
     ): Promise<HousingUnitTypeResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeUpdateInput>()({
                 ...rawData,
-                facilities: {
-                    deleteMany: {
-                        housingUnitTypeId: id,
-                        facilityId: {
-                            notIn: rawData.facilities.map(
-                                (facility) => facility.facilityId,
-                            ),
-                        },
-                    },
-                    createMany: { data: rawData.facilities },
-                },
-                medias: {
-                    deleteMany: {
-                        housingUnitTypeId: id,
-                        mediaId: {
-                            notIn: rawData.medias?.map(
-                                (facility) => facility.mediaId,
-                            ),
-                        },
-                    },
-                    createMany: { data: rawData.medias || [] },
-                },
-                housingUnits: {
-                    deleteMany:
-                        this.housingUnitService.normalizeHousingUnitsToDelete(
-                            id,
-                            rawData.housingUnits,
-                        ),
-                    createMany:
-                        this.housingUnitService.normalizeHousingUnitsToCreateMany(
-                            rawData.housingUnits,
-                        ),
-                    updateMany:
-                        this.housingUnitService.normalizeHousingUnitsToUpdate(
-                            rawData.housingUnits,
-                        ),
-                },
+                facilities: rawData.facilities
+                    ? {
+                          deleteMany: {
+                              housingUnitTypeId: id,
+                              facilityId: {
+                                  notIn: rawData.facilities.map(
+                                      (facility) => facility.facilityId,
+                                  ),
+                              },
+                          },
+                          createMany: { data: rawData.facilities },
+                      }
+                    : undefined,
+                medias: rawData.medias
+                    ? {
+                          deleteMany: {
+                              housingUnitTypeId: id,
+                              mediaId: {
+                                  notIn: rawData.medias.map(
+                                      (facility) => facility.mediaId,
+                                  ),
+                              },
+                          },
+                          createMany: { data: rawData.medias },
+                      }
+                    : undefined,
+                housingUnits: rawData.housingUnits
+                    ? {
+                          deleteMany:
+                              this.housingUnitService.normalizeHousingUnitsToDelete(
+                                  id,
+                                  rawData.housingUnits,
+                              ),
+                          createMany:
+                              this.housingUnitService.normalizeHousingUnitsToCreateMany(
+                                  rawData.housingUnits,
+                              ),
+                          updateMany:
+                              this.housingUnitService.normalizeHousingUnitsToUpdate(
+                                  rawData.housingUnits,
+                              ),
+                      }
+                    : undefined,
             })
 
         return this.prismaService.housingUnitType.update({

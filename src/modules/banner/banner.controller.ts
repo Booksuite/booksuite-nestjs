@@ -24,6 +24,7 @@ import { BannerResponseDTO } from './dto/BannerResponse.dto'
 import { BannerResponseFullDTO } from './dto/BannerResponseFull.dto'
 import { BannerResponsePaginatedDTO } from './dto/BannerResponsePaginated.dto'
 import { BannerSearchBodyDTO } from './dto/BannerSearchBody.dto'
+import { BannerUpdateDTO } from './dto/BannerUpdate.dto'
 
 @ApiExtraModels(BannerResponseFullDTO)
 @Controller('company/:companyId/banner')
@@ -56,14 +57,14 @@ export class BannerController {
         return this.bannerService.getById(id)
     }
 
-    @ApiBody({ type: BannerCreateDTO })
+    @ApiBody({ type: BannerUpdateDTO })
     @ApiOkResponse({ type: BannerResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'updateBanner' })
     @Patch(':id')
     update(
         @Param('id') id: string,
-        @Body() bannerData: BannerCreateDTO,
+        @Body() bannerData: BannerUpdateDTO,
     ): Promise<BannerResponseDTO> {
         return this.bannerService.update(id, bannerData)
     }

@@ -14,6 +14,7 @@ import { CompanyResponseDTO } from './dto/CompanyResponse.dto'
 import { CompanyResponseFullDTO } from './dto/CompanyResponseFull.dto'
 import { CompanyResponsePaginatedDTO } from './dto/CompanyResponsePaginated.dto'
 import { CompanySearchFilterDTO } from './dto/CompanySearchFilter.dto'
+import { CompanyUpdateDTO } from './dto/CompanyUpdate.dto'
 
 @Injectable()
 export class CompanyService {
@@ -60,21 +61,27 @@ export class CompanyService {
         return buildPaginatedResponse(companies, total, pagination)
     }
 
-    update(id: string, rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
+    async update(
+        id: string,
+        rawData: CompanyUpdateDTO,
+    ): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyUpdateInput>()({
             ...rawData,
+            settings: rawData.settings || Prisma.DbNull,
             contacts: rawData.contacts || [],
-            facilities: {
-                createMany: { data: rawData.facilities },
-                deleteMany: {
-                    companyId: id,
-                    facilityId: {
-                        notIn: rawData.facilities.map(
-                            (facility) => facility.facilityId,
-                        ),
-                    },
-                },
-            },
+            facilities: rawData.facilities
+                ? {
+                      createMany: { data: rawData.facilities },
+                      deleteMany: {
+                          companyId: id,
+                          facilityId: {
+                              notIn: rawData.facilities.map(
+                                  (facility) => facility.facilityId,
+                              ),
+                          },
+                      },
+                  }
+                : undefined,
         })
 
         return this.prismaService.company.update({
