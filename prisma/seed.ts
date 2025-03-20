@@ -40,6 +40,7 @@ async function setUserAndRoles() {
                 metaData: { preferences: { notifications: true } },
             },
         })
+        console.log('Added default user 1')
 
         const user2 = await tx.user.create({
             data: {
@@ -51,13 +52,14 @@ async function setUserAndRoles() {
                 metaData: { preferences: { notifications: false } },
             },
         })
+        console.log('Added default user 2')
 
         const dbRole = await tx.role.findUnique({
             where: {
                 slug: 'admin',
             },
         })
-
+        console.log('Added default role')
         //Company Data
         const company = await tx.company.create({
             data: {
@@ -76,7 +78,7 @@ async function setUserAndRoles() {
                 published: true,
             },
         })
-
+        console.log('Added default company')
         //availableHousingUnitTypes And HousingUnits
         const suiteDiamante = await tx.housingUnitType.create({
             include: { housingUnits: true },
@@ -106,6 +108,7 @@ async function setUserAndRoles() {
                 },
             },
         })
+        console.log('Added default housing unit type')
 
         await tx.housingUnitType.create({
             include: { housingUnits: true },
@@ -135,7 +138,7 @@ async function setUserAndRoles() {
                 },
             },
         })
-
+        console.log('Added default housing unit type')
         //Facilities
         await tx.facility.createMany({
             data: [
@@ -161,7 +164,7 @@ async function setUserAndRoles() {
                 },
             ],
         })
-
+        console.log('Added default facilities')
         //Services
         const barco = await tx.service.create({
             data: {
@@ -180,9 +183,23 @@ async function setUserAndRoles() {
                 description: 'Enjoy a soothing massage during your stay',
                 included: 'Free Wi-Fi, Breakfast, Swimming Pool Access',
                 notes: 'Seasonal availability, blackout dates apply.',
-                coverMediaId: 'fe036f0d-f742-4343-afd2-9b67356d4b95',
+                coverMedia: {
+                    create: {
+                        url: 'https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE',
+                        company: {
+                            connect: {
+                                id: company.id,
+                            },
+                        },
+                        metadata: { mimetype: 'image/jpg' },
+                    },
+                },
                 availableHousingUnitTypes: {},
-                companyId: company.id,
+                company: {
+                    connect: {
+                        id: company.id,
+                    },
+                },
                 medias: {
                     create: {
                         media: {
@@ -196,7 +213,7 @@ async function setUserAndRoles() {
                 },
             },
         })
-
+        console.log('Added default service 1')
         await tx.service.create({
             data: {
                 name: 'Aula de Yoga',
@@ -215,9 +232,19 @@ async function setUserAndRoles() {
                     'Join our calming yoga sessions to start your day right.',
                 included: 'Yoga Mats, Water, Towel',
                 notes: 'Bring your own yoga mat if preferred.',
-                coverMediaId: 'fe036f0d-f742-4343-afd2-9b67356d4b95',
+                coverMedia: {
+                    create: {
+                        url: 'https://fastly.picsum.photos/id/7/367/267.jpg?hmac=7scfIEZwG08cgYCiNifF6mEOaFpXAt2N-Q7oaA37ZQk',
+                        companyId: company.id,
+                        metadata: { mimetype: 'image/jpeg' },
+                    },
+                },
                 availableHousingUnitTypes: {},
-                companyId: company.id,
+                company: {
+                    connect: {
+                        id: company.id,
+                    },
+                },
                 medias: {
                     create: {
                         media: {
@@ -231,7 +258,7 @@ async function setUserAndRoles() {
                 },
             },
         })
-
+        console.log('Added default service 2')
         //Banner
         await tx.banner.create({
             data: {
@@ -260,7 +287,7 @@ async function setUserAndRoles() {
                 },
             },
         })
-
+        console.log('Added default banner')
         //Reservation
         await tx.reservation.create({
             data: {
@@ -284,6 +311,7 @@ async function setUserAndRoles() {
                 },
             },
         })
+        console.log('Added default reservation')
 
         if (dbRole) {
             const salt = await bcrypt.genSalt()
