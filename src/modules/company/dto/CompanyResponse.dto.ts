@@ -1,4 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { CompanyType } from '@prisma/client'
+
+import { MapCoordinatesDTO } from '@/common/dto/MapCoodinates.dto'
+import { MediaResponseDTO } from '@/modules/media/dto/MediaResponse.dto'
 
 export class CompanyResponseDTO {
     @ApiProperty({ example: 'bcd82497-2cc3-4998-b3d9-99db2f56b159' })
@@ -26,6 +30,12 @@ export class CompanyResponseDTO {
         type: String,
     })
     description: string | null
+
+    @ApiProperty({
+        enum: CompanyType,
+        example: CompanyType.HOTEL,
+    })
+    type: CompanyType
 
     @ApiProperty({ example: 'Timezone', nullable: true, type: String })
     timezone: string | null
@@ -79,6 +89,9 @@ export class CompanyResponseDTO {
     @ApiProperty({ example: 'Street' })
     address!: string
 
+    @ApiProperty({ example: '88888-888' })
+    zipcode!: string
+
     @ApiProperty({ example: 'Number' })
     number!: string
 
@@ -90,4 +103,24 @@ export class CompanyResponseDTO {
 
     @ApiProperty({ example: 'City' })
     city!: string
+
+    @ApiProperty({ example: 'Map Coordinates', type: MapCoordinatesDTO })
+    mapCoordinates!: MapCoordinatesDTO
+
+    @ApiProperty({ example: 'Banner Title', nullable: true, type: String })
+    bannerTitle: string | null
+
+    @ApiProperty({
+        example: 'Banner Description',
+        nullable: true,
+        type: String,
+    })
+    bannerDescription: string | null
+
+    @ApiProperty({
+        example: 'Banner Image',
+        type: MediaResponseDTO,
+        nullable: true,
+    })
+    bannerImage: MediaResponseDTO | null
 }

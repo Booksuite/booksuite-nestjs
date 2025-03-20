@@ -9,9 +9,12 @@ export const customPrismaClient = () => {
         name: 'findManyAndCount',
         model: {
             $allModels: {
-                async findManyAndCount<Model, Args>(
+                async findManyAndCount<
+                    Model,
+                    Args extends Prisma.Args<Model, 'findMany'>,
+                >(
                     this: Model,
-                    args: Prisma.Args<Model, 'findMany'>,
+                    args: Args,
                 ): Promise<[Prisma.Result<Model, Args, 'findMany'>, number]> {
                     const context = Prisma.getExtensionContext(this)
 

@@ -5,25 +5,32 @@ import {
     IsBoolean,
     IsOptional,
     IsString,
+    IsUUID,
     ValidateNested,
 } from 'class-validator'
+
+import { MapCoordinatesDTO } from '@/common/dto/MapCoodinates.dto'
 
 import { CompanyContactDTO } from './CompanyContact.dto'
 import { CompanyFacilityDTO } from './CompanyFacility.dto'
 import { CompanySettingsDTO } from './CompanySettings.dto'
 
 export class CompanyUpdateDTO {
-    @ApiProperty({ example: 'Company name', required: false })
+    @ApiProperty({ example: 'Company name', required: false, type: String })
     @IsOptional()
     @IsString()
     name?: string
 
-    @ApiProperty({ example: true, required: false })
+    @ApiProperty({ example: true, required: false, type: Boolean })
     @IsOptional()
     @IsBoolean()
     published?: boolean
 
-    @ApiProperty({ example: 'Company simplified name', required: false })
+    @ApiProperty({
+        example: 'Company simplified name',
+        required: false,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     slug?: string
@@ -32,6 +39,7 @@ export class CompanyUpdateDTO {
         example: 'Company short Description',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -41,22 +49,38 @@ export class CompanyUpdateDTO {
         example: 'Company Description',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
     description?: string | null
 
-    @ApiProperty({ example: 'Timezone', required: false, nullable: true })
+    @ApiProperty({
+        example: 'Timezone',
+        required: false,
+        nullable: true,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     timezone?: string | null
 
-    @ApiProperty({ example: 'LogoURL', required: false, nullable: true })
+    @ApiProperty({
+        example: 'LogoURL',
+        required: false,
+        nullable: true,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     logo?: string | null
 
-    @ApiProperty({ example: 'Favicon', required: false, nullable: true })
+    @ApiProperty({
+        example: 'Favicon',
+        required: false,
+        nullable: true,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     favIcon?: string | null
@@ -78,7 +102,11 @@ export class CompanyUpdateDTO {
     @ValidateNested({ each: true })
     contacts?: CompanyContactDTO[]
 
-    @ApiProperty({ example: 'Person resposible', required: false })
+    @ApiProperty({
+        example: 'Person resposible',
+        required: false,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     responsible?: string
@@ -87,6 +115,7 @@ export class CompanyUpdateDTO {
         example: 'Resposible email address',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -96,22 +125,31 @@ export class CompanyUpdateDTO {
         example: 'Resposible phone number',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
     responsiblePhone?: string | null
 
-    @ApiProperty({ example: 'CNPJ', required: false })
+    @ApiProperty({ example: 'CNPJ', required: false, type: String })
     @IsOptional()
     @IsString()
     docType?: string
 
-    @ApiProperty({ example: 'Resposible identification', required: false })
+    @ApiProperty({
+        example: 'Resposible identification',
+        required: false,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     identification?: string
 
-    @ApiProperty({ example: 'Company legal name', required: false })
+    @ApiProperty({
+        example: 'Company legal name',
+        required: false,
+        type: String,
+    })
     @IsOptional()
     @IsString()
     companyName?: string
@@ -120,6 +158,7 @@ export class CompanyUpdateDTO {
         example: 'State registration',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
@@ -129,27 +168,28 @@ export class CompanyUpdateDTO {
         example: 'Municipal registration',
         required: false,
         nullable: true,
+        type: String,
     })
     @IsOptional()
     @IsString()
     municipalRegistration?: string | null
 
-    @ApiProperty({ example: 'Street', required: false })
+    @ApiProperty({ example: 'Street', required: false, type: String })
     @IsOptional()
     @IsString()
     address?: string
 
-    @ApiProperty({ example: 'Number', required: false })
+    @ApiProperty({ example: 'Number', required: false, type: String })
     @IsOptional()
     @IsString()
     number?: string
 
-    @ApiProperty({ example: 'Country', required: false })
+    @ApiProperty({ example: 'Country', required: false, type: String })
     @IsOptional()
     @IsString()
     country?: string
 
-    @ApiProperty({ example: 'State', required: false })
+    @ApiProperty({ example: 'State', required: false, type: String })
     @IsOptional()
     @IsString()
     state?: string
@@ -160,8 +200,47 @@ export class CompanyUpdateDTO {
     @ValidateNested({ each: true })
     facilities?: CompanyFacilityDTO[]
 
-    @ApiProperty({ example: 'City', required: false })
+    @ApiProperty({ example: 'City', required: false, type: String })
     @IsOptional()
     @IsString()
     city?: string
+
+    @ApiProperty({
+        type: MapCoordinatesDTO,
+        example: 'Map coordinates',
+    })
+    @IsOptional()
+    @Type(() => MapCoordinatesDTO)
+    @ValidateNested()
+    mapCoordinates?: MapCoordinatesDTO
+
+    @ApiProperty({
+        example: 'e23d2e3e-6bf9-4b7c-8aec-73c37a5b9d8f',
+        type: String,
+        required: false,
+        nullable: true,
+    })
+    @IsOptional()
+    @IsUUID()
+    bannerImageId?: string | null
+
+    @ApiProperty({
+        example: 'Banner title',
+        nullable: true,
+        required: false,
+        type: String,
+    })
+    @IsOptional()
+    @IsString()
+    bannerTitle?: string | null
+
+    @ApiProperty({
+        example: 'Banner description',
+        nullable: true,
+        required: false,
+        type: String,
+    })
+    @IsOptional()
+    @IsString()
+    bannerDescription?: string | null
 }
