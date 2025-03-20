@@ -54,22 +54,20 @@ export class ReservationUpdateDTO {
     @ApiProperty({
         example: '2025-01-14T13:19:15.271598Z',
         required: false,
-        nullable: true,
         type: String,
     })
     @IsOptional()
     @IsISO8601()
-    startDate?: Date | null
+    startDate?: string
 
     @ApiProperty({
         example: '2024-10-10T13:19:15.271627Z',
         required: false,
-        nullable: true,
         type: String,
     })
     @IsOptional()
     @IsISO8601()
-    endDate?: Date | null
+    endDate?: string
 
     @ApiProperty({
         example: '7',
