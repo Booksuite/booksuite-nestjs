@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma, ReservationSaleChannel } from '@prisma/client'
-import { omit } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -16,6 +15,7 @@ import { ReservationResponseDTO } from './dto/ReservationResponse.dto'
 import { ReservationResponseFullDTO } from './dto/ReservationResponseFull.dto'
 import { ReservationResponsePaginatedDTO } from './dto/ReservationResponsePaginated.dto'
 import { ReservationSearchFilterDTO } from './dto/ReservationSearchFilter.dto'
+import { ReservationUpdateDTO } from './dto/ReservationUpdate.dto'
 
 @Injectable()
 export class ReservationService {
@@ -174,24 +174,25 @@ export class ReservationService {
 
     update(
         id: string,
-        rawData: ReservationCreateDTO,
-    ): Promise<ReservationResponseDTO | null> {
-        const normalizedData = Prisma.validator<
-            Prisma.ReservationUpdateArgs['data']
-        >()({
-            ...omit(rawData, ['saleChannel', 'userId']),
-            services: {
-                deleteMany: {
-                    reservationId: id,
-                    serviceId: {
-                        notIn: rawData.services.map(
-                            (service) => service.serviceId,
-                        ),
-                    },
-                },
-                createMany: { data: rawData.services },
-            },
-        })
+        rawData: ReservationUpdateDTO,
+    ): Promise<ReservationResponseDTO> {
+        const normalizedData =
+            Prisma.validator<Prisma.ReservationUpdateInput>()({
+                ...rawData,
+                services: rawData.services
+                    ? {
+                          deleteMany: {
+                              reservationId: id,
+                              serviceId: {
+                                  notIn: rawData.services.map(
+                                      (service) => service.serviceId,
+                                  ),
+                              },
+                          },
+                          createMany: { data: rawData.services },
+                      }
+                    : undefined,
+            })
 
         return this.prismaService.reservation.update({
             where: { id },

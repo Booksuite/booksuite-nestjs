@@ -23,6 +23,7 @@ import { ServicePaginatedResponseDTO } from './dtos/ServicePaginatedResponse.dto
 import { ServiceResponseDTO } from './dtos/ServiceResponse.dto'
 import { ServiceResponseFullDTO } from './dtos/ServiceResponseFull.dto'
 import { ServiceSearchBodyDTO } from './dtos/ServiceSearchBody.dto'
+import { ServiceUpdateDTO } from './dtos/ServiceUpdate.dto'
 import { ServiceService } from './service.service'
 
 @ApiExtraModels(ServiceResponseFullDTO)
@@ -55,14 +56,15 @@ export class ServiceController {
         return this.serviceService.getById(id)
     }
 
+    @ApiBody({ type: ServiceUpdateDTO })
     @ApiOkResponse({ type: ServiceResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'updateService' })
     @Patch(':id')
     update(
         @Param('id') id: string,
-        @Body() data: ServiceCreateDTO,
-    ): Promise<ServiceResponseDTO | null> {
+        @Body() data: ServiceUpdateDTO,
+    ): Promise<ServiceResponseDTO> {
         return this.serviceService.update(id, data)
     }
 

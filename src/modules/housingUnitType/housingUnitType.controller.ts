@@ -21,6 +21,7 @@ import { HousingUnitTypePaginatedResponseDTO } from './dto/HousingUnitTypePagina
 import { HousingUnitTypeResponseDTO } from './dto/HousingUnitTypeResponse.dto'
 import { HousingUnitTypeResponseFullDTO } from './dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitTypeSearchBodyDTO } from './dto/HousingUnitTypeSearchBody.dto'
+import { HousingUnitTypeUpdateDTO } from './dto/HousingUnitTypeUpdate.dto'
 import { HousingUnitTypeService } from './housingUnitType.service'
 
 @Controller('company/:companyId/housingUnitType')
@@ -47,13 +48,14 @@ export class HousingUnitTypeController {
         return this.housingUnitTypeService.getById(id)
     }
 
+    @ApiBody({ type: HousingUnitTypeUpdateDTO })
     @ApiOkResponse({ type: HousingUnitTypeResponseDTO })
     @Patch(':id')
     @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'updateHousingUnitType' })
     update(
         @Param('id') id: string,
-        @Body() updatedData: HousingUnitTypeCreateDTO,
+        @Body() updatedData: HousingUnitTypeUpdateDTO,
     ): Promise<HousingUnitTypeResponseDTO> {
         return this.housingUnitTypeService.update(id, updatedData)
     }

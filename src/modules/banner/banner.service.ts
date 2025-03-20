@@ -14,6 +14,7 @@ import { BannerResponseDTO } from './dto/BannerResponse.dto'
 import { BannerResponseFullDTO } from './dto/BannerResponseFull.dto'
 import { BannerResponsePaginatedDTO } from './dto/BannerResponsePaginated.dto'
 import { BannerSearchFilterDTO } from './dto/BannerSearchFilter.dto'
+import { BannerUpdateDTO } from './dto/BannerUpdate.dto'
 
 @Injectable()
 export class BannerService {
@@ -65,18 +66,22 @@ export class BannerService {
         })
     }
 
-    update(id: string, rawData: BannerCreateDTO): Promise<BannerResponseDTO> {
+    update(id: string, rawData: BannerUpdateDTO): Promise<BannerResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
             ...rawData,
-            medias: {
-                deleteMany: {
-                    bannerId: id,
-                    mediaId: {
-                        notIn: rawData.medias.map((media) => media.mediaId),
-                    },
-                },
-                createMany: { data: rawData.medias },
-            },
+            medias: rawData.medias
+                ? {
+                      deleteMany: {
+                          bannerId: id,
+                          mediaId: {
+                              notIn: rawData.medias.map(
+                                  (media) => media.mediaId,
+                              ),
+                          },
+                      },
+                      createMany: { data: rawData.medias },
+                  }
+                : undefined,
         })
 
         return this.prismaService.banner.update({

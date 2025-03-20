@@ -12,7 +12,7 @@ import {
     IsUUID,
 } from 'class-validator'
 
-import { ReservationServiceCreateDTO } from './ReservationServiceCreate.dto.model'
+import { ReservationServiceDTO } from './ReservationService.dto'
 
 export class ReservationCreateDTO {
     @ApiProperty({
@@ -77,9 +77,9 @@ export class ReservationCreateDTO {
     @IsUUID()
     housingUnitId: string
 
-    @ApiProperty({ type: [ReservationServiceCreateDTO] })
+    @ApiProperty({ type: [ReservationServiceDTO] })
     @IsDefined()
     @IsArray()
-    @Type(() => ReservationServiceCreateDTO)
-    services!: ReservationServiceCreateDTO[]
+    @Type(() => ReservationServiceDTO)
+    services!: ReservationServiceDTO[]
 }

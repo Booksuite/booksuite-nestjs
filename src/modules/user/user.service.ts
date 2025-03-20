@@ -4,6 +4,7 @@ import { Prisma } from '@prisma/client'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { UserCreateDTO } from './dto/UserCreate.dto'
+import { UserUpdateDTO } from './dto/UserUpdate.dto'
 
 @Injectable()
 export class UserService {
@@ -24,13 +25,10 @@ export class UserService {
         })
     }
 
-    update(id: string, rawData: UserCreateDTO) {
-        const normalizedData =
-            Prisma.validator<Prisma.UserUpdateInput>()(rawData)
-
+    update(id: string, rawData: UserUpdateDTO) {
         return this.prismaService.user.update({
             where: { id },
-            data: normalizedData,
+            data: rawData,
         })
     }
 

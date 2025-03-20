@@ -9,6 +9,7 @@ import {
     Query,
 } from '@nestjs/common'
 import {
+    ApiBody,
     ApiExtraModels,
     ApiOkResponse,
     ApiOperation,
@@ -22,6 +23,7 @@ import { ReservationResponseDTO } from './dto/ReservationResponse.dto'
 import { ReservationResponseFullDTO } from './dto/ReservationResponseFull.dto'
 import { ReservationResponsePaginatedDTO } from './dto/ReservationResponsePaginated.dto'
 import { ReservationSearchBodyDTO } from './dto/ReservationSearchBody.dto'
+import { ReservationUpdateDTO } from './dto/ReservationUpdate.dto'
 import { ReservationService } from './reservation.service'
 
 @ApiExtraModels(ReservationResponseFullDTO)
@@ -76,14 +78,15 @@ export class ReservationController {
         return this.reservationService.getById(id)
     }
 
+    @ApiBody({ type: ReservationUpdateDTO })
     @ApiOkResponse({ type: ReservationResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
-    @ApiOperation({ operationId: 'updateReservation' })
     @Patch(':id')
     update(
+        @Param('companyId') companyId: string,
         @Param('id') id: string,
-        @Body() updatedData: ReservationCreateDTO,
-    ): Promise<ReservationResponseDTO | null> {
+        @Body() updatedData: ReservationUpdateDTO,
+    ): Promise<ReservationResponseDTO> {
         return this.reservationService.update(id, updatedData)
     }
 
