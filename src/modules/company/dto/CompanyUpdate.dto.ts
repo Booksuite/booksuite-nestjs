@@ -1,8 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { CompanyType } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
     IsBoolean,
+    IsEnum,
     IsOptional,
     IsString,
     IsUUID,
@@ -128,6 +130,24 @@ export class CompanyUpdateDTO {
     @IsOptional()
     @IsString()
     responsiblePhone?: string
+
+    @ApiProperty({
+        example: '88811901',
+        required: false,
+        type: String,
+    })
+    @IsOptional()
+    @IsString()
+    zipCode?: string
+
+    @ApiProperty({
+        enum: CompanyType,
+        required: false,
+        type: String,
+    })
+    @IsOptional()
+    @IsEnum(CompanyType)
+    type?: CompanyType
 
     @ApiProperty({ example: 'CNPJ', required: false, type: String })
     @IsOptional()
