@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { BillingType } from '@prisma/client'
 import { Type } from 'class-transformer'
 import { IsArray } from 'class-validator'
 
@@ -14,8 +15,12 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: true })
     published!: boolean
 
-    @ApiProperty({ example: 'PER_PERSON' })
-    billType!: string
+    @ApiProperty({
+        enum: BillingType,
+        enumName: 'BillingType',
+        example: 'PER_GUEST_DAILY',
+    })
+    billingType!: BillingType
 
     @ApiProperty({ example: 200 })
     price!: number

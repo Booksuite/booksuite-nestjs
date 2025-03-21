@@ -1,10 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { BillingType } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
     IsBoolean,
+    IsEnum,
     IsInt,
     IsISO8601,
+    IsNumber,
     IsOptional,
     IsString,
     ValidateNested,
@@ -24,10 +27,15 @@ export class ServiceUpdateDTO {
     @IsBoolean()
     published?: boolean
 
-    @ApiProperty({ example: 'PER_PERSON', required: false, type: String })
+    @ApiProperty({
+        example: 'PER_PERSON',
+        required: false,
+        enum: BillingType,
+        enumName: 'BillingType',
+    })
     @IsOptional()
-    @IsString()
-    billType?: string
+    @IsEnum(BillingType)
+    billingType?: BillingType
 
     @ApiProperty({ example: 200, required: false, type: Number })
     @IsOptional()
@@ -131,7 +139,7 @@ export class ServiceUpdateDTO {
         required: false,
     })
     @IsOptional()
-    @Type(() => Number)
+    @IsNumber({}, { each: true })
     @IsArray()
     availableWeekDays?: PrismaJson.WeekDays
 

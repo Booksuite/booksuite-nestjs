@@ -195,7 +195,7 @@ async function setUserAndRoles() {
             data: {
                 name: 'Passeio de Barco',
                 published: true,
-                billType: 'PER_PERSON',
+                billingType: 'PER_GUEST_DAILY',
                 price: 200,
                 adults: 3,
                 minDaily: 1,
@@ -243,7 +243,7 @@ async function setUserAndRoles() {
             data: {
                 name: 'Aula de Yoga',
                 published: true,
-                billType: 'PER_SESSION',
+                billingType: 'PER_RESERVATION',
                 price: 150,
                 adults: 20,
                 minDaily: 1,

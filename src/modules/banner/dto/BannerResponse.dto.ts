@@ -11,7 +11,11 @@ export class BannerResponseDTO {
     @ApiProperty({ example: 'Banner name' })
     name!: string
 
-    @ApiProperty({ enum: BannerPosition, example: BannerPosition.HOME_TOP })
+    @ApiProperty({
+        enum: BannerPosition,
+        enumName: 'BannerPosition',
+        example: BannerPosition.HOME_TOP,
+    })
     position!: BannerPosition
 
     @ApiProperty({ example: 1, type: Number, nullable: true })
@@ -27,7 +31,11 @@ export class BannerResponseDTO {
     })
     description: string | null
 
-    @ApiProperty({ enum: BannerAction, example: BannerAction.SMART_SEARCH })
+    @ApiProperty({
+        enum: BannerAction,
+        enumName: 'BannerAction',
+        example: BannerAction.SMART_SEARCH,
+    })
     action!: BannerAction
 
     @ApiProperty({ example: 'search', nullable: true, type: String })

@@ -6,12 +6,12 @@ import { OrderByRequest } from '@/common/types/orderBy'
 import { MediaOrderBy } from '../enum/MediaOrderBy.enum'
 
 export class MediaOrderByDTO implements OrderByRequest {
-    @ApiProperty({ enum: MediaOrderBy })
+    @ApiProperty({ enum: MediaOrderBy, enumName: 'MediaOrderBy' })
     @IsDefined()
     @IsEnum(MediaOrderBy)
     orderBy: MediaOrderBy
 
-    @ApiProperty({ enum: OrderDirection })
+    @ApiProperty({ enum: OrderDirection, enumName: 'OrderDirection' })
     @IsDefined()
     @IsEnum(OrderDirection)
     direction: OrderDirection

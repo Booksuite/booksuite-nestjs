@@ -11,7 +11,7 @@ export class HousingUnitTypeOrderByDTO implements OrderByRequest {
     @IsEnum(HousingUnitTypeOrderBy)
     orderBy: HousingUnitTypeOrderBy
 
-    @ApiProperty({ enum: OrderDirection })
+    @ApiProperty({ enum: OrderDirection, enumName: 'OrderDirection' })
     @IsDefined()
     @IsEnum(OrderDirection)
     direction: OrderDirection

@@ -1,12 +1,12 @@
 model Service {
     id String @id @default(uuid())
 
-    name      String
-    billType  String
-    price     Float
-    adults    Int
-    minDaily  Int
-    minNotice Int
+    name        String
+    billingType BillingType
+    price       Float
+    adults      Int
+    minDaily    Int
+    minNotice   Int
 
     published    Boolean @default(false)
     onlineSale   Boolean @default(false)
@@ -42,9 +42,9 @@ model Service {
 model ServiceHousingUnitType {
     id String @id @default(uuid())
 
-    housingUnitTypeId String          @map("housingUniTypeId")
+    housingUnitTypeId String
     housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
-    serviceId         String          @map("serviceId")
+    serviceId         String
     service           Service         @relation(fields: [serviceId], references: [id], onDelete: Cascade)
 
     @@map("service_housingunittype")
@@ -54,7 +54,7 @@ model ServiceMedia {
     id    String @id @default(uuid())
     order Int?   @default(0)
 
-    serviceId String  @map("serviceId")
+    serviceId String
     sevice    Service @relation(fields: [serviceId], references: [id])
     mediaId   String
     media     Media   @relation(fields: [mediaId], references: [id])

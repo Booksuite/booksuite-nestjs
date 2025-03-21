@@ -26,7 +26,11 @@ export class BannerCreateDTO {
     @IsBoolean()
     published: boolean
 
-    @ApiProperty({ enum: BannerPosition, example: BannerPosition.HOME_TOP })
+    @ApiProperty({
+        enum: BannerPosition,
+        enumName: 'BannerPosition',
+        example: BannerPosition.HOME_TOP,
+    })
     @IsDefined()
     @IsEnum(BannerPosition)
     position!: BannerPosition
@@ -46,7 +50,11 @@ export class BannerCreateDTO {
     @IsString()
     description?: string
 
-    @ApiProperty({ enum: BannerAction, example: BannerAction.SMART_SEARCH })
+    @ApiProperty({
+        enum: BannerAction,
+        enumName: 'BannerAction',
+        example: BannerAction.SMART_SEARCH,
+    })
     @IsDefined()
     @IsEnum(BannerAction)
     action!: BannerAction

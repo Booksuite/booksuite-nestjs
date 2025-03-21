@@ -28,6 +28,9 @@ CREATE TYPE "ReservationStatus" AS ENUM ('WAITING_PAYMENT', 'CONFIRMED', 'CHECKE
 -- CreateEnum
 CREATE TYPE "ReservationDepositType" AS ENUM ('PERCENTAGE_ON_RESERVATION', 'FULL_AMOUNT_ON_RESERVATION', 'DAYLIES_FULL_AMOUNT_ON_RESERVATION', 'FIRST_DAYLY_ON_RESERVATION', 'NO_CHARGE');
 
+-- CreateEnum
+CREATE TYPE "BillingType" AS ENUM ('PER_GUEST_DAILY', 'PER_GUEST', 'DAILY', 'PER_RESERVATION');
+
 -- CreateTable
 CREATE TABLE "banners" (
     "id" TEXT NOT NULL,
@@ -300,7 +303,7 @@ CREATE TABLE "ReservationConfig" (
 CREATE TABLE "services" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "billType" TEXT NOT NULL,
+    "billingType" "BillingType" NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "adults" INTEGER NOT NULL,
     "minDaily" INTEGER NOT NULL,
@@ -327,7 +330,7 @@ CREATE TABLE "services" (
 -- CreateTable
 CREATE TABLE "service_housingunittype" (
     "id" TEXT NOT NULL,
-    "housingUniTypeId" TEXT NOT NULL,
+    "housingUnitTypeId" TEXT NOT NULL,
     "serviceId" TEXT NOT NULL,
 
     CONSTRAINT "service_housingunittype_pkey" PRIMARY KEY ("id")
@@ -485,7 +488,7 @@ ALTER TABLE "services" ADD CONSTRAINT "services_coverMediaId_fkey" FOREIGN KEY (
 ALTER TABLE "services" ADD CONSTRAINT "services_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "service_housingunittype" ADD CONSTRAINT "service_housingunittype_housingUniTypeId_fkey" FOREIGN KEY ("housingUniTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "service_housingunittype" ADD CONSTRAINT "service_housingunittype_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "service_housingunittype" ADD CONSTRAINT "service_housingunittype_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE CASCADE ON UPDATE CASCADE;

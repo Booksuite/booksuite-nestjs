@@ -6,12 +6,15 @@ import { OrderByRequest } from '@/common/types/orderBy'
 import { CompanyOrderBy } from '../enums/CompanyOrderBy.enum'
 
 export class CompanyOrderByDTO implements OrderByRequest {
-    @ApiProperty({ enum: CompanyOrderBy })
+    @ApiProperty({ enum: CompanyOrderBy, enumName: 'CompanyOrderBy' })
     @IsDefined()
     @IsEnum(CompanyOrderBy)
     orderBy: CompanyOrderBy
 
-    @ApiProperty({ enum: OrderDirection })
+    @ApiProperty({
+        enum: OrderDirection,
+        enumName: 'OrderDirection',
+    })
     @IsDefined()
     @IsEnum(OrderDirection)
     direction: OrderDirection
