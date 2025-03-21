@@ -79,30 +79,30 @@ export class CompanyCreateDTO {
     @IsString()
     responsible!: string
 
-    @ApiProperty({ example: 'Resposible email address', required: false })
+    @ApiProperty({ example: 'Resposible email address' })
     @IsOptional()
     @IsString()
-    responsibleEmail?: string
+    responsibleEmail: string
 
-    @ApiProperty({ example: 'Resposible phone number', required: false })
+    @ApiProperty({ example: 'Resposible phone number' })
     @IsOptional()
     @IsString()
-    responsiblePhone?: string
+    responsiblePhone: string
 
     @ApiProperty({ example: 'CNPJ' })
     @IsDefined()
     @IsString()
     docType!: string
 
-    @ApiProperty({ example: 'Resposible identification' })
-    @IsDefined()
+    @ApiProperty({ example: 'Resposible identification', required: false })
+    @IsOptional()
     @IsString()
-    identification!: string
+    identification?: string
 
-    @ApiProperty({ example: 'Company legal name' })
-    @IsDefined()
+    @ApiProperty({ example: 'Company legal name', required: false })
+    @IsOptional()
     @IsString()
-    companyName!: string
+    companyName?: string
 
     @ApiProperty({ example: 'State registration', required: false })
     @IsOptional()
@@ -114,41 +114,41 @@ export class CompanyCreateDTO {
     @IsString()
     municipalRegistration?: string
 
-    @ApiProperty({ example: 'Street' })
-    @IsDefined()
+    @ApiProperty({ example: 'Street', required: false })
+    @IsOptional()
     @IsString()
-    address!: string
+    address?: string
 
-    @ApiProperty({ example: 'Zipcode' })
-    @IsDefined()
+    @ApiProperty({ example: 'Zipcode', required: false })
+    @IsOptional()
     @IsString()
-    zipcode!: string
+    zipcode?: string
 
-    @ApiProperty({ example: 'Number' })
-    @IsDefined()
+    @ApiProperty({ example: 'Number', required: false })
+    @IsOptional()
     @IsString()
-    number!: string
+    number?: string
 
-    @ApiProperty({ example: 'Country' })
-    @IsDefined()
+    @ApiProperty({ example: 'Country', required: false })
+    @IsOptional()
     @IsString()
-    country!: string
+    country?: string
 
-    @ApiProperty({ example: 'State' })
-    @IsDefined()
+    @ApiProperty({ example: 'State', required: false })
+    @IsOptional()
     @IsString()
-    state!: string
+    state?: string
 
-    @ApiProperty({ type: [CompanyFacilityDTO] })
-    @IsDefined()
-    @Type(() => CompanyFacilityDTO)
-    @ValidateNested({ each: true })
-    facilities!: CompanyFacilityDTO[]
-
-    @ApiProperty({ example: 'City' })
+    @ApiProperty({ example: 'City', required: false })
     @IsDefined()
     @IsString()
     city!: string
+
+    @ApiProperty({ type: [CompanyFacilityDTO], required: false })
+    @IsOptional()
+    @Type(() => CompanyFacilityDTO)
+    @ValidateNested({ each: true })
+    facilities?: CompanyFacilityDTO[]
 
     @ApiProperty({
         type: MapCoordinatesDTO,
@@ -161,6 +161,7 @@ export class CompanyCreateDTO {
 
     @ApiProperty({
         example: 'e23d2e3e-6bf9-4b7c-8aec-73c37a5b9d8f',
+        required: false,
         type: String,
     })
     @IsOptional()

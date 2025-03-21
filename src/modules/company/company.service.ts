@@ -27,10 +27,12 @@ export class CompanyService {
             bannerImage: {
                 connect: { id: rawData.bannerImageId },
             },
-            facilities: {
-                createMany: { data: rawData.facilities },
-            },
-            contacts: rawData.contacts || [],
+            facilities: rawData.facilities
+                ? {
+                      createMany: { data: rawData.facilities },
+                  }
+                : undefined,
+            contacts: rawData.contacts || undefined,
         })
 
         return this.prismaService.company.create({

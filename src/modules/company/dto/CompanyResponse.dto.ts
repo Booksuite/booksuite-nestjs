@@ -37,13 +37,25 @@ export class CompanyResponseDTO {
     })
     type: CompanyType
 
-    @ApiProperty({ example: 'Timezone', nullable: true, type: String })
+    @ApiProperty({
+        example: 'Timezone',
+        nullable: true,
+        type: String,
+    })
     timezone: string | null
 
-    @ApiProperty({ example: 'LogoURL', nullable: true, type: String })
+    @ApiProperty({
+        example: 'LogoURL',
+        nullable: true,
+        type: String,
+    })
     logo: string | null
 
-    @ApiProperty({ example: 'Favicon', nullable: true, type: String })
+    @ApiProperty({
+        example: 'Favicon',
+        nullable: true,
+        type: String,
+    })
     favIcon: string | null
 
     @ApiProperty({ example: 'Person responsible' })
@@ -51,26 +63,36 @@ export class CompanyResponseDTO {
 
     @ApiProperty({
         example: 'Responsible email address',
-        nullable: true,
         type: String,
     })
-    responsibleEmail: string | null
+    responsibleEmail: string
 
     @ApiProperty({
         example: 'Responsible phone number',
+        type: String,
+    })
+    responsiblePhone: string
+
+    @ApiProperty({
+        example: 'Document Type',
         nullable: true,
         type: String,
     })
-    responsiblePhone: string | null
+    docType: string | null
 
-    @ApiProperty({ example: 'Document Type' })
-    docType!: string
+    @ApiProperty({
+        type: String,
+        example: 'Responsible identification',
+        nullable: true,
+    })
+    identification: string | null
 
-    @ApiProperty({ example: 'Responsible identification' })
-    identification!: string
-
-    @ApiProperty({ example: 'Company legal name' })
-    companyName!: string
+    @ApiProperty({
+        type: String,
+        example: 'Company legal name',
+        nullable: true,
+    })
+    companyName: string | null
 
     @ApiProperty({
         example: 'State registration',
@@ -82,30 +104,35 @@ export class CompanyResponseDTO {
     @ApiProperty({
         example: 'Municipal registration',
         nullable: true,
+
         type: String,
     })
     municipalRegistration: string | null
 
-    @ApiProperty({ example: 'Street' })
-    address!: string
+    @ApiProperty({ example: 'Street', nullable: true, type: String })
+    address: string | null
 
-    @ApiProperty({ example: '88888-888' })
-    zipcode!: string
+    @ApiProperty({ example: '88888-888', nullable: true, type: String })
+    zipcode: string | null
 
-    @ApiProperty({ example: 'Number' })
-    number!: string
+    @ApiProperty({ example: 'Number', nullable: true, type: String })
+    number: string | null
 
-    @ApiProperty({ example: 'Country' })
-    country!: string
+    @ApiProperty({ example: 'Country', nullable: true, type: String })
+    country: string | null
 
-    @ApiProperty({ example: 'State' })
-    state!: string
+    @ApiProperty({ example: 'State', nullable: true, type: String })
+    state: string | null
 
-    @ApiProperty({ example: 'City' })
-    city!: string
+    @ApiProperty({ example: 'City', nullable: true, type: String })
+    city: string | null
 
-    @ApiProperty({ example: 'Map Coordinates', type: MapCoordinatesDTO })
-    mapCoordinates!: MapCoordinatesDTO
+    @ApiProperty({
+        example: 'Map Coordinates',
+        type: MapCoordinatesDTO,
+        nullable: true,
+    })
+    mapCoordinates: MapCoordinatesDTO | null
 
     @ApiProperty({ example: 'Banner Title', nullable: true, type: String })
     bannerTitle: string | null

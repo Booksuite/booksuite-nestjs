@@ -81,6 +81,8 @@ async function setUserAndRoles() {
                 logo: 'https://booksuite.com.br/logo.png',
                 slug: 'booksuites',
                 responsible: 'BookSuite',
+                responsibleEmail: 'admin@booksuite.com.br',
+                responsiblePhone: '1234567890',
                 docType: 'CNPJ',
                 identification: '1234567890',
                 companyName: 'BookSuite',

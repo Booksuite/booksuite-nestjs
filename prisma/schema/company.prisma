@@ -19,24 +19,24 @@ model Company {
     contacts Json[]
 
     responsible      String
-    responsibleEmail String?
-    responsiblePhone String?
+    responsibleEmail String
+    responsiblePhone String
 
-    docType               String
-    identification        String
-    companyName           String
+    docType               String?
+    identification        String?
+    companyName           String?
     stateRegistration     String?
     municipalRegistration String?
 
-    address String
-    zipcode String
-    number  String
-    country String
-    state   String
-    city    String
+    address String?
+    zipcode String?
+    number  String?
+    country String?
+    state   String?
+    city    String?
 
     /// [MapCoordinates]
-    mapCoordinates Json
+    mapCoordinates Json?
 
     userCompanyRelation UserCompanyRelation[]
     housingUnitTypes    HousingUnitType[]

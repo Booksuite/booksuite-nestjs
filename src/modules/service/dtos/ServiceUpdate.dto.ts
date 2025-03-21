@@ -81,17 +81,6 @@ export class ServiceUpdateDTO {
     @IsISO8601()
     seasonEnd?: string
 
-    @IsOptional()
-    @Type(() => Number)
-    @IsArray()
-    @ApiProperty({
-        type: Number,
-        isArray: true,
-        required: false,
-    })
-    @ValidateNested({ each: true })
-    availableWeekDays?: PrismaJson.WeekDays
-
     @ApiProperty({
         example: 'Enjoy a soothing massage during your stay',
         required: false,
@@ -136,10 +125,19 @@ export class ServiceUpdateDTO {
     @ValidateNested({ each: true })
     medias?: ServiceMediaDTO[]
 
+    @ApiProperty({
+        type: Number,
+        isArray: true,
+        required: false,
+    })
+    @IsOptional()
+    @Type(() => Number)
+    @IsArray()
+    availableWeekDays?: PrismaJson.WeekDays
+
     @ApiProperty({ type: [ServiceHousingUnitTypeDTO], required: false })
     @IsOptional()
     @IsArray()
-    @ValidateNested()
     @Type(() => ServiceHousingUnitTypeDTO)
     availableHousingUnitTypes?: ServiceHousingUnitTypeDTO[]
 }

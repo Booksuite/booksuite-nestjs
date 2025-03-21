@@ -114,22 +114,20 @@ export class CompanyUpdateDTO {
     @ApiProperty({
         example: 'Resposible email address',
         required: false,
-        nullable: true,
         type: String,
     })
     @IsOptional()
     @IsString()
-    responsibleEmail?: string | null
+    responsibleEmail?: string
 
     @ApiProperty({
         example: 'Resposible phone number',
         required: false,
-        nullable: true,
         type: String,
     })
     @IsOptional()
     @IsString()
-    responsiblePhone?: string | null
+    responsiblePhone?: string
 
     @ApiProperty({ example: 'CNPJ', required: false, type: String })
     @IsOptional()
