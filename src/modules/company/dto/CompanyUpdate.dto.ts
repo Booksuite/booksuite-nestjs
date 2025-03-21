@@ -138,7 +138,7 @@ export class CompanyUpdateDTO {
     })
     @IsOptional()
     @IsString()
-    zipCode?: string
+    zipcode?: string
 
     @ApiProperty({
         enum: CompanyType,
