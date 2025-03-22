@@ -26,7 +26,7 @@ export class AgeGroupDTO {
     @IsDefined()
     chargeType!: AgeGroupChargeType
 
-    @ApiProperty({ example: 50, required: false })
+    @ApiProperty({ example: 50, required: false, type: Number })
     @IsOptional()
     @IsNumber()
     value?: number | null
