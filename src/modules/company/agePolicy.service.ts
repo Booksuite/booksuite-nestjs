@@ -29,7 +29,7 @@ export class AgePolicyService {
             company: { connect: { id: companyId } },
             ageGroups: {
                 connectOrCreate: rawData.ageGroups.map((group) => ({
-                    where: { id: group.id },
+                    where: { id: group.id || '' },
                     create: group,
                 })),
             },
