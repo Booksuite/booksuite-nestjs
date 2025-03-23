@@ -37,8 +37,8 @@ export class MediaController {
     @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'upsertMedia' })
     @Patch('upsert')
-    upsert(@Body() data: MediaDTO) {
-        return this.mediaService.upsert(data)
+    upsert(@Param('companyId') companyId: string, @Body() data: MediaDTO) {
+        return this.mediaService.upsert(companyId, data)
     }
 
     @ApiOkResponse({ type: MediaResponseDTO })

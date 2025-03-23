@@ -21,11 +21,11 @@ export class MediaService {
         private uploadService: UploadService,
     ) {}
 
-    upsert(rawData: MediaDTO) {
+    upsert(companyId: string, rawData: MediaDTO) {
         const normalizedData = Prisma.validator<Prisma.MediaUpsertArgs>()({
-            where: { id: rawData.id },
+            where: { id: rawData.id || '' },
             update: { url: rawData.url, metadata: rawData.metadata },
-            create: rawData,
+            create: { ...rawData, companyId },
         })
 
         return this.prismaService.media.upsert(normalizedData)

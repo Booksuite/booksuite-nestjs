@@ -24,11 +24,6 @@ export class MediaDTO {
     @IsString()
     url!: string
 
-    @ApiProperty({ example: '55fa1f18-4cd0-47cb-81ac-414d96e16f3c' })
-    @IsDefined()
-    @IsString()
-    companyId!: string
-
     @ApiProperty({ type: MetadataDto })
     @Type(() => MetadataDto)
     @IsDefined()
