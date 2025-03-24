@@ -96,8 +96,8 @@ model HostingRules {
     minDaily         Int
     availableWeekend Json?
 
-    seasonStart           DateTime
-    seasonEnd             DateTime
+    seasonStart           DateTime @db.Date
+    seasonEnd             DateTime @db.Date
     hostingOnSpecificDays Boolean?
     availableWeekDays     Json?
 
