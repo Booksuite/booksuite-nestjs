@@ -88,6 +88,23 @@ model ReservationConfig {
     updatedAt DateTime @updatedAt
 }
 
+model HostingRules {
+    id String @id @default(uuid())
+
+    checkIn           DateTime
+    checkOut          DateTime
+    minDaily          Int
+    availableWeekend Json?
+
+    seasonStart DateTime    
+    seasonEnd   DateTime
+    hostingOnSpecificDays   Boolean?
+    availableWeekDays Json?
+
+    companyId String  @unique
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
 enum ReservationDepositType {
     PERCENTAGE_ON_RESERVATION
     FULL_AMOUNT_ON_RESERVATION
