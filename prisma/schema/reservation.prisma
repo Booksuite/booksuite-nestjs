@@ -91,18 +91,18 @@ model ReservationConfig {
 model HostingRules {
     id String @id @default(uuid())
 
-    checkIn           DateTime
-    checkOut          DateTime
-    minDaily          Int
+    checkIn          Int
+    checkOut         Int
+    minDaily         Int
     availableWeekend Json?
 
-    seasonStart DateTime    
-    seasonEnd   DateTime
-    hostingOnSpecificDays   Boolean?
-    availableWeekDays Json?
+    seasonStart           DateTime
+    seasonEnd             DateTime
+    hostingOnSpecificDays Boolean?
+    availableWeekDays     Json?
 
     companyId String  @unique
-    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    company   Company? @relation(fields: [companyId], references: [id],onDelete: Cascade)
 }
 
 enum ReservationDepositType {
