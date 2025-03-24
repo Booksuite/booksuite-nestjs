@@ -1,0 +1,21 @@
+model PaymentMethods {
+    id String @id @default(uuid())
+
+    guaranteeType          Int
+    percentageChargedValue Float
+
+    pix         Boolean?
+    pixDiscount Float?
+
+    creditCard            Boolean?
+    installmentsMaxNumber Int?
+    InstallmentsMinValue  Float?
+
+    installments Json?
+
+    debitCard Boolean?
+    debitCardDiscount Float?
+
+    onHotel Boolean?
+    onHotelDiscount Float?
+}
