@@ -11,6 +11,7 @@ import { UploadService } from '../upload/upload.service'
 
 import { MEDIA_BUCKET_NAME } from './constants'
 import { MediaDTO } from './dto/Media.dto'
+import { MediaFilterDTO } from './dto/MediaFilter.dto'
 import { MediaOrderByDTO } from './dto/MediaOrderBy.dto'
 import { MediaResponsePaginatedDTO } from './dto/MediaResponsePaginated.dto'
 
@@ -34,6 +35,7 @@ export class MediaService {
     async search(
         companyId: string,
         pagination: PaginationQuery,
+        filter?: MediaFilterDTO,
         order?: MediaOrderByDTO,
         query?: string,
     ): Promise<MediaResponsePaginatedDTO> {
@@ -43,7 +45,7 @@ export class MediaService {
             {
                 where: {
                     companyId: companyId,
-                    ...this.buildSearchParams(query),
+                    ...this.buildSearchParams(query, filter),
                 },
                 ...paginationParams,
                 orderBy: order
@@ -85,11 +87,19 @@ export class MediaService {
         return response
     }
 
-    private buildSearchParams(query?: string): Prisma.MediaWhereInput {
+    private buildSearchParams(
+        query?: string,
+        filter?: MediaFilterDTO,
+    ): Prisma.MediaWhereInput {
         const data: Prisma.MediaWhereInput = {}
 
-        if (query) {
-            data.OR = [{ url: { contains: query, mode: 'insensitive' } }]
+        if (query) data.url = { contains: query, mode: 'insensitive' }
+
+        if (filter?.type) {
+            data.metadata = {
+                path: ['mimetype'],
+                string_starts_with: filter.type,
+            }
         }
 
         return data
