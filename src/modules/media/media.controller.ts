@@ -63,6 +63,7 @@ export class MediaController {
         return this.mediaService.search(
             companyId,
             body.pagination,
+            body.filter,
             body.order,
             query,
         )
