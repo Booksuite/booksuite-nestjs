@@ -29,7 +29,7 @@ export class HostingRulesController {
     @Get()
     getByCompanyId(
         @Param('companyId') companyId: string,
-    ): Promise<HostingRulesDTO | null> {
+    ): Promise<HostingRulesResponseDTO | null> {
         return this.hostingRulesService.getByCompanyId(companyId)
     }
 

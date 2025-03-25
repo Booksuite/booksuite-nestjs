@@ -201,10 +201,18 @@ CREATE TABLE "medias" (
 -- CreateTable
 CREATE TABLE "cancellation_policies" (
     "id" TEXT NOT NULL,
-    "text" TEXT NOT NULL,
-    "defaultPenaltyBy" "CancellationPolicyPenalty" NOT NULL,
+    "applyCancellationTax" BOOLEAN,
     "defaultValue" INTEGER NOT NULL DEFAULT 0,
+    "extraCancellationTax" BOOLEAN,
+    "withdrawalPeriod" INTEGER NOT NULL,
+    "dynamicDescription" TEXT,
+    "otherDescription" TEXT,
+    "flexModel" TEXT,
+    "balancedModel" TEXT,
+    "moderateModel" TEXT,
+    "hardModel" TEXT,
     "companyId" TEXT NOT NULL,
+    "defaultPenaltyBy" "CancellationPolicyPenalty" NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -286,7 +294,7 @@ CREATE TABLE "reservation_services" (
 );
 
 -- CreateTable
-CREATE TABLE "ReservationConfig" (
+CREATE TABLE "reservation_configs" (
     "id" TEXT NOT NULL,
     "tax" DOUBLE PRECISION,
     "reservationDepositType" "ReservationDepositType" NOT NULL,
@@ -296,7 +304,23 @@ CREATE TABLE "ReservationConfig" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "ReservationConfig_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "reservation_configs_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "hosting_rules" (
+    "id" TEXT NOT NULL,
+    "checkIn" INTEGER NOT NULL,
+    "checkOut" INTEGER NOT NULL,
+    "minDaily" INTEGER NOT NULL,
+    "seasonStart" DATE NOT NULL,
+    "seasonEnd" DATE NOT NULL,
+    "hostingOnSpecificDays" BOOLEAN NOT NULL,
+    "availableWeekend" JSONB NOT NULL,
+    "availableWeekDays" JSONB NOT NULL,
+    "companyId" TEXT NOT NULL,
+
+    CONSTRAINT "hosting_rules_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -401,7 +425,10 @@ CREATE UNIQUE INDEX "cancellation_policies_companyId_key" ON "cancellation_polic
 CREATE UNIQUE INDEX "age_policies_companyId_key" ON "age_policies"("companyId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ReservationConfig_companyId_key" ON "ReservationConfig"("companyId");
+CREATE UNIQUE INDEX "reservation_configs_companyId_key" ON "reservation_configs"("companyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "hosting_rules_companyId_key" ON "hosting_rules"("companyId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
@@ -479,7 +506,10 @@ ALTER TABLE "reservation_services" ADD CONSTRAINT "reservation_services_serviceI
 ALTER TABLE "reservation_services" ADD CONSTRAINT "reservation_services_reservationId_fkey" FOREIGN KEY ("reservationId") REFERENCES "reservations"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ReservationConfig" ADD CONSTRAINT "ReservationConfig_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "reservation_configs" ADD CONSTRAINT "reservation_configs_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "hosting_rules" ADD CONSTRAINT "hosting_rules_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "services" ADD CONSTRAINT "services_coverMediaId_fkey" FOREIGN KEY ("coverMediaId") REFERENCES "medias"("id") ON DELETE CASCADE ON UPDATE CASCADE;
