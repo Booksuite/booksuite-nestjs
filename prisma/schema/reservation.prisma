@@ -86,6 +86,30 @@ model ReservationConfig {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@map("reservation_configs")
+}
+
+model HostingRules {
+    id String @id @default(uuid())
+
+    checkIn  Int
+    checkOut Int
+    minDaily Int
+
+    seasonStart           DateTime @db.Date
+    seasonEnd             DateTime @db.Date
+    hostingOnSpecificDays Boolean
+
+    /// [WeekDays]
+    availableWeekend  Json
+    /// [WeekDays]
+    availableWeekDays Json
+
+    companyId String   @unique
+    company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("hosting_rules")
 }
 
 enum ReservationDepositType {
