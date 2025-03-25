@@ -4,11 +4,11 @@ CREATE TABLE "HostingRules" (
     "checkIn" INTEGER NOT NULL,
     "checkOut" INTEGER NOT NULL,
     "minDaily" INTEGER NOT NULL,
-    "availableWeekend" JSONB,
     "seasonStart" DATE NOT NULL,
     "seasonEnd" DATE NOT NULL,
-    "hostingOnSpecificDays" BOOLEAN,
-    "availableWeekDays" JSONB,
+    "hostingOnSpecificDays" BOOLEAN NOT NULL,
+    "availableWeekend" JSONB NOT NULL,
+    "availableWeekDays" JSONB NOT NULL,
     "companyId" TEXT NOT NULL,
 
     CONSTRAINT "HostingRules_pkey" PRIMARY KEY ("id")

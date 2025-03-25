@@ -49,10 +49,10 @@ model Company {
     reservations       Reservation[]
     services           Service[]
     medias             Media[]
-    hostingRules HostingRules?
 
+    hostingRules      HostingRules?
     bannerImageId     String?
-    bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
+    bannerImage       Media?        @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
     bannerTitle       String?
     bannerDescription String?
 

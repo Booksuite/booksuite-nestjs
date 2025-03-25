@@ -14,9 +14,7 @@ export class HostingRulesService {
         companyId: string,
     ): Promise<HostingRulesResponseDTO | null> {
         const normalizedData = await this.prismaService.hostingRules.findUnique(
-            {
-                where: { companyId: companyId },
-            },
+            { where: { companyId } },
         )
 
         return normalizedData
