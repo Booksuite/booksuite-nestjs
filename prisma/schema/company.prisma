@@ -49,6 +49,7 @@ model Company {
     reservations       Reservation[]
     services           Service[]
     medias             Media[]
+    PaymentMethods PaymentMethods?
 
     bannerImageId     String?
     bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
@@ -59,6 +60,7 @@ model Company {
     updatedAt DateTime @updatedAt
 
     @@map("companies")
+    
 }
 
 enum CompanyType {
