@@ -17,10 +17,10 @@ export class HostingRulesResponseDTO {
     availableWeekend: PrismaJson.WeekDays
 
     @ApiProperty({ example: '2025-12-01' })
-    seasonStart: Date
+    seasonStart: string
 
     @ApiProperty({ example: '2025-12-31' })
-    seasonEnd: Date
+    seasonEnd: string
 
     @ApiProperty({ example: true })
     hostingOnSpecificDays: boolean

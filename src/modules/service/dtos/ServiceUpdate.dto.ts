@@ -7,11 +7,12 @@ import {
     IsEnum,
     IsInt,
     IsISO8601,
-    IsNumber,
     IsOptional,
     IsString,
     ValidateNested,
 } from 'class-validator'
+
+import { IsWeekDays } from '@/common/decorators/IsWeekDays.decorator'
 
 import { ServiceHousingUnitTypeDTO } from './ServiceHousingUnitType.dto'
 import { ServiceMediaDTO } from './ServiceMedia.dto'
@@ -139,8 +140,7 @@ export class ServiceUpdateDTO {
         required: false,
     })
     @IsOptional()
-    @IsNumber({}, { each: true })
-    @IsArray()
+    @IsWeekDays()
     availableWeekDays?: PrismaJson.WeekDays
 
     @ApiProperty({ type: [ServiceHousingUnitTypeDTO], required: false })

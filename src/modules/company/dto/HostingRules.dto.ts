@@ -1,12 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
-import {
-    IsArray,
-    IsDefined,
-    IsInt,
-    IsNumber,
-    IsOptional,
-    IsString,
-} from 'class-validator'
+import { IsDateString, IsDefined, IsInt, IsOptional } from 'class-validator'
+
+import { IsWeekDays } from '@/common/decorators/IsWeekDays.decorator'
 
 export class HostingRulesDTO {
     @ApiProperty({ example: 14 })
@@ -23,16 +18,15 @@ export class HostingRulesDTO {
 
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()
-    @IsNumber({}, { each: true })
-    @IsArray()
+    @IsWeekDays()
     availableWeekend: PrismaJson.WeekDays
 
     @ApiProperty({ example: '2025-12-01' })
-    @IsString()
+    @IsDateString()
     seasonStart: Date
 
     @ApiProperty({ example: '2025-12-31' })
-    @IsString()
+    @IsDateString()
     seasonEnd: Date
 
     @ApiProperty({ example: true })
@@ -41,7 +35,6 @@ export class HostingRulesDTO {
 
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()
-    @IsNumber({}, { each: true })
-    @IsArray()
+    @IsWeekDays()
     availableWeekDays: PrismaJson.WeekDays
 }

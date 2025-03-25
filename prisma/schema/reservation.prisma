@@ -86,6 +86,8 @@ model ReservationConfig {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@map("reservation_configs")
 }
 
 model HostingRules {
@@ -106,6 +108,8 @@ model HostingRules {
 
     companyId String   @unique
     company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("hosting_rules")
 }
 
 enum ReservationDepositType {

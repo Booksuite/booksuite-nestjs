@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
+import { HostingRules, Prisma } from '@prisma/client'
+import * as dayjs from 'dayjs'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
@@ -13,11 +14,21 @@ export class HostingRulesService {
     async getByCompanyId(
         companyId: string,
     ): Promise<HostingRulesResponseDTO | null> {
-        const normalizedData = await this.prismaService.hostingRules.findUnique(
-            { where: { companyId } },
-        )
+        const result = await this.prismaService.hostingRules.findUnique({
+            where: { companyId },
+        })
 
-        return normalizedData
+        if (!result) return null
+
+        return this.normalize(result)
+    }
+
+    private normalize(result: HostingRules): HostingRulesResponseDTO {
+        return {
+            ...result,
+            seasonStart: dayjs(result.seasonStart).format('YYYY-MM-DD'),
+            seasonEnd: dayjs(result.seasonEnd).format('YYYY-MM-DD'),
+        }
     }
 
     async upsert(
@@ -28,12 +39,20 @@ export class HostingRulesService {
             Prisma.validator<Prisma.HostingRulesCreateInput>()({
                 company: { connect: { id: companyId } },
                 ...rawData,
+                seasonStart: dayjs(rawData.seasonStart).toDate(),
+                seasonEnd: dayjs(rawData.seasonEnd).add(1, 'hour').toDate(),
             })
 
-        return await this.prismaService.hostingRules.upsert({
+        const result = await this.prismaService.hostingRules.upsert({
             where: { companyId },
             create: normalizedData,
-            update: { ...rawData },
+            update: {
+                ...rawData,
+                seasonStart: dayjs(rawData.seasonStart).toDate(),
+                seasonEnd: dayjs(rawData.seasonEnd).add(1, 'hour').toDate(),
+            },
         })
+
+        return this.normalize(result)
     }
 }
