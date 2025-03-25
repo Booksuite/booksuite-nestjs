@@ -1,0 +1,25 @@
+model PaymentMethods {
+    id String @id @default(uuid())
+
+    guaranteeType          ReservationDepositType
+    percentageChargedValue Float
+
+    pix         Boolean?
+    pixDiscount Float?
+
+    creditCard            Boolean?
+    installmentsMaxNumber Int?
+    InstallmentsMinValue  Float?
+
+    /// [Installments]
+    installments Json?
+
+    debitCard Boolean?
+    debitCardDiscount Float?
+
+    onHotel Boolean?
+    onHotelDiscount Float?
+
+    companyId String @unique
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}

@@ -1,4 +1,7 @@
-import { MapCoordinates as TypeMapCoordinates } from './common/types/json'
+import {
+    InstallmentsTax,
+    MapCoordinates as TypeMapCoordinates,
+} from './common/types/json'
 import {
     CompanyContact as TypeCompanyContact,
     CompanySettings as TypeCompanySettings,
@@ -11,6 +14,7 @@ declare global {
         type CompanyContact = TypeCompanyContact
         type MediaMetadata = TypeMediaMetadata
         type WeekDays = number[]
+        type Installments = InstallmentsTax[]
         type MapCoordinates = TypeMapCoordinates
     }
 }
