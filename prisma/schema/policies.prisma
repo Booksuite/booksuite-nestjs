@@ -1,15 +1,21 @@
 model CancellationPolicy {
     id String @id @default(uuid())
 
-    text String @db.Text
+    applyCancellationTax Boolean?
+    defaultValue         Int      @default(0)
+    extraCancellationTax Boolean?
+    withdrawalPeriod     Int
+    dynamicDescription   String?
+    otherDescription     String?
+    flexModel            String?
+    balancedModel        String?
+    moderateModel        String?
+    hardModel            String?
 
+    companyId        String                    @unique
+    company          Company                   @relation(fields: [companyId], references: [id], onDelete: Cascade)
     defaultPenaltyBy CancellationPolicyPenalty
-    defaultValue     Int                       @default(0)
-
-    companyId String  @unique
-    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-    penaltyRanges PenaltyRange[]
+    penaltyRanges    PenaltyRange[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
