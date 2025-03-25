@@ -94,12 +94,14 @@ model HostingRules {
     checkIn          Int
     checkOut         Int
     minDaily         Int
-    availableWeekend Json?
+    /// [WeekDays]
+    availableWeekend Json
 
     seasonStart           DateTime @db.Date
     seasonEnd             DateTime @db.Date
-    hostingOnSpecificDays Boolean?
-    availableWeekDays     Json?
+    hostingOnSpecificDays Boolean
+    /// [WeekDays]
+    availableWeekDays     Json
 
     companyId String  @unique
     company   Company? @relation(fields: [companyId], references: [id],onDelete: Cascade)

@@ -6,6 +6,7 @@ import { CancellationPolicyController } from './cancellationPolicy.controller'
 import { CancellationPolicyService } from './cancellationPolicy.service'
 import { CompanyController } from './company.controller'
 import { CompanyService } from './company.service'
+import { HostingRulesService } from './hostingRules.service'
 import { ReservationConfigController } from './reservationConfig.controller'
 import { ReservationConfigService } from './reservationConfig.service'
 
@@ -15,6 +16,7 @@ import { ReservationConfigService } from './reservationConfig.service'
         AgePolicyService,
         ReservationConfigService,
         CancellationPolicyService,
+        HostingRulesService,
     ],
     controllers: [
         CompanyController,
