@@ -9,6 +9,7 @@ export class CancellationPolicyResponseDTO {
 
     @ApiProperty({
         enum: CancellationPolicyPenalty,
+        enumName: 'CancellationPolicyPenalty',
         example: CancellationPolicyPenalty.FIRST_NIGHT_AMOUNT,
     })
     defaultPenaltyBy!: CancellationPolicyPenalty
@@ -16,47 +17,56 @@ export class CancellationPolicyResponseDTO {
     @ApiProperty({
         description: 'Only defined if penalty is not FIRST_NIGHT_AMOUNT',
     })
-    defaultValue?: number
+    defaultValue: number
 
-    @ApiProperty({ example: true })
-    applyCancellationTax?: boolean | null
+    @ApiProperty({ type: Boolean, example: true, nullable: true })
+    applyCancellationTax: boolean | null
 
-    @ApiProperty({ example: true })
+    @ApiProperty({ type: Boolean, example: true, nullable: true })
     extraCancellationTax: boolean | null
 
-    @ApiProperty({ example: 48 })
-    withDrawalPeriod: number
+    @ApiProperty({ type: Number, example: 48 })
+    withdrawalPeriod: number
 
     @ApiProperty({
+        type: String,
         example: 'Descrição dinâmica sobre a política de cancelamento',
-        required: false,
+        nullable: true,
     })
     dynamicDescription: string | null
 
-    @ApiProperty({ example: 'Outra descrição adicional', required: false })
+    @ApiProperty({
+        type: String,
+        example: 'Outra descrição adicional',
+        nullable: true,
+    })
     otherDescription: string | null
 
     @ApiProperty({
+        type: String,
         example: 'Modelo flexível de cancelamento',
-        required: false,
+        nullable: true,
     })
     flexModel: string | null
 
     @ApiProperty({
+        type: String,
         example: 'Modelo equilibrado de cancelamento',
-        required: false,
+        nullable: true,
     })
     balancedModel: string | null
 
     @ApiProperty({
+        type: String,
         example: 'Modelo moderado de cancelamento',
-        required: false,
+        nullable: true,
     })
     moderateModel: string | null
 
     @ApiProperty({
+        type: String,
         example: 'Modelo rigoroso de cancelamento',
-        required: false,
+        nullable: true,
     })
     hardModel: string | null
 }

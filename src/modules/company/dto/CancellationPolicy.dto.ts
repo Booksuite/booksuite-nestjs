@@ -15,13 +15,14 @@ import {
 import { PenaltyRangeDTO } from './PenaltyRange.dto'
 
 export class CancellationPolicyDTO {
-    @ApiProperty({ example: true })
+    @ApiProperty({ example: true, required: false })
     @IsOptional()
     @IsBoolean()
     applyCancellationTax?: boolean
 
     @ApiProperty({
         enum: CancellationPolicyPenalty,
+        enumName: 'CancellationPolicyPenalty',
         example: CancellationPolicyPenalty.FIRST_NIGHT_AMOUNT,
     })
     @IsEnum(CancellationPolicyPenalty)
@@ -30,11 +31,11 @@ export class CancellationPolicyDTO {
     @ApiProperty({
         description: 'Only defined if penalty is not FIRST_NIGHT_AMOUNT',
     })
-    @IsOptional()
+    @IsDefined()
     @IsInt()
-    defaultValue?: number
+    defaultValue: number
 
-    @ApiProperty({ example: true })
+    @ApiProperty({ example: true, required: false })
     @IsOptional()
     @IsBoolean()
     extraCancellationTax?: boolean
@@ -42,7 +43,7 @@ export class CancellationPolicyDTO {
     @ApiProperty({ example: 48 })
     @IsDefined()
     @IsInt()
-    withDrawalPeriod!: number
+    withdrawalPeriod!: number
 
     @ApiProperty({
         example: 'Descrição dinâmica sobre a política de cancelamento',
