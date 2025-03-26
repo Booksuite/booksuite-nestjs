@@ -98,9 +98,12 @@ model HostingRules {
     checkOut Int
     minDaily Int
 
-    seasonStart           DateTime @db.Date
-    seasonEnd             DateTime @db.Date
-    hostingOnSpecificDays Boolean
+    hostingWindowType HostingWindowType
+    period            Period
+    openWindowDays    Int
+
+    seasonStart DateTime? @db.Date
+    seasonEnd   DateTime? @db.Date
 
     /// [WeekDays]
     availableWeekend  Json
@@ -119,4 +122,17 @@ enum ReservationDepositType {
     DAYLIES_FULL_AMOUNT_ON_RESERVATION
     FIRST_DAYLY_ON_RESERVATION
     NO_CHARGE
+}
+
+enum HostingWindowType {
+    DYNAMIC
+    FIXED
+}
+
+enum Period {
+    THREE_MONTHS
+    SIX_MONTHS
+    ONE_YEAR
+    TWO_YEAR
+    CUSTOM
 }

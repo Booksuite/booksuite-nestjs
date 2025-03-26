@@ -12,7 +12,7 @@ export class CompanyResponseFullDTO extends CompanyResponseDTO {
     @ApiProperty({
         type: [CompanyContactResponseDTO],
         nullable: true,
-        default: [{ type: 'phone', value: '00000000000' }],
+        default: [{ type: 'phone', categoy: 'Reserva', value: '00000000000' }],
     })
     contacts: CompanyContactResponseDTO[] | null
 

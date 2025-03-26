@@ -6,6 +6,7 @@ export type CompanySettings = {
 
 export type CompanyContact = {
     type: ValidContact
+    category: string
     value: string
 }
 

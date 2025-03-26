@@ -66,7 +66,7 @@ export class CompanyCreateDTO {
     @ApiProperty({
         type: [CompanyContactDTO],
         required: false,
-        default: [{ type: 'phone', value: '00000000000' }],
+        default: [{ type: 'phone', category: 'Reserva', value: '00000000000' }],
     })
     @IsOptional()
     @Type(() => CompanyContactDTO)

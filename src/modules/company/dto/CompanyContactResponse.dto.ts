@@ -7,6 +7,9 @@ export class CompanyContactResponseDTO implements CompanyContact {
     @ApiProperty({ enum: ValidContact, example: ValidContact.PHONE })
     type: ValidContact
 
+    @ApiProperty({ example: 'Reserva' })
+    category: string
+
     @ApiProperty({ example: '00000000000' })
     value: string
 }
