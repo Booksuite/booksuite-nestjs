@@ -38,6 +38,7 @@ model BannerMedia {
     mediaId  String
     media    Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade)
 
+    @@unique([bannerId, mediaId], name: "banner_media_unique")
     @@map("banner_medias")
 }
 

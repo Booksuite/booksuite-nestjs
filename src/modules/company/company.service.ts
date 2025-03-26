@@ -45,7 +45,10 @@ export class CompanyService {
         return this.prismaService.company.findUnique({
             where: { id },
             include: {
-                facilities: { include: { facility: true } },
+                facilities: {
+                    include: { facility: true },
+                    orderBy: { order: 'asc' },
+                },
                 bannerImage: true,
             },
         })
@@ -82,19 +85,27 @@ export class CompanyService {
             ...rawData,
             settings: rawData.settings || Prisma.DbNull,
             contacts: rawData.contacts || [],
-            facilities: rawData.facilities
-                ? {
-                      createMany: { data: rawData.facilities },
-                      deleteMany: {
-                          companyId: id,
-                          facilityId: {
-                              notIn: rawData.facilities.map(
-                                  (facility) => facility.facilityId,
-                              ),
-                          },
-                      },
-                  }
-                : undefined,
+            facilities: {
+                upsert: rawData.facilities?.map((facility) => ({
+                    where: {
+                        company_facility_unique: {
+                            companyId: id,
+                            facilityId: facility.facilityId,
+                        },
+                    },
+                    update: facility,
+                    create: facility,
+                })),
+                deleteMany: {
+                    companyId: id,
+                    facilityId: {
+                        notIn:
+                            rawData.facilities?.map(
+                                (facility) => facility.facilityId,
+                            ) || [],
+                    },
+                },
+            },
         })
 
         return this.prismaService.company.update({

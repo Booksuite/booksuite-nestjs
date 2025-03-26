@@ -179,19 +179,27 @@ export class ReservationService {
         const normalizedData =
             Prisma.validator<Prisma.ReservationUpdateInput>()({
                 ...rawData,
-                services: rawData.services
-                    ? {
-                          deleteMany: {
-                              reservationId: id,
-                              serviceId: {
-                                  notIn: rawData.services.map(
-                                      (service) => service.serviceId,
-                                  ),
-                              },
-                          },
-                          createMany: { data: rawData.services },
-                      }
-                    : undefined,
+                services: {
+                    deleteMany: {
+                        reservationId: id,
+                        serviceId: {
+                            notIn:
+                                rawData.services?.map(
+                                    (service) => service.serviceId,
+                                ) || [],
+                        },
+                    },
+                    upsert: rawData.services?.map((service) => ({
+                        where: {
+                            reservation_service_unique: {
+                                reservationId: id,
+                                serviceId: service.serviceId,
+                            },
+                        },
+                        update: service,
+                        create: service,
+                    })),
+                },
             })
 
         return this.prismaService.reservation.update({

@@ -9,6 +9,9 @@ export class HousingUnitTypeFacilityResponseDTO {
     @ApiProperty({ example: true, nullable: true, type: Boolean })
     isFeatured: boolean | null
 
+    @ApiProperty({ example: 1, nullable: true, type: Number })
+    order: number | null
+
     @ApiProperty({ type: FacilityResponseDTO })
     facility: FacilityResponseDTO
 }

@@ -53,9 +53,15 @@ export class HousingUnitTypeService {
         return this.prismaService.housingUnitType.findUnique({
             where: { id },
             include: {
-                housingUnits: true,
-                facilities: { include: { facility: true } },
-                medias: { include: { media: true } },
+                housingUnits: { orderBy: { order: 'asc' } },
+                facilities: {
+                    include: { facility: true },
+                    orderBy: { order: 'asc' },
+                },
+                medias: {
+                    include: { media: true },
+                    orderBy: { order: 'asc' },
+                },
             },
         })
     }
@@ -67,49 +73,76 @@ export class HousingUnitTypeService {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeUpdateInput>()({
                 ...rawData,
-                facilities: rawData.facilities
-                    ? {
-                          deleteMany: {
-                              housingUnitTypeId: id,
-                              facilityId: {
-                                  notIn: rawData.facilities.map(
-                                      (facility) => facility.facilityId,
-                                  ),
-                              },
-                          },
-                          createMany: { data: rawData.facilities },
-                      }
-                    : undefined,
-                medias: rawData.medias
-                    ? {
-                          deleteMany: {
-                              housingUnitTypeId: id,
-                              mediaId: {
-                                  notIn: rawData.medias.map(
-                                      (facility) => facility.mediaId,
-                                  ),
-                              },
-                          },
-                          createMany: { data: rawData.medias },
-                      }
-                    : undefined,
-                housingUnits: rawData.housingUnits
-                    ? {
-                          deleteMany:
-                              this.housingUnitService.normalizeHousingUnitsToDelete(
-                                  id,
-                                  rawData.housingUnits,
-                              ),
-                          createMany:
-                              this.housingUnitService.normalizeHousingUnitsToCreateMany(
-                                  rawData.housingUnits,
-                              ),
-                          updateMany:
-                              this.housingUnitService.normalizeHousingUnitsToUpdate(
-                                  rawData.housingUnits,
-                              ),
-                      }
-                    : undefined,
+                facilities: {
+                    deleteMany: {
+                        housingUnitTypeId: id,
+                        facilityId: {
+                            notIn:
+                                rawData.facilities?.map(
+                                    (facility) => facility.facilityId,
+                                ) || [],
+                        },
+                    },
+                    upsert: rawData.facilities?.map((facility) => ({
+                        where: {
+                            housing_unit_type_facility_unique: {
+                                housingUnitTypeId: id,
+                                facilityId: facility.facilityId,
+                            },
+                        },
+                        update: {
+                            isFeatured: facility.isFeatured,
+                            order: facility.order,
+                        },
+                        create: facility,
+                    })),
+                },
+
+                medias: {
+                    deleteMany: {
+                        housingUnitTypeId: id,
+                        mediaId: {
+                            notIn:
+                                rawData.medias?.map((media) => media.mediaId) ||
+                                [],
+                        },
+                    },
+                    upsert: rawData.medias?.map((media) => ({
+                        where: {
+                            housing_unit_type_media_unique: {
+                                housingUnitTypeId: id,
+                                mediaId: media.mediaId,
+                            },
+                        },
+                        update: {
+                            isFeatured: media.isFeatured,
+                            order: media.order,
+                        },
+                        create: media,
+                    })),
+                },
+
+                housingUnits: {
+                    deleteMany: {
+                        housingUnitTypeId: id,
+                        id: {
+                            notIn:
+                                rawData.housingUnits
+                                    ?.map((housingUnit) => housingUnit.id || '')
+                                    .filter(Boolean) || [],
+                        },
+                    },
+                    upsert: rawData.housingUnits?.map((housingUnit) => ({
+                        where: {
+                            id: housingUnit.id || '',
+                        },
+                        update: {
+                            name: housingUnit.name,
+                            order: housingUnit.order,
+                        },
+                        create: housingUnit,
+                    })),
+                },
             })
 
         return this.prismaService.housingUnitType.update({
@@ -138,9 +171,15 @@ export class HousingUnitTypeService {
                     ...this.buildSearchParams(query, filter),
                 },
                 include: {
-                    housingUnits: true,
-                    facilities: { include: { facility: true } },
-                    medias: { include: { media: true } },
+                    housingUnits: { orderBy: { order: 'asc' } },
+                    facilities: {
+                        include: { facility: true },
+                        orderBy: { order: 'asc' },
+                    },
+                    medias: {
+                        include: { media: true },
+                        orderBy: { order: 'asc' },
+                    },
                 },
                 ...paginationParams,
                 orderBy: order

@@ -44,7 +44,7 @@ export class ServiceService {
         return this.prismaService.service.findUnique({
             where: { id },
             include: {
-                medias: { include: { media: true } },
+                medias: { include: { media: true }, orderBy: { order: 'asc' } },
                 availableHousingUnitTypes: {
                     include: { housingUnitType: true },
                 },
@@ -55,33 +55,50 @@ export class ServiceService {
     update(id: string, rawData: ServiceUpdateDTO): Promise<ServiceResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.ServiceUpdateInput>()({
             ...rawData,
-            availableHousingUnitTypes: rawData.availableHousingUnitTypes
-                ? {
-                      deleteMany: {
-                          serviceId: id,
-                          housingUnitTypeId: {
-                              notIn: rawData.availableHousingUnitTypes?.map(
-                                  (housingUnitType) =>
-                                      housingUnitType.housingUnitTypeId,
-                              ),
-                          },
-                      },
-                      createMany: { data: rawData.availableHousingUnitTypes },
-                  }
-                : undefined,
-            medias: rawData.medias
-                ? {
-                      deleteMany: {
-                          serviceId: id,
-                          mediaId: {
-                              notIn: rawData.medias.map(
-                                  (media) => media.mediaId,
-                              ),
-                          },
-                      },
-                      createMany: { data: rawData.medias },
-                  }
-                : undefined,
+            availableHousingUnitTypes: {
+                deleteMany: {
+                    serviceId: id,
+                    housingUnitTypeId: {
+                        notIn:
+                            rawData.availableHousingUnitTypes?.map(
+                                (housingUnitType) =>
+                                    housingUnitType.housingUnitTypeId,
+                            ) || [],
+                    },
+                },
+                upsert: rawData.availableHousingUnitTypes?.map(
+                    (housingUnitType) => ({
+                        where: {
+                            service_housingunittype_unique: {
+                                serviceId: id,
+                                housingUnitTypeId:
+                                    housingUnitType.housingUnitTypeId,
+                            },
+                        },
+                        update: housingUnitType,
+                        create: housingUnitType,
+                    }),
+                ),
+            },
+            medias: {
+                deleteMany: {
+                    serviceId: id,
+                    mediaId: {
+                        notIn:
+                            rawData.medias?.map((media) => media.mediaId) || [],
+                    },
+                },
+                upsert: rawData.medias?.map((media) => ({
+                    where: {
+                        service_media_unique: {
+                            serviceId: id,
+                            mediaId: media.mediaId,
+                        },
+                    },
+                    update: media,
+                    create: media,
+                })),
+            },
         })
 
         return this.prismaService.service.update({
@@ -117,7 +134,10 @@ export class ServiceService {
                     availableHousingUnitTypes: {
                         include: { housingUnitType: true },
                     },
-                    medias: { include: { media: true } },
+                    medias: {
+                        orderBy: { order: 'asc' } as any,
+                        include: { media: true },
+                    },
                 },
             })
 

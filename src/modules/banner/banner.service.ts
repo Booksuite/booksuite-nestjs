@@ -62,26 +62,37 @@ export class BannerService {
     getById(id: string): Promise<BannerResponseFullDTO | null> {
         return this.prismaService.banner.findUnique({
             where: { id },
-            include: { medias: { include: { media: true } } },
+            include: {
+                medias: {
+                    include: { media: true },
+                    orderBy: { order: 'asc' },
+                },
+            },
         })
     }
 
     update(id: string, rawData: BannerUpdateDTO): Promise<BannerResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
             ...rawData,
-            medias: rawData.medias
-                ? {
-                      deleteMany: {
-                          bannerId: id,
-                          mediaId: {
-                              notIn: rawData.medias.map(
-                                  (media) => media.mediaId,
-                              ),
-                          },
-                      },
-                      createMany: { data: rawData.medias },
-                  }
-                : undefined,
+            medias: {
+                deleteMany: {
+                    bannerId: id,
+                    mediaId: {
+                        notIn:
+                            rawData.medias?.map((media) => media.mediaId) || [],
+                    },
+                },
+                upsert: rawData.medias?.map((media) => ({
+                    where: {
+                        banner_media_unique: {
+                            bannerId: id,
+                            mediaId: media.mediaId,
+                        },
+                    },
+                    update: media,
+                    create: media,
+                })),
+            },
         })
 
         return this.prismaService.banner.update({

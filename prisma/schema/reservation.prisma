@@ -68,6 +68,7 @@ model ReservationService {
     reservationId String
     reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
 
+    @@unique([reservationId, serviceId], name: "reservation_service_unique")
     @@map("reservation_services")
 }
 

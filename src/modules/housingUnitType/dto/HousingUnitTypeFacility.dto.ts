@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsDefined, IsOptional, IsUUID } from 'class-validator'
+import {
+    IsBoolean,
+    IsDefined,
+    IsInt,
+    IsOptional,
+    IsUUID,
+} from 'class-validator'
 
 export class HousingUnitTypeFacilityDTO {
     @ApiProperty({ example: true, required: false })
@@ -11,4 +17,9 @@ export class HousingUnitTypeFacilityDTO {
     @IsDefined()
     @IsUUID()
     facilityId: string
+
+    @ApiProperty({ example: 1, required: false })
+    @IsOptional()
+    @IsInt()
+    order?: number
 }

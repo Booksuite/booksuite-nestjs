@@ -104,6 +104,7 @@ CREATE TABLE "companies" (
 -- CreateTable
 CREATE TABLE "company_facilities" (
     "id" TEXT NOT NULL,
+    "order" INTEGER DEFAULT 0,
     "companyId" TEXT NOT NULL,
     "facilityId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -154,6 +155,7 @@ CREATE TABLE "housing_unit_types" (
 CREATE TABLE "housing_units" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "order" INTEGER NOT NULL DEFAULT 0,
     "housingUnitTypeId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -178,6 +180,7 @@ CREATE TABLE "housing_unit_type_medias" (
 CREATE TABLE "housing_unit_type_facilities" (
     "id" TEXT NOT NULL,
     "isFeatured" BOOLEAN DEFAULT false,
+    "order" INTEGER DEFAULT 0,
     "housingUnitTypeId" TEXT NOT NULL,
     "facilityId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -413,10 +416,22 @@ CREATE TABLE "roles" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "banner_medias_bannerId_mediaId_key" ON "banner_medias"("bannerId", "mediaId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "companies_slug_key" ON "companies"("slug");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "company_facilities_companyId_facilityId_key" ON "company_facilities"("companyId", "facilityId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "housing_unit_types_slug_key" ON "housing_unit_types"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "housing_unit_type_medias_housingUnitTypeId_mediaId_key" ON "housing_unit_type_medias"("housingUnitTypeId", "mediaId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "housing_unit_type_facilities_housingUnitTypeId_facilityId_key" ON "housing_unit_type_facilities"("housingUnitTypeId", "facilityId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "cancellation_policies_companyId_key" ON "cancellation_policies"("companyId");
@@ -425,10 +440,19 @@ CREATE UNIQUE INDEX "cancellation_policies_companyId_key" ON "cancellation_polic
 CREATE UNIQUE INDEX "age_policies_companyId_key" ON "age_policies"("companyId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "reservation_services_reservationId_serviceId_key" ON "reservation_services"("reservationId", "serviceId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "reservation_configs_companyId_key" ON "reservation_configs"("companyId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "hosting_rules_companyId_key" ON "hosting_rules"("companyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "service_housingunittype_housingUnitTypeId_serviceId_key" ON "service_housingunittype"("housingUnitTypeId", "serviceId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "service_medias_serviceId_mediaId_key" ON "service_medias"("serviceId", "mediaId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
