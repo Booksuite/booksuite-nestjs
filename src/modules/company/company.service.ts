@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { omit } from 'radash'
+import { omit, pick } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -93,8 +93,8 @@ export class CompanyService {
                             facilityId: facility.facilityId,
                         },
                     },
-                    update: facility,
-                    create: facility,
+                    update: pick(facility, ['facilityId', 'order']),
+                    create: pick(facility, ['facilityId', 'order']),
                 })),
                 deleteMany: {
                     companyId: id,

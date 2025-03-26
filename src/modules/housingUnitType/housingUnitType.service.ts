@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import { pick } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -94,7 +95,11 @@ export class HousingUnitTypeService {
                             isFeatured: facility.isFeatured,
                             order: facility.order,
                         },
-                        create: facility,
+                        create: pick(facility, [
+                            'facilityId',
+                            'order',
+                            'isFeatured',
+                        ]),
                     })),
                 },
 
@@ -118,7 +123,7 @@ export class HousingUnitTypeService {
                             isFeatured: media.isFeatured,
                             order: media.order,
                         },
-                        create: media,
+                        create: pick(media, ['mediaId', 'order', 'isFeatured']),
                     })),
                 },
 
@@ -140,7 +145,7 @@ export class HousingUnitTypeService {
                             name: housingUnit.name,
                             order: housingUnit.order,
                         },
-                        create: housingUnit,
+                        create: pick(housingUnit, ['name', 'order']),
                     })),
                 },
             })

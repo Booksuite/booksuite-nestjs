@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma, ReservationSaleChannel } from '@prisma/client'
+import { pick } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -196,8 +197,16 @@ export class ReservationService {
                                 serviceId: service.serviceId,
                             },
                         },
-                        update: service,
-                        create: service,
+                        update: pick(service, [
+                            'serviceId',
+                            'qtd',
+                            'totalPrice',
+                        ]),
+                        create: pick(service, [
+                            'serviceId',
+                            'qtd',
+                            'totalPrice',
+                        ]),
                     })),
                 },
             })

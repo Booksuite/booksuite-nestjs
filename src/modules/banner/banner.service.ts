@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import { pick } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -89,8 +90,8 @@ export class BannerService {
                             mediaId: media.mediaId,
                         },
                     },
-                    update: media,
-                    create: media,
+                    update: pick(media, ['mediaId', 'order']),
+                    create: pick(media, ['mediaId', 'order']),
                 })),
             },
         })
