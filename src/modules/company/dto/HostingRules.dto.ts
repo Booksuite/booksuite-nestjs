@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { HostingWindowType, Period } from '@prisma/client'
+import { HostingWindowType } from '@prisma/client'
 import { IsDateString, IsDefined, IsInt, IsOptional } from 'class-validator'
 
 import { IsWeekDays } from '@/common/decorators/IsWeekDays.decorator'
@@ -23,8 +23,8 @@ export class HostingRulesDTO {
     })
     hostingWindowType: HostingWindowType
 
-    @ApiProperty({ example: Period.ONE_YEAR, enum: Period })
-    period: Period
+    @ApiProperty({ example: 120, type: Number })
+    period: number
 
     @ApiProperty({ example: 90, type: Number })
     openWindowDays: number
@@ -37,12 +37,12 @@ export class HostingRulesDTO {
     @ApiProperty({ example: '2025-12-01' })
     @IsDateString()
     @IsOptional()
-    seasonStart?: Date
+    fixedStart?: Date
 
     @ApiProperty({ example: '2025-12-31' })
     @IsDateString()
     @IsOptional()
-    seasonEnd?: Date
+    fixedEnd?: Date
 
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()

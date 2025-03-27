@@ -99,11 +99,11 @@ model HostingRules {
     minDaily Int
 
     hostingWindowType HostingWindowType
-    period            Period
+    period            Int
     openWindowDays    Int
 
-    seasonStart DateTime? @db.Date
-    seasonEnd   DateTime? @db.Date
+    fixedStart DateTime? @db.Date
+    fixedEnd   DateTime? @db.Date
 
     /// [WeekDays]
     availableWeekend  Json
@@ -127,12 +127,4 @@ enum ReservationDepositType {
 enum HostingWindowType {
     DYNAMIC
     FIXED
-}
-
-enum Period {
-    THREE_MONTHS
-    SIX_MONTHS
-    ONE_YEAR
-    TWO_YEAR
-    CUSTOM
 }

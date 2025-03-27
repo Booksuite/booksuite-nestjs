@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { HostingWindowType, Period } from '@prisma/client'
+import { HostingWindowType } from '@prisma/client'
 
 export class HostingRulesResponseDTO {
     @ApiProperty({ example: 'e95517fb-b3bb-492f-b605-d289704cde0e' })
@@ -20,8 +20,8 @@ export class HostingRulesResponseDTO {
     })
     hostingWindowType: HostingWindowType
 
-    @ApiProperty({ example: Period.ONE_YEAR, enum: Period })
-    period: Period
+    @ApiProperty({ example: 120, type: Number })
+    period: number
 
     @ApiProperty({ example: 90, type: Number })
     openWindowDays: number
@@ -30,10 +30,10 @@ export class HostingRulesResponseDTO {
     availableWeekend: PrismaJson.WeekDays
 
     @ApiProperty({ example: '2025-12-01' })
-    seasonStart: string
+    fixedStart: string
 
     @ApiProperty({ example: '2025-12-31' })
-    seasonEnd: string
+    fixedEnd: string
 
     @ApiProperty({ type: Number, isArray: true })
     availableWeekDays: PrismaJson.WeekDays

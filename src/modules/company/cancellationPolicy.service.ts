@@ -30,7 +30,7 @@ export class CancellationPolicyService {
                 penaltyRanges: {
                     connectOrCreate: rawData.penaltyRanges.map((range) => ({
                         create: range,
-                        where: { id: range.id },
+                        where: { id: range.id || '' },
                     })),
                 },
                 company: { connect: { id: companyId } },
