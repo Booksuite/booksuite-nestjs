@@ -26,8 +26,12 @@ export class HostingRulesService {
     private normalize(result: HostingRules): HostingRulesResponseDTO {
         return {
             ...result,
-            fixedStart: dayjs(result.fixedStart).format('YYYY-MM-DD'),
-            fixedEnd: dayjs(result.fixedEnd).format('YYYY-MM-DD'),
+            reservationWindowStart: dayjs(result.reservationWindowStart).format(
+                'YYYY-MM-DD',
+            ),
+            reservationWindowEnd: dayjs(result.reservationWindowEnd).format(
+                'YYYY-MM-DD',
+            ),
         }
     }
 
@@ -39,8 +43,12 @@ export class HostingRulesService {
             Prisma.validator<Prisma.HostingRulesCreateInput>()({
                 company: { connect: { id: companyId } },
                 ...rawData,
-                fixedStart: dayjs(rawData.fixedStart).toDate(),
-                fixedEnd: dayjs(rawData.fixedEnd).add(1, 'hour').toDate(),
+                reservationWindowStart: dayjs(
+                    rawData.reservationWindowStart,
+                ).toDate(),
+                reservationWindowEnd: dayjs(
+                    rawData.reservationWindowEnd,
+                ).toDate(),
             })
 
         const result = await this.prismaService.hostingRules.upsert({
@@ -48,8 +56,12 @@ export class HostingRulesService {
             create: normalizedData,
             update: {
                 ...rawData,
-                fixedStart: dayjs(rawData.fixedStart).toDate(),
-                fixedEnd: dayjs(rawData.fixedEnd).add(1, 'hour').toDate(),
+                reservationWindowStart: dayjs(
+                    rawData.reservationWindowStart,
+                ).toDate(),
+                reservationWindowEnd: dayjs(
+                    rawData.reservationWindowEnd,
+                ).toDate(),
             },
         })
 
