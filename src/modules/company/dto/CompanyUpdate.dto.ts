@@ -58,16 +58,6 @@ export class CompanyUpdateDTO {
     description?: string | null
 
     @ApiProperty({
-        example: 'corporateReasonName',
-        type: String,
-        required: false,
-        nullable: true,
-    })
-    @IsOptional()
-    @IsString()
-    corporateReason?: string
-
-    @ApiProperty({
         example: 'Timezone',
         required: false,
         nullable: true,

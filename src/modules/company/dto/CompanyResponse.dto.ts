@@ -95,13 +95,6 @@ export class CompanyResponseDTO {
     companyName: string | null
 
     @ApiProperty({
-        example: 'corporateReasonName',
-        type: String,
-        nullable: true,
-    })
-    corporateReason?: string | null
-
-    @ApiProperty({
         example: 'State registration',
         nullable: true,
         type: String,

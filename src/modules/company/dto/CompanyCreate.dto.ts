@@ -74,11 +74,6 @@ export class CompanyCreateDTO {
     @ValidateNested({ each: true })
     contacts?: CompanyContactDTO[]
 
-    @ApiProperty({ example: 'corporateReasonName', type: String })
-    @IsOptional()
-    @IsString()
-    corporateReason?: string
-
     @ApiProperty({ example: 'Person resposible' })
     @IsDefined()
     @IsString()

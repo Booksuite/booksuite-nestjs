@@ -8,9 +8,6 @@
 
 */
 -- AlterTable
-ALTER TABLE "companies" ADD COLUMN     "corporateReason" TEXT;
-
--- AlterTable
 ALTER TABLE "hosting_rules" DROP COLUMN "hostingOnSpecificDays",
 DROP COLUMN "seasonEnd",
 DROP COLUMN "seasonStart",
