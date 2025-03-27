@@ -27,6 +27,7 @@ model Company {
     companyName           String?
     stateRegistration     String?
     municipalRegistration String?
+    corporateReason       String?
 
     address String?
     zipcode String?
