@@ -16,6 +16,9 @@ export class HostingRulesDTO {
     @IsInt()
     minDaily: number
 
+    @ApiProperty({ example: 120, type: Number })
+    fixedWindowPeriod: number
+
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()
     @IsWeekDays()
@@ -23,15 +26,13 @@ export class HostingRulesDTO {
 
     @ApiProperty({ example: '2025-12-01' })
     @IsDateString()
-    seasonStart: Date
+    @IsOptional()
+    reservationWindowStart?: string
 
     @ApiProperty({ example: '2025-12-31' })
     @IsDateString()
-    seasonEnd: Date
-
-    @ApiProperty({ example: true })
     @IsOptional()
-    hostingOnSpecificDays: boolean
+    reservationWindowEnd?: string
 
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()

@@ -13,17 +13,17 @@ export class HostingRulesResponseDTO {
     @ApiProperty({ example: 2 })
     minDaily: number
 
+    @ApiProperty({ example: 120, type: Number })
+    fixedWindowPeriod: number
+
     @ApiProperty({ type: Number, isArray: true })
     availableWeekend: PrismaJson.WeekDays
 
     @ApiProperty({ example: '2025-12-01' })
-    seasonStart: string
+    reservationWindowStart?: string
 
     @ApiProperty({ example: '2025-12-31' })
-    seasonEnd: string
-
-    @ApiProperty({ example: true })
-    hostingOnSpecificDays: boolean
+    reservationWindowEnd?: string
 
     @ApiProperty({ type: Number, isArray: true })
     availableWeekDays: PrismaJson.WeekDays

@@ -10,6 +10,11 @@ export class CompanyContactDTO implements CompanyContact {
     @IsDefined()
     type: ValidContact
 
+    @ApiProperty({ example: 'Reserva' })
+    @IsString()
+    @IsDefined()
+    category: string
+
     @ApiProperty({ example: '00000000000' })
     @IsString()
     @IsDefined()

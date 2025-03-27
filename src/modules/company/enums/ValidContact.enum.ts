@@ -5,4 +5,5 @@ export enum ValidContact {
     FACEBOOK = 'facebook',
     LINKEDIN = 'linkedin',
     X = 'x',
+    WHATSAPP = 'whatsapp',
 }

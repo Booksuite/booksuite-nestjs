@@ -98,9 +98,10 @@ model HostingRules {
     checkOut Int
     minDaily Int
 
-    seasonStart           DateTime @db.Date
-    seasonEnd             DateTime @db.Date
-    hostingOnSpecificDays Boolean
+    fixedWindowPeriod Int
+
+    reservationWindowStart DateTime? @db.Date
+    reservationWindowEnd   DateTime? @db.Date
 
     /// [WeekDays]
     availableWeekend  Json
