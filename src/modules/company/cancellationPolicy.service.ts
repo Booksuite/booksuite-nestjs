@@ -43,9 +43,14 @@ export class CancellationPolicyService {
                             notIn:
                                 rawData.penaltyRanges
                                     .map((range) => range.id as string)
-                                    .map((item) => item) || [],
+                                    .filter((item) => item) || [],
                         },
                     },
+                    upsert: rawData.penaltyRanges.map((range) => ({
+                        create: range,
+                        update: range,
+                        where: { id: range.id || '' },
+                    })),
                 },
             })
 
