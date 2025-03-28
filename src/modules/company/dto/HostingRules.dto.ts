@@ -24,12 +24,12 @@ export class HostingRulesDTO {
     @IsWeekDays()
     availableWeekend: PrismaJson.WeekDays
 
-    @ApiProperty({ example: '2025-12-01' })
+    @ApiProperty({ example: '2025-12-01', type: String, nullable: true })
     @IsDateString()
     @IsOptional()
     reservationWindowStart?: string
 
-    @ApiProperty({ example: '2025-12-31' })
+    @ApiProperty({ example: '2025-12-31', type: String, nullable: true })
     @IsDateString()
     @IsOptional()
     reservationWindowEnd?: string
