@@ -26,12 +26,12 @@ export class HostingRulesService {
     private normalize(result: HostingRules): HostingRulesResponseDTO {
         return {
             ...result,
-            reservationWindowStart: dayjs(result.reservationWindowStart).format(
-                'YYYY-MM-DD',
-            ),
-            reservationWindowEnd: dayjs(result.reservationWindowEnd).format(
-                'YYYY-MM-DD',
-            ),
+            reservationWindowStart: result.reservationWindowStart
+                ? dayjs(result.reservationWindowStart).format('YYYY-MM-DD')
+                : null,
+            reservationWindowEnd: result.reservationWindowEnd
+                ? dayjs(result.reservationWindowEnd).format('YYYY-MM-DD')
+                : null,
         }
     }
 
@@ -43,26 +43,18 @@ export class HostingRulesService {
             Prisma.validator<Prisma.HostingRulesCreateInput>()({
                 company: { connect: { id: companyId } },
                 ...rawData,
-                reservationWindowStart: dayjs(
-                    rawData.reservationWindowStart,
-                ).toDate(),
-                reservationWindowEnd: dayjs(
-                    rawData.reservationWindowEnd,
-                ).toDate(),
+                reservationWindowStart: rawData.reservationWindowStart
+                    ? dayjs(rawData.reservationWindowStart).toDate()
+                    : null,
+                reservationWindowEnd: rawData.reservationWindowEnd
+                    ? dayjs(rawData.reservationWindowEnd).toDate()
+                    : null,
             })
 
         const result = await this.prismaService.hostingRules.upsert({
             where: { companyId },
             create: normalizedData,
-            update: {
-                ...rawData,
-                reservationWindowStart: dayjs(
-                    rawData.reservationWindowStart,
-                ).toDate(),
-                reservationWindowEnd: dayjs(
-                    rawData.reservationWindowEnd,
-                ).toDate(),
-            },
+            update: normalizedData,
         })
 
         return this.normalize(result)
