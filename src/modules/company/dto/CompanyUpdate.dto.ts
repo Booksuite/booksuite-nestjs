@@ -226,6 +226,7 @@ export class CompanyUpdateDTO {
     @ApiProperty({
         type: MapCoordinatesDTO,
         example: 'Map coordinates',
+        required: false,
     })
     @IsOptional()
     @Type(() => MapCoordinatesDTO)
