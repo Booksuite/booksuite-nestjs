@@ -1,7 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { BillingType } from '@prisma/client'
-import { Type } from 'class-transformer'
-import { IsArray } from 'class-validator'
 
 import { MediaResponseDTO } from '@/modules/media/dto/MediaResponse.dto'
 
@@ -60,8 +58,7 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: 'Seasonal availability, blackout dates apply.' })
     notes!: string
 
-    @Type(() => Number)
-    @IsArray()
+    @ApiProperty({ type: Number, isArray: true })
     availableWeekDays: PrismaJson.WeekDays | null
 
     @ApiProperty({
