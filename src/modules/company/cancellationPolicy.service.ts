@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
@@ -35,9 +34,23 @@ export class CancellationPolicyService {
                 },
                 company: { connect: { id: companyId } },
             })
+        const normalizedUpdateData =
+            Prisma.validator<Prisma.CancellationPolicyUpdateInput>()({
+                ...rawData,
+                penaltyRanges: {
+                    deleteMany: {
+                        id: {
+                            notIn:
+                                rawData.penaltyRanges
+                                    .map((range) => range.id as string)
+                                    .map((item) => item) || [],
+                        },
+                    },
+                },
+            })
 
         return this.prismaService.cancellationPolicy.upsert({
-            update: omit(normalizedData, ['company']),
+            update: normalizedUpdateData,
             create: normalizedData,
             where: { companyId },
             include: { penaltyRanges: true },
