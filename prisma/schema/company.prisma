@@ -35,6 +35,10 @@ model Company {
     state   String?
     city    String?
 
+    privacyPolicyDescription String?
+    privacyPolicySimpleModel String?
+    privacyPoicyFullModel String?
+    
     /// [MapCoordinates]
     mapCoordinates Json?
 
