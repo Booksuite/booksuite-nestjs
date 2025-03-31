@@ -14,6 +14,7 @@ import { CompanyBioOrderByDTO } from './dto/CompanyBioOrderBy.dto'
 import { CompanyBioPaginatedResponseDTO } from './dto/CompanyBioPaginatedResponse.dto'
 import { CompanyBioResponseDTO } from './dto/CompanyBioResponse.dto'
 import { CompanyBioSearchFilterDTO } from './dto/CompanyBioSearchFilter.dto'
+import { CompanyBioUpdateDTO } from './dto/CompanyBioUpdate.dto'
 @Injectable()
 export class CompanyBioService {
     constructor(private prismaService: PrismaService) {}
@@ -48,7 +49,7 @@ export class CompanyBioService {
 
     async update(
         id: string,
-        rawData: CompanyBioDTO,
+        rawData: CompanyBioUpdateDTO,
     ): Promise<CompanyBioResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyBioUpdateInput>()(
             {

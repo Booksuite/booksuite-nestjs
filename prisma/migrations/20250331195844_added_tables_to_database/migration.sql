@@ -1,6 +1,6 @@
 -- AlterTable
-ALTER TABLE "companies" ADD COLUMN     "privacyPoicyFullModel" TEXT,
-ADD COLUMN     "privacyPolicyDescription" TEXT,
+ALTER TABLE "companies" ADD COLUMN     "privacyPolicyDescription" TEXT,
+ADD COLUMN     "privacyPolicyFullModel" TEXT,
 ADD COLUMN     "privacyPolicySimpleModel" TEXT;
 
 -- CreateTable
