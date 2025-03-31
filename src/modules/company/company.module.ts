@@ -6,6 +6,8 @@ import { CancellationPolicyController } from './cancellationPolicy.controller'
 import { CancellationPolicyService } from './cancellationPolicy.service'
 import { CompanyController } from './company.controller'
 import { CompanyService } from './company.service'
+import { CompanyBioController } from './companyBio.controller'
+import { CompanyBioService } from './companyBio.service'
 import { HostingRulesController } from './hostingRules.controller'
 import { HostingRulesService } from './hostingRules.service'
 import { ReservationConfigController } from './reservationConfig.controller'
@@ -24,6 +26,7 @@ import { SeasonRulesService } from './seasonRules.service'
         HostingRulesService,
         SeasonRulesService,
         ReservationOptionService,
+        CompanyBioService,
     ],
     controllers: [
         CompanyController,
@@ -33,6 +36,7 @@ import { SeasonRulesService } from './seasonRules.service'
         HostingRulesController,
         SeasonRulesController,
         ReservationOptionsController,
+        CompanyBioController,
     ],
 })
 export class CompanyModule {}

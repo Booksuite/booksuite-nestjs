@@ -37,8 +37,8 @@ model Company {
 
     privacyPolicyDescription String?
     privacyPolicySimpleModel String?
-    privacyPoicyFullModel String?
-    
+    privacyPoicyFullModel    String?
+
     /// [MapCoordinates]
     mapCoordinates Json?
 
@@ -56,6 +56,8 @@ model Company {
     services           Service[]
     medias             Media[]
     seasonRules        SeasonRules[]
+    CompanyBio         CompanyBio[]
+    hostingRules       HostingRules?
 
     bannerImageId     String?
     bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
@@ -143,4 +145,18 @@ enum PriceVariationType {
     PERCENTAGE_INCREASE
     PERCENTAGE_REDUCTION
     CUSTOM
+}
+
+model CompanyBio {
+    id        String  @id @default(uuid())
+    published Boolean
+
+    title      String
+    buttonLink String
+
+    startDate DateTime? @db.Date
+    endDate   DateTime? @db.Date
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 }
