@@ -21,6 +21,7 @@ import { CompanyBioDTO } from './dto/CompanyBio.dto'
 import { CompanyBioPaginatedResponseDTO } from './dto/CompanyBioPaginatedResponse.dto'
 import { CompanyBioResponseDTO } from './dto/CompanyBioResponse.dto'
 import { CompanyBioSearchBodyDTO } from './dto/CompanyBioSearchBody.dto'
+import { CompanyBioUpdateDTO } from './dto/CompanyBioUpdate.dto'
 
 @Controller('company/:companyId/companyBio')
 export class CompanyBioController {
@@ -57,7 +58,7 @@ export class CompanyBioController {
     @Patch(':id')
     update(
         @Param('id') id: string,
-        @Body() rawData: CompanyBioDTO,
+        @Body() rawData: CompanyBioUpdateDTO,
     ): Promise<CompanyBioResponseDTO> {
         return this.companyBioService.update(id, rawData)
     }

@@ -37,7 +37,7 @@ model Company {
 
     privacyPolicyDescription String?
     privacyPolicySimpleModel String?
-    privacyPoicyFullModel    String?
+    privacyPolicyFullModel    String?
 
     /// [MapCoordinates]
     mapCoordinates Json?

@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsOptional, IsString } from 'class-validator'
+import { IsBoolean, IsOptional } from 'class-validator'
+
+import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 
 export class CompanyBioSearchFilterDTO {
     @ApiProperty({ example: true, required: false })
@@ -10,18 +12,16 @@ export class CompanyBioSearchFilterDTO {
     @ApiProperty({
         example: '2025-01-01T00:00:00.000Z',
         required: false,
-        nullable: true,
+        type: DateRangeDTO,
     })
     @IsOptional()
-    @IsString()
-    startDate?: Date
+    startDate?: DateRangeDTO
 
     @ApiProperty({
         example: '2025-01-01T00:00:00.000Z',
         required: false,
-        nullable: true,
+        type: DateRangeDTO,
     })
     @IsOptional()
-    @IsString()
-    endDate?: Date
+    endDate?: DateRangeDTO
 }

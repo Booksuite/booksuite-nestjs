@@ -1,3 +1,5 @@
 export enum CompanyBioOrderBy {
-    TTILE = 'title',
+    TITLE = 'title',
+    STARTDATE = 'startDate',
+    ENDDATE = 'endDate',
 }

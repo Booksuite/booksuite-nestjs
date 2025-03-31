@@ -130,23 +130,20 @@ export class CompanyResponseDTO {
     @ApiProperty({
         example: 'Privacy policy description',
         type: String,
-        nullable: true,
     })
-    privacyPolicyDescription?: string | null
+    privacyPolicyDescription: string | null
 
     @ApiProperty({
         example: 'Privacy policy simple model',
         type: String,
-        nullable: true,
     })
-    privacyPolicySimpleModel?: string | null
+    privacyPolicySimpleModel: string | null
 
     @ApiProperty({
         example: 'Privacy policy full model',
         type: String,
-        nullable: true,
     })
-    privacyPolicyFullModel?: string | null
+    privacyPolicyFullModel: string | null
 
     @ApiProperty({
         example: 'Map Coordinates',
