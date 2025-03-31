@@ -37,8 +37,8 @@ model Company {
 
     privacyPolicyDescription String?
     privacyPolicySimpleModel String?
-    privacyPoicyFullModel String?
-    
+    privacyPoicyFullModel    String?
+
     /// [MapCoordinates]
     mapCoordinates Json?
 
@@ -53,6 +53,7 @@ model Company {
     reservations       Reservation[]
     services           Service[]
     medias             Media[]
+    CompanyBio         CompanyBio[]
     hostingRules       HostingRules?
 
     bannerImageId     String?
@@ -94,4 +95,18 @@ model CompanyFacility {
 
     @@unique([companyId, facilityId], name: "company_facility_unique")
     @@map("company_facilities")
+}
+
+model CompanyBio {
+    id String @id @default(uuid())
+    published Boolean
+
+    title      String
+    buttonLink String
+
+    startDate DateTime? @db.Date
+    endDate   DateTime? @db.Date
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 }
