@@ -27,6 +27,11 @@ model HousingUnitType {
     facilities   HousingUnitTypeFacility[]
     services     ServiceHousingUnitType[]
     seasonRules  SeasonRuleHousingUnitType[]
+    medias             HousingUnitTypeMedia[]
+    housingUnits       HousingUnit[]
+    facilities         HousingUnitTypeFacility[]
+    services           ServiceHousingUnitType[]
+    reservationOptions ReservationOptionHousingUnitTypes[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt

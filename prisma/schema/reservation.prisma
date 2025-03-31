@@ -91,6 +91,30 @@ model ReservationConfig {
     @@map("reservation_configs")
 }
 
+model ReservationOption {
+    id String @id @default(uuid())
+
+    name                      String
+    billingType               BillingType
+    additionalAdultPrice      Float
+    additionalChildrenPrice   Float
+    availableHousingUnitTypes ReservationOptionHousingUnitTypes[]
+
+    /// [WeekDays]
+    availableWeekend Json
+
+    /// [additionalAgeGroupsPrices]
+    additionalAgeGroupPrice Json
+
+    /// [includedItems]
+    includedItems Json
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("reservation_option")
+}
+
 model HostingRules {
     id String @id @default(uuid())
 
@@ -112,6 +136,18 @@ model HostingRules {
     company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
     @@map("hosting_rules")
+}
+
+model ReservationOptionHousingUnitTypes {
+    id String @id @default(uuid())
+
+    housingUnitTypeId   String
+    housingUnitType     HousingUnitType   @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    reservationOptionId String
+    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
+
+    @@unique([housingUnitTypeId, reservationOptionId], name: "reservationoption_housingunittype_unique")
+    @@map("reservationoption_housingunittype")
 }
 
 enum ReservationDepositType {
