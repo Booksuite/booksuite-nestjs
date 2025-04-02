@@ -97,6 +97,7 @@ model SeasonRules {
     id String @id @default(uuid())
 
     name      String
+    published Boolean?
     startDate DateTime @db.Date
     endDate   DateTime @db.Date
     minDaily  Int
@@ -105,7 +106,7 @@ model SeasonRules {
     availableWeekend Json
 
     housingUnitTypesPrices SeasonRuleHousingUnitType[]
-    priceVariationType     PriceVariationTypes
+    priceVariationType     PriceVariationType
     price                  Int
 
     companyId String
@@ -122,14 +123,14 @@ model SeasonRuleHousingUnitType {
 
     baseWeekPrice    Float
     newWeekPrice     Float
-    WeekendBasePrice Float
-    WeekendNewPrice  Float
+    weekendBasePrice Float
+    weekendNewPrice  Float
 
     @@unique([housingUnitTypeId, seasonRuleId], name: "seasonRule_housingunittype_unique")
     @@map("seasonRule_housingunittype")
 }
 
-enum PriceVariationTypes {
+enum PriceVariationType {
     ABSOLUTE_INCREASE
     ABSOLUTE_REDUCTION
     PERCENTAGE_INCREASE

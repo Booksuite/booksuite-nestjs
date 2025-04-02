@@ -19,8 +19,8 @@ export class SeasonRuleHousingUnitTypeResponseDTO {
     newWeekPrice: number
 
     @ApiProperty({ example: 1500 })
-    WeekendBasePrice: number
+    weekendBasePrice: number
 
     @ApiProperty({ example: 1800 })
-    WeekendNewPrice: number
+    weekendNewPrice: number
 }

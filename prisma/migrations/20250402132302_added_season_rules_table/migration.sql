@@ -1,15 +1,16 @@
 -- CreateEnum
-CREATE TYPE "PriceVariationTypes" AS ENUM ('ABSOLUTE_INCREASE', 'ABSOLUTE_REDUCTION', 'PERCENTAGE_INCREASE', 'PERCENTAGE_REDUCTION', 'CUSTOM');
+CREATE TYPE "PriceVariationType" AS ENUM ('ABSOLUTE_INCREASE', 'ABSOLUTE_REDUCTION', 'PERCENTAGE_INCREASE', 'PERCENTAGE_REDUCTION', 'CUSTOM');
 
 -- CreateTable
 CREATE TABLE "SeasonRules" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "published" BOOLEAN,
     "startDate" DATE NOT NULL,
     "endDate" DATE NOT NULL,
     "minDaily" INTEGER NOT NULL,
     "availableWeekend" JSONB NOT NULL,
-    "priceVariationType" "PriceVariationTypes" NOT NULL,
+    "priceVariationType" "PriceVariationType" NOT NULL,
     "price" INTEGER NOT NULL,
     "companyId" TEXT NOT NULL,
 
@@ -23,8 +24,8 @@ CREATE TABLE "seasonRule_housingunittype" (
     "seasonRuleId" TEXT NOT NULL,
     "baseWeekPrice" DOUBLE PRECISION NOT NULL,
     "newWeekPrice" DOUBLE PRECISION NOT NULL,
-    "WeekendBasePrice" DOUBLE PRECISION NOT NULL,
-    "WeekendNewPrice" DOUBLE PRECISION NOT NULL,
+    "weekendBasePrice" DOUBLE PRECISION NOT NULL,
+    "weekendNewPrice" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "seasonRule_housingunittype_pkey" PRIMARY KEY ("id")
 );
