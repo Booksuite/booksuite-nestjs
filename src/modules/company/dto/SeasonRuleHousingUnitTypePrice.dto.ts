@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsNumber, IsUUID } from 'class-validator'
 
-export class SeasonRuleHousingUnitTypeCreateDTO {
+export class SeasonRuleHousingUnitTypePriceDTO {
     @ApiProperty({
         example: 'f37b28c1-a26b-4f92-8b4e-5a3b6b8d4a77',
         type: String,

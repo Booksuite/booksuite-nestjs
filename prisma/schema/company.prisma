@@ -97,7 +97,7 @@ model SeasonRules {
     id String @id @default(uuid())
 
     name      String
-    published Boolean?
+    published Boolean
     startDate DateTime @db.Date
     endDate   DateTime @db.Date
     minDaily  Int
@@ -111,6 +111,8 @@ model SeasonRules {
 
     companyId String
     company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("season_rules")
 }
 
 model SeasonRuleHousingUnitType {
@@ -127,7 +129,7 @@ model SeasonRuleHousingUnitType {
     weekendNewPrice  Float
 
     @@unique([housingUnitTypeId, seasonRuleId], name: "seasonRule_housingunittype_unique")
-    @@map("seasonRule_housingunittype")
+    @@map("season_rule_housing_unit_types")
 }
 
 enum PriceVariationType {

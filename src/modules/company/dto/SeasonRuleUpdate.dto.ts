@@ -13,7 +13,7 @@ import {
 
 import { IsWeekDays } from '@/common/decorators/IsWeekDays.decorator'
 
-import { SeasonRuleHousingUnitTypeCreateDTO } from './SeasonRuleHousingUnitType.dto'
+import { SeasonRuleHousingUnitTypePriceDTO } from './SeasonRuleHousingUnitTypePrice.dto'
 
 export class SeasonRuleUpdateDTO {
     @ApiProperty({ example: 'Summer Special', type: String, required: false })
@@ -48,7 +48,8 @@ export class SeasonRuleUpdateDTO {
     @ApiProperty({
         enum: PriceVariationType,
         example: PriceVariationType.ABSOLUTE_INCREASE,
-        enumName: 'priceVariationType',
+        enumName: 'PriceVariationType',
+        required: false,
     })
     @IsOptional()
     @IsEnum(PriceVariationType)
@@ -60,12 +61,12 @@ export class SeasonRuleUpdateDTO {
     price?: number
 
     @ApiProperty({
-        type: [SeasonRuleHousingUnitTypeCreateDTO],
+        type: [SeasonRuleHousingUnitTypePriceDTO],
         required: false,
     })
     @IsOptional()
     @IsArray()
     @ValidateNested()
-    @Type(() => SeasonRuleHousingUnitTypeCreateDTO)
-    housingUnitTypesPrices?: SeasonRuleHousingUnitTypeCreateDTO[]
+    @Type(() => SeasonRuleHousingUnitTypePriceDTO)
+    housingUnitTypesPrices?: SeasonRuleHousingUnitTypePriceDTO[]
 }

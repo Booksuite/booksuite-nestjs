@@ -12,12 +12,12 @@ export class SeasonRuleResponseDTO {
     name: string
 
     @ApiProperty({ example: false, type: Boolean })
-    published: boolean | null
+    published: boolean
 
-    @ApiProperty({ example: '2025-06-01' })
+    @ApiProperty({ example: '2025-06-01', type: Date })
     startDate: Date
 
-    @ApiProperty({ example: '2025-08-31' })
+    @ApiProperty({ example: '2025-08-31', type: Date })
     endDate: Date
 
     @ApiProperty({ example: 3 })
