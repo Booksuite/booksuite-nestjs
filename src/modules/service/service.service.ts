@@ -55,18 +55,18 @@ export class ServiceService {
     update(id: string, rawData: ServiceUpdateDTO): Promise<ServiceResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.ServiceUpdateInput>()({
             ...rawData,
-            availableHousingUnitTypes: {
+            availableHousingUnitTypes: rawData.availableHousingUnitTypes && {
                 deleteMany: {
                     serviceId: id,
                     housingUnitTypeId: {
                         notIn:
-                            rawData.availableHousingUnitTypes?.map(
+                            rawData.availableHousingUnitTypes.map(
                                 (housingUnitType) =>
                                     housingUnitType.housingUnitTypeId,
                             ) || [],
                     },
                 },
-                upsert: rawData.availableHousingUnitTypes?.map(
+                upsert: rawData.availableHousingUnitTypes.map(
                     (housingUnitType) => ({
                         where: {
                             service_housingunittype_unique: {
@@ -80,15 +80,15 @@ export class ServiceService {
                     }),
                 ),
             },
-            medias: {
+            medias: rawData.medias && {
                 deleteMany: {
                     serviceId: id,
                     mediaId: {
                         notIn:
-                            rawData.medias?.map((media) => media.mediaId) || [],
+                            rawData.medias.map((media) => media.mediaId) || [],
                     },
                 },
-                upsert: rawData.medias?.map((media) => ({
+                upsert: rawData.medias.map((media) => ({
                     where: {
                         service_media_unique: {
                             serviceId: id,

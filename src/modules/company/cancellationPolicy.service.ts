@@ -37,7 +37,7 @@ export class CancellationPolicyService {
         const normalizedUpdateData =
             Prisma.validator<Prisma.CancellationPolicyUpdateInput>()({
                 ...rawData,
-                penaltyRanges: {
+                penaltyRanges: rawData.penaltyRanges && {
                     deleteMany: {
                         id: {
                             notIn:

@@ -75,15 +75,15 @@ export class BannerService {
     update(id: string, rawData: BannerUpdateDTO): Promise<BannerResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.BannerUpdateInput>()({
             ...rawData,
-            medias: {
+            medias: rawData.medias && {
                 deleteMany: {
                     bannerId: id,
                     mediaId: {
                         notIn:
-                            rawData.medias?.map((media) => media.mediaId) || [],
+                            rawData.medias.map((media) => media.mediaId) || [],
                     },
                 },
-                upsert: rawData.medias?.map((media) => ({
+                upsert: rawData.medias.map((media) => ({
                     where: {
                         banner_media_unique: {
                             bannerId: id,

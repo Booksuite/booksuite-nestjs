@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import { omit } from 'radash'
 
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
@@ -24,29 +23,43 @@ export class AgePolicyService {
         companyId: string,
         rawData: AgePolicyDTO,
     ): Promise<AgePolicyResponseFullDTO> {
-        const normalizedData = Prisma.validator<Prisma.AgePolicyCreateInput>()({
-            ...omit(rawData, ['ageGroups']),
-            company: { connect: { id: companyId } },
-            ageGroups: {
-                connectOrCreate: rawData.ageGroups.map((group) => ({
-                    where: { id: group.id || '' },
-                    create: group,
-                })),
-            },
-        })
+        const normalizedDataCreate =
+            Prisma.validator<Prisma.AgePolicyCreateInput>()({
+                ...rawData,
+                company: { connect: { id: companyId } },
+                ageGroups: {
+                    createMany: {
+                        data: rawData.ageGroups.map((group) => ({
+                            ...group,
+                        })),
+                    },
+                },
+            })
+        const normalizedDataUpdate =
+            Prisma.validator<Prisma.AgePolicyUpdateInput>()({
+                ...rawData,
 
-        const ageGroupsToKeep = rawData.ageGroups
-            .filter((g) => g.id)
-            .map((group) => group.id) as string[]
-
-        await this.prismaService.ageGroup.deleteMany({
-            where: { id: { notIn: ageGroupsToKeep } },
-        })
+                ageGroups: rawData.ageGroups && {
+                    deleteMany: {
+                        agePolicyId: companyId,
+                        id: {
+                            notIn: rawData.ageGroups
+                                .map((group) => group.id || '')
+                                .filter(Boolean),
+                        },
+                    },
+                    upsert: rawData.ageGroups.map((group) => ({
+                        where: { id: group.id || '' },
+                        update: group,
+                        create: group,
+                    })),
+                },
+            })
 
         return this.prismaService.agePolicy.upsert({
             where: { companyId },
-            create: normalizedData,
-            update: omit(normalizedData, ['company']),
+            create: normalizedDataCreate,
+            update: normalizedDataUpdate,
             include: { ageGroups: true },
         })
     }
