@@ -22,11 +22,11 @@ model HousingUnitType {
     companyId String
     company   Company? @relation(fields: [companyId], references: [id])
 
-    medias                    HousingUnitTypeMedia[]
-    housingUnits              HousingUnit[]
-    facilities                HousingUnitTypeFacility[]
-    services                  ServiceHousingUnitType[]
-    SeasonRuleHousingUnitType SeasonRuleHousingUnitType[]
+    medias       HousingUnitTypeMedia[]
+    housingUnits HousingUnit[]
+    facilities   HousingUnitTypeFacility[]
+    services     ServiceHousingUnitType[]
+    seasonRules  SeasonRuleHousingUnitType[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt

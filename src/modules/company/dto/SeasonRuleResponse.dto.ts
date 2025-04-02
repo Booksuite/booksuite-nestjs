@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { PriceVariationTypes } from '@prisma/client'
+import { PriceVariationType } from '@prisma/client'
 
-export class SeasonRulesResponseDTO {
+export class SeasonRuleResponseDTO {
     @ApiProperty({
         example: 'a7c6b6a9-3a59-4b58-b8a6-3f9c5b0f9c7b',
         required: false,
@@ -10,6 +10,9 @@ export class SeasonRulesResponseDTO {
 
     @ApiProperty({ example: 'Summer Special' })
     name: string
+
+    @ApiProperty({ example: false, type: Boolean })
+    published: boolean | null
 
     @ApiProperty({ example: '2025-06-01' })
     startDate: Date
@@ -20,11 +23,15 @@ export class SeasonRulesResponseDTO {
     @ApiProperty({ example: 3 })
     minDaily: number
 
-    @ApiProperty({ example: '[0,1,2]' })
+    @ApiProperty({ type: Number, isArray: true })
     availableWeekend: PrismaJson.WeekDays
 
-    @ApiProperty({ enum: PriceVariationTypes })
-    priceVariationType: PriceVariationTypes
+    @ApiProperty({
+        enum: PriceVariationType,
+        example: PriceVariationType.ABSOLUTE_INCREASE,
+        enumName: 'priceVariationType',
+    })
+    priceVariationType: PriceVariationType
 
     @ApiProperty({ example: 20 })
     price: number

@@ -23,10 +23,10 @@ export class SeasonRuleHousingUnitTypeCreateDTO {
     @ApiProperty({ example: 1500, type: Number })
     @IsDefined()
     @IsNumber()
-    WeekendBasePrice: number
+    weekendBasePrice: number
 
     @ApiProperty({ example: 1800, type: Number })
     @IsDefined()
     @IsNumber()
-    WeekendNewPrice: number
+    weekendNewPrice: number
 }

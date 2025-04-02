@@ -2,18 +2,26 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { pick } from 'radash'
 
+import { PaginationQuery } from '@/common/types/pagination'
+import {
+    buildPaginatedResponse,
+    getPaginatedParams,
+} from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { SeasonRulesDTO } from './dto/SeasonRules.dto'
-import { SeasonRulesResponseDTO } from './dto/SeasonRulesResponse.dto'
-import { SeasonRulesResponseFullDTO } from './dto/SeasonRulesResponseFull.dto'
-import { SeasonRulesUpdateDTO } from './dto/SeasonRulesUpdate.dto'
+import { SeasonRuleDTO } from './dto/SeasonRule.dto'
+import { SeasonRuleOrderByDTO } from './dto/SeasonRuleOrderBy.dto'
+import { SeasonRuleResponseDTO } from './dto/SeasonRuleResponse.dto'
+import { SeasonRuleResponseFullDTO } from './dto/SeasonRuleResponseFull.dto'
+import { SeasonRulePaginatedResponseDTO } from './dto/SeasonRuleResponsePaginated.dto'
+import { SeasonRuleSearchFilterDTO } from './dto/SeasonRuleSearchFilterDTO.dto'
+import { SeasonRuleUpdateDTO } from './dto/SeasonRuleUpdate.dto'
 
 @Injectable()
 export class SeasonRulesService {
     constructor(private prismaService: PrismaService) {}
 
-    async getById(id: string): Promise<SeasonRulesResponseFullDTO | null> {
+    async getById(id: string): Promise<SeasonRuleResponseFullDTO | null> {
         return await this.prismaService.seasonRules.findUnique({
             where: { id },
             include: {
@@ -24,8 +32,8 @@ export class SeasonRulesService {
 
     async create(
         companyId: string,
-        rawData: SeasonRulesDTO,
-    ): Promise<SeasonRulesResponseDTO> {
+        rawData: SeasonRuleDTO,
+    ): Promise<SeasonRuleResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.SeasonRulesCreateInput>()({
                 company: { connect: { id: companyId } },
@@ -42,8 +50,8 @@ export class SeasonRulesService {
 
     async update(
         id: string,
-        rawData: SeasonRulesUpdateDTO,
-    ): Promise<SeasonRulesResponseFullDTO> {
+        rawData: SeasonRuleUpdateDTO,
+    ): Promise<SeasonRuleResponseFullDTO> {
         const normalizedData =
             Prisma.validator<Prisma.SeasonRulesUpdateInput>()({
                 ...rawData,
@@ -68,15 +76,15 @@ export class SeasonRulesService {
                             },
                             update: pick(housingUnitType, [
                                 'housingUnitTypeId',
-                                'WeekendBasePrice',
-                                'WeekendNewPrice',
+                                'weekendBasePrice',
+                                'weekendNewPrice',
                                 'baseWeekPrice',
                                 'newWeekPrice',
                             ]),
                             create: pick(housingUnitType, [
                                 'housingUnitTypeId',
-                                'WeekendBasePrice',
-                                'WeekendNewPrice',
+                                'weekendBasePrice',
+                                'weekendNewPrice',
                                 'baseWeekPrice',
                                 'newWeekPrice',
                             ]),
@@ -92,5 +100,49 @@ export class SeasonRulesService {
                 housingUnitTypesPrices: { include: { housingUnitType: true } },
             },
         })
+    }
+
+    async search(
+        companyId: string,
+        pagination: PaginationQuery,
+        order?: SeasonRuleOrderByDTO,
+        filter?: SeasonRuleSearchFilterDTO,
+        query?: string,
+    ): Promise<SeasonRulePaginatedResponseDTO> {
+        const paginationParams = getPaginatedParams(pagination)
+
+        const [seasonRules, totalSeasonRules] =
+            await this.prismaService.seasonRules.findManyAndCount({
+                where: {
+                    ...this.buildSearchParams(query, filter),
+                    companyId,
+                },
+                ...paginationParams,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
+                include: {
+                    housingUnitTypesPrices: {
+                        include: { housingUnitType: true },
+                    },
+                },
+            })
+
+        return buildPaginatedResponse(seasonRules, totalSeasonRules, pagination)
+    }
+
+    private buildSearchParams(
+        query?: string,
+        filters?: SeasonRuleSearchFilterDTO,
+    ): Prisma.SeasonRulesWhereInput {
+        const data: Prisma.SeasonRulesWhereInput = {}
+
+        if (query) {
+            data.OR = [{ name: { contains: query, mode: 'insensitive' } }]
+        }
+
+        if (filters) data.published = filters?.published
+
+        return data
     }
 }
