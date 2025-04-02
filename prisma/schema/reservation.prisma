@@ -95,6 +95,7 @@ model ReservationOption {
     id String @id @default(uuid())
 
     name                      String
+    published                 Boolean
     billingType               BillingType
     additionalAdultPrice      Float
     additionalChildrenPrice   Float
@@ -103,10 +104,10 @@ model ReservationOption {
     /// [WeekDays]
     availableWeekend Json
 
-    /// [additionalAgeGroupsPrices]
+    /// [AdditionalAgeGroupsPrices]
     additionalAgeGroupPrice Json
 
-    /// [includedItems]
+    /// [IncludedItems]
     includedItems Json
 
     companyId String
@@ -146,8 +147,8 @@ model ReservationOptionHousingUnitTypes {
     reservationOptionId String
     reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
 
-    @@unique([housingUnitTypeId, reservationOptionId], name: "reservationoption_housingunittype_unique")
-    @@map("reservationoption_housingunittype")
+    @@unique([housingUnitTypeId, reservationOptionId], name: "reservation_option_housingunittype_unique")
+    @@map("reservation_option_housingunittype")
 }
 
 enum ReservationDepositType {

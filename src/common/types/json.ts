@@ -3,7 +3,7 @@ export type MapCoordinates = {
     longitude: number
 }
 
-export type ageGroupsPrices = {
+export type AgeGroupsPrices = {
     ageGroupId: string
     price: number
     initialAge: number

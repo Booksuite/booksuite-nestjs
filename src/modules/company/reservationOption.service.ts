@@ -2,11 +2,19 @@ import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
 import { pick } from 'radash'
 
+import { PaginationQuery } from '@/common/types/pagination'
+import {
+    buildPaginatedResponse,
+    getPaginatedParams,
+} from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
 import { ReservationOptionDTO } from './dto/ReservationOption.dto'
-import { ReservationOptionResponseFullDTO } from './dto/ReservationOptionResponse.dto'
-import { ReservationOptionResponseDTO } from './dto/ReservationOptionResponse.dto copy'
+import { ReservationOptionOrderByDTO } from './dto/ReservationOptionOrderBy.dto'
+import { ReservationOptionPaginatedResponseDTO } from './dto/ReservationOptionPaginatedResponse.dto'
+import { ReservationOptionResponseDTO } from './dto/ReservationOptionResponse.dto'
+import { ReservationOptionResponseFullDTO } from './dto/ReservationOptionResponseFull.dto'
+import { ReservationOptionSearchFilterDTO } from './dto/ReservationOptionSearchFilter.dto'
 
 @Injectable()
 export class ReservationOptionService {
@@ -64,7 +72,7 @@ export class ReservationOptionService {
                     upsert: rawData.availableHousingUnitTypes?.map(
                         (housingUnitType) => ({
                             where: {
-                                reservationoption_housingunittype_unique: {
+                                reservation_option_housingunittype_unique: {
                                     reservationOptionId: id,
                                     housingUnitTypeId:
                                         housingUnitType.housingUnitTypeId,
@@ -90,5 +98,56 @@ export class ReservationOptionService {
                 },
             },
         })
+    }
+
+    async search(
+        companyId: string,
+        pagination: PaginationQuery,
+        order?: ReservationOptionOrderByDTO,
+        filter?: ReservationOptionSearchFilterDTO,
+        query?: string,
+    ): Promise<ReservationOptionPaginatedResponseDTO> {
+        const paginationParams = getPaginatedParams(pagination)
+
+        const [reservationOptions, totalReservationOptions] =
+            await this.prismaService.reservationOption.findManyAndCount({
+                where: {
+                    ...this.buildSearchParams(query, filter),
+                    companyId,
+                },
+                ...paginationParams,
+                orderBy: order
+                    ? { [order.orderBy]: order.direction }
+                    : undefined,
+                include: {
+                    availableHousingUnitTypes: {
+                        include: { housingUnitType: true },
+                    },
+                },
+            })
+
+        return buildPaginatedResponse(
+            reservationOptions,
+            totalReservationOptions,
+            pagination,
+        )
+    }
+
+    private buildSearchParams(
+        query?: string,
+        filters?: ReservationOptionSearchFilterDTO,
+    ): Prisma.ReservationOptionWhereInput {
+        const data: Prisma.ReservationOptionWhereInput = {}
+
+        if (query) {
+            data.OR = [{ name: { contains: query, mode: 'insensitive' } }]
+        }
+
+        if (filters) {
+            data.published = filters?.published
+            data.billingType = filters.billingType
+        }
+
+        return data
     }
 }

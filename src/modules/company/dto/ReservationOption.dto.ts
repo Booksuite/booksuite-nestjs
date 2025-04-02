@@ -1,8 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { BillingType } from '@prisma/client'
-import { IsDefined, IsEnum, IsNumber, IsString } from 'class-validator'
+import {
+    IsBoolean,
+    IsDefined,
+    IsEnum,
+    IsNumber,
+    IsString,
+} from 'class-validator'
 
-import { AgeGroupPriceDTO } from './AdditionalAgeGroupsPrices.dto'
+import { AddiotionalAgeGroupPriceDTO } from './AdditionalAgeGroupsPrice.dto'
 import { ReservationOptionHousingUnitTypeDTO } from './ReservationOptionHousingUnitType.dto'
 
 export class ReservationOptionDTO {
@@ -11,7 +17,16 @@ export class ReservationOptionDTO {
     @IsString()
     name!: string
 
-    @ApiProperty({ enum: BillingType, example: BillingType.DAILY })
+    @ApiProperty({ example: true, type: Boolean })
+    @IsBoolean()
+    @IsDefined()
+    published: boolean
+
+    @ApiProperty({
+        enum: BillingType,
+        enumName: 'BillingType',
+        example: BillingType.DAILY,
+    })
     @IsDefined()
     @IsEnum(BillingType)
     billingType!: BillingType
@@ -26,7 +41,7 @@ export class ReservationOptionDTO {
     @IsNumber()
     additionalChildrenPrice!: number
 
-    @ApiProperty({ type: [String], example: '[Café, Almoço]' })
+    @ApiProperty({ example: '[0,1,2]', type: Number, isArray: true })
     @IsDefined()
     availableWeekend!: PrismaJson.WeekDays
 
@@ -34,11 +49,11 @@ export class ReservationOptionDTO {
     @IsDefined()
     availableHousingUnitTypes!: ReservationOptionHousingUnitTypeDTO[]
 
-    @ApiProperty({ type: [AgeGroupPriceDTO] })
+    @ApiProperty({ type: [AddiotionalAgeGroupPriceDTO] })
     @IsDefined()
-    additionalAgeGroupPrice!: AgeGroupPriceDTO[]
+    additionalAgeGroupPrice!: PrismaJson.AdditionalAgeGroupsPrices
 
     @ApiProperty({ type: [String] })
     @IsDefined()
-    includedItems!: PrismaJson.includedItems
+    includedItems!: PrismaJson.IncludedItems
 }

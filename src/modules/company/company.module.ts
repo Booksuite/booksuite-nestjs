@@ -12,6 +12,8 @@ import { ReservationConfigController } from './reservationConfig.controller'
 import { ReservationConfigService } from './reservationConfig.service'
 import { SeasonRulesController } from './seasonRules.controller'
 import { SeasonRulesService } from './seasonRules.service'
+import { ReservationOptionsController } from './reservationOption.controller'
+import { ReservationOptionService } from './reservationOption.service'
 
 @Module({
     providers: [

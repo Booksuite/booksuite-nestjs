@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsNumber, IsUUID } from 'class-validator'
 
-export class AgeGroupPriceDTO {
+export class AddiotionalAgeGroupPriceDTO {
     @ApiProperty({ example: 'e95517fb-b3bb-492f-b605-d289704cde0e' })
     @IsUUID()
     @IsDefined()
