@@ -11,6 +11,7 @@ declare global {
         type CompanyContact = TypeCompanyContact
         type MediaMetadata = TypeMediaMetadata
         type WeekDays = number[]
+        type IncludedItems = string[]
         type MapCoordinates = TypeMapCoordinates
     }
 }

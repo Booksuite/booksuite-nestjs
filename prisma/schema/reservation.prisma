@@ -91,6 +91,46 @@ model ReservationConfig {
     @@map("reservation_configs")
 }
 
+model ReservationOption {
+    id String @id @default(uuid())
+
+    name                      String
+    published                 Boolean
+    billingType               BillingType
+    additionalAdultPrice      Float
+    additionalChildrenPrice   Float
+    availableHousingUnitTypes ReservationOptionHousingUnitTypes[]
+    ageGroupPrices            ReservatonOptionAgeGroup[]
+
+    /// [WeekDays]
+    availableWeekend Json
+
+    /// [IncludedItems]
+    includedItems Json
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("reservation_option")
+}
+
+model ReservatonOptionAgeGroup {
+    id String @id @default(uuid())
+
+    ageGroupId          String
+    ageGroup            AgeGroup          @relation(fields: [ageGroupId], references: [id], onDelete: Cascade)
+    reservationOptionId String
+    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
+
+    price Float
+
+    @@unique([ageGroupId, reservationOptionId], name: "reservation_option_age_groups")
+    @@map("reservation_option_age_groups")
+}
+
 model HostingRules {
     id String @id @default(uuid())
 
@@ -112,6 +152,18 @@ model HostingRules {
     company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
     @@map("hosting_rules")
+}
+
+model ReservationOptionHousingUnitTypes {
+    id String @id @default(uuid())
+
+    housingUnitTypeId   String
+    housingUnitType     HousingUnitType   @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    reservationOptionId String
+    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
+
+    @@unique([housingUnitTypeId, reservationOptionId], name: "reservation_option_housingunittype_unique")
+    @@map("reservation_option_housingunittype")
 }
 
 enum ReservationDepositType {

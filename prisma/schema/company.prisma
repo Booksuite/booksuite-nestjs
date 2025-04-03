@@ -44,13 +44,14 @@ model Company {
     agePolicy          AgePolicy?
     cancellationPolicy CancellationPolicy?
     reservationConfig  ReservationConfig?
+    hostingRules       HostingRules?
+    reservationOptions ReservationOption[]
     facilities         CompanyFacility[]
     banners            Banner[]
     reservations       Reservation[]
     services           Service[]
     medias             Media[]
     seasonRules        SeasonRules[]
-    hostingRules       HostingRules?
 
     bannerImageId     String?
     bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
@@ -124,7 +125,7 @@ model SeasonRuleHousingUnitType {
     seasonRule        SeasonRules     @relation(fields: [seasonRuleId], references: [id], onDelete: Cascade)
 
     baseWeekPrice    Float
-    newWeekPrice     Float  
+    newWeekPrice     Float
     weekendBasePrice Float
     weekendNewPrice  Float
 
