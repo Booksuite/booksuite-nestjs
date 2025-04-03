@@ -180,7 +180,7 @@ export class ReservationService {
         const normalizedData =
             Prisma.validator<Prisma.ReservationUpdateInput>()({
                 ...rawData,
-                services: {
+                services: rawData.services && {
                     deleteMany: {
                         reservationId: id,
                         serviceId: {

@@ -85,8 +85,17 @@ export class CompanyService {
             ...rawData,
             settings: rawData.settings || Prisma.DbNull,
             contacts: rawData.contacts || [],
-            facilities: {
-                upsert: rawData.facilities?.map((facility) => ({
+            facilities: rawData.facilities && {
+                deleteMany: {
+                    companyId: id,
+                    facilityId: {
+                        notIn:
+                            rawData.facilities.map(
+                                (facility) => facility.facilityId,
+                            ) || [],
+                    },
+                },
+                upsert: rawData.facilities.map((facility) => ({
                     where: {
                         company_facility_unique: {
                             companyId: id,
@@ -96,15 +105,6 @@ export class CompanyService {
                     update: pick(facility, ['facilityId', 'order']),
                     create: pick(facility, ['facilityId', 'order']),
                 })),
-                deleteMany: {
-                    companyId: id,
-                    facilityId: {
-                        notIn:
-                            rawData.facilities?.map(
-                                (facility) => facility.facilityId,
-                            ) || [],
-                    },
-                },
             },
         })
 

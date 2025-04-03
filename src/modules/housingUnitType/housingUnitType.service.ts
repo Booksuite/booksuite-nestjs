@@ -74,17 +74,17 @@ export class HousingUnitTypeService {
         const normalizedData =
             Prisma.validator<Prisma.HousingUnitTypeUpdateInput>()({
                 ...rawData,
-                facilities: {
+                facilities: rawData.facilities && {
                     deleteMany: {
                         housingUnitTypeId: id,
                         facilityId: {
                             notIn:
-                                rawData.facilities?.map(
+                                rawData.facilities.map(
                                     (facility) => facility.facilityId,
                                 ) || [],
                         },
                     },
-                    upsert: rawData.facilities?.map((facility) => ({
+                    upsert: rawData.facilities.map((facility) => ({
                         where: {
                             housing_unit_type_facility_unique: {
                                 housingUnitTypeId: id,
@@ -103,16 +103,16 @@ export class HousingUnitTypeService {
                     })),
                 },
 
-                medias: {
+                medias: rawData.medias && {
                     deleteMany: {
                         housingUnitTypeId: id,
                         mediaId: {
-                            notIn:
-                                rawData.medias?.map((media) => media.mediaId) ||
-                                [],
+                            notIn: rawData.medias
+                                .map((media) => media.mediaId)
+                                .filter(Boolean),
                         },
                     },
-                    upsert: rawData.medias?.map((media) => ({
+                    upsert: rawData.medias.map((media) => ({
                         where: {
                             housing_unit_type_media_unique: {
                                 housingUnitTypeId: id,
@@ -127,17 +127,16 @@ export class HousingUnitTypeService {
                     })),
                 },
 
-                housingUnits: {
+                housingUnits: rawData.housingUnits && {
                     deleteMany: {
                         housingUnitTypeId: id,
                         id: {
-                            notIn:
-                                rawData.housingUnits
-                                    ?.map((housingUnit) => housingUnit.id || '')
-                                    .filter(Boolean) || [],
+                            notIn: rawData.housingUnits
+                                .map((housingUnit) => housingUnit.id || '')
+                                .filter(Boolean),
                         },
                     },
-                    upsert: rawData.housingUnits?.map((housingUnit) => ({
+                    upsert: rawData.housingUnits.map((housingUnit) => ({
                         where: {
                             id: housingUnit.id || '',
                         },
