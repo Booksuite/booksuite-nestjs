@@ -49,7 +49,7 @@ export class ReservationOptionDTO {
     @IsDefined()
     availableHousingUnitTypes!: ReservationOptionHousingUnitTypeDTO[]
 
-    @ApiProperty({ type: [ReservationOptionAgeGroupDTO], isArray: true })
+    @ApiProperty({ type: [ReservationOptionAgeGroupDTO] })
     @IsDefined()
     ageGroupPrices!: ReservationOptionAgeGroupDTO[]
 
