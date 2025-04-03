@@ -25,7 +25,7 @@ export class SeasonRulesService {
         return await this.prismaService.seasonRules.findUnique({
             where: { id },
             include: {
-                housingUnitTypesPrices: { include: { housingUnitType: true } },
+                housingUnitTypePrices: { include: { housingUnitType: true } },
             },
         })
     }
@@ -36,14 +36,15 @@ export class SeasonRulesService {
     ): Promise<SeasonRuleResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.SeasonRulesCreateInput>()({
-                company: { connect: { id: companyId } },
                 ...rawData,
-                housingUnitTypesPrices: {
-                    createMany: { data: rawData.housingUnitTypesPrices },
+                company: { connect: { id: companyId } },
+
+                housingUnitTypePrices: {
+                    createMany: { data: rawData.housingUnitTypePrices },
                 },
             })
 
-        return await this.prismaService.seasonRules.create({
+        return this.prismaService.seasonRules.create({
             data: normalizedData,
         })
     }
@@ -55,7 +56,7 @@ export class SeasonRulesService {
         const normalizedData =
             Prisma.validator<Prisma.SeasonRulesUpdateInput>()({
                 ...rawData,
-                housingUnitTypesPrices: rawData.housingUnitTypesPrices && {
+                housingUnitTypePrices: rawData.housingUnitTypesPrices && {
                     deleteMany: {
                         seasonRuleId: id,
                         housingUnitTypeId: {
@@ -68,7 +69,7 @@ export class SeasonRulesService {
                     upsert: rawData.housingUnitTypesPrices.map(
                         (housingUnitType) => ({
                             where: {
-                                seasonRule_housingunittype_unique: {
+                                season_rule_housing_unit_type_unique: {
                                     seasonRuleId: id,
                                     housingUnitTypeId:
                                         housingUnitType.housingUnitTypeId,
@@ -97,7 +98,7 @@ export class SeasonRulesService {
             where: { id },
             data: normalizedData,
             include: {
-                housingUnitTypesPrices: { include: { housingUnitType: true } },
+                housingUnitTypePrices: { include: { housingUnitType: true } },
             },
         })
     }
@@ -122,7 +123,7 @@ export class SeasonRulesService {
                     ? { [order.orderBy]: order.direction }
                     : undefined,
                 include: {
-                    housingUnitTypesPrices: {
+                    housingUnitTypePrices: {
                         include: { housingUnitType: true },
                     },
                 },

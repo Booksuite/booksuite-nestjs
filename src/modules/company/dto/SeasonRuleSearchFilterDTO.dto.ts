@@ -10,7 +10,7 @@ export class SeasonRuleSearchFilterDTO {
     @IsBoolean()
     published?: boolean
 
-    @ApiProperty({ type: DateRangeDTO, required: false })
+    @ApiProperty({ type: DateRangeDTO, name: 'DateRange', required: false })
     @IsOptional()
     @ValidateNested()
     @Type(() => DateRangeDTO)

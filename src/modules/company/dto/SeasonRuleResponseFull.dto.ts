@@ -5,5 +5,5 @@ import { SeasonRuleResponseDTO } from './SeasonRuleResponse.dto'
 
 export class SeasonRuleResponseFullDTO extends SeasonRuleResponseDTO {
     @ApiProperty({ type: [SeasonRuleHousingUnitTypeResponseDTO] })
-    housingUnitTypesPrices: SeasonRuleHousingUnitTypeResponseDTO[]
+    housingUnitTypePrices: SeasonRuleHousingUnitTypeResponseDTO[]
 }

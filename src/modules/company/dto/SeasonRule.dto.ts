@@ -66,5 +66,5 @@ export class SeasonRuleDTO {
     @IsArray()
     @ValidateNested()
     @Type(() => SeasonRuleHousingUnitTypePriceDTO)
-    housingUnitTypesPrices: SeasonRuleHousingUnitTypePriceDTO[]
+    housingUnitTypePrices: SeasonRuleHousingUnitTypePriceDTO[]
 }

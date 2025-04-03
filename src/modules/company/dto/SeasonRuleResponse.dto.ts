@@ -29,7 +29,7 @@ export class SeasonRuleResponseDTO {
     @ApiProperty({
         enum: PriceVariationType,
         example: PriceVariationType.ABSOLUTE_INCREASE,
-        enumName: 'priceVariationType',
+        enumName: 'PriceVariationType',
     })
     priceVariationType: PriceVariationType
 

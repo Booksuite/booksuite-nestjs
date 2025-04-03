@@ -105,9 +105,9 @@ model SeasonRules {
     /// [WeekDays]
     availableWeekend Json
 
-    housingUnitTypesPrices SeasonRuleHousingUnitType[]
-    priceVariationType     PriceVariationType
-    price                  Int
+    housingUnitTypePrices SeasonRuleHousingUnitType[]
+    priceVariationType    PriceVariationType
+    price                 Int
 
     companyId String
     company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
@@ -124,11 +124,11 @@ model SeasonRuleHousingUnitType {
     seasonRule        SeasonRules     @relation(fields: [seasonRuleId], references: [id], onDelete: Cascade)
 
     baseWeekPrice    Float
-    newWeekPrice     Float
+    newWeekPrice     Float  
     weekendBasePrice Float
     weekendNewPrice  Float
 
-    @@unique([housingUnitTypeId, seasonRuleId], name: "seasonRule_housingunittype_unique")
+    @@unique([housingUnitTypeId, seasonRuleId], name: "season_rule_housing_unit_type_unique")
     @@map("season_rule_housing_unit_types")
 }
 
