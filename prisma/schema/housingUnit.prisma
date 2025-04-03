@@ -26,6 +26,7 @@ model HousingUnitType {
     housingUnits HousingUnit[]
     facilities   HousingUnitTypeFacility[]
     services     ServiceHousingUnitType[]
+    seasonRules  SeasonRuleHousingUnitType[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt

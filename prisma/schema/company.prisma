@@ -49,6 +49,7 @@ model Company {
     reservations       Reservation[]
     services           Service[]
     medias             Media[]
+    seasonRules        SeasonRules[]
     hostingRules       HostingRules?
 
     bannerImageId     String?
@@ -90,4 +91,51 @@ model CompanyFacility {
 
     @@unique([companyId, facilityId], name: "company_facility_unique")
     @@map("company_facilities")
+}
+
+model SeasonRules {
+    id String @id @default(uuid())
+
+    name      String
+    published Boolean
+    startDate DateTime @db.Date
+    endDate   DateTime @db.Date
+    minDaily  Int
+
+    /// [WeekDays]
+    availableWeekend Json
+
+    housingUnitTypePrices SeasonRuleHousingUnitType[]
+    priceVariationType    PriceVariationType
+    price                 Int
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("season_rules")
+}
+
+model SeasonRuleHousingUnitType {
+    id String @id @default(uuid())
+
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    seasonRuleId      String
+    seasonRule        SeasonRules     @relation(fields: [seasonRuleId], references: [id], onDelete: Cascade)
+
+    baseWeekPrice    Float
+    newWeekPrice     Float  
+    weekendBasePrice Float
+    weekendNewPrice  Float
+
+    @@unique([housingUnitTypeId, seasonRuleId], name: "season_rule_housing_unit_type_unique")
+    @@map("season_rule_housing_unit_types")
+}
+
+enum PriceVariationType {
+    ABSOLUTE_INCREASE
+    ABSOLUTE_REDUCTION
+    PERCENTAGE_INCREASE
+    PERCENTAGE_REDUCTION
+    CUSTOM
 }
