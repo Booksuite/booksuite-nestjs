@@ -1,7 +1,4 @@
-import {
-    AgeGroupsPrices,
-    MapCoordinates as TypeMapCoordinates,
-} from './common/types/json'
+import { MapCoordinates as TypeMapCoordinates } from './common/types/json'
 import {
     CompanyContact as TypeCompanyContact,
     CompanySettings as TypeCompanySettings,
@@ -16,6 +13,5 @@ declare global {
         type WeekDays = number[]
         type IncludedItems = string[]
         type MapCoordinates = TypeMapCoordinates
-        type AdditionalAgeGroupsPrices = AgeGroupsPrices[]
     }
 }

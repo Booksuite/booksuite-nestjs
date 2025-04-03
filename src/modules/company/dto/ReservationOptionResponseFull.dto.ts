@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-import { AddiotionalAgeGroupPriceDTO } from './AdditionalAgeGroupsPrice.dto'
+import { ReservationOptionAgeGroupResponseDTO } from './ReservationOptionAgeGroupResponse.dto'
 import { ReservationOptionHousingUnitTypeDTO } from './ReservationOptionHousingUnitType.dto'
 import { ReservationOptionResponseDTO } from './ReservationOptionResponse.dto'
 
@@ -8,6 +8,9 @@ export class ReservationOptionResponseFullDTO extends ReservationOptionResponseD
     @ApiProperty({ type: [ReservationOptionHousingUnitTypeDTO] })
     availableHousingUnitTypes!: ReservationOptionHousingUnitTypeDTO[]
 
-    @ApiProperty({ type: [AddiotionalAgeGroupPriceDTO] })
-    additionalAgeGroupPrice: PrismaJson.AdditionalAgeGroupsPrices
+    @ApiProperty({
+        type: [ReservationOptionAgeGroupResponseDTO],
+        isArray: true,
+    })
+    ageGroupPrices!: ReservationOptionAgeGroupResponseDTO[]
 }

@@ -8,7 +8,7 @@ import {
     IsString,
 } from 'class-validator'
 
-import { AddiotionalAgeGroupPriceDTO } from './AdditionalAgeGroupsPrice.dto'
+import { ReservationOptionAgeGroupDTO } from './ReservationOptionAgeGroup.dto'
 import { ReservationOptionHousingUnitTypeDTO } from './ReservationOptionHousingUnitType.dto'
 
 export class ReservationOptionDTO {
@@ -49,9 +49,9 @@ export class ReservationOptionDTO {
     @IsDefined()
     availableHousingUnitTypes!: ReservationOptionHousingUnitTypeDTO[]
 
-    @ApiProperty({ type: [AddiotionalAgeGroupPriceDTO] })
+    @ApiProperty({ type: [ReservationOptionAgeGroupDTO], isArray: true })
     @IsDefined()
-    additionalAgeGroupPrice!: PrismaJson.AdditionalAgeGroupsPrices
+    ageGroupPrices!: ReservationOptionAgeGroupDTO[]
 
     @ApiProperty({ type: [String] })
     @IsDefined()

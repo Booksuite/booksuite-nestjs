@@ -45,7 +45,7 @@ model Company {
     cancellationPolicy CancellationPolicy?
     reservationConfig  ReservationConfig?
     hostingRules       HostingRules?
-    ReservationOption  ReservationOption[]
+    reservationOptions  ReservationOption[]
     facilities         CompanyFacility[]
     banners            Banner[]
     reservations       Reservation[]

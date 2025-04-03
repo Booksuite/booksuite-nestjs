@@ -29,6 +29,9 @@ export class ReservationOptionService {
                 availableHousingUnitTypes: {
                     include: { housingUnitType: true },
                 },
+                ageGroupPrices: {
+                    include: { ageGroup: true },
+                },
             },
         })
     }
@@ -44,6 +47,9 @@ export class ReservationOptionService {
                 availableHousingUnitTypes: {
                     createMany: { data: rawData.availableHousingUnitTypes },
                 },
+                ageGroupPrices: {
+                    createMany: { data: rawData.ageGroupPrices },
+                },
             })
 
         return await this.prismaService.reservationOption.create({
@@ -58,34 +64,54 @@ export class ReservationOptionService {
         const normalizedData =
             Prisma.validator<Prisma.ReservationOptionUpdateInput>()({
                 ...rawData,
-                availableHousingUnitTypes: {
-                    deleteMany: {
-                        reservationOptionId: id,
-                        housingUnitTypeId: {
-                            notIn:
-                                rawData.availableHousingUnitTypes?.map(
+                availableHousingUnitTypes:
+                    rawData.availableHousingUnitTypes && {
+                        deleteMany: {
+                            reservationOptionId: id,
+                            housingUnitTypeId: {
+                                notIn: rawData.availableHousingUnitTypes.map(
                                     (housingUnitType) =>
                                         housingUnitType.housingUnitTypeId,
-                                ) || [],
+                                ),
+                            },
+                        },
+                        upsert: rawData.availableHousingUnitTypes.map(
+                            (housingUnitType) => ({
+                                where: {
+                                    reservation_option_housingunittype_unique: {
+                                        reservationOptionId: id,
+                                        housingUnitTypeId:
+                                            housingUnitType.housingUnitTypeId,
+                                    },
+                                },
+                                update: pick(housingUnitType, [
+                                    'housingUnitTypeId',
+                                ]),
+                                create: pick(housingUnitType, [
+                                    'housingUnitTypeId',
+                                ]),
+                            }),
+                        ),
+                    },
+                ageGroupPrices: rawData.ageGroupPrices && {
+                    deleteMany: {
+                        id: id,
+                        ageGroupId: {
+                            notIn: rawData.ageGroupPrices.map(
+                                (a) => a.ageGroupId,
+                            ),
                         },
                     },
-                    upsert: rawData.availableHousingUnitTypes?.map(
-                        (housingUnitType) => ({
-                            where: {
-                                reservation_option_housingunittype_unique: {
-                                    reservationOptionId: id,
-                                    housingUnitTypeId:
-                                        housingUnitType.housingUnitTypeId,
-                                },
+                    upsert: rawData.ageGroupPrices.map((a) => ({
+                        where: {
+                            reservation_option_age_groups: {
+                                reservationOptionId: id,
+                                ageGroupId: a.ageGroupId,
                             },
-                            update: pick(housingUnitType, [
-                                'housingUnitTypeId',
-                            ]),
-                            create: pick(housingUnitType, [
-                                'housingUnitTypeId',
-                            ]),
-                        }),
-                    ),
+                        },
+                        update: pick(a, ['price', 'ageGroupId']),
+                        create: pick(a, ['price', 'ageGroupId']),
+                    })),
                 },
             })
 
@@ -95,6 +121,9 @@ export class ReservationOptionService {
             include: {
                 availableHousingUnitTypes: {
                     include: { housingUnitType: true },
+                },
+                ageGroupPrices: {
+                    include: { ageGroup: true },
                 },
             },
         })
@@ -122,6 +151,9 @@ export class ReservationOptionService {
                 include: {
                     availableHousingUnitTypes: {
                         include: { housingUnitType: true },
+                    },
+                    ageGroupPrices: {
+                        include: { ageGroup: true },
                     },
                 },
             })
