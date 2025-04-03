@@ -10,10 +10,10 @@ import { HostingRulesController } from './hostingRules.controller'
 import { HostingRulesService } from './hostingRules.service'
 import { ReservationConfigController } from './reservationConfig.controller'
 import { ReservationConfigService } from './reservationConfig.service'
-import { SeasonRulesController } from './seasonRules.controller'
-import { SeasonRulesService } from './seasonRules.service'
 import { ReservationOptionsController } from './reservationOption.controller'
 import { ReservationOptionService } from './reservationOption.service'
+import { SeasonRulesController } from './seasonRules.controller'
+import { SeasonRulesService } from './seasonRules.service'
 
 @Module({
     providers: [
@@ -23,6 +23,7 @@ import { ReservationOptionService } from './reservationOption.service'
         CancellationPolicyService,
         HostingRulesService,
         SeasonRulesService,
+        ReservationOptionService,
     ],
     controllers: [
         CompanyController,
@@ -31,6 +32,7 @@ import { ReservationOptionService } from './reservationOption.service'
         CancellationPolicyController,
         HostingRulesController,
         SeasonRulesController,
+        ReservationOptionsController,
     ],
 })
 export class CompanyModule {}
