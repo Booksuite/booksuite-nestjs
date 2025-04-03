@@ -15,6 +15,7 @@ import { ReservationOptionPaginatedResponseDTO } from './dto/ReservationOptionPa
 import { ReservationOptionResponseDTO } from './dto/ReservationOptionResponse.dto'
 import { ReservationOptionResponseFullDTO } from './dto/ReservationOptionResponseFull.dto'
 import { ReservationOptionSearchFilterDTO } from './dto/ReservationOptionSearchFilter.dto'
+import { ReservationOptionUpdateDTO } from './dto/ReservationOptionUpdate.dto'
 
 @Injectable()
 export class ReservationOptionService {
@@ -59,7 +60,7 @@ export class ReservationOptionService {
 
     async update(
         id: string,
-        rawData: ReservationOptionDTO,
+        rawData: ReservationOptionUpdateDTO,
     ): Promise<ReservationOptionResponseFullDTO> {
         const normalizedData =
             Prisma.validator<Prisma.ReservationOptionUpdateInput>()({
