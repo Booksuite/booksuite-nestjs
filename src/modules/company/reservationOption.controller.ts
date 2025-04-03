@@ -60,7 +60,7 @@ export class ReservationOptionsController {
     @Patch(':id')
     update(
         @Param('id') id: string,
-        @Body() rawData: ReservationOptionDTO,
+        @Body() rawData: ReservationOptionUpdateDTO,
     ): Promise<ReservationOptionResponseFullDTO> {
         return this.reservationOptionService.update(id, rawData)
     }
