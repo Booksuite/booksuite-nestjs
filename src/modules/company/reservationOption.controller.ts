@@ -39,6 +39,7 @@ export class ReservationOptionsController {
         },
     })
     @Get(':id')
+    @ApiParam({ name: 'companyId', type: String })
     getById(
         @Param('id') id: string,
     ): Promise<ReservationOptionResponseFullDTO | null> {
@@ -57,6 +58,7 @@ export class ReservationOptionsController {
 
     @ApiOkResponse({ type: ReservationOptionResponseFullDTO })
     @ApiBody({ type: ReservationOptionUpdateDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -70,6 +72,7 @@ export class ReservationOptionsController {
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
     @ApiOperation({ operationId: 'searchReservationOption' })
+    @ApiParam({ name: 'companyId', type: String })
     @Post('search')
     async search(
         @Param('companyId') companyId: string,
