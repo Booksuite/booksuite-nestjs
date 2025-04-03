@@ -21,6 +21,7 @@ import { ReservationOptionPaginatedResponseDTO } from './dto/ReservationOptionPa
 import { ReservationOptionResponseDTO } from './dto/ReservationOptionResponse.dto'
 import { ReservationOptionResponseFullDTO } from './dto/ReservationOptionResponseFull.dto'
 import { ReservationOptionSearchBodyDTO } from './dto/ReservationOptionSearchBodyDTO.dto'
+import { ReservationOptionUpdateDTO } from './dto/ReservationOptionUpdate.dto'
 import { ReservationOptionService } from './reservationOption.service'
 
 @Controller('company/:companyId/reservationOptions')
@@ -55,7 +56,7 @@ export class ReservationOptionsController {
     }
 
     @ApiOkResponse({ type: ReservationOptionResponseFullDTO })
-    @ApiBody({ type: ReservationOptionDTO })
+    @ApiBody({ type: ReservationOptionUpdateDTO })
     @Patch(':id')
     update(
         @Param('id') id: string,
