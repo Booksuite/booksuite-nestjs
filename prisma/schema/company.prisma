@@ -49,7 +49,7 @@ model Company {
     reservations       Reservation[]
     services           Service[]
     medias             Media[]
-    SeasonRules        SeasonRules[]
+    seasonRules        SeasonRules[]
     hostingRules       HostingRules?
 
     bannerImageId     String?

@@ -8,6 +8,7 @@ import {
     IsDefined,
     IsEnum,
     IsInt,
+    IsNumber,
     IsString,
     ValidateNested,
 } from 'class-validator'
@@ -58,7 +59,7 @@ export class SeasonRuleDTO {
 
     @ApiProperty({ example: 20, type: Number })
     @IsDefined()
-    @IsInt()
+    @IsNumber()
     price: number
 
     @ApiProperty({ type: [SeasonRuleHousingUnitTypePriceDTO] })
