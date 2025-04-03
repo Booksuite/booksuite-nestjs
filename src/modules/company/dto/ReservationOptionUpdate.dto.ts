@@ -64,7 +64,6 @@ export class ReservationOptionUpdateDTO {
 
     @ApiProperty({
         type: [ReservationOptionAgeGroupDTO],
-        isArray: true,
         required: false,
     })
     @IsOptional()

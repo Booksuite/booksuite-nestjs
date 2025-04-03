@@ -10,7 +10,6 @@ export class ReservationOptionResponseFullDTO extends ReservationOptionResponseD
 
     @ApiProperty({
         type: [ReservationOptionAgeGroupResponseDTO],
-        isArray: true,
     })
     ageGroupPrices!: ReservationOptionAgeGroupResponseDTO[]
 }
