@@ -37,6 +37,7 @@ export class SeasonRulesController {
         },
     })
     @Get(':id')
+    @ApiParam({ name: 'companyId', type: String })
     getById(
         @Param('id') id: string,
     ): Promise<SeasonRuleResponseFullDTO | null> {
@@ -55,6 +56,7 @@ export class SeasonRulesController {
 
     @ApiBody({ type: SeasonRuleUpdateDTO })
     @ApiOkResponse({ type: SeasonRuleResponseFullDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -67,6 +69,7 @@ export class SeasonRulesController {
     @ApiOkResponse({ type: SeasonRulePaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
+    @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'searchSeasonRules' })
     @Post('search')
     async search(
