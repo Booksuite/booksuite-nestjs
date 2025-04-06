@@ -8,6 +8,9 @@ CREATE TYPE "BannerPosition" AS ENUM ('HOME_TOP', 'FEATURED_CONTENT');
 CREATE TYPE "CompanyType" AS ENUM ('INN', 'HOTEL', 'RESORT', 'CHALET', 'FARM_HOTEL', 'AIRBNB', 'HOSTEL', 'FLAT_APART_HOTEL', 'CAMPING', 'OTHER');
 
 -- CreateEnum
+CREATE TYPE "PriceVariationType" AS ENUM ('ABSOLUTE_INCREASE', 'ABSOLUTE_REDUCTION', 'PERCENTAGE_INCREASE', 'PERCENTAGE_REDUCTION', 'CUSTOM');
+
+-- CreateEnum
 CREATE TYPE "FacilityType" AS ENUM ('HOUSING_UNIT_TYPE', 'COMPANY');
 
 -- CreateEnum
@@ -29,7 +32,7 @@ CREATE TYPE "ReservationStatus" AS ENUM ('WAITING_PAYMENT', 'CONFIRMED', 'CHECKE
 CREATE TYPE "ReservationDepositType" AS ENUM ('PERCENTAGE_ON_RESERVATION', 'FULL_AMOUNT_ON_RESERVATION', 'DAYLIES_FULL_AMOUNT_ON_RESERVATION', 'FIRST_DAYLY_ON_RESERVATION', 'NO_CHARGE');
 
 -- CreateEnum
-CREATE TYPE "BillingType" AS ENUM ('PER_GUEST_DAILY', 'PER_GUEST', 'DAILY', 'PER_RESERVATION');
+CREATE TYPE "BillingType" AS ENUM ('PER_GUEST_DAILY', 'PER_GUEST', 'DAILY', 'PER_RESERVATION', 'PER_HOUSING_UNIT');
 
 -- CreateTable
 CREATE TABLE "banners" (
@@ -111,6 +114,35 @@ CREATE TABLE "company_facilities" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "company_facilities_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "season_rules" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL,
+    "startDate" DATE NOT NULL,
+    "endDate" DATE NOT NULL,
+    "minDaily" INTEGER NOT NULL,
+    "availableWeekend" JSONB NOT NULL,
+    "priceVariationType" "PriceVariationType" NOT NULL,
+    "price" INTEGER NOT NULL,
+    "companyId" TEXT NOT NULL,
+
+    CONSTRAINT "season_rules_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "season_rule_housing_unit_types" (
+    "id" TEXT NOT NULL,
+    "housingUnitTypeId" TEXT NOT NULL,
+    "seasonRuleId" TEXT NOT NULL,
+    "baseWeekPrice" DOUBLE PRECISION NOT NULL,
+    "newWeekPrice" DOUBLE PRECISION NOT NULL,
+    "weekendBasePrice" DOUBLE PRECISION NOT NULL,
+    "weekendNewPrice" DOUBLE PRECISION NOT NULL,
+
+    CONSTRAINT "season_rule_housing_unit_types_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -311,19 +343,55 @@ CREATE TABLE "reservation_configs" (
 );
 
 -- CreateTable
+CREATE TABLE "reservation_option" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL,
+    "billingType" "BillingType" NOT NULL,
+    "additionalAdultPrice" DOUBLE PRECISION NOT NULL,
+    "additionalChildrenPrice" DOUBLE PRECISION NOT NULL,
+    "availableWeekend" JSONB NOT NULL,
+    "includedItems" JSONB NOT NULL,
+    "companyId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "reservation_option_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "reservation_option_age_groups" (
+    "id" TEXT NOT NULL,
+    "ageGroupId" TEXT NOT NULL,
+    "reservationOptionId" TEXT NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+
+    CONSTRAINT "reservation_option_age_groups_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "hosting_rules" (
     "id" TEXT NOT NULL,
     "checkIn" INTEGER NOT NULL,
     "checkOut" INTEGER NOT NULL,
     "minDaily" INTEGER NOT NULL,
-    "seasonStart" DATE NOT NULL,
-    "seasonEnd" DATE NOT NULL,
-    "hostingOnSpecificDays" BOOLEAN NOT NULL,
+    "fixedWindowPeriod" INTEGER NOT NULL,
+    "reservationWindowStart" DATE,
+    "reservationWindowEnd" DATE,
     "availableWeekend" JSONB NOT NULL,
     "availableWeekDays" JSONB NOT NULL,
     "companyId" TEXT NOT NULL,
 
     CONSTRAINT "hosting_rules_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "reservation_option_housingunittype" (
+    "id" TEXT NOT NULL,
+    "housingUnitTypeId" TEXT NOT NULL,
+    "reservationOptionId" TEXT NOT NULL,
+
+    CONSTRAINT "reservation_option_housingunittype_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -425,6 +493,9 @@ CREATE UNIQUE INDEX "companies_slug_key" ON "companies"("slug");
 CREATE UNIQUE INDEX "company_facilities_companyId_facilityId_key" ON "company_facilities"("companyId", "facilityId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "season_rule_housing_unit_types_housingUnitTypeId_seasonRule_key" ON "season_rule_housing_unit_types"("housingUnitTypeId", "seasonRuleId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "housing_unit_types_slug_key" ON "housing_unit_types"("slug");
 
 -- CreateIndex
@@ -446,7 +517,13 @@ CREATE UNIQUE INDEX "reservation_services_reservationId_serviceId_key" ON "reser
 CREATE UNIQUE INDEX "reservation_configs_companyId_key" ON "reservation_configs"("companyId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "reservation_option_age_groups_ageGroupId_reservationOptionI_key" ON "reservation_option_age_groups"("ageGroupId", "reservationOptionId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "hosting_rules_companyId_key" ON "hosting_rules"("companyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "reservation_option_housingunittype_housingUnitTypeId_reserv_key" ON "reservation_option_housingunittype"("housingUnitTypeId", "reservationOptionId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "service_housingunittype_housingUnitTypeId_serviceId_key" ON "service_housingunittype"("housingUnitTypeId", "serviceId");
@@ -477,6 +554,15 @@ ALTER TABLE "company_facilities" ADD CONSTRAINT "company_facilities_companyId_fk
 
 -- AddForeignKey
 ALTER TABLE "company_facilities" ADD CONSTRAINT "company_facilities_facilityId_fkey" FOREIGN KEY ("facilityId") REFERENCES "facilities"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "season_rules" ADD CONSTRAINT "season_rules_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "season_rule_housing_unit_types" ADD CONSTRAINT "season_rule_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "season_rule_housing_unit_types" ADD CONSTRAINT "season_rule_housing_unit_types_seasonRuleId_fkey" FOREIGN KEY ("seasonRuleId") REFERENCES "season_rules"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "housing_unit_types" ADD CONSTRAINT "housing_unit_types_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -533,7 +619,22 @@ ALTER TABLE "reservation_services" ADD CONSTRAINT "reservation_services_reservat
 ALTER TABLE "reservation_configs" ADD CONSTRAINT "reservation_configs_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "reservation_option" ADD CONSTRAINT "reservation_option_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservation_option_age_groups" ADD CONSTRAINT "reservation_option_age_groups_ageGroupId_fkey" FOREIGN KEY ("ageGroupId") REFERENCES "age_groups"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservation_option_age_groups" ADD CONSTRAINT "reservation_option_age_groups_reservationOptionId_fkey" FOREIGN KEY ("reservationOptionId") REFERENCES "reservation_option"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "hosting_rules" ADD CONSTRAINT "hosting_rules_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservation_option_housingunittype" ADD CONSTRAINT "reservation_option_housingunittype_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservation_option_housingunittype" ADD CONSTRAINT "reservation_option_housingunittype_reservationOptionId_fkey" FOREIGN KEY ("reservationOptionId") REFERENCES "reservation_option"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "services" ADD CONSTRAINT "services_coverMediaId_fkey" FOREIGN KEY ("coverMediaId") REFERENCES "medias"("id") ON DELETE CASCADE ON UPDATE CASCADE;

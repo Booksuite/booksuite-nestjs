@@ -1,22 +1,22 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
-import { IsDefined, IsEnum, IsOptional } from 'class-validator'
 
 export class ReservationResponseDTO {
+    @ApiProperty({
+        example: '123e4567-e89b-12d3-a456-426614174000',
+    })
+    id!: string
+
     @ApiProperty({
         enum: ReservationStatus,
         example: ReservationStatus.CONFIRMED,
     })
-    @IsDefined()
-    @IsEnum(ReservationStatus)
     status!: ReservationStatus
 
     @ApiProperty({
         enum: ReservationSaleChannel,
         example: ReservationSaleChannel.BOOKSUITE,
     })
-    @IsOptional()
-    @IsEnum(ReservationSaleChannel)
     saleChannel: ReservationSaleChannel
 
     @ApiProperty({ example: '2024-10-17T13:19:15.271634Z' })
