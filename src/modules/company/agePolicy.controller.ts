@@ -36,11 +36,12 @@ export class AgePolicyController {
 
     @ApiOkResponse({ type: AgePolicyResponseFullDTO })
     @ApiOperation({ operationId: 'upsertCompanyAgePolicy' })
-    @Patch()
+    @Patch(':id')
     upsert(
         @Param('companyId') companyId: string,
+        @Param('id') id: string,
         @Body() data: AgePolicyDTO,
     ): Promise<AgePolicyResponseFullDTO> {
-        return this.agePolicyService.upsert(companyId, data)
+        return this.agePolicyService.upsert(companyId, id, data)
     }
 }
