@@ -21,6 +21,7 @@ export class AgePolicyService {
 
     async upsert(
         companyId: string,
+        id: string,
         rawData: AgePolicyDTO,
     ): Promise<AgePolicyResponseFullDTO> {
         const normalizedDataCreate =
