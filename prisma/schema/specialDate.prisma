@@ -1,0 +1,70 @@
+model SpecialDate {
+    id String @id @default(uuid())
+
+    name               String
+    published          Boolean
+    startDate          DateTime @db.Date
+    endDate            DateTime @db.Date
+    minDaily           Int
+    description        String?
+    generalDescription String?
+
+    /// [WeekDays]
+    availableWeekDays Json
+
+    housingUnitTypePrices SpecialDateHousingUnitType[]
+    includedServices      SpecialDateServices[]
+    medias                SpecialDateMedias[]
+    priceVariationType    PriceVariationType
+    price                 Float                        @db.DoublePrecision
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("special_date")
+}
+
+model SpecialDateHousingUnitType {
+    id String @id @default(uuid())
+
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    specialDateId     String
+    specialDate       SpecialDate     @relation(fields: [specialDateId], references: [id], onDelete: Cascade)
+
+    baseWeekPrice    Float @db.DoublePrecision
+    newWeekPrice     Float @db.DoublePrecision
+    weekendBasePrice Float @db.DoublePrecision
+    weekendNewPrice  Float @db.DoublePrecision
+
+    @@unique([housingUnitTypeId, specialDateId], name: "special_date_housing_unit_type_unique")
+    @@map("special_date_housing_unit_types")
+}
+
+model SpecialDateServices {
+    id String @id @default(uuid())
+
+    serviceId     String
+    service       Service     @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+    specialDateId String
+    specialDate   SpecialDate @relation(fields: [specialDateId], references: [id], onDelete: Cascade)
+
+    @@unique([serviceId, specialDateId], name: "special_date_service_unique")
+    @@map("special_date_service")   
+}
+
+model SpecialDateMedias {
+    id    String @id @default(uuid())
+    order Int?   @default(0)
+
+    specialDateId String
+    specialDate   SpecialDate @relation(fields: [specialDateId], references: [id])
+    mediaId       String
+    media         Media       @relation(fields: [mediaId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([specialDateId, mediaId], name: "special_date_media_unique")
+    @@map("special_date_medias")
+}

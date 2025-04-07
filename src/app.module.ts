@@ -9,6 +9,7 @@ import { MediaModule } from './modules/media/media.module'
 import { PrismaModule } from './modules/prisma/prisma.module'
 import { ReservationModule } from './modules/reservation/reservation.module'
 import { ServiceModule } from './modules/service/service.module'
+import { SpecialDateModule } from './modules/specialDate/specialDate.module'
 import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
 
 @Module({
@@ -23,6 +24,7 @@ import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
         MediaModule,
         BannerModule,
         UtilityLinksModule,
+        SpecialDateModule,
     ],
 })
 export class AppModule {}

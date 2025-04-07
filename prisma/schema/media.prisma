@@ -12,6 +12,7 @@ model Media {
     serviceMedias         ServiceMedia[]
     bannerMedias          BannerMedia[]
     services              Service[]
+    SpecialDateMedias     SpecialDateMedias[]
 
     companyId String
     company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)

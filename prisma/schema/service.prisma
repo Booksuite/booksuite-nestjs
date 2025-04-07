@@ -29,6 +29,7 @@ model Service {
     medias                    ServiceMedia[]
     reservations              ReservationService[]
     availableHousingUnitTypes ServiceHousingUnitType[]
+    specialDate               SpecialDateServices[]
 
     companyId String
     company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)

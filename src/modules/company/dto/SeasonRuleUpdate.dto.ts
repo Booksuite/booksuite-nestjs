@@ -43,7 +43,7 @@ export class SeasonRuleUpdateDTO {
     @ApiProperty({ type: Number, isArray: true, required: false })
     @IsOptional()
     @IsWeekDays()
-    availableWeekend?: PrismaJson.WeekDays
+    availableWeekDays?: PrismaJson.WeekDays
 
     @ApiProperty({
         enum: PriceVariationType,

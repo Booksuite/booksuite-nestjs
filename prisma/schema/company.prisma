@@ -57,7 +57,7 @@ model Company {
     seasonRules        SeasonRules[]
     utilityLinks       UtilityLinks[]
     hostingRules       HostingRules?
-    packages           Package[]
+    specialDate        SpecialDate[]
     offers             Offer[]
 
     bannerImageId     String?

@@ -38,7 +38,6 @@ export class SeasonRulesService {
             Prisma.validator<Prisma.SeasonRulesCreateInput>()({
                 ...rawData,
                 company: { connect: { id: companyId } },
-
                 housingUnitTypePrices: {
                     createMany: { data: rawData.housingUnitTypePrices },
                 },

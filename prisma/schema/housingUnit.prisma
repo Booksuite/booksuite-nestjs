@@ -28,7 +28,7 @@ model HousingUnitType {
     services           ServiceHousingUnitType[]
     seasonRules        SeasonRuleHousingUnitType[]
     reservationOptions ReservationOptionHousingUnitTypes[]
-    packages           PackageHousingUnitType[]
+    packages           SpecialDateHousingUnitType[]
     offers             OfferHousingUnitType[]
 
     createdAt DateTime  @default(now())
