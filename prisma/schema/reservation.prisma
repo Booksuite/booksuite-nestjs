@@ -61,7 +61,7 @@ enum ReservationStatus {
 model ReservationService {
     id         String @id @default(uuid())
     qtd        Int    @default(1)
-    totalPrice Float  @default(0)
+    totalPrice Float  @default(0) @db.DoublePrecision
 
     serviceId     String
     service       Service     @relation(fields: [serviceId], references: [id], onDelete: Cascade)
@@ -97,8 +97,8 @@ model ReservationOption {
     name                      String
     published                 Boolean
     billingType               BillingType
-    additionalAdultPrice      Float
-    additionalChildrenPrice   Float
+    additionalAdultPrice      Float                               @db.DoublePrecision
+    additionalChildrenPrice   Float                               @db.DoublePrecision
     availableHousingUnitTypes ReservationOptionHousingUnitTypes[]
     ageGroupPrices            ReservatonOptionAgeGroup[]
 
@@ -125,33 +125,10 @@ model ReservatonOptionAgeGroup {
     reservationOptionId String
     reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
 
-    price Float
+    price Float @db.DoublePrecision
 
     @@unique([ageGroupId, reservationOptionId], name: "reservation_option_age_groups")
     @@map("reservation_option_age_groups")
-}
-
-model HostingRules {
-    id String @id @default(uuid())
-
-    checkIn  Int
-    checkOut Int
-    minDaily Int
-
-    fixedWindowPeriod Int
-
-    reservationWindowStart DateTime? @db.Date
-    reservationWindowEnd   DateTime? @db.Date
-
-    /// [WeekDays]
-    availableWeekend  Json
-    /// [WeekDays]
-    availableWeekDays Json
-
-    companyId String   @unique
-    company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-    @@map("hosting_rules")
 }
 
 model ReservationOptionHousingUnitTypes {

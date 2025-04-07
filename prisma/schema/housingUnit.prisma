@@ -14,20 +14,22 @@ model HousingUnitType {
     maxChildren Int? @default(0)
 
     // pricing
-    weekdaysPrice              Float
-    weekendPrice               Float
-    extraAdultPrice            Float
+    weekdaysPrice              Float @db.DoublePrecision
+    weekendPrice               Float @db.DoublePrecision
+    extraAdultPrice            Float @db.DoublePrecision
     chargeExtraAdultHigherThan Int // charge extra adult when adult guests is higher than this number
 
     companyId String
     company   Company? @relation(fields: [companyId], references: [id])
 
-    medias       HousingUnitTypeMedia[]
-    housingUnits HousingUnit[]
-    facilities   HousingUnitTypeFacility[]
-    services     ServiceHousingUnitType[]
-    seasonRules  SeasonRuleHousingUnitType[]
+    medias             HousingUnitTypeMedia[]
+    housingUnits       HousingUnit[]
+    facilities         HousingUnitTypeFacility[]
+    services           ServiceHousingUnitType[]
+    seasonRules        SeasonRuleHousingUnitType[]
     reservationOptions ReservationOptionHousingUnitTypes[]
+    packages           PackageHousingUnitType[]
+    offers             OfferHousingUnitType[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt

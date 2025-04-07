@@ -1,0 +1,38 @@
+model Package {
+    id String @id @default(uuid())
+
+    name      String
+    published Boolean
+    startDate DateTime @db.Date
+    endDate   DateTime @db.Date
+    minDaily  Int
+
+    /// [WeekDays]
+    availableWeekDays Json
+
+    housingUnitTypePrices PackageHousingUnitType[]
+    priceVariationType    PriceVariationType
+    price                 Float                    @db.DoublePrecision
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("packages")
+}
+
+model PackageHousingUnitType {
+    id String @id @default(uuid())
+
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    packageId         String
+    package           Package         @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+    baseWeekPrice    Float @db.DoublePrecision
+    newWeekPrice     Float @db.DoublePrecision
+    weekendBasePrice Float @db.DoublePrecision
+    weekendNewPrice  Float @db.DoublePrecision
+
+    @@unique([housingUnitTypeId, packageId], name: "package_housing_unit_type_unique")
+    @@map("package_housing_unit_types")
+}

@@ -48,7 +48,6 @@ model Company {
     agePolicy          AgePolicy?
     cancellationPolicy CancellationPolicy?
     reservationConfig  ReservationConfig?
-    hostingRules       HostingRules?
     reservationOptions ReservationOption[]
     facilities         CompanyFacility[]
     banners            Banner[]
@@ -57,6 +56,9 @@ model Company {
     medias             Media[]
     seasonRules        SeasonRules[]
     utilityLinks       UtilityLinks[]
+    hostingRules       HostingRules?
+    packages           Package[]
+    offers             Offer[]
 
     bannerImageId     String?
     bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
@@ -67,6 +69,29 @@ model Company {
     updatedAt DateTime @updatedAt
 
     @@map("companies")
+}
+
+model HostingRules {
+    id String @id @default(uuid())
+
+    checkIn  Int
+    checkOut Int
+    minDaily Int
+
+    fixedWindowPeriod Int
+
+    reservationWindowStart DateTime? @db.Date
+    reservationWindowEnd   DateTime? @db.Date
+
+    /// [WeekDays]
+    availableWeekend  Json
+    /// [WeekDays]
+    availableWeekDays Json
+
+    companyId String   @unique
+    company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("hosting_rules")
 }
 
 enum CompanyType {
@@ -97,51 +122,4 @@ model CompanyFacility {
 
     @@unique([companyId, facilityId], name: "company_facility_unique")
     @@map("company_facilities")
-}
-
-model SeasonRules {
-    id String @id @default(uuid())
-
-    name      String
-    published Boolean
-    startDate DateTime @db.Date
-    endDate   DateTime @db.Date
-    minDaily  Int
-
-    /// [WeekDays]
-    availableWeekend Json
-
-    housingUnitTypePrices SeasonRuleHousingUnitType[]
-    priceVariationType    PriceVariationType
-    price                 Int
-
-    companyId String
-    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-    @@map("season_rules")
-}
-
-model SeasonRuleHousingUnitType {
-    id String @id @default(uuid())
-
-    housingUnitTypeId String
-    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
-    seasonRuleId      String
-    seasonRule        SeasonRules     @relation(fields: [seasonRuleId], references: [id], onDelete: Cascade)
-
-    baseWeekPrice    Float
-    newWeekPrice     Float
-    weekendBasePrice Float
-    weekendNewPrice  Float
-
-    @@unique([housingUnitTypeId, seasonRuleId], name: "season_rule_housing_unit_type_unique")
-    @@map("season_rule_housing_unit_types")
-}
-
-enum PriceVariationType {
-    ABSOLUTE_INCREASE
-    ABSOLUTE_REDUCTION
-    PERCENTAGE_INCREASE
-    PERCENTAGE_REDUCTION
-    CUSTOM
 }

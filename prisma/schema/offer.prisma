@@ -1,0 +1,64 @@
+model Offer {
+    id String @id @default(uuid())
+
+    name        String
+    description String?
+    published   Boolean @default(false)
+
+    // Purchase Period
+    purchaseStartDate DateTime @db.Date
+    purchaseEndDate   DateTime @db.Date
+
+    validStartDate DateTime? @db.Date
+    validEndDate   DateTime? @db.Date
+
+    // Applicability Conditions
+    minDays           Int?
+    maxDays           Int?
+    minAdvanceDays    Int?
+    maxAdvanceDays    Int?
+    validForAbandoned Boolean @default(false)
+    validForPackages  Boolean @default(false)
+
+    availableHousingUnitTypes OfferHousingUnitType[]
+
+    // Payment Methods
+    validPaymentMethods Json // Array of payment method types
+
+    /// [WeekDays]
+    availableWeekDays Json // Array of week days (0-6)
+
+    // Valid Extras
+    validExtras Json // Array of extra IDs
+
+    // Price Adjustment
+    priceAdjustmentType  PriceVariationType
+    priceAdjustmentValue Float              @db.DoublePrecision
+
+    // Display Rules
+    showInHighlights Boolean @default(false)
+    showDiscountTag  Boolean @default(false)
+    isExclusive      Boolean @default(false)
+    couponCode       String?
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("offers")
+}
+
+model OfferHousingUnitType {
+    id String @id @default(uuid())
+
+    offerId String
+    offer   Offer  @relation(fields: [offerId], references: [id], onDelete: Cascade)
+
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+
+    @@unique([offerId, housingUnitTypeId], name: "offer_housing_unit_type_unique")
+    @@map("offer_housing_unit_types")
+}
