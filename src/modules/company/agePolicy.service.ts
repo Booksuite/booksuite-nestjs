@@ -42,7 +42,7 @@ export class AgePolicyService {
 
                 ageGroups: rawData.ageGroups && {
                     deleteMany: {
-                        agePolicyId: companyId,
+                        agePolicyId: id,
                         id: {
                             notIn: rawData.ageGroups
                                 .map((group) => group.id || '')
