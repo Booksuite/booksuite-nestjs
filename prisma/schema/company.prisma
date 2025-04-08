@@ -37,7 +37,7 @@ model Company {
 
     privacyPolicyDescription String?
     privacyPolicySimpleModel String?
-    privacyPolicyFullModel    String?
+    privacyPolicyFullModel   String?
 
     /// [MapCoordinates]
     mapCoordinates Json?
@@ -57,6 +57,7 @@ model Company {
     medias             Media[]
     seasonRules        SeasonRules[]
     CompanyBio         CompanyBio[]
+    CompanyBio         UtilityLinks[]
     hostingRules       HostingRules?
 
     bannerImageId     String?

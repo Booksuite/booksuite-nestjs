@@ -7,7 +7,7 @@ import {
     IsString,
 } from 'class-validator'
 
-export class CompanyBioDTO {
+export class UtilityLinksDTO {
     @ApiProperty({ example: true, type: Boolean })
     @IsDefined()
     @IsBoolean()

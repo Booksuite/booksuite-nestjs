@@ -3,16 +3,16 @@ import { IsDefined, IsEnum } from 'class-validator'
 
 import { OrderDirection } from '@/common/enum/Order'
 import { OrderByRequest } from '@/common/types/orderBy'
-import { CompanyBioOrderBy } from '../enums/CompanyBioOrderBy.enum'
+import { UtilityLinksOrderBy } from '../enum/UtilityLinksOrderBy.enum'
 
-export class CompanyBioOrderByDTO implements OrderByRequest {
+export class UtilityLinksOrderByDTO implements OrderByRequest {
     @ApiProperty({
-        enum: CompanyBioOrderBy,
+        enum: UtilityLinksOrderBy,
         enumName: 'CompanyBioOrderBy',
     })
     @IsDefined()
-    @IsEnum(CompanyBioOrderBy)
-    orderBy: CompanyBioOrderBy
+    @IsEnum(UtilityLinksOrderBy)
+    orderBy: UtilityLinksOrderBy
 
     @ApiProperty({ enum: OrderDirection, enumName: 'OrderDirection' })
     @IsDefined()

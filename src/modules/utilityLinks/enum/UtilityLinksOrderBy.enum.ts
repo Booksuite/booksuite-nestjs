@@ -1,4 +1,4 @@
-export enum CompanyBioOrderBy {
+export enum UtilityLinksOrderBy {
     TITLE = 'title',
     STARTDATE = 'startDate',
     ENDDATE = 'endDate',

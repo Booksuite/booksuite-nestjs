@@ -1,20 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsDefined, IsOptional, IsString } from 'class-validator'
 
-export class CompanyBioUpdateDTO {
+export class UtilityLinksResponseDTO {
+    @ApiProperty({ example: '550e8400-e29b-41d4-a716-446655440000' })
+    id?: string
+
     @ApiProperty({ example: true })
-    @IsDefined()
-    @IsBoolean()
     published!: boolean
 
     @ApiProperty({ example: 'Our Story' })
-    @IsDefined()
-    @IsString()
     title!: string
 
     @ApiProperty({ example: 'https://example.com/about-us' })
-    @IsDefined()
-    @IsString()
     buttonLink!: string
 
     @ApiProperty({
@@ -22,8 +18,6 @@ export class CompanyBioUpdateDTO {
         required: false,
         nullable: true,
     })
-    @IsOptional()
-    @IsString()
     startDate?: Date | null
 
     @ApiProperty({
@@ -31,7 +25,5 @@ export class CompanyBioUpdateDTO {
         required: false,
         nullable: true,
     })
-    @IsOptional()
-    @IsString()
     endDate?: Date | null
 }

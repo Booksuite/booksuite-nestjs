@@ -9,50 +9,49 @@ import {
 } from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { CompanyBioDTO } from './dto/CompanyBio.dto'
-import { CompanyBioOrderByDTO } from './dto/CompanyBioOrderBy.dto'
-import { CompanyBioPaginatedResponseDTO } from './dto/CompanyBioPaginatedResponse.dto'
-import { CompanyBioResponseDTO } from './dto/CompanyBioResponse.dto'
-import { CompanyBioSearchFilterDTO } from './dto/CompanyBioSearchFilter.dto'
-import { CompanyBioUpdateDTO } from './dto/CompanyBioUpdate.dto'
+import { UtilityLinksDTO } from './dtos/UtilityLinks.dto'
+import { UtilityLinksOrderByDTO } from './dtos/UtilityLinksOrderBy.dto'
+import { UtilityLinksPaginatedResponseDTO } from './dtos/UtilityLinksPaginatedResponse.dto'
+import { UtilityLinksResponseDTO } from './dtos/UtilityLinksResponse.dto'
+import { UtilityLinksSearchFilterDTO } from './dtos/UtilityLinksSearchFilter.dto'
+import { UtilityLinksUpdateDTO } from './dtos/UtilityLinksUpdate.dto'
 @Injectable()
-export class CompanyBioService {
+export class UtilityLinksService {
     constructor(private prismaService: PrismaService) {}
 
-    async getById(id: string): Promise<CompanyBioResponseDTO | null> {
-        return await this.prismaService.companyBio.findUnique({
+    async getById(id: string): Promise<UtilityLinksResponseDTO | null> {
+        return await this.prismaService.utilityLinks.findUnique({
             where: { id },
         })
     }
 
     async create(
         companyId: string,
-        rawData: CompanyBioDTO,
-    ): Promise<CompanyBioResponseDTO> {
-        const normalizedData = Prisma.validator<Prisma.CompanyBioCreateInput>()(
-            {
-                company: { connect: { id: companyId } },
+        rawData: UtilityLinksDTO,
+    ): Promise<UtilityLinksResponseDTO> {
+        const normalizedData =
+            Prisma.validator<Prisma.UtilityLinksCreateInput>()({
                 ...rawData,
+                company: { connect: { id: companyId } },
                 startDate: rawData.startDate
                     ? dayjs(rawData.startDate).toDate()
                     : null,
                 endDate: rawData.endDate
                     ? dayjs(rawData.endDate).toDate()
                     : null,
-            },
-        )
+            })
 
-        return await this.prismaService.companyBio.create({
+        return await this.prismaService.utilityLinks.create({
             data: normalizedData,
         })
     }
 
     async update(
         id: string,
-        rawData: CompanyBioUpdateDTO,
-    ): Promise<CompanyBioResponseDTO> {
-        const normalizedData = Prisma.validator<Prisma.CompanyBioUpdateInput>()(
-            {
+        rawData: UtilityLinksUpdateDTO,
+    ): Promise<UtilityLinksResponseDTO> {
+        const normalizedData =
+            Prisma.validator<Prisma.UtilityLinksUpdateInput>()({
                 ...rawData,
                 startDate: rawData.startDate
                     ? dayjs(rawData.startDate).toDate()
@@ -60,10 +59,9 @@ export class CompanyBioService {
                 endDate: rawData.endDate
                     ? dayjs(rawData.endDate).toDate()
                     : null,
-            },
-        )
+            })
 
-        return await this.prismaService.companyBio.update({
+        return await this.prismaService.utilityLinks.update({
             where: { id: id },
             data: normalizedData,
         })
@@ -72,14 +70,14 @@ export class CompanyBioService {
     async search(
         companyId: string,
         pagination: PaginationQuery,
-        order?: CompanyBioOrderByDTO,
-        filter?: CompanyBioSearchFilterDTO,
+        order?: UtilityLinksOrderByDTO,
+        filter?: UtilityLinksSearchFilterDTO,
         query?: string,
-    ): Promise<CompanyBioPaginatedResponseDTO> {
+    ): Promise<UtilityLinksPaginatedResponseDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
-        const [companyBio, totalBios] =
-            await this.prismaService.companyBio.findManyAndCount({
+        const [utilityLinks, totalBios] =
+            await this.prismaService.utilityLinks.findManyAndCount({
                 where: {
                     ...this.buildSearchParams(query, filter),
                     companyId,
@@ -90,14 +88,14 @@ export class CompanyBioService {
                     : undefined,
             })
 
-        return buildPaginatedResponse(companyBio, totalBios, pagination)
+        return buildPaginatedResponse(utilityLinks, totalBios, pagination)
     }
 
     private buildSearchParams(
         query?: string,
-        filters?: CompanyBioSearchFilterDTO,
-    ): Prisma.CompanyBioWhereInput {
-        const data: Prisma.CompanyBioWhereInput = {}
+        filters?: UtilityLinksSearchFilterDTO,
+    ): Prisma.UtilityLinksWhereInput {
+        const data: Prisma.UtilityLinksWhereInput = {}
 
         if (query) {
             data.OR = [

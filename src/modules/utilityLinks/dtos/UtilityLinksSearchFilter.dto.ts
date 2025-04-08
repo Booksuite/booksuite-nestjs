@@ -3,7 +3,7 @@ import { IsBoolean, IsOptional } from 'class-validator'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 
-export class CompanyBioSearchFilterDTO {
+export class UtilityLinksSearchFilterDTO {
     @ApiProperty({ example: true, required: false })
     @IsOptional()
     @IsBoolean()
