@@ -1,14 +1,7 @@
-/*
-  Warnings:
-
-  - You are about to drop the `CompanyBio` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "CompanyBio" DROP CONSTRAINT "CompanyBio_companyId_fkey";
-
--- DropTable
-DROP TABLE "CompanyBio";
+-- AlterTable
+ALTER TABLE "companies" ADD COLUMN     "privacyPolicyDescription" TEXT,
+ADD COLUMN     "privacyPolicyFullModel" TEXT,
+ADD COLUMN     "privacyPolicySimpleModel" TEXT;
 
 -- CreateTable
 CREATE TABLE "utility_links" (

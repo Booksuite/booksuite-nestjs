@@ -24,7 +24,6 @@ import { SeasonRulesService } from './seasonRules.service'
         HostingRulesService,
         SeasonRulesService,
         ReservationOptionService,
-        CompanyBioService,
     ],
     controllers: [
         CompanyController,
@@ -34,7 +33,6 @@ import { SeasonRulesService } from './seasonRules.service'
         HostingRulesController,
         SeasonRulesController,
         ReservationOptionsController,
-        CompanyBioController,
     ],
 })
 export class CompanyModule {}
