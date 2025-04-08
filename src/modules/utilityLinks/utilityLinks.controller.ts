@@ -63,7 +63,7 @@ export class UtilityLinksController {
         return this.utilityLinksService.update(id, rawData)
     }
 
-    @ApiBody({ type: UtilityLinksDTO })
+    @ApiBody({ type: UtilityLinksSearchBodyDTO })
     @ApiOkResponse({ type: UtilityLinksResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
