@@ -53,7 +53,7 @@ export class UtilityLinksController {
         return this.utilityLinksService.create(companyId, rawData)
     }
 
-    @ApiBody({ type: UtilityLinksDTO })
+    @ApiBody({ type: UtilityLinksSearchBodyDTO })
     @ApiOkResponse({ type: UtilityLinksResponseDTO })
     @Patch(':id')
     update(
