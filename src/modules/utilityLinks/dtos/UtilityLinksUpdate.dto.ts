@@ -2,17 +2,17 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsBoolean, IsOptional, IsString } from 'class-validator'
 
 export class UtilityLinksUpdateDTO {
-    @ApiProperty({ example: true })
+    @ApiProperty({ example: true, required: false })
     @IsOptional()
     @IsBoolean()
     published?: boolean
 
-    @ApiProperty({ example: 'Our Story' })
+    @ApiProperty({ example: 'Our Story', required: false })
     @IsOptional()
     @IsString()
     title?: string
 
-    @ApiProperty({ example: 'https://example.com/about-us' })
+    @ApiProperty({ example: 'https://example.com/about-us', required: false })
     @IsOptional()
     @IsString()
     buttonLink?: string
