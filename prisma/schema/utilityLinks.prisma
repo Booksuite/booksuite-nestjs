@@ -1,0 +1,15 @@
+model UtilityLinks {
+    id        String  @id @default(uuid())
+    published Boolean
+
+    title      String
+    buttonLink String
+
+    startDate DateTime? @db.Date
+    endDate   DateTime? @db.Date
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    @@map("utility_links")
+}

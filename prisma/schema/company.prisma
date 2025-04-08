@@ -35,6 +35,10 @@ model Company {
     state   String?
     city    String?
 
+    privacyPolicyDescription String?
+    privacyPolicySimpleModel String?
+    privacyPolicyFullModel   String?
+
     /// [MapCoordinates]
     mapCoordinates Json?
 
@@ -52,6 +56,7 @@ model Company {
     services           Service[]
     medias             Media[]
     seasonRules        SeasonRules[]
+    utilityLinks       UtilityLinks[]
 
     bannerImageId     String?
     bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)

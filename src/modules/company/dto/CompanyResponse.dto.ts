@@ -128,6 +128,24 @@ export class CompanyResponseDTO {
     city: string | null
 
     @ApiProperty({
+        example: 'Privacy policy description',
+        type: String,
+    })
+    privacyPolicyDescription: string | null
+
+    @ApiProperty({
+        example: 'Privacy policy simple model',
+        type: String,
+    })
+    privacyPolicySimpleModel: string | null
+
+    @ApiProperty({
+        example: 'Privacy policy full model',
+        type: String,
+    })
+    privacyPolicyFullModel: string | null
+
+    @ApiProperty({
         example: 'Map Coordinates',
         type: MapCoordinatesDTO,
         nullable: true,

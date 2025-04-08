@@ -144,6 +144,33 @@ export class CompanyCreateDTO {
     @IsString()
     city!: string
 
+    @ApiProperty({
+        example: 'Privacy policy description',
+        type: String,
+        required: false,
+    })
+    @IsOptional()
+    @IsString()
+    privacyPolicyDescription?: string
+
+    @ApiProperty({
+        example: 'Privacy policy simple model',
+        type: String,
+        required: false,
+    })
+    @IsOptional()
+    @IsString()
+    privacyPolicySimpleModel?: string
+
+    @ApiProperty({
+        example: 'Privacy policy full model',
+        type: String,
+        required: false,
+    })
+    @IsOptional()
+    @IsString()
+    privacyPolicyFullModel?: string
+
     @ApiProperty({ type: [CompanyFacilityDTO], required: false })
     @IsOptional()
     @Type(() => CompanyFacilityDTO)
