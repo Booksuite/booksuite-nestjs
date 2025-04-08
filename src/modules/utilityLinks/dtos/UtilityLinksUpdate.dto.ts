@@ -21,6 +21,7 @@ export class UtilityLinksUpdateDTO {
         example: '2025-01-01T00:00:00.000Z',
         required: false,
         nullable: true,
+        type: Date,
     })
     @IsOptional()
     @IsString()
@@ -30,6 +31,7 @@ export class UtilityLinksUpdateDTO {
         example: '2025-12-31T23:59:59.999Z',
         required: false,
         nullable: true,
+        type: Date,
     })
     @IsOptional()
     @IsString()
