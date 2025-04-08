@@ -324,7 +324,6 @@ async function setUserAndRoles() {
                 endDate: new Date('2025-01-14T13:19:15.271598Z'),
                 totalDays: 7,
                 adults: 2,
-                children: 1,
                 notes: 'Featured booking',
                 reservationCode: '000001',
                 housingUnitId: suiteDiamante.housingUnits[0].id,

@@ -12,6 +12,7 @@ import {
     IsUUID,
 } from 'class-validator'
 
+import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
 export class ReservationCreateDTO {
@@ -25,6 +26,7 @@ export class ReservationCreateDTO {
 
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsDefined()
+    @IsOptional()
     @IsUUID()
     userId: string
 
@@ -62,10 +64,10 @@ export class ReservationCreateDTO {
     @IsInt()
     adults!: number
 
-    @ApiProperty({ example: '1' })
+    @ApiProperty({ type: [ReservationAgeGroupDTO] })
     @IsDefined()
-    @IsInt()
-    children!: number
+    @IsArray()
+    children!: ReservationAgeGroupDTO[]
 
     @ApiProperty({ example: 'Featured booking' })
     @IsDefined()

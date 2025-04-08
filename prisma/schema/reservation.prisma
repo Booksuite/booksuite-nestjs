@@ -7,7 +7,6 @@ model Reservation {
     endDate   DateTime
     totalDays Int?              @default(1)
     adults    Int
-    children  Int
     notes     String            @db.Text
     status    ReservationStatus
 
@@ -24,6 +23,7 @@ model Reservation {
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
     services ReservationService[]
+    children ReservationAgeGroup[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
@@ -89,6 +89,20 @@ model ReservationConfig {
     updatedAt DateTime @updatedAt
 
     @@map("reservation_configs")
+}
+
+model ReservationAgeGroup {
+    id String @id @default(uuid())
+
+    ageGroupId    String
+    ageGroup      AgeGroup    @relation(fields: [ageGroupId], references: [id], onDelete: Cascade)
+    reservationId String
+    reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+    children Int
+
+    @@unique([ageGroupId, reservationId], name: "reservation_age_groups_unique")
+    @@map("reservation_age_groups")
 }
 
 model ReservationOption {
