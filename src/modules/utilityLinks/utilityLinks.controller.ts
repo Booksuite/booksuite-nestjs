@@ -64,7 +64,7 @@ export class UtilityLinksController {
     }
 
     @ApiBody({ type: UtilityLinksSearchBodyDTO })
-    @ApiOkResponse({ type: UtilityLinksResponseDTO })
+    @ApiOkResponse({ type: UtilityLinksPaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
     @ApiOperation({ operationId: 'searchUtilityLinks' })
