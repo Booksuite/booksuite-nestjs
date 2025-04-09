@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
-          source: 'prisma/,dist/,package.json,.env,.yarn,.yarnrc.yml,.yarn.lock'
+          source: 'prisma/,dist/,package.json,.env,.yarn,.yarnrc.yml,.yarn.lock,prisma.config.ts'
           target: 'api-deploy'
 
       - name: Finalize deployment
