@@ -3,7 +3,7 @@ model Service {
 
     name        String
     billingType BillingType
-    price       Float
+    price       Float       @db.DoublePrecision
     adults      Int
     minDaily    Int
     minNotice   Int
@@ -29,6 +29,8 @@ model Service {
     medias                    ServiceMedia[]
     reservations              ReservationService[]
     availableHousingUnitTypes ServiceHousingUnitType[]
+    specialDate               SpecialDateServices[]
+    offers                    OfferService[]
 
     companyId String
     company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
