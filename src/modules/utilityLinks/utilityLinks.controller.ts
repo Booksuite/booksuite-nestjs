@@ -39,6 +39,7 @@ export class UtilityLinksController {
     })
     @ApiOperation({ operationId: 'getUtilityLink' })
     @Get(':id')
+    @ApiParam({ name: 'companyId', type: String })
     getById(@Param('id') id: string): Promise<UtilityLinksResponseDTO | null> {
         return this.utilityLinksService.getById(id)
     }
@@ -55,6 +56,7 @@ export class UtilityLinksController {
 
     @ApiBody({ type: UtilityLinksUpdateDTO })
     @ApiOkResponse({ type: UtilityLinksResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(
         @Param('id') id: string,
