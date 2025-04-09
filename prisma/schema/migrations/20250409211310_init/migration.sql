@@ -224,32 +224,68 @@ CREATE TABLE "medias" (
 );
 
 -- CreateTable
-CREATE TABLE "packages" (
+CREATE TABLE "offers" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "published" BOOLEAN NOT NULL,
-    "startDate" DATE NOT NULL,
-    "endDate" DATE NOT NULL,
-    "minDaily" INTEGER NOT NULL,
-    "availableWeekend" JSONB NOT NULL,
-    "priceVariationType" "PriceVariationType" NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
+    "description" TEXT,
+    "published" BOOLEAN NOT NULL DEFAULT false,
+    "purchaseStartDate" DATE NOT NULL,
+    "purchaseEndDate" DATE NOT NULL,
+    "validStartDate" DATE,
+    "validEndDate" DATE,
+    "minDays" INTEGER,
+    "maxDays" INTEGER,
+    "minAdvanceDays" INTEGER,
+    "maxAdvanceDays" INTEGER,
+    "validForAbandoned" BOOLEAN NOT NULL DEFAULT false,
+    "validForPackages" BOOLEAN NOT NULL DEFAULT false,
+    "availableWeekDays" JSONB NOT NULL,
+    "priceAdjustmentType" "PriceVariationType" NOT NULL,
+    "priceAdjustmentValue" DOUBLE PRECISION NOT NULL,
+    "showInHighlights" BOOLEAN NOT NULL DEFAULT false,
+    "showDiscountTag" BOOLEAN NOT NULL DEFAULT false,
+    "isExclusive" BOOLEAN NOT NULL DEFAULT false,
+    "couponCode" TEXT,
     "companyId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "packages_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "offers_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "package_housing_unit_types" (
+CREATE TABLE "offer_housing_unit_types" (
     "id" TEXT NOT NULL,
+    "offerId" TEXT NOT NULL,
     "housingUnitTypeId" TEXT NOT NULL,
-    "packageId" TEXT NOT NULL,
-    "baseWeekPrice" DOUBLE PRECISION NOT NULL,
-    "newWeekPrice" DOUBLE PRECISION NOT NULL,
-    "weekendBasePrice" DOUBLE PRECISION NOT NULL,
-    "weekendNewPrice" DOUBLE PRECISION NOT NULL,
 
-    CONSTRAINT "package_housing_unit_types_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "offer_housing_unit_types_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "offer_payment_methods" (
+    "id" TEXT NOT NULL,
+    "offerId" TEXT NOT NULL,
+    "paymentMethodId" TEXT NOT NULL,
+
+    CONSTRAINT "offer_payment_methods_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "offer_services" (
+    "id" TEXT NOT NULL,
+    "offerId" TEXT NOT NULL,
+    "serviceId" TEXT NOT NULL,
+
+    CONSTRAINT "offer_services_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "payment_methods" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "payment_methods_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -405,7 +441,9 @@ CREATE TABLE "season_rules" (
     "startDate" DATE NOT NULL,
     "endDate" DATE NOT NULL,
     "minDaily" INTEGER NOT NULL,
-    "availableWeekend" JSONB NOT NULL,
+    "visibilityStart" DATE,
+    "visibilityEnd" DATE,
+    "availableWeekDays" JSONB NOT NULL,
     "priceVariationType" "PriceVariationType" NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "companyId" TEXT NOT NULL,
@@ -473,6 +511,58 @@ CREATE TABLE "service_medias" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "service_medias_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "special_date" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL,
+    "startDate" DATE NOT NULL,
+    "endDate" DATE NOT NULL,
+    "minDaily" INTEGER NOT NULL,
+    "description" TEXT,
+    "generalDescription" TEXT,
+    "availableWeekDays" JSONB NOT NULL,
+    "priceVariationType" "PriceVariationType" NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+    "companyId" TEXT NOT NULL,
+
+    CONSTRAINT "special_date_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "special_date_housing_unit_types" (
+    "id" TEXT NOT NULL,
+    "housingUnitTypeId" TEXT NOT NULL,
+    "specialDateId" TEXT NOT NULL,
+    "baseWeekPrice" DOUBLE PRECISION NOT NULL,
+    "newWeekPrice" DOUBLE PRECISION NOT NULL,
+    "weekendBasePrice" DOUBLE PRECISION NOT NULL,
+    "weekendNewPrice" DOUBLE PRECISION NOT NULL,
+
+    CONSTRAINT "special_date_housing_unit_types_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "special_date_service" (
+    "id" TEXT NOT NULL,
+    "serviceId" TEXT NOT NULL,
+    "specialDateId" TEXT NOT NULL,
+
+    CONSTRAINT "special_date_service_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "special_date_medias" (
+    "id" TEXT NOT NULL,
+    "order" INTEGER DEFAULT 0,
+    "specialDateId" TEXT NOT NULL,
+    "mediaId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "special_date_medias_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -550,7 +640,13 @@ CREATE UNIQUE INDEX "housing_unit_type_medias_housingUnitTypeId_mediaId_key" ON 
 CREATE UNIQUE INDEX "housing_unit_type_facilities_housingUnitTypeId_facilityId_key" ON "housing_unit_type_facilities"("housingUnitTypeId", "facilityId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "package_housing_unit_types_housingUnitTypeId_packageId_key" ON "package_housing_unit_types"("housingUnitTypeId", "packageId");
+CREATE UNIQUE INDEX "offer_housing_unit_types_offerId_housingUnitTypeId_key" ON "offer_housing_unit_types"("offerId", "housingUnitTypeId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "offer_payment_methods_offerId_paymentMethodId_key" ON "offer_payment_methods"("offerId", "paymentMethodId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "offer_services_offerId_serviceId_key" ON "offer_services"("offerId", "serviceId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "cancellation_policies_companyId_key" ON "cancellation_policies"("companyId");
@@ -578,6 +674,15 @@ CREATE UNIQUE INDEX "service_housingunittype_housingUnitTypeId_serviceId_key" ON
 
 -- CreateIndex
 CREATE UNIQUE INDEX "service_medias_serviceId_mediaId_key" ON "service_medias"("serviceId", "mediaId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "special_date_housing_unit_types_housingUnitTypeId_specialDa_key" ON "special_date_housing_unit_types"("housingUnitTypeId", "specialDateId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "special_date_service_serviceId_specialDateId_key" ON "special_date_service"("serviceId", "specialDateId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "special_date_medias_specialDateId_mediaId_key" ON "special_date_medias"("specialDateId", "mediaId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
@@ -628,13 +733,25 @@ ALTER TABLE "housing_unit_type_facilities" ADD CONSTRAINT "housing_unit_type_fac
 ALTER TABLE "medias" ADD CONSTRAINT "medias_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "packages" ADD CONSTRAINT "packages_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "offers" ADD CONSTRAINT "offers_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "package_housing_unit_types" ADD CONSTRAINT "package_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "offer_housing_unit_types" ADD CONSTRAINT "offer_housing_unit_types_offerId_fkey" FOREIGN KEY ("offerId") REFERENCES "offers"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "package_housing_unit_types" ADD CONSTRAINT "package_housing_unit_types_packageId_fkey" FOREIGN KEY ("packageId") REFERENCES "packages"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "offer_housing_unit_types" ADD CONSTRAINT "offer_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "offer_payment_methods" ADD CONSTRAINT "offer_payment_methods_offerId_fkey" FOREIGN KEY ("offerId") REFERENCES "offers"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "offer_payment_methods" ADD CONSTRAINT "offer_payment_methods_paymentMethodId_fkey" FOREIGN KEY ("paymentMethodId") REFERENCES "payment_methods"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "offer_services" ADD CONSTRAINT "offer_services_offerId_fkey" FOREIGN KEY ("offerId") REFERENCES "offers"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "offer_services" ADD CONSTRAINT "offer_services_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "cancellation_policies" ADD CONSTRAINT "cancellation_policies_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -710,6 +827,27 @@ ALTER TABLE "service_medias" ADD CONSTRAINT "service_medias_serviceId_fkey" FORE
 
 -- AddForeignKey
 ALTER TABLE "service_medias" ADD CONSTRAINT "service_medias_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "medias"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "special_date" ADD CONSTRAINT "special_date_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "special_date_housing_unit_types" ADD CONSTRAINT "special_date_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "special_date_housing_unit_types" ADD CONSTRAINT "special_date_housing_unit_types_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_date"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "special_date_service" ADD CONSTRAINT "special_date_service_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "special_date_service" ADD CONSTRAINT "special_date_service_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_date"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "special_date_medias" ADD CONSTRAINT "special_date_medias_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_date"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "special_date_medias" ADD CONSTRAINT "special_date_medias_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "medias"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "users_companies" ADD CONSTRAINT "users_companies_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
