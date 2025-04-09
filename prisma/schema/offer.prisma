@@ -21,15 +21,13 @@ model Offer {
     validForPackages  Boolean @default(false)
 
     availableHousingUnitTypes OfferHousingUnitType[]
-
-    // Payment Methods
-    validPaymentMethods Json // Array of payment method types
+    validPaymentMethods       OfferPaymentMethod[]
 
     /// [WeekDays]
     availableWeekDays Json // Array of week days (0-6)
 
-    // Valid Extras
-    validExtras Json // Array of extra IDs
+    // Valid Services
+    validServices OfferService[]
 
     // Price Adjustment
     priceAdjustmentType  PriceVariationType
@@ -61,4 +59,28 @@ model OfferHousingUnitType {
 
     @@unique([offerId, housingUnitTypeId], name: "offer_housing_unit_type_unique")
     @@map("offer_housing_unit_types")
+}
+
+model OfferPaymentMethod {
+    id              String @id @default(uuid())
+    offerId         String
+    paymentMethodId String
+
+    offer         Offer         @relation(fields: [offerId], references: [id], onDelete: Cascade)
+    paymentMethod PaymentMethod @relation(fields: [paymentMethodId], references: [id], onDelete: Cascade)
+
+    @@unique([offerId, paymentMethodId], name: "offer_payment_method_unique")
+    @@map("offer_payment_methods")
+}
+
+model OfferService {
+    id        String @id @default(uuid())
+    offerId   String
+    serviceId String
+
+    offer   Offer   @relation(fields: [offerId], references: [id], onDelete: Cascade)
+    service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+    @@unique([offerId, serviceId], name: "offer_service_unique")
+    @@map("offer_services")
 }

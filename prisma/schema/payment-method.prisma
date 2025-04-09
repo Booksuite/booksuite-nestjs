@@ -1,0 +1,8 @@
+model PaymentMethod {
+    id   String @id @default(uuid())
+    name String
+
+    offers OfferPaymentMethod[]
+
+    @@map("payment_methods")
+}

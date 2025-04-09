@@ -30,6 +30,7 @@ model Service {
     reservations              ReservationService[]
     availableHousingUnitTypes ServiceHousingUnitType[]
     specialDate               SpecialDateServices[]
+    offers                    OfferService[]
 
     companyId String
     company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
