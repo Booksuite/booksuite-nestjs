@@ -94,6 +94,9 @@ CREATE TABLE "companies" (
     "country" TEXT,
     "state" TEXT,
     "city" TEXT,
+    "privacyPolicyDescription" TEXT,
+    "privacyPolicySimpleModel" TEXT,
+    "privacyPolicyFullModel" TEXT,
     "mapCoordinates" JSONB,
     "bannerImageId" TEXT,
     "bannerTitle" TEXT,
@@ -483,6 +486,19 @@ CREATE TABLE "roles" (
     CONSTRAINT "roles_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "utility_links" (
+    "id" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL,
+    "title" TEXT NOT NULL,
+    "buttonLink" TEXT NOT NULL,
+    "startDate" DATE,
+    "endDate" DATE,
+    "companyId" TEXT NOT NULL,
+
+    CONSTRAINT "utility_links_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "banner_medias_bannerId_mediaId_key" ON "banner_medias"("bannerId", "mediaId");
 
@@ -662,3 +678,6 @@ ALTER TABLE "users_companies" ADD CONSTRAINT "users_companies_companyId_fkey" FO
 
 -- AddForeignKey
 ALTER TABLE "users_companies" ADD CONSTRAINT "users_companies_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "roles"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "utility_links" ADD CONSTRAINT "utility_links_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
