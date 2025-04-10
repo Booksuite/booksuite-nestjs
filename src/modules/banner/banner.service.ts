@@ -122,7 +122,10 @@ export class BannerService {
             ]
         }
 
-        if (filters) data.position = filters.position
+        if (filters) {
+            data.position = filters.position
+            data.published = filters.published
+        }
 
         return data
     }
