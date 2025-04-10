@@ -11,6 +11,8 @@ import {
     IsUUID,
 } from 'class-validator'
 
+import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
+import { ReservationReservationOptionDTO } from './ReservationReservationOption.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
 export class ReservationUpdateDTO {
@@ -84,10 +86,10 @@ export class ReservationUpdateDTO {
     @IsInt()
     adults?: number
 
-    @ApiProperty({ example: '1', required: false, type: Number })
+    @ApiProperty({ type: [ReservationAgeGroupDTO] })
     @IsOptional()
-    @IsInt()
-    children?: number
+    @IsArray()
+    children!: ReservationAgeGroupDTO[]
 
     @ApiProperty({ example: 'Featured booking', required: false, type: String })
     @IsOptional()
@@ -109,4 +111,10 @@ export class ReservationUpdateDTO {
     @IsArray()
     @Type(() => ReservationServiceDTO)
     services?: ReservationServiceDTO[]
+
+    @ApiProperty({ type: [ReservationReservationOptionDTO] })
+    @IsOptional()
+    @IsArray()
+    @Type(() => ReservationReservationOptionDTO)
+    reservationOption: ReservationReservationOptionDTO[]
 }

@@ -65,6 +65,7 @@ model AgeGroup {
     value      Int?
 
     ReservatonOptionAgeGroup ReservatonOptionAgeGroup[]
+    ReservationAgeGroup      ReservationAgeGroup[]
 
     agePolicyId String
     agePolicies AgePolicy @relation(fields: [agePolicyId], references: [id], onDelete: Cascade)

@@ -41,6 +41,12 @@ export class ReservationService {
             services: {
                 createMany: { data: rawData.services },
             },
+            children: {
+                createMany: { data: rawData.children },
+            },
+            reservationOption: {
+                createMany: { data: rawData.reservationOption },
+            },
         })
 
         return this.prismaService.reservation.create({
@@ -169,6 +175,8 @@ export class ReservationService {
                 services: { include: { service: true } },
                 sellerUser: true,
                 guestUser: true,
+                children: { include: { ageGroup: true } },
+                reservationOption: { include: { reservationOption: true } },
             },
         })
     }
@@ -207,6 +215,49 @@ export class ReservationService {
                             'qtd',
                             'totalPrice',
                         ]),
+                    })),
+                },
+                children: rawData.children && {
+                    deleteMany: {
+                        reservationId: id,
+                        ageGroupId: {
+                            notIn:
+                                rawData.children?.map((a) => a.ageGroupId) ||
+                                [],
+                        },
+                    },
+
+                    upsert: rawData.children?.map((a) => ({
+                        where: {
+                            reservation_age_groups_unique: {
+                                reservationId: id,
+                                ageGroupId: a.ageGroupId,
+                            },
+                        },
+                        update: pick(a, ['ageGroupId', 'children']),
+                        create: pick(a, ['ageGroupId', 'children']),
+                    })),
+                },
+                reservationOption: rawData.reservationOption && {
+                    deleteMany: {
+                        reservationId: id,
+                        reservationOptionId: {
+                            notIn:
+                                rawData.reservationOption?.map(
+                                    (r) => r.reservationOptionId,
+                                ) || [],
+                        },
+                    },
+
+                    upsert: rawData.reservationOption?.map((r) => ({
+                        where: {
+                            reservation_reservation_option_unique: {
+                                reservationId: id,
+                                reservationOptionId: r.reservationOptionId,
+                            },
+                        },
+                        update: pick(r, ['reservationOptionId']),
+                        create: pick(r, ['reservationOptionId']),
                     })),
                 },
             })

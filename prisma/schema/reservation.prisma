@@ -7,7 +7,6 @@ model Reservation {
     endDate   DateTime
     totalDays Int?              @default(1)
     adults    Int
-    children  Int
     notes     String            @db.Text
     status    ReservationStatus
 
@@ -23,7 +22,9 @@ model Reservation {
     housingUnitId String?
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
-    services ReservationService[]
+    services          ReservationService[]
+    children          ReservationAgeGroup[]
+    reservationOption ReservationReservationOption[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
@@ -72,6 +73,18 @@ model ReservationService {
     @@map("reservation_services")
 }
 
+model ReservationReservationOption {
+    id String @id @default(uuid())
+
+    reservationOptionId String
+    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
+    reservationId       String
+    reservation         Reservation       @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+    @@unique([reservationId, reservationOptionId], name: "reservation_reservation_option_unique")
+    @@map("reservation_reservation_option")
+}
+
 model ReservationConfig {
     id String @id @default(uuid())
 
@@ -91,6 +104,20 @@ model ReservationConfig {
     @@map("reservation_configs")
 }
 
+model ReservationAgeGroup {
+    id String @id @default(uuid())
+
+    ageGroupId    String
+    ageGroup      AgeGroup    @relation(fields: [ageGroupId], references: [id], onDelete: Cascade)
+    reservationId String
+    reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+    children Int
+
+    @@unique([ageGroupId, reservationId], name: "reservation_age_groups_unique")
+    @@map("reservation_age_groups")
+}
+
 model ReservationOption {
     id String @id @default(uuid())
 
@@ -101,6 +128,7 @@ model ReservationOption {
     additionalChildrenPrice   Float                               @db.DoublePrecision
     availableHousingUnitTypes ReservationOptionHousingUnitTypes[]
     ageGroupPrices            ReservatonOptionAgeGroup[]
+    reservation               ReservationReservationOption[]
 
     /// [WeekDays]
     availableWeekend Json

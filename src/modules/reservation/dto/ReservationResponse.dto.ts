@@ -31,9 +31,6 @@ export class ReservationResponseDTO {
     @ApiProperty({ example: 2, nullable: true, type: Number })
     adults: number | null
 
-    @ApiProperty({ example: 1, nullable: true, type: Number })
-    children: number | null
-
     @ApiProperty({ example: 'Featured booking' })
     notes!: string
 
