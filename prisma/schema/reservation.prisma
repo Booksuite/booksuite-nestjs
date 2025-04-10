@@ -22,8 +22,9 @@ model Reservation {
     housingUnitId String?
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
-    services ReservationService[]
-    children ReservationAgeGroup[]
+    services          ReservationService[]
+    children          ReservationAgeGroup[]
+    reservationOption ReservationReservationOption[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
@@ -72,6 +73,18 @@ model ReservationService {
     @@map("reservation_services")
 }
 
+model ReservationReservationOption {
+    id String @id @default(uuid())
+
+    reservationOptionId String
+    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
+    reservationId       String
+    reservation         Reservation       @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+    @@unique([reservationId, reservationOptionId], name: "reservation_reservation_option_unique")
+    @@map("reservation_reservation_option")
+}
+
 model ReservationConfig {
     id String @id @default(uuid())
 
@@ -115,6 +128,7 @@ model ReservationOption {
     additionalChildrenPrice   Float                               @db.DoublePrecision
     availableHousingUnitTypes ReservationOptionHousingUnitTypes[]
     ageGroupPrices            ReservatonOptionAgeGroup[]
+    reservation               ReservationReservationOption[]
 
     /// [WeekDays]
     availableWeekend Json

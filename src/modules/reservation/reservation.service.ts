@@ -44,6 +44,9 @@ export class ReservationService {
             children: {
                 createMany: { data: rawData.children },
             },
+            reservationOption: {
+                createMany: { data: rawData.reservationOption },
+            },
         })
 
         return this.prismaService.reservation.create({
@@ -173,6 +176,7 @@ export class ReservationService {
                 sellerUser: true,
                 guestUser: true,
                 children: { include: { ageGroup: true } },
+                reservationOption: { include: { reservationOption: true } },
             },
         })
     }
@@ -232,6 +236,28 @@ export class ReservationService {
                         },
                         update: pick(a, ['ageGroupId', 'children']),
                         create: pick(a, ['ageGroupId', 'children']),
+                    })),
+                },
+                reservationOption: rawData.reservationOption && {
+                    deleteMany: {
+                        reservationId: id,
+                        reservationOptionId: {
+                            notIn:
+                                rawData.reservationOption?.map(
+                                    (r) => r.reservationOptionId,
+                                ) || [],
+                        },
+                    },
+
+                    upsert: rawData.reservationOption?.map((r) => ({
+                        where: {
+                            reservation_reservation_option_unique: {
+                                reservationId: id,
+                                reservationOptionId: r.reservationOptionId,
+                            },
+                        },
+                        update: pick(r, ['reservationOptionId']),
+                        create: pick(r, ['reservationOptionId']),
                     })),
                 },
             })

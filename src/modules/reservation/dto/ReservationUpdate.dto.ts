@@ -12,6 +12,7 @@ import {
 } from 'class-validator'
 
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
+import { ReservationReservationOptionDTO } from './ReservationReservationOption.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
 export class ReservationUpdateDTO {
@@ -110,4 +111,10 @@ export class ReservationUpdateDTO {
     @IsArray()
     @Type(() => ReservationServiceDTO)
     services?: ReservationServiceDTO[]
+
+    @ApiProperty({ type: [ReservationReservationOptionDTO] })
+    @IsOptional()
+    @IsArray()
+    @Type(() => ReservationReservationOptionDTO)
+    reservationOption: ReservationReservationOptionDTO[]
 }
