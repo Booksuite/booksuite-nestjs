@@ -11,4 +11,11 @@ export class BannerSearchFilterDTO {
     @IsOptional()
     @IsEnum(BannerPosition)
     position?: BannerPosition
+
+    @ApiProperty({
+        type: Boolean,
+        required: false,
+    })
+    @IsOptional()
+    published?: boolean
 }
