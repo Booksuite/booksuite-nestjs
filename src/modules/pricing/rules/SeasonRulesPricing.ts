@@ -1,0 +1,99 @@
+import { Injectable } from '@nestjs/common'
+import dayjs from 'dayjs'
+
+import { UNAVAILABLE_REASON_MESSAGE } from '../constants'
+import {
+    UnavailabilityReason,
+    UnavailableSource,
+} from '../enum/UnavailableReason.enum'
+import { PricingHelpers } from '../helpers/PricingHelpers'
+import { CalendarAvailability, DayPricingPayload } from '../types'
+import { PricingRule } from '../types'
+
+@Injectable()
+export class SeasonRulesPricing implements PricingRule {
+    constructor(private readonly pricingHelpers: PricingHelpers) {}
+
+    apply(payload: DayPricingPayload): DayPricingPayload {
+        const { currentDate, pricingPayload, calendar } = payload
+
+        const seasonRules = pricingPayload.seasonRules.find((rule) => {
+            const isBetween = dayjs
+                .utc(currentDate)
+                .isBetween(
+                    dayjs.utc(rule.startDate).startOf('day'),
+                    dayjs.utc(rule.endDate).endOf('day'),
+                    'day',
+                    '[]',
+                )
+
+            return isBetween
+        })
+
+        if (!seasonRules) return payload
+
+        const basePrice = calendar[currentDate].basePrice
+
+        const finalPrice = this.pricingHelpers.getPriceVariation(
+            basePrice,
+            seasonRules,
+        )
+
+        payload.calendar[currentDate].seasonRules = seasonRules
+        payload.calendar[currentDate].basePrice = finalPrice
+        payload.calendar[currentDate].finalPrice = finalPrice
+        payload.calendar[currentDate].finalMinDays = seasonRules.minDaily
+        payload.calendar[currentDate].availability =
+            this.checkAvailability(payload)
+
+        return payload
+    }
+
+    private checkAvailability({
+        calendar,
+        currentDate,
+        pricingPayload,
+    }: DayPricingPayload): CalendarAvailability {
+        const seasonRules = calendar[currentDate].seasonRules
+
+        if (!seasonRules) return calendar[currentDate].availability
+
+        const weekDay = dayjs(pricingPayload.dateRange.start)
+            .startOf('day')
+            .day()
+
+        const isWeekDayAvailable =
+            seasonRules.availableWeekDays.includes(weekDay)
+
+        if (!isWeekDayAvailable) {
+            return {
+                available: false,
+                unavailabilitySource: UnavailableSource.SEASON_RULES,
+                unavailableReason: UnavailabilityReason.WEEKDAY_NOT_AVAILABLE,
+                unavailableReasonMessage:
+                    UNAVAILABLE_REASON_MESSAGE[
+                        UnavailabilityReason.WEEKDAY_NOT_AVAILABLE
+                    ],
+            }
+        }
+
+        if (pricingPayload.totalDays < calendar[currentDate].finalMinDays) {
+            return {
+                available: false,
+                unavailabilitySource: UnavailableSource.SEASON_RULES,
+                unavailableReason: UnavailabilityReason.MIN_DAYS_NOT_REACHED,
+                unavailableReasonMessage:
+                    UNAVAILABLE_REASON_MESSAGE[
+                        UnavailabilityReason.MIN_DAYS_NOT_REACHED
+                    ],
+            }
+        }
+
+        return {
+            available: true,
+            unavailabilitySource: null,
+            unavailableReason: null,
+            unavailableReasonMessage: null,
+        }
+    }
+}
