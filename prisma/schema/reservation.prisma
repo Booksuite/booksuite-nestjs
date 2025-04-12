@@ -23,7 +23,7 @@ model Reservation {
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
     services          ReservationService[]
-    children          ReservationAgeGroup[]
+    childrens         ReservationAgeGroup[]
     reservationOption ReservationReservationOption[]
 
     createdAt DateTime  @default(now())
@@ -142,7 +142,7 @@ model ReservationOption {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@map("reservation_option")
+    @@map("reservation_options")
 }
 
 model ReservatonOptionAgeGroup {
@@ -168,7 +168,7 @@ model ReservationOptionHousingUnitTypes {
     reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
 
     @@unique([housingUnitTypeId, reservationOptionId], name: "reservation_option_housingunittype_unique")
-    @@map("reservation_option_housingunittype")
+    @@map("reservation_option_housing_unit_types")
 }
 
 enum ReservationDepositType {

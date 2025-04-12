@@ -356,7 +356,6 @@ CREATE TABLE "reservations" (
     "endDate" TIMESTAMP(3) NOT NULL,
     "totalDays" INTEGER DEFAULT 1,
     "adults" INTEGER NOT NULL,
-    "children" INTEGER NOT NULL,
     "notes" TEXT NOT NULL,
     "status" "ReservationStatus" NOT NULL,
     "saleChannel" "ReservationSaleChannel" NOT NULL DEFAULT 'BOOKSUITE',
@@ -384,6 +383,15 @@ CREATE TABLE "reservation_services" (
 );
 
 -- CreateTable
+CREATE TABLE "reservation_reservation_option" (
+    "id" TEXT NOT NULL,
+    "reservationOptionId" TEXT NOT NULL,
+    "reservationId" TEXT NOT NULL,
+
+    CONSTRAINT "reservation_reservation_option_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "reservation_configs" (
     "id" TEXT NOT NULL,
     "tax" DOUBLE PRECISION,
@@ -398,7 +406,17 @@ CREATE TABLE "reservation_configs" (
 );
 
 -- CreateTable
-CREATE TABLE "reservation_option" (
+CREATE TABLE "reservation_age_groups" (
+    "id" TEXT NOT NULL,
+    "ageGroupId" TEXT NOT NULL,
+    "reservationId" TEXT NOT NULL,
+    "children" INTEGER NOT NULL,
+
+    CONSTRAINT "reservation_age_groups_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "reservation_options" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL,
@@ -411,7 +429,7 @@ CREATE TABLE "reservation_option" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "reservation_option_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "reservation_options_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -425,12 +443,12 @@ CREATE TABLE "reservation_option_age_groups" (
 );
 
 -- CreateTable
-CREATE TABLE "reservation_option_housingunittype" (
+CREATE TABLE "reservation_option_housing_unit_types" (
     "id" TEXT NOT NULL,
     "housingUnitTypeId" TEXT NOT NULL,
     "reservationOptionId" TEXT NOT NULL,
 
-    CONSTRAINT "reservation_option_housingunittype_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "reservation_option_housing_unit_types_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -658,13 +676,19 @@ CREATE UNIQUE INDEX "age_policies_companyId_key" ON "age_policies"("companyId");
 CREATE UNIQUE INDEX "reservation_services_reservationId_serviceId_key" ON "reservation_services"("reservationId", "serviceId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "reservation_reservation_option_reservationId_reservationOpt_key" ON "reservation_reservation_option"("reservationId", "reservationOptionId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "reservation_configs_companyId_key" ON "reservation_configs"("companyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "reservation_age_groups_ageGroupId_reservationId_key" ON "reservation_age_groups"("ageGroupId", "reservationId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "reservation_option_age_groups_ageGroupId_reservationOptionI_key" ON "reservation_option_age_groups"("ageGroupId", "reservationOptionId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "reservation_option_housingunittype_housingUnitTypeId_reserv_key" ON "reservation_option_housingunittype"("housingUnitTypeId", "reservationOptionId");
+CREATE UNIQUE INDEX "reservation_option_housing_unit_types_housingUnitTypeId_res_key" ON "reservation_option_housing_unit_types"("housingUnitTypeId", "reservationOptionId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "season_rule_housing_unit_types_housingUnitTypeId_seasonRule_key" ON "season_rule_housing_unit_types"("housingUnitTypeId", "seasonRuleId");
@@ -784,22 +808,34 @@ ALTER TABLE "reservation_services" ADD CONSTRAINT "reservation_services_serviceI
 ALTER TABLE "reservation_services" ADD CONSTRAINT "reservation_services_reservationId_fkey" FOREIGN KEY ("reservationId") REFERENCES "reservations"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "reservation_reservation_option" ADD CONSTRAINT "reservation_reservation_option_reservationOptionId_fkey" FOREIGN KEY ("reservationOptionId") REFERENCES "reservation_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservation_reservation_option" ADD CONSTRAINT "reservation_reservation_option_reservationId_fkey" FOREIGN KEY ("reservationId") REFERENCES "reservations"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "reservation_configs" ADD CONSTRAINT "reservation_configs_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "reservation_option" ADD CONSTRAINT "reservation_option_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "reservation_age_groups" ADD CONSTRAINT "reservation_age_groups_ageGroupId_fkey" FOREIGN KEY ("ageGroupId") REFERENCES "age_groups"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservation_age_groups" ADD CONSTRAINT "reservation_age_groups_reservationId_fkey" FOREIGN KEY ("reservationId") REFERENCES "reservations"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservation_options" ADD CONSTRAINT "reservation_options_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "reservation_option_age_groups" ADD CONSTRAINT "reservation_option_age_groups_ageGroupId_fkey" FOREIGN KEY ("ageGroupId") REFERENCES "age_groups"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "reservation_option_age_groups" ADD CONSTRAINT "reservation_option_age_groups_reservationOptionId_fkey" FOREIGN KEY ("reservationOptionId") REFERENCES "reservation_option"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "reservation_option_age_groups" ADD CONSTRAINT "reservation_option_age_groups_reservationOptionId_fkey" FOREIGN KEY ("reservationOptionId") REFERENCES "reservation_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "reservation_option_housingunittype" ADD CONSTRAINT "reservation_option_housingunittype_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "reservation_option_housing_unit_types" ADD CONSTRAINT "reservation_option_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "reservation_option_housingunittype" ADD CONSTRAINT "reservation_option_housingunittype_reservationOptionId_fkey" FOREIGN KEY ("reservationOptionId") REFERENCES "reservation_option"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "reservation_option_housing_unit_types" ADD CONSTRAINT "reservation_option_housing_unit_types_reservationOptionId_fkey" FOREIGN KEY ("reservationOptionId") REFERENCES "reservation_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "season_rules" ADD CONSTRAINT "season_rules_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;

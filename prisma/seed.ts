@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, ReservationStatus } from '@prisma/client'
 import * as bcrypt from 'bcrypt'
 
 const client = new PrismaClient()
@@ -313,10 +313,11 @@ async function setUserAndRoles() {
             },
         })
         console.log('Added default banner')
+
         //Reservation
         await tx.reservation.create({
             data: {
-                status: 'CONFIRMED',
+                status: ReservationStatus.CONFIRMED,
                 userId: user1.id,
                 sellerUserId: user2.id,
                 saleChannel: 'BOOKSUITE',
@@ -335,6 +336,7 @@ async function setUserAndRoles() {
                 },
             },
         })
+
         console.log('Added default reservation')
 
         if (dbRole) {
