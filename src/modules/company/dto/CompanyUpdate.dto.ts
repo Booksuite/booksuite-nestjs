@@ -227,18 +227,21 @@ export class CompanyUpdateDTO {
         example: 'Privacy policy description',
         type: String,
     })
+    @IsOptional()
     privacyPolicyDescription: string | null
 
     @ApiProperty({
         example: 'Privacy policy simple model',
         type: String,
     })
+    @IsOptional()
     privacyPolicySimpleModel: string | null
 
     @ApiProperty({
         example: 'Privacy policy full model',
         type: String,
     })
+    @IsOptional()
     privacyPolicyFullModel: string | null
 
     @ApiProperty({
