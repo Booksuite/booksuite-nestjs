@@ -1,7 +1,6 @@
 import 'jest'
 
 import { Test, TestingModule } from '@nestjs/testing'
-import { HostingRules } from '@prisma/client'
 import { mockDeep, mockReset } from 'jest-mock-extended'
 
 import { PipeFns } from '@/common/utils/PipeFns'
@@ -16,6 +15,7 @@ import { ReservationRule } from './rules/ReservationRule'
 import { SeasonRulesRule } from './rules/SeasonRulesRule'
 import { SpecialDatesRule } from './rules/SpecialDatesRule'
 import {
+    AvailAndPricingHostingRules,
     AvailAndPricingHousingUnitType,
     HouseUnitTypeAvailAndPricingPayload,
 } from './types'
@@ -64,9 +64,7 @@ describe('PricingService Helper Methods', () => {
                 ],
             }
 
-            const hostingRules: HostingRules = {
-                id: 'rules-1',
-                companyId: 'company-1',
+            const hostingRules: AvailAndPricingHostingRules = {
                 checkIn: 14 * 60,
                 checkOut: 11 * 60,
                 minDaily: 2,
@@ -77,7 +75,7 @@ describe('PricingService Helper Methods', () => {
                 reservationWindowEnd: null,
             }
 
-            const payload = {
+            const payload: HouseUnitTypeAvailAndPricingPayload = {
                 dateRange: {
                     start: '2025-01-01',
                     end: '2025-01-02',
@@ -116,8 +114,6 @@ describe('PricingService Helper Methods', () => {
                     housingUnits: [],
                 },
                 hostingRules: {
-                    id: 'rules-1',
-                    companyId: 'company-1',
                     checkIn: 14 * 60,
                     checkOut: 11 * 60,
                     minDaily: 2,
@@ -168,8 +164,6 @@ describe('PricingService Helper Methods', () => {
                     housingUnits: [],
                 },
                 hostingRules: {
-                    id: 'rules-1',
-                    companyId: 'company-1',
                     checkIn: 14 * 60,
                     checkOut: 11 * 60,
                     minDaily: 2,

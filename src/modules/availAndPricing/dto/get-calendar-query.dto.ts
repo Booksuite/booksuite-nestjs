@@ -4,7 +4,7 @@ import { IsDateString, IsNotEmpty, ValidateNested } from 'class-validator'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 
-export class GetCalendarQueryDTO {
+export class CalendarBodyDTO {
     @ApiProperty({
         description: 'Current date in YYYY-MM-DD format',
         example: '2025-01-01',

@@ -1,22 +1,23 @@
-import { Controller, Get, Param, Query } from '@nestjs/common'
+import { Body, Controller, Param, Post, Query } from '@nestjs/common'
 import {
+    ApiOkResponse,
     ApiOperation,
     ApiParam,
     ApiQuery,
-    ApiResponse,
     ApiTags,
 } from '@nestjs/swagger'
 
 import { AvailAndPricingService } from './availAndPricing.service'
-import { GetCalendarQueryDTO, GetCalendarResponseDTO } from './dto/calendar.dto'
-import { HousingUnitTypeAvailability } from './types'
+import { AvailabilityAndPricingResponseDTO } from './dto/AvailabilityAndPricingResponse.dto'
+import {} from './dto/calendar.dto'
+import { CalendarBodyDTO } from './dto/get-calendar-query.dto'
 
-@ApiTags('Pricing')
+@ApiTags('Availability and Pricing')
 @Controller('company/:companyId/calendar')
 export class PricingController {
     constructor(private readonly pricingService: AvailAndPricingService) {}
 
-    @Get(':housingUnitTypeId')
+    @Post(':housingUnitTypeId')
     @ApiOperation({
         operationId: 'getCalendarFromHousingUnitTypeId',
         summary: 'Get calendar for a specific housing unit type',
@@ -25,41 +26,39 @@ export class PricingController {
         name: 'housingUnitTypeId',
         description: 'Housing unit type ID',
     })
-    @ApiResponse({
-        status: 200,
+    @ApiOkResponse({
         description: 'Calendar data for the housing unit type',
-        type: GetCalendarResponseDTO,
+        type: AvailabilityAndPricingResponseDTO,
     })
     async getCalendarFromHousingUnitTypeId(
         @Param('housingUnitTypeId') housingUnitTypeId: string,
-        @Query() query: GetCalendarQueryDTO,
-    ): Promise<HousingUnitTypeAvailability> {
+        @Body() body: CalendarBodyDTO,
+    ): Promise<AvailabilityAndPricingResponseDTO> {
         return this.pricingService.getCalendarFromHousingUnitTypeId(
             housingUnitTypeId,
-            query.currentDate,
-            query.dateRange,
+            body.currentDate,
+            body.dateRange,
         )
     }
 
-    @Get()
+    @Post()
     @ApiOperation({
         operationId: 'getCalendar',
         summary: 'Get calendar for all housing unit types in a company',
     })
     @ApiQuery({ name: 'companyId', description: 'Company ID' })
-    @ApiResponse({
-        status: 200,
+    @ApiOkResponse({
         description: 'Calendar data for all housing unit types',
-        type: [GetCalendarResponseDTO],
+        type: [AvailabilityAndPricingResponseDTO],
     })
     async getCalendar(
         @Query('companyId') companyId: string,
-        @Query() query: GetCalendarQueryDTO,
-    ): Promise<HousingUnitTypeAvailability[]> {
+        @Body() body: CalendarBodyDTO,
+    ): Promise<AvailabilityAndPricingResponseDTO[]> {
         return this.pricingService.getCalendar(
             companyId,
-            query.currentDate,
-            query.dateRange,
+            body.currentDate,
+            body.dateRange,
         )
     }
 }

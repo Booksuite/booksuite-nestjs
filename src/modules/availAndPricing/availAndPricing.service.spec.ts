@@ -26,6 +26,7 @@ import { ReservationRule } from './rules/ReservationRule'
 import { SeasonRulesRule } from './rules/SeasonRulesRule'
 import { SpecialDatesRule } from './rules/SpecialDatesRule'
 import {
+    AvailAndPricingHostingRules,
     AvailAndPricingHousingUnitType,
     AvailAndPricingSeasonRules,
     HousingUnitTypeAvailability,
@@ -85,9 +86,7 @@ describe('PricingService', () => {
                 },
             ]
 
-            const hostingRulesMock: HostingRules = {
-                id: 'rules-1',
-                companyId,
+            const hostingRulesMock: AvailAndPricingHostingRules = {
                 checkIn: 14 * 60, // 2:00 PM
                 checkOut: 11 * 60, // 11:00 AM
                 minDaily: 2,
@@ -166,7 +165,7 @@ describe('PricingService', () => {
                 housingUnitTypes as unknown as HousingUnitType[],
             )
             prismaMock.hostingRules.findUnique.mockResolvedValue(
-                hostingRulesMock,
+                hostingRulesMock as unknown as HostingRules,
             )
 
             prismaMock.seasonRules.findMany.mockResolvedValue([

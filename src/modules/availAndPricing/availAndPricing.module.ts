@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common'
 
+import { PipeFns } from '@/common/utils/PipeFns'
+
 import { PricingController } from './availAndPricing.controller'
 import { AvailAndPricingService } from './availAndPricing.service'
 import { PricingHelpers } from './helpers/PricingHelpers'
@@ -13,6 +15,7 @@ import { SpecialDatesRule } from './rules/SpecialDatesRule'
 @Module({
     controllers: [PricingController],
     providers: [
+        PipeFns,
         AvailAndPricingService,
         AvailAndPricingRules,
         PricingHelpers,
@@ -23,4 +26,4 @@ import { SpecialDatesRule } from './rules/SpecialDatesRule'
         OfferRule,
     ],
 })
-export class PricingModule {}
+export class AvailAndPricingModule {}

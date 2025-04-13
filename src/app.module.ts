@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import { PipeFns } from './common/utils/PipeFns'
+import { AvailAndPricingModule } from './modules/availAndPricing/availAndPricing.module'
 import { BannerModule } from './modules/banner/banner.module'
 import { CompanyModule } from './modules/company/company.module'
 import { FacilityModule } from './modules/facility/facility.module'
@@ -15,11 +15,11 @@ import { SpecialDateModule } from './modules/specialDate/specialDate.module'
 import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
 
 @Module({
-    providers: [PipeFns],
     imports: [
         ConfigModule.forRoot(),
         PrismaModule,
         HousingUnitTypeModule,
+        AvailAndPricingModule,
         CompanyModule,
         ServiceModule,
         OfferModule,
