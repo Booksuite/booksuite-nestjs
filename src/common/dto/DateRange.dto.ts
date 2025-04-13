@@ -1,22 +1,22 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDefined, IsISO8601 } from 'class-validator'
+import { IsDateString, IsDefined } from 'class-validator'
 
 export class DateRangeDTO {
     @ApiProperty({
         type: String,
         format: 'date',
-        example: '2025-03-01T00:00:00Z',
+        example: '2025-03-01',
     })
     @IsDefined()
-    @IsISO8601({ strict: true })
+    @IsDateString()
     start: string
 
     @ApiProperty({
         type: String,
         format: 'date',
-        example: '2025-03-14T00:00:00Z',
+        example: '2025-03-14',
     })
     @IsDefined()
-    @IsISO8601({ strict: true })
+    @IsDateString()
     end: string
 }

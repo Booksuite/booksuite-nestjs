@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
