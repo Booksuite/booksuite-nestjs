@@ -7,18 +7,21 @@ import { mockDeep, mockReset } from 'jest-mock-extended'
 import { PipeFns } from '@/common/utils/PipeFns'
 import { PrismaService } from '../prisma/prisma.service'
 
+import { AvailAndPricingService } from './availAndPricing.service'
 import { PricingHelpers } from './helpers/PricingHelpers'
-import { PricingService } from './pricing.service'
-import { HostingRulesPricing } from './rules/HostingRulesPricing'
-import { OfferPricing } from './rules/OfferPricing'
-import { PricingRules } from './rules/PricingRules'
+import { HostingRulesRule } from './rules/HostingRulesRule'
+import { OfferRule } from './rules/OfferPricing'
+import { AvailAndPricingRules } from './rules/PricingRules'
 import { ReservationRule } from './rules/ReservationRule'
-import { SeasonRulesPricing } from './rules/SeasonRulesPricing'
-import { SpecialDatesPricing } from './rules/SpecialDatesPricing'
-import { CalendarHousingUnitType, HouseUnitTypePricingPayload } from './types'
+import { SeasonRulesRule } from './rules/SeasonRulesRule'
+import { SpecialDatesRule } from './rules/SpecialDatesRule'
+import {
+    AvailAndPricingHousingUnitType,
+    HouseUnitTypeAvailAndPricingPayload,
+} from './types'
 
 describe('PricingService Helper Methods', () => {
-    let service: PricingService
+    let service: AvailAndPricingService
     const prismaMock = mockDeep<PrismaService>()
 
     beforeEach(async () => {
@@ -27,24 +30,24 @@ describe('PricingService Helper Methods', () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 PricingHelpers,
-                PricingService,
-                PricingRules,
-                SeasonRulesPricing,
+                AvailAndPricingService,
+                AvailAndPricingRules,
+                SeasonRulesRule,
                 ReservationRule,
-                HostingRulesPricing,
-                SpecialDatesPricing,
-                OfferPricing,
+                HostingRulesRule,
+                SpecialDatesRule,
+                OfferRule,
                 PipeFns,
                 { provide: PrismaService, useValue: prismaMock },
             ],
         }).compile()
 
-        service = module.get<PricingService>(PricingService)
+        service = module.get<AvailAndPricingService>(AvailAndPricingService)
     })
 
     describe('getHousingUnitTypeCalendar', () => {
         it('should create a calendar for a housing unit type', () => {
-            const housingUnitType: CalendarHousingUnitType = {
+            const housingUnitType: AvailAndPricingHousingUnitType = {
                 id: 'unit-type-1',
                 name: 'Unit Type 1',
                 weekdaysPrice: 200,
@@ -100,7 +103,7 @@ describe('PricingService Helper Methods', () => {
 
     describe('getInitialCalendarDay', () => {
         it('should return initial calendar day with weekend price', () => {
-            const payload: HouseUnitTypePricingPayload = {
+            const payload: HouseUnitTypeAvailAndPricingPayload = {
                 dateRange: {
                     start: '2025-01-05', // Sunday
                     end: '2025-01-05',
@@ -152,7 +155,7 @@ describe('PricingService Helper Methods', () => {
         })
 
         it('should return initial calendar day with weekday price', () => {
-            const payload: HouseUnitTypePricingPayload = {
+            const payload: HouseUnitTypeAvailAndPricingPayload = {
                 dateRange: {
                     start: '2025-01-01', // Wednesday
                     end: '2025-01-01',

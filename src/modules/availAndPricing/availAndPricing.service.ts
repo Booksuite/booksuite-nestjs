@@ -6,36 +6,83 @@ import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 import { PrismaService } from '../prisma/prisma.service'
 
 import { OCCUPIED_RESERVATION_STATUS } from './constants'
-import { PricingRules } from './rules/PricingRules'
+import { AvailAndPricingRules } from './rules/PricingRules'
 import {
+    AvailAndPricingHousingUnitType,
+    AvailAndPricingPayload,
     Calendar,
     CalendarDay,
-    CalendarHousingUnitType,
-    CalendarPayload,
-    HouseUnitTypePricingPayload,
-    HousingUnitTypeCalendar,
+    HouseUnitTypeAvailAndPricingPayload,
+    HousingUnitTypeAvailability,
 } from './types'
 
 @Injectable()
-export class PricingService {
+export class AvailAndPricingService {
     constructor(
         private readonly prismaService: PrismaService,
-        private readonly pricingRules: PricingRules,
+        private readonly pricingRules: AvailAndPricingRules,
     ) {}
+
+    async getCalendarFromHousingUnitTypeId(
+        housingUnitTypeId: string,
+        currentDate: string,
+        dateRange: DateRangeDTO,
+    ): Promise<HousingUnitTypeAvailability> {
+        const housingUnitType =
+            await this.prismaService.housingUnitType.findUnique({
+                where: { id: housingUnitTypeId },
+                select: {
+                    id: true,
+                    name: true,
+                    companyId: true,
+                    weekdaysPrice: true,
+                    weekendPrice: true,
+                    housingUnits: { orderBy: { order: 'asc' } },
+                },
+            })
+
+        if (!housingUnitType) throw new Error('Acomodação não encontrada')
+
+        const calendarPayload = await this.getCalendarPayload(
+            housingUnitType.companyId,
+            [housingUnitType],
+            currentDate,
+            dateRange,
+        )
+
+        return this.getHousingUnitTypeCalendar(
+            this.filterHousingUnitTypePayload(housingUnitType, calendarPayload),
+        )
+    }
 
     async getCalendar(
         companyId: string,
         currentDate: string,
         dateRange: DateRangeDTO,
-    ): Promise<HousingUnitTypeCalendar[]> {
+    ): Promise<HousingUnitTypeAvailability[]> {
+        const housingUnitTypes =
+            await this.prismaService.housingUnitType.findMany({
+                where: { companyId, published: true },
+
+                select: {
+                    id: true,
+                    name: true,
+                    companyId: true,
+                    weekdaysPrice: true,
+                    weekendPrice: true,
+                    housingUnits: { orderBy: { order: 'asc' } },
+                },
+            })
+
         const calendarPayload = await this.getCalendarPayload(
             companyId,
+            housingUnitTypes,
             currentDate,
             dateRange,
         )
 
         const housingUnitTypeCalendars =
-            calendarPayload.housingUnitTypes.map<HousingUnitTypeCalendar>(
+            calendarPayload.housingUnitTypes.map<HousingUnitTypeAvailability>(
                 (housingUnitType) => {
                     const housingUnitTypePayload =
                         this.filterHousingUnitTypePayload(
@@ -53,10 +100,9 @@ export class PricingService {
     }
 
     getHousingUnitTypeCalendar(
-        housingUnitTypePayload: HouseUnitTypePricingPayload,
-    ): HousingUnitTypeCalendar {
+        housingUnitTypePayload: HouseUnitTypeAvailAndPricingPayload,
+    ): HousingUnitTypeAvailability {
         const housingUnitType = housingUnitTypePayload.housingUnitType
-        const housingUnits = housingUnitTypePayload.housingUnitType.housingUnits
         const calendar = this.calculateHousingUnitTypeCalendar(
             housingUnitTypePayload,
         )
@@ -64,33 +110,20 @@ export class PricingService {
         return {
             ...housingUnitType,
             calendar,
-            housingUnits,
         }
     }
 
     async getCalendarPayload(
         companyId: string,
+        housingUnitTypes: AvailAndPricingHousingUnitType[],
         currentDate: string,
         dateRange: DateRangeDTO,
-    ): Promise<CalendarPayload> {
+    ): Promise<AvailAndPricingPayload> {
         const hostingRules = await this.prismaService.hostingRules.findUnique({
             where: { companyId },
         })
 
         if (!hostingRules) throw new Error('Hosting rule not found')
-
-        const housingUnitTypes =
-            await this.prismaService.housingUnitType.findMany({
-                where: { companyId, published: true },
-
-                select: {
-                    id: true,
-                    name: true,
-                    weekdaysPrice: true,
-                    weekendPrice: true,
-                    housingUnits: { orderBy: { order: 'asc' } },
-                },
-            })
 
         const housingUnitTypesIds = housingUnitTypes.map(
             (housingUnitType) => housingUnitType.id,
@@ -191,24 +224,40 @@ export class PricingService {
         return {
             dateRange,
             housingUnitTypes,
-            hostingRules,
+            hostingRules: {
+                ...hostingRules,
+                reservationWindowStart:
+                    dayjs
+                        .utc(hostingRules.reservationWindowStart)
+                        .toISOString() ?? null,
+                reservationWindowEnd:
+                    dayjs
+                        .utc(hostingRules.reservationWindowEnd)
+                        .toISOString() ?? null,
+            },
             seasonRules,
             specialDates,
-            reservations,
+            reservations: reservations.map((reservation) => ({
+                ...reservation,
+                startDate: dayjs
+                    .utc(reservation.startDate)
+                    .format('YYYY-MM-DD'),
+                endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
+            })),
             offers,
         }
     }
 
     filterHousingUnitTypePayload(
-        housingUnitType: CalendarHousingUnitType,
+        housingUnitType: AvailAndPricingHousingUnitType,
         {
             seasonRules,
             specialDates,
             offers,
             reservations,
             ...restPayload
-        }: CalendarPayload,
-    ): HouseUnitTypePricingPayload {
+        }: AvailAndPricingPayload,
+    ): HouseUnitTypeAvailAndPricingPayload {
         const housingUnitTYpeSeasonRules = seasonRules.filter((seasonRule) =>
             seasonRule.housingUnitTypePrices.some(
                 (price) => price.housingUnitTypeId === housingUnitType.id,
@@ -247,7 +296,7 @@ export class PricingService {
     }
 
     calculateHousingUnitTypeCalendar(
-        payload: HouseUnitTypePricingPayload,
+        payload: HouseUnitTypeAvailAndPricingPayload,
     ): Calendar {
         const dayjsStart = dayjs.utc(payload.dateRange.start).startOf('day')
         const dayjsEnd = dayjs.utc(payload.dateRange.end).endOf('day')
@@ -266,7 +315,9 @@ export class PricingService {
         return days
     }
 
-    getInitialCalendarDay(payload: HouseUnitTypePricingPayload): CalendarDay {
+    getInitialCalendarDay(
+        payload: HouseUnitTypeAvailAndPricingPayload,
+    ): CalendarDay {
         const weekDay = dayjs(payload.dateRange.start).startOf('day').day()
         const isWeekend =
             payload.hostingRules.availableWeekend.includes(weekDay)

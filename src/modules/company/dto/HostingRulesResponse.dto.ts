@@ -20,10 +20,10 @@ export class HostingRulesResponseDTO {
     availableWeekend: PrismaJson.WeekDays
 
     @ApiProperty({ example: '2025-12-01', type: String, nullable: true })
-    reservationWindowStart?: string | null
+    reservationWindowStart: string | null
 
     @ApiProperty({ example: '2025-12-31', type: String, nullable: true })
-    reservationWindowEnd?: string | null
+    reservationWindowEnd: string | null
 
     @ApiProperty({ type: Number, isArray: true })
     availableWeekDays: PrismaJson.WeekDays

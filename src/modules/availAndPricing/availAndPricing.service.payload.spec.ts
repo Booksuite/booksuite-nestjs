@@ -1,36 +1,32 @@
 import 'jest'
 
 import { Test, TestingModule } from '@nestjs/testing'
-import {
-    HostingRules,
-    HousingUnitType,
-    PriceVariationType,
-} from '@prisma/client'
+import { HostingRules, PriceVariationType } from '@prisma/client'
 import { mockDeep, mockReset } from 'jest-mock-extended'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 import { PipeFns } from '@/common/utils/PipeFns'
 import { PrismaService } from '../prisma/prisma.service'
 
+import { AvailAndPricingService } from './availAndPricing.service'
 import { PricingHelpers } from './helpers/PricingHelpers'
-import { PricingService } from './pricing.service'
-import { HostingRulesPricing } from './rules/HostingRulesPricing'
-import { OfferPricing } from './rules/OfferPricing'
-import { PricingRules } from './rules/PricingRules'
+import { HostingRulesRule } from './rules/HostingRulesRule'
+import { OfferRule } from './rules/OfferPricing'
+import { AvailAndPricingRules } from './rules/PricingRules'
 import { ReservationRule } from './rules/ReservationRule'
-import { SeasonRulesPricing } from './rules/SeasonRulesPricing'
-import { SpecialDatesPricing } from './rules/SpecialDatesPricing'
+import { SeasonRulesRule } from './rules/SeasonRulesRule'
+import { SpecialDatesRule } from './rules/SpecialDatesRule'
 import {
-    CalendarHousingUnitType,
-    CalendarOffers,
-    CalendarPayload,
-    CalendarSeasonRules,
-    CalendarSpecialDates,
-    HouseUnitTypePricingPayload,
+    AvailAndPricingHousingUnitType,
+    AvailAndPricingOffers,
+    AvailAndPricingPayload,
+    AvailAndPricingSeasonRules,
+    AvailAndPricingSpecialDates,
+    HouseUnitTypeAvailAndPricingPayload,
 } from './types'
 
 describe('PricingService Payload Methods', () => {
-    let service: PricingService
+    let service: AvailAndPricingService
     const prismaMock = mockDeep<PrismaService>()
 
     beforeEach(async () => {
@@ -39,19 +35,19 @@ describe('PricingService Payload Methods', () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 PricingHelpers,
-                PricingService,
-                PricingRules,
-                SeasonRulesPricing,
+                AvailAndPricingService,
+                AvailAndPricingRules,
+                SeasonRulesRule,
                 ReservationRule,
-                HostingRulesPricing,
-                SpecialDatesPricing,
-                OfferPricing,
+                HostingRulesRule,
+                SpecialDatesRule,
+                OfferRule,
                 PipeFns,
                 { provide: PrismaService, useValue: prismaMock },
             ],
         }).compile()
 
-        service = module.get<PricingService>(PricingService)
+        service = module.get<AvailAndPricingService>(AvailAndPricingService)
     })
 
     describe('getCalendarPayload', () => {
@@ -66,7 +62,12 @@ describe('PricingService Payload Methods', () => {
             prismaMock.hostingRules.findUnique.mockResolvedValue(null)
 
             await expect(
-                service.getCalendarPayload(companyId, currentDate, dateRange),
+                service.getCalendarPayload(
+                    companyId,
+                    [{} as AvailAndPricingHousingUnitType],
+                    currentDate,
+                    dateRange,
+                ),
             ).rejects.toThrow('Hosting rule not found')
         })
 
@@ -91,7 +92,7 @@ describe('PricingService Payload Methods', () => {
                 reservationWindowEnd: null,
             }
 
-            const housingUnitTypes: CalendarHousingUnitType[] = [
+            const housingUnitTypes: AvailAndPricingHousingUnitType[] = [
                 {
                     id: 'unit-type-1',
                     name: 'Unit Type 1',
@@ -110,7 +111,7 @@ describe('PricingService Payload Methods', () => {
                 },
             ]
 
-            const seasonRules: CalendarSeasonRules[] = [
+            const seasonRules: AvailAndPricingSeasonRules[] = [
                 {
                     id: 'season-1',
                     companyId,
@@ -131,15 +132,13 @@ describe('PricingService Payload Methods', () => {
             ]
 
             prismaMock.hostingRules.findUnique.mockResolvedValue(hostingRules)
-            prismaMock.housingUnitType.findMany.mockResolvedValue(
-                housingUnitTypes as unknown as HousingUnitType[],
-            )
             prismaMock.seasonRules.findMany.mockResolvedValue(seasonRules)
             prismaMock.specialDate.findMany.mockResolvedValue([])
             prismaMock.offer.findMany.mockResolvedValue([])
 
             const result = await service.getCalendarPayload(
                 companyId,
+                housingUnitTypes,
                 currentDate,
                 dateRange,
             )
@@ -157,7 +156,7 @@ describe('PricingService Payload Methods', () => {
 
     describe('getHousingUnitTypePayload', () => {
         it('should filter rules and dates for specific housing unit type', () => {
-            const housingUnitType: CalendarHousingUnitType = {
+            const housingUnitType: AvailAndPricingHousingUnitType = {
                 id: 'unit-type-1',
                 name: 'Unit Type 1',
                 weekdaysPrice: 200,
@@ -165,7 +164,7 @@ describe('PricingService Payload Methods', () => {
                 housingUnits: [],
             }
 
-            const seasonRules: CalendarSeasonRules[] = [
+            const seasonRules: AvailAndPricingSeasonRules[] = [
                 {
                     id: 'season-1',
                     companyId: 'company-1',
@@ -203,7 +202,7 @@ describe('PricingService Payload Methods', () => {
                 },
             ]
 
-            const specialDates: CalendarSpecialDates[] = [
+            const specialDates: AvailAndPricingSpecialDates[] = [
                 {
                     id: 'special-1',
                     companyId: 'company-1',
@@ -223,7 +222,7 @@ describe('PricingService Payload Methods', () => {
                 },
             ]
 
-            const offers: CalendarOffers[] = [
+            const offers: AvailAndPricingOffers[] = [
                 {
                     id: 'offer-1',
                     companyId: 'company-1',
@@ -255,15 +254,13 @@ describe('PricingService Payload Methods', () => {
                 },
             ]
 
-            const payload: CalendarPayload = {
+            const payload: AvailAndPricingPayload = {
                 dateRange: {
                     start: '2025-01-01',
                     end: '2025-01-02',
                 },
                 housingUnitTypes: [housingUnitType],
                 hostingRules: {
-                    id: 'rules-1',
-                    companyId: 'company-1',
                     checkIn: 14 * 60,
                     checkOut: 11 * 60,
                     minDaily: 2,
@@ -280,7 +277,7 @@ describe('PricingService Payload Methods', () => {
                 offers,
             }
 
-            const expectedPayload: HouseUnitTypePricingPayload = {
+            const expectedPayload: HouseUnitTypeAvailAndPricingPayload = {
                 dateRange: payload.dateRange,
                 housingUnitType,
                 hostingRules: payload.hostingRules,

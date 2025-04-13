@@ -12,27 +12,27 @@ import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 import { PipeFns } from '@/common/utils/PipeFns'
 import { PrismaService } from '../prisma/prisma.service'
 
+import { AvailAndPricingService } from './availAndPricing.service'
 import { UNAVAILABLE_REASON_MESSAGE } from './constants'
 import {
     UnavailabilityReason,
     UnavailableSource,
 } from './enum/UnavailableReason.enum'
 import { PricingHelpers } from './helpers/PricingHelpers'
-import { PricingService } from './pricing.service'
-import { HostingRulesPricing } from './rules/HostingRulesPricing'
-import { OfferPricing } from './rules/OfferPricing'
-import { PricingRules } from './rules/PricingRules'
+import { HostingRulesRule } from './rules/HostingRulesRule'
+import { OfferRule } from './rules/OfferPricing'
+import { AvailAndPricingRules } from './rules/PricingRules'
 import { ReservationRule } from './rules/ReservationRule'
-import { SeasonRulesPricing } from './rules/SeasonRulesPricing'
-import { SpecialDatesPricing } from './rules/SpecialDatesPricing'
+import { SeasonRulesRule } from './rules/SeasonRulesRule'
+import { SpecialDatesRule } from './rules/SpecialDatesRule'
 import {
-    CalendarHousingUnitType,
-    CalendarSeasonRules,
-    HousingUnitTypeCalendar,
+    AvailAndPricingHousingUnitType,
+    AvailAndPricingSeasonRules,
+    HousingUnitTypeAvailability,
 } from './types'
 
 describe('PricingService', () => {
-    let service: PricingService
+    let service: AvailAndPricingService
     const prismaMock = mockDeep<PrismaService>()
 
     beforeEach(async () => {
@@ -42,19 +42,19 @@ describe('PricingService', () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 PricingHelpers,
-                PricingService,
-                PricingRules,
-                SeasonRulesPricing,
+                AvailAndPricingService,
+                AvailAndPricingRules,
+                SeasonRulesRule,
                 ReservationRule,
-                HostingRulesPricing,
-                SpecialDatesPricing,
-                OfferPricing,
+                HostingRulesRule,
+                SpecialDatesRule,
+                OfferRule,
                 PipeFns,
                 { provide: PrismaService, useValue: prismaMock },
             ],
         }).compile()
 
-        service = module.get<PricingService>(PricingService)
+        service = module.get<AvailAndPricingService>(AvailAndPricingService)
     })
 
     describe('pipeDays', () => {
@@ -66,7 +66,7 @@ describe('PricingService', () => {
             const currentDate = '2024-12-01'
             const companyId = 'company-1'
 
-            const housingUnitTypes: CalendarHousingUnitType[] = [
+            const housingUnitTypes: AvailAndPricingHousingUnitType[] = [
                 {
                     id: 'unit-type-1',
                     name: 'Unit Type 1',
@@ -98,7 +98,7 @@ describe('PricingService', () => {
                 reservationWindowEnd: null,
             }
 
-            const firstDaySeasonRule: CalendarSeasonRules = {
+            const firstDaySeasonRule: AvailAndPricingSeasonRules = {
                 availableWeekDays: [0, 1, 2, 3, 4, 5, 6],
                 companyId: 'company-1',
                 startDate: new Date('2025-01-01'),
@@ -116,7 +116,7 @@ describe('PricingService', () => {
                 ],
             }
 
-            const responseCalendar: HousingUnitTypeCalendar[] = [
+            const responseCalendar: HousingUnitTypeAvailability[] = [
                 {
                     ...housingUnitTypes[0],
                     calendar: {

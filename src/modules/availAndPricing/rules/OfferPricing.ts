@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
 
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { DayPricingPayload } from '../types'
-import { PricingRule } from '../types'
+import { AvailAndPricingDayPayload } from '../types'
+import { AvailAndPricingRule } from '../types'
 
 @Injectable()
-export class OfferPricing implements PricingRule {
+export class OfferRule implements AvailAndPricingRule {
     constructor(private readonly pricingHelpers: PricingHelpers) {}
 
-    apply(payload: DayPricingPayload): DayPricingPayload {
+    apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const { currentDate, pricingPayload, calendar } = payload
 
         const offer = pricingPayload.offers.find((rule) => {
@@ -43,7 +43,7 @@ export class OfferPricing implements PricingRule {
     private checkOfferApplicability({
         calendar,
         currentDate,
-    }: DayPricingPayload): boolean {
+    }: AvailAndPricingDayPayload): boolean {
         const offer = calendar[currentDate].offers
 
         if (!offer) return false

@@ -10,14 +10,14 @@ import {
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { DayPricingPayload } from '../types'
-import { PricingRule } from '../types'
+import { AvailAndPricingDayPayload } from '../types'
+import { AvailAndPricingRule } from '../types'
 
 @Injectable()
-export class ReservationRule implements PricingRule {
+export class ReservationRule implements AvailAndPricingRule {
     constructor(private readonly pricingHelpers: PricingHelpers) {}
 
-    apply(payload: DayPricingPayload): DayPricingPayload {
+    apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const { currentDate, pricingPayload } = payload
 
         const reservations = pricingPayload.reservations.filter(
@@ -56,7 +56,9 @@ export class ReservationRule implements PricingRule {
         return payload
     }
 
-    private checkReservationAvailability(payload: DayPricingPayload): boolean {
+    private checkReservationAvailability(
+        payload: AvailAndPricingDayPayload,
+    ): boolean {
         if (!payload.calendar[payload.currentDate].reservations.length)
             return true
 

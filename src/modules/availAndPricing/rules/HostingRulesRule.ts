@@ -6,12 +6,12 @@ import {
     UnavailabilityReason,
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
-import { CalendarAvailability, DayPricingPayload } from '../types'
-import { PricingRule } from '../types'
+import { AvailAndPricingDayPayload, CalendarAvailability } from '../types'
+import { AvailAndPricingRule } from '../types'
 
 @Injectable()
-export class HostingRulesPricing implements PricingRule {
-    apply(payload: DayPricingPayload): DayPricingPayload {
+export class HostingRulesRule implements AvailAndPricingRule {
+    apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const weekDay = dayjs(payload.pricingPayload.dateRange.start)
             .startOf('day')
             .day()
@@ -25,7 +25,7 @@ export class HostingRulesPricing implements PricingRule {
             ? payload.pricingPayload.housingUnitType.weekendPrice
             : payload.pricingPayload.housingUnitType.weekdaysPrice
 
-        const newPayload: DayPricingPayload = {
+        const newPayload: AvailAndPricingDayPayload = {
             ...payload,
             calendar: {
                 ...payload.calendar,
@@ -50,7 +50,7 @@ export class HostingRulesPricing implements PricingRule {
     }
 
     private checkAvailability(
-        payload: DayPricingPayload,
+        payload: AvailAndPricingDayPayload,
     ): CalendarAvailability {
         const weekDay = dayjs(payload.pricingPayload.dateRange.start)
             .startOf('day')

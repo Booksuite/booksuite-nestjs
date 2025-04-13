@@ -7,14 +7,14 @@ import {
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { CalendarAvailability, DayPricingPayload } from '../types'
-import { PricingRule } from '../types'
+import { AvailAndPricingDayPayload, CalendarAvailability } from '../types'
+import { AvailAndPricingRule } from '../types'
 
 @Injectable()
-export class SeasonRulesPricing implements PricingRule {
+export class SeasonRulesRule implements AvailAndPricingRule {
     constructor(private readonly pricingHelpers: PricingHelpers) {}
 
-    apply(payload: DayPricingPayload): DayPricingPayload {
+    apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const { currentDate, pricingPayload, calendar } = payload
 
         const seasonRules = pricingPayload.seasonRules.find((rule) => {
@@ -53,7 +53,7 @@ export class SeasonRulesPricing implements PricingRule {
         calendar,
         currentDate,
         pricingPayload,
-    }: DayPricingPayload): CalendarAvailability {
+    }: AvailAndPricingDayPayload): CalendarAvailability {
         const seasonRules = calendar[currentDate].seasonRules
 
         if (!seasonRules) return calendar[currentDate].availability
