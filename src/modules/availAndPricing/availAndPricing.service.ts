@@ -137,8 +137,8 @@ export class AvailAndPricingService {
                 housingUnitTypePrices: {
                     some: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 },
-                startDate: { lte: dateRange.start },
-                endDate: { gte: dateRange.end },
+                startDate: { gte: dateRange.start },
+                endDate: { lte: dateRange.end },
                 published: true,
                 AND: [
                     {
@@ -165,8 +165,8 @@ export class AvailAndPricingService {
                 housingUnitTypePrices: {
                     some: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 },
-                startDate: { lte: dateRange.start },
-                endDate: { gte: dateRange.end },
+                startDate: { gte: dateRange.start },
+                endDate: { lte: dateRange.end },
                 published: true,
             },
         })
@@ -213,8 +213,8 @@ export class AvailAndPricingService {
             where: {
                 housingUnit: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 status: { in: OCCUPIED_RESERVATION_STATUS },
-                startDate: { lte: dateRange.end },
-                endDate: { gte: dateRange.start },
+                startDate: { gte: dateRange.start },
+                endDate: { lte: dateRange.end },
             },
             include: {
                 housingUnit: { select: { id: true, housingUnitTypeId: true } },
