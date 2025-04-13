@@ -4,7 +4,7 @@ import { IsDefined, IsInt, IsString } from 'class-validator'
 export class ReservationServiceDTO {
     @IsDefined()
     @IsInt()
-    qtd!: number
+    quantity!: number
 
     @ApiProperty({ example: 150 })
     @IsDefined()

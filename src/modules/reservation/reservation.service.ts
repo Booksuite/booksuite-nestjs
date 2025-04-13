@@ -41,8 +41,8 @@ export class ReservationService {
             services: {
                 createMany: { data: rawData.services },
             },
-            children: {
-                createMany: { data: rawData.children },
+            ageGroups: {
+                createMany: { data: rawData.ageGroups },
             },
             reservationOption: {
                 createMany: { data: rawData.reservationOption },
@@ -175,7 +175,7 @@ export class ReservationService {
                 services: { include: { service: true } },
                 sellerUser: true,
                 guestUser: true,
-                children: { include: { ageGroup: true } },
+                ageGroups: { include: { ageGroup: true } },
                 reservationOption: { include: { reservationOption: true } },
             },
         })
@@ -207,49 +207,46 @@ export class ReservationService {
                         },
                         update: pick(service, [
                             'serviceId',
-                            'qtd',
+                            'quantity',
                             'totalPrice',
                         ]),
                         create: pick(service, [
                             'serviceId',
-                            'qtd',
+                            'quantity',
                             'totalPrice',
                         ]),
                     })),
                 },
-                children: rawData.children && {
+                ageGroups: rawData.ageGroups && {
                     deleteMany: {
                         reservationId: id,
                         ageGroupId: {
-                            notIn:
-                                rawData.children?.map((a) => a.ageGroupId) ||
-                                [],
+                            notIn: rawData.ageGroups.map((a) => a.ageGroupId),
                         },
                     },
 
-                    upsert: rawData.children?.map((a) => ({
+                    upsert: rawData.ageGroups.map((a) => ({
                         where: {
                             reservation_age_groups_unique: {
                                 reservationId: id,
                                 ageGroupId: a.ageGroupId,
                             },
                         },
-                        update: pick(a, ['ageGroupId', 'children']),
-                        create: pick(a, ['ageGroupId', 'children']),
+                        update: pick(a, ['ageGroupId', 'quantity']),
+                        create: pick(a, ['ageGroupId', 'quantity']),
                     })),
                 },
                 reservationOption: rawData.reservationOption && {
                     deleteMany: {
                         reservationId: id,
                         reservationOptionId: {
-                            notIn:
-                                rawData.reservationOption?.map(
-                                    (r) => r.reservationOptionId,
-                                ) || [],
+                            notIn: rawData.reservationOption.map(
+                                (r) => r.reservationOptionId,
+                            ),
                         },
                     },
 
-                    upsert: rawData.reservationOption?.map((r) => ({
+                    upsert: rawData.reservationOption.map((r) => ({
                         where: {
                             reservation_reservation_option_unique: {
                                 reservationId: id,

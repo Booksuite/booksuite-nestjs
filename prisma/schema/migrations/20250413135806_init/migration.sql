@@ -374,7 +374,7 @@ CREATE TABLE "reservations" (
 -- CreateTable
 CREATE TABLE "reservation_services" (
     "id" TEXT NOT NULL,
-    "qtd" INTEGER NOT NULL DEFAULT 1,
+    "quantity" INTEGER NOT NULL DEFAULT 1,
     "totalPrice" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "serviceId" TEXT NOT NULL,
     "reservationId" TEXT NOT NULL,
@@ -410,7 +410,7 @@ CREATE TABLE "reservation_age_groups" (
     "id" TEXT NOT NULL,
     "ageGroupId" TEXT NOT NULL,
     "reservationId" TEXT NOT NULL,
-    "children" INTEGER NOT NULL,
+    "quantity" INTEGER NOT NULL,
 
     CONSTRAINT "reservation_age_groups_pkey" PRIMARY KEY ("id")
 );

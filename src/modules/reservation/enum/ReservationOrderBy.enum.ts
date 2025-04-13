@@ -6,5 +6,5 @@ export enum ReservationOrderBy {
     END_DATE = 'endDate',
     TOTAL_DAYS = 'totalDays',
     ADULTS = 'adults',
-    CHILDREN = 'children',
+    ageGroups = 'ageGroups',
 }

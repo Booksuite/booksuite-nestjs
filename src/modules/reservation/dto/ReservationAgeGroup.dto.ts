@@ -5,7 +5,7 @@ export class ReservationAgeGroupDTO {
     @ApiProperty({ example: 2 })
     @IsDefined()
     @IsInt()
-    children!: number
+    quantity!: number
 
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsDefined()

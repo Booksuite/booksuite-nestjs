@@ -74,22 +74,22 @@ export class ReservationUpdateDTO {
     @ApiProperty({
         example: '7',
         required: false,
-        nullable: true,
+
         type: Number,
     })
     @IsOptional()
     @IsInt()
-    totalDays?: number | null
+    totalDays?: number
 
     @ApiProperty({ example: '2', required: false, type: Number })
     @IsOptional()
     @IsInt()
     adults?: number
 
-    @ApiProperty({ type: [ReservationAgeGroupDTO] })
+    @ApiProperty({ type: [ReservationAgeGroupDTO], required: false })
     @IsOptional()
     @IsArray()
-    children!: ReservationAgeGroupDTO[]
+    ageGroups?: ReservationAgeGroupDTO[]
 
     @ApiProperty({ example: 'Featured booking', required: false, type: String })
     @IsOptional()
@@ -99,12 +99,11 @@ export class ReservationUpdateDTO {
     @ApiProperty({
         example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         required: false,
-        nullable: true,
         type: String,
     })
     @IsOptional()
     @IsUUID()
-    housingUnitId?: string | null
+    housingUnitId?: string
 
     @ApiProperty({ type: [ReservationServiceDTO], required: false })
     @IsOptional()
@@ -112,9 +111,9 @@ export class ReservationUpdateDTO {
     @Type(() => ReservationServiceDTO)
     services?: ReservationServiceDTO[]
 
-    @ApiProperty({ type: [ReservationReservationOptionDTO] })
+    @ApiProperty({ type: [ReservationReservationOptionDTO], required: false })
     @IsOptional()
     @IsArray()
     @Type(() => ReservationReservationOptionDTO)
-    reservationOption: ReservationReservationOptionDTO[]
+    reservationOption?: ReservationReservationOptionDTO[]
 }

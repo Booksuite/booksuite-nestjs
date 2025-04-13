@@ -7,7 +7,7 @@ export class ReservationServiceResponseDTO {
     id: string
 
     @ApiProperty({ example: 2 })
-    qtd: number
+    quantity: number
 
     @ApiProperty({ example: 250 })
     totalPrice: number

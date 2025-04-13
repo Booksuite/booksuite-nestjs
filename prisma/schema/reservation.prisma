@@ -23,7 +23,7 @@ model Reservation {
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
     services          ReservationService[]
-    childrens         ReservationAgeGroup[]
+    ageGroups         ReservationAgeGroup[]
     reservationOption ReservationReservationOption[]
 
     createdAt DateTime  @default(now())
@@ -61,7 +61,7 @@ enum ReservationStatus {
 
 model ReservationService {
     id         String @id @default(uuid())
-    qtd        Int    @default(1)
+    quantity        Int    @default(1)
     totalPrice Float  @default(0) @db.DoublePrecision
 
     serviceId     String
@@ -112,7 +112,7 @@ model ReservationAgeGroup {
     reservationId String
     reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
 
-    children Int
+    quantity Int
 
     @@unique([ageGroupId, reservationId], name: "reservation_age_groups_unique")
     @@map("reservation_age_groups")

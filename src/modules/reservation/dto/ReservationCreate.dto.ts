@@ -68,7 +68,7 @@ export class ReservationCreateDTO {
     @ApiProperty({ type: [ReservationAgeGroupDTO] })
     @IsDefined()
     @IsArray()
-    children!: ReservationAgeGroupDTO[]
+    ageGroups!: ReservationAgeGroupDTO[]
 
     @ApiProperty({ example: 'Featured booking' })
     @IsDefined()

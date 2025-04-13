@@ -22,7 +22,7 @@ export class ReservationResponseFullDTO extends ReservationResponseDTO {
     sellerUser: UserResponseDTO | null
 
     @ApiProperty({ type: [ReservationAgeGroupResponseDTO] })
-    children: ReservationAgeGroupResponseDTO[]
+    ageGroups: ReservationAgeGroupResponseDTO[]
 
     @ApiProperty({ type: [ReservationReservationOptionResponseDTO] })
     reservationOption: ReservationReservationOptionResponseDTO[]
