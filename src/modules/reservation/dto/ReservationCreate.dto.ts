@@ -7,6 +7,7 @@ import {
     IsEnum,
     IsInt,
     IsISO8601,
+    IsNumber,
     IsOptional,
     IsString,
     IsUUID,
@@ -59,6 +60,11 @@ export class ReservationCreateDTO {
     @IsOptional()
     @IsInt()
     totalDays?: number
+
+    @ApiProperty({ example: 7, type: Number })
+    @IsDefined()
+    @IsNumber()
+    finalReservationPrice: number
 
     @ApiProperty({ example: '2' })
     @IsDefined()

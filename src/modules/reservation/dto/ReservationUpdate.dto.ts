@@ -105,6 +105,10 @@ export class ReservationUpdateDTO {
     @IsUUID()
     housingUnitId?: string
 
+    @ApiProperty({ example: 7, type: Number, required: false })
+    @IsOptional()
+    finalReservationPrice?: number
+
     @ApiProperty({ type: [ReservationServiceDTO], required: false })
     @IsOptional()
     @IsArray()

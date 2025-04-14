@@ -28,6 +28,9 @@ export class ReservationResponseDTO {
     @ApiProperty({ example: 7, nullable: true, type: Number })
     totalDays: number | null
 
+    @ApiProperty({ example: 7, type: Number })
+    finalReservationPrice?: number
+
     @ApiProperty({ example: 2, nullable: true, type: Number })
     adults: number | null
 

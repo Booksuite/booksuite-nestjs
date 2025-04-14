@@ -32,6 +32,7 @@ export class SpecialDateController {
 
     @ApiOperation({ operationId: 'createSpecialDate' })
     @ApiOkResponse({ type: SpecialDateResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Post()
     create(
         @Param('companyId') companyId: string,
