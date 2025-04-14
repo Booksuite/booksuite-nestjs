@@ -119,6 +119,10 @@ export class AvailAndPricingService {
         currentDate: string,
         dateRange: DateRangeDTO,
     ): Promise<AvailAndPricingPayload> {
+        const formattedCurrentDate = dayjs.utc(currentDate).toISOString()
+        const formattedDateRangeStart = dayjs.utc(dateRange.start).toISOString()
+        const formattedDateRangeEnd = dayjs.utc(dateRange.end).toISOString()
+
         const hostingRules = await this.prismaService.hostingRules.findUnique({
             where: { companyId },
         })
@@ -129,6 +133,8 @@ export class AvailAndPricingService {
             (housingUnitType) => housingUnitType.id,
         )
 
+        console.log('housingUnitTypesIds', housingUnitTypesIds)
+
         const seasonRules = await this.prismaService.seasonRules.findMany({
             include: {
                 housingUnitTypePrices: true,
@@ -137,20 +143,28 @@ export class AvailAndPricingService {
                 housingUnitTypePrices: {
                     some: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 },
-                startDate: { gte: dateRange.start },
-                endDate: { lte: dateRange.end },
+                startDate: { gte: formattedDateRangeStart },
+                endDate: { lte: formattedDateRangeEnd },
                 published: true,
                 AND: [
                     {
                         OR: [
                             { visibilityStart: null },
-                            { visibilityStart: { lte: currentDate } },
+                            {
+                                visibilityStart: {
+                                    lte: formattedCurrentDate,
+                                },
+                            },
                         ],
                     },
                     {
                         OR: [
                             { visibilityEnd: null },
-                            { visibilityEnd: { gte: currentDate } },
+                            {
+                                visibilityEnd: {
+                                    gte: formattedCurrentDate,
+                                },
+                            },
                         ],
                     },
                 ],
@@ -165,8 +179,8 @@ export class AvailAndPricingService {
                 housingUnitTypePrices: {
                     some: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 },
-                startDate: { gte: dateRange.start },
-                endDate: { lte: dateRange.end },
+                startDate: { gte: formattedDateRangeStart },
+                endDate: { lte: formattedDateRangeEnd },
                 published: true,
             },
         })
@@ -213,8 +227,8 @@ export class AvailAndPricingService {
             where: {
                 housingUnit: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 status: { in: OCCUPIED_RESERVATION_STATUS },
-                startDate: { gte: dateRange.start },
-                endDate: { lte: dateRange.end },
+                startDate: { gte: formattedDateRangeStart },
+                endDate: { lte: formattedDateRangeEnd },
             },
             include: {
                 housingUnit: { select: { id: true, housingUnitTypeId: true } },

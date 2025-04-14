@@ -17,6 +17,7 @@ export class CalendarBodyDTO {
         type: DateRangeDTO,
         description: 'Date range for the calendar',
     })
+    @IsNotEmpty()
     @ValidateNested()
     @Type(() => DateRangeDTO)
     dateRange: DateRangeDTO

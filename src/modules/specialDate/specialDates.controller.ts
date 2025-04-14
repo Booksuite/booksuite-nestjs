@@ -71,7 +71,7 @@ export class SpecialDateController {
     @ApiOkResponse({ type: SpecialDatePaginatedResponseDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiQuery({ name: 'query', type: String, required: false })
-    @ApiOperation({ operationId: 'searchServices' })
+    @ApiOperation({ operationId: 'searchSpecialDates' })
     @Post('search')
     async search(
         @Param('companyId') companyId: string,

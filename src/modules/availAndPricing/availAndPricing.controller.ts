@@ -39,11 +39,11 @@ export class PricingController {
         )
     }
 
+    @Post()
     @ApiParam({
         name: 'companyId',
         type: String,
     })
-    @Post()
     @ApiOperation({
         operationId: 'getCalendar',
         summary: 'Get calendar for all housing unit types in a company',

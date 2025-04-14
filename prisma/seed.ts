@@ -1,6 +1,12 @@
 /* eslint-disable no-console */
+
 import { PrismaClient, ReservationStatus } from '@prisma/client'
 import * as bcrypt from 'bcrypt'
+import dayjs from 'dayjs'
+import IsBetween from 'dayjs/plugin/isBetween'
+import Utc from 'dayjs/plugin/utc'
+dayjs.extend(IsBetween)
+dayjs.extend(Utc)
 
 const client = new PrismaClient()
 
@@ -76,6 +82,22 @@ async function setUserAndRoles() {
                     latitude: 123.456,
                     longitude: 78.91,
                 },
+                hostingRules: {
+                    create: {
+                        checkIn: 14,
+                        checkOut: 12,
+                        minDaily: 2,
+                        fixedWindowPeriod: 120,
+                        availableWeekend: [2],
+                        reservationWindowStart: dayjs
+                            .utc('2025-12-01')
+                            .toISOString(),
+                        reservationWindowEnd: dayjs
+                            .utc('2025-12-31')
+                            .toISOString(),
+                        availableWeekDays: [0, 1, 3, 4],
+                    },
+                },
                 state: 'SP',
                 country: 'Brasil',
                 logo: 'https://booksuite.com.br/logo.png',
@@ -110,6 +132,7 @@ async function setUserAndRoles() {
             data: {
                 name: 'Suite Diamante',
                 slug: 'suitess',
+                published: true,
                 companyId: company.id,
                 weekdaysPrice: 100,
                 weekendPrice: 150,
@@ -140,6 +163,7 @@ async function setUserAndRoles() {
             data: {
                 name: 'Chale Supreme',
                 slug: 'chale',
+                published: true,
                 companyId: company.id,
                 weekdaysPrice: 100,
                 weekendPrice: 150,
