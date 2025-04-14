@@ -58,6 +58,7 @@ export class SpecialDateController {
 
     @ApiOperation({ operationId: 'updateSpecialDate' })
     @ApiOkResponse({ type: SpecialDateResponseDTO })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(
         @Param('id') id: string,
