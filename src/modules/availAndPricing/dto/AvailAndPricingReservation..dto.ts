@@ -58,6 +58,14 @@ export class AvailAndPricingReservationDTO
     totalDays: number | null
 
     @ApiProperty({
+        description: 'Reservation FinalPrice',
+        example: 1,
+        type: Number,
+        nullable: true,
+    })
+    finalReservationPrice: number
+
+    @ApiProperty({
         description: 'The adults of the reservation',
         example: 1,
     })

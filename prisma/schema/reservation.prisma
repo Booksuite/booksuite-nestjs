@@ -3,12 +3,13 @@ model Reservation {
 
     reservationCode String // PATTERN 2 LETTER CHANNEL + 6 SEQUENTIAL NUMERIC (PER COMPANY)
 
-    startDate DateTime
-    endDate   DateTime
-    totalDays Int?              @default(1)
-    adults    Int
-    notes     String            @db.Text
-    status    ReservationStatus
+    startDate             DateTime
+    endDate               DateTime
+    totalDays             Int?              @default(1)
+    adults                Int
+    notes                 String            @db.Text
+    status                ReservationStatus
+    finalReservationPrice Float
 
     saleChannel ReservationSaleChannel @default(BOOKSUITE)
 
@@ -61,7 +62,7 @@ enum ReservationStatus {
 
 model ReservationService {
     id         String @id @default(uuid())
-    quantity        Int    @default(1)
+    quantity   Int    @default(1)
     totalPrice Float  @default(0) @db.DoublePrecision
 
     serviceId     String
