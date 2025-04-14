@@ -1,11 +1,5 @@
 import { Body, Controller, Param, Post } from '@nestjs/common'
-import {
-    ApiOkResponse,
-    ApiOperation,
-    ApiParam,
-    ApiQuery,
-    ApiTags,
-} from '@nestjs/swagger'
+import { ApiOkResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger'
 
 import { AvailAndPricingService } from './availAndPricing.service'
 import { AvailabilityAndPricingResponseDTO } from './dto/AvailabilityAndPricingResponse.dto'
@@ -50,7 +44,6 @@ export class PricingController {
         operationId: 'getCalendar',
         summary: 'Get calendar for all housing unit types in a company',
     })
-    @ApiQuery({ name: 'companyId', description: 'Company ID' })
     @ApiOkResponse({
         description: 'Calendar data for all housing unit types',
         type: [AvailabilityAndPricingResponseDTO],
