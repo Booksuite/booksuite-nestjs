@@ -20,6 +20,10 @@ export class PricingController {
         name: 'housingUnitTypeId',
         description: 'Housing unit type ID',
     })
+    @ApiParam({
+        name: 'companyId',
+        description: 'Company ID',
+    })
     @ApiOkResponse({
         description: 'Calendar data for the housing unit type',
         type: AvailabilityAndPricingResponseDTO,
