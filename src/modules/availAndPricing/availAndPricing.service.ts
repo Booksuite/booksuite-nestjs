@@ -133,8 +133,6 @@ export class AvailAndPricingService {
             (housingUnitType) => housingUnitType.id,
         )
 
-        console.log('housingUnitTypesIds', housingUnitTypesIds)
-
         const seasonRules = await this.prismaService.seasonRules.findMany({
             include: {
                 housingUnitTypePrices: true,
