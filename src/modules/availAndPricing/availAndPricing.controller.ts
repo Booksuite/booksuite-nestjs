@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Query } from '@nestjs/common'
+import { Body, Controller, Param, Post } from '@nestjs/common'
 import {
     ApiOkResponse,
     ApiOperation,
@@ -41,6 +41,10 @@ export class PricingController {
         )
     }
 
+    @ApiParam({
+        name: 'companyId',
+        type: String,
+    })
     @Post()
     @ApiOperation({
         operationId: 'getCalendar',
@@ -52,7 +56,7 @@ export class PricingController {
         type: [AvailabilityAndPricingResponseDTO],
     })
     async getCalendar(
-        @Query('companyId') companyId: string,
+        @Param('companyId') companyId: string,
         @Body() body: CalendarBodyDTO,
     ): Promise<AvailabilityAndPricingResponseDTO[]> {
         return this.pricingService.getCalendar(
