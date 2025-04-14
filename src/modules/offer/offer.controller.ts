@@ -13,6 +13,7 @@ import {
     ApiExtraModels,
     ApiOkResponse,
     ApiOperation,
+    ApiParam,
     ApiQuery,
     getSchemaPath,
 } from '@nestjs/swagger'
@@ -56,6 +57,7 @@ export class OfferController {
     @ApiBody({ type: UpdateOfferDto })
     @ApiOkResponse({ type: OfferResponseDTO })
     @ApiOperation({ operationId: 'updateOffer' })
+    @ApiParam({ name: 'companyId', type: String })
     @Patch(':id')
     update(@Param('id') id: string, @Body() updateOfferDto: UpdateOfferDto) {
         return this.offerService.update(id, updateOfferDto)
