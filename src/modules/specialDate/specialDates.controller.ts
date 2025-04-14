@@ -51,6 +51,7 @@ export class SpecialDateController {
         },
     })
     @Get(':id')
+    @ApiParam({ name: 'companyId', type: String })
     getById(
         @Param('id') id: string,
     ): Promise<SpecialDateResponseFullDTO | null> {
