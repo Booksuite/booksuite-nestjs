@@ -12,7 +12,13 @@ import { AvailAndPricingRule } from '../types'
 @Injectable()
 export class HostingRulesRule implements AvailAndPricingRule {
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
-        const weekDay = dayjs(payload.pricingPayload.dateRange.start)
+        const {
+            pricingPayload: { searchPayload, housingUnitType },
+        } = payload
+
+        if (!searchPayload) return payload
+
+        const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
             .day()
 
@@ -22,8 +28,8 @@ export class HostingRulesRule implements AvailAndPricingRule {
             )
 
         const basePrice = isWeekend
-            ? payload.pricingPayload.housingUnitType.weekendPrice
-            : payload.pricingPayload.housingUnitType.weekdaysPrice
+            ? housingUnitType.weekendPrice
+            : housingUnitType.weekdaysPrice
 
         const newPayload: AvailAndPricingDayPayload = {
             ...payload,
@@ -52,7 +58,14 @@ export class HostingRulesRule implements AvailAndPricingRule {
     private checkAvailability(
         payload: AvailAndPricingDayPayload,
     ): CalendarAvailability {
-        const weekDay = dayjs(payload.pricingPayload.dateRange.start)
+        const {
+            pricingPayload: { searchPayload },
+        } = payload
+
+        if (!searchPayload)
+            return payload.calendar[payload.currentDate].availability
+
+        const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
             .day()
 
@@ -74,7 +87,7 @@ export class HostingRulesRule implements AvailAndPricingRule {
         }
 
         if (
-            payload.pricingPayload.totalDays <
+            searchPayload.totalDays <
             payload.calendar[payload.currentDate].finalMinDays
         ) {
             return {

@@ -111,7 +111,13 @@ describe('PricingService', () => {
                 visibilityEnd: null,
                 visibilityStart: null,
                 housingUnitTypePrices: [
-                    { housingUnitTypeId: housingUnitTypes[0].id },
+                    {
+                        housingUnitTypeId: housingUnitTypes[0].id,
+                        baseWeekPrice: 200,
+                        newWeekPrice: 150,
+                        weekendBasePrice: 150,
+                        weekendNewPrice: 100,
+                    },
                 ],
             }
 

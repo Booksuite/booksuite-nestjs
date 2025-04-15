@@ -10,29 +10,38 @@ import {
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { AvailAndPricingDayPayload } from '../types'
+import { AvailAndPricingDayPayload, AvailAndPricingReservation } from '../types'
 import { AvailAndPricingRule } from '../types'
 
 @Injectable()
 export class ReservationRule implements AvailAndPricingRule {
     constructor(private readonly pricingHelpers: PricingHelpers) {}
 
+    /**
+     * Search for reservations that conflict with the current date and check the availability of EACH housing unit
+     * @param payload Search payload
+     * @returns Search payload with the reservations that conflict with the current date
+     */
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const { currentDate, pricingPayload } = payload
+        const { searchPayload } = pricingPayload
 
-        const reservations = pricingPayload.reservations.filter(
-            (reservation) => {
-                const isBetween = dayjs
-                    .utc(currentDate)
-                    .isBetween(
-                        dayjs.utc(reservation.startDate).startOf('day'),
-                        dayjs.utc(reservation.endDate).endOf('day'),
-                        'day',
-                        '[]',
-                    )
+        if (!searchPayload) return payload
 
-                return isBetween
-            },
+        const searchStartDate = dayjs
+            .utc(searchPayload.dateRange.start)
+            .startOf('day')
+        const searchEndDate = dayjs
+            .utc(searchPayload.dateRange.end)
+            .subtract(1, 'day')
+            .endOf('day')
+
+        const reservations = pricingPayload.reservations.filter((reservation) =>
+            this.conflictsWithReservations(
+                reservation,
+                searchStartDate,
+                searchEndDate,
+            ),
         )
 
         if (!reservations.length) return payload
@@ -56,24 +65,94 @@ export class ReservationRule implements AvailAndPricingRule {
         return payload
     }
 
+    private conflictsWithReservations(
+        reservation: AvailAndPricingReservation,
+        searchStartDate: dayjs.Dayjs,
+        searchEndDate: dayjs.Dayjs,
+    ): boolean {
+        const reservationStartDate = dayjs
+            .utc(reservation.startDate)
+            .startOf('day')
+        const reservationEndDate = dayjs
+            .utc(reservation.endDate)
+            .subtract(1, 'day')
+            .endOf('day')
+
+        const isSearchStartBetweenReservationStart = searchStartDate.isBetween(
+            reservationStartDate,
+            reservationEndDate,
+            'day',
+            '[]',
+        )
+
+        const isSearchEndBetweenReservationStartAndEnd =
+            searchEndDate.isBetween(
+                reservationStartDate,
+                reservationEndDate,
+                'day',
+                '[]',
+            )
+
+        const isSearchRangeAroundReservation =
+            searchStartDate.isBefore(reservationStartDate, 'day') &&
+            dayjs.utc(searchEndDate).isAfter(reservationEndDate, 'day')
+
+        return (
+            isSearchRangeAroundReservation ||
+            isSearchStartBetweenReservationStart ||
+            isSearchEndBetweenReservationStartAndEnd
+        )
+    }
+
     private checkReservationAvailability(
         payload: AvailAndPricingDayPayload,
     ): boolean {
+        const {
+            pricingPayload: { searchPayload },
+        } = payload
+
+        if (!searchPayload) return true
+
         if (!payload.calendar[payload.currentDate].reservations.length)
             return true
 
-        const areAllHousingUnitsOccupied =
-            payload.pricingPayload.housingUnitType.housingUnits.every(
-                (housingUnit) =>
-                    payload.calendar[payload.currentDate].reservations.some(
-                        (reservation) =>
-                            reservation.housingUnit?.id === housingUnit.id &&
-                            OCCUPIED_RESERVATION_STATUS.includes(
+        const searchStartDate = dayjs
+            .utc(searchPayload.dateRange.start)
+            .startOf('day')
+        const searchEndDate = dayjs
+            .utc(searchPayload.dateRange.end)
+            .subtract(1, 'day')
+            .endOf('day')
+
+        const hasAvailability =
+            payload.pricingPayload.housingUnitType.housingUnits.some(
+                (housingUnit) => {
+                    const hasAvailabilityInSomeHousingUnit = !payload.calendar[
+                        payload.currentDate
+                    ].reservations.some((reservation) => {
+                        if (reservation.housingUnit?.id !== housingUnit.id)
+                            return false
+
+                        if (
+                            !OCCUPIED_RESERVATION_STATUS.includes(
                                 reservation.status,
-                            ),
-                    ),
+                            )
+                        )
+                            return false
+
+                        const conflicts = this.conflictsWithReservations(
+                            reservation,
+                            searchStartDate,
+                            searchEndDate,
+                        )
+
+                        return conflicts
+                    })
+
+                    return hasAvailabilityInSomeHousingUnit
+                },
             )
 
-        return areAllHousingUnitsOccupied
+        return hasAvailability
     }
 }

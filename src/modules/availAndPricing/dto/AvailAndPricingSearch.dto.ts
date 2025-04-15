@@ -1,23 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
-import { IsDateString, IsNotEmpty, ValidateNested } from 'class-validator'
+import { IsDefined, ValidateNested } from 'class-validator'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
+import { AvailAndPricingSearchPayload } from '../types'
 
-export class CalendarBodyDTO {
-    @ApiProperty({
-        description: 'Current date in YYYY-MM-DD format',
-        example: '2025-01-01',
-    })
-    @IsDateString()
-    @IsNotEmpty()
-    currentDate: string
-
+export class AvailAndPricingSearchDTO implements AvailAndPricingSearchPayload {
     @ApiProperty({
         type: DateRangeDTO,
         description: 'Date range for the calendar',
     })
-    @IsNotEmpty()
+    @IsDefined()
     @ValidateNested()
     @Type(() => DateRangeDTO)
     dateRange: DateRangeDTO

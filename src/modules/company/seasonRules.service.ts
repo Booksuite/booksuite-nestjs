@@ -9,7 +9,7 @@ import {
 } from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { SeasonRuleDTO } from './dto/SeasonRule.dto'
+import { SeasonRuleCreateDTO } from './dto/SeasonRuleCreate.dto'
 import { SeasonRuleOrderByDTO } from './dto/SeasonRuleOrderBy.dto'
 import { SeasonRuleResponseDTO } from './dto/SeasonRuleResponse.dto'
 import { SeasonRuleResponseFullDTO } from './dto/SeasonRuleResponseFull.dto'
@@ -32,7 +32,7 @@ export class SeasonRulesService {
 
     async create(
         companyId: string,
-        rawData: SeasonRuleDTO,
+        rawData: SeasonRuleCreateDTO,
     ): Promise<SeasonRuleResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.SeasonRulesCreateInput>()({

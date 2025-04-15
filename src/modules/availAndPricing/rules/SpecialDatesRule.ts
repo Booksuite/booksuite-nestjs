@@ -54,11 +54,14 @@ export class SpecialDatesRule implements AvailAndPricingRule {
         currentDate,
         pricingPayload,
     }: AvailAndPricingDayPayload): CalendarAvailability {
+        const { searchPayload } = pricingPayload
+
         const specialDates = calendar[currentDate].specialDates
 
-        if (!specialDates) return calendar[currentDate].availability
+        if (!specialDates || !searchPayload)
+            return calendar[currentDate].availability
 
-        const weekDay = dayjs(pricingPayload.dateRange.start)
+        const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
             .day()
 
@@ -77,7 +80,7 @@ export class SpecialDatesRule implements AvailAndPricingRule {
             }
         }
 
-        if (pricingPayload.totalDays < calendar[currentDate].finalMinDays) {
+        if (searchPayload.totalDays < calendar[currentDate].finalMinDays) {
             return {
                 available: false,
                 unavailabilitySource: UnavailableSource.SPECIAL_DATES,

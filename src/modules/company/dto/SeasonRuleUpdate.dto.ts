@@ -12,8 +12,7 @@ import {
 } from 'class-validator'
 
 import { IsWeekDays } from '@/common/decorators/IsWeekDays.decorator'
-
-import { SeasonRuleHousingUnitTypePriceDTO } from './SeasonRuleHousingUnitTypePrice.dto'
+import { HousingUnitTypePricingChangeDTO } from '@/common/dto/HousingUnitTypePricingChange.dto'
 
 export class SeasonRuleUpdateDTO {
     @ApiProperty({ example: 'Summer Special', type: String, required: false })
@@ -61,12 +60,12 @@ export class SeasonRuleUpdateDTO {
     price?: number
 
     @ApiProperty({
-        type: [SeasonRuleHousingUnitTypePriceDTO],
+        type: [HousingUnitTypePricingChangeDTO],
         required: false,
     })
     @IsOptional()
     @IsArray()
     @ValidateNested()
-    @Type(() => SeasonRuleHousingUnitTypePriceDTO)
-    housingUnitTypesPrices?: SeasonRuleHousingUnitTypePriceDTO[]
+    @Type(() => HousingUnitTypePricingChangeDTO)
+    housingUnitTypesPrices?: HousingUnitTypePricingChangeDTO[]
 }

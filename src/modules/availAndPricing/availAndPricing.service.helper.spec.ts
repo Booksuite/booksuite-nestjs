@@ -76,16 +76,22 @@ describe('PricingService Helper Methods', () => {
             }
 
             const payload: HouseUnitTypeAvailAndPricingPayload = {
-                dateRange: {
-                    start: '2025-01-01',
-                    end: '2025-01-02',
-                },
                 housingUnitType,
                 hostingRules,
                 seasonRules: [],
                 specialDates: [],
                 offers: [],
-                totalDays: 2,
+                viewWindow: {
+                    start: '2025-01-01',
+                    end: '2025-01-02',
+                },
+                searchPayload: {
+                    dateRange: {
+                        start: '2025-01-01',
+                        end: '2025-01-02',
+                    },
+                    totalDays: 2,
+                },
                 reservations: [],
             }
 
@@ -102,8 +108,8 @@ describe('PricingService Helper Methods', () => {
     describe('getInitialCalendarDay', () => {
         it('should return initial calendar day with weekend price', () => {
             const payload: HouseUnitTypeAvailAndPricingPayload = {
-                dateRange: {
-                    start: '2025-01-05', // Sunday
+                viewWindow: {
+                    start: '2025-01-05',
                     end: '2025-01-05',
                 },
                 housingUnitType: {
@@ -123,7 +129,13 @@ describe('PricingService Helper Methods', () => {
                     reservationWindowStart: null,
                     reservationWindowEnd: null,
                 },
-                totalDays: 2,
+                searchPayload: {
+                    dateRange: {
+                        start: '2025-01-01',
+                        end: '2025-01-02',
+                    },
+                    totalDays: 2,
+                },
                 reservations: [],
                 seasonRules: [],
                 specialDates: [],
@@ -152,8 +164,8 @@ describe('PricingService Helper Methods', () => {
 
         it('should return initial calendar day with weekday price', () => {
             const payload: HouseUnitTypeAvailAndPricingPayload = {
-                dateRange: {
-                    start: '2025-01-01', // Wednesday
+                viewWindow: {
+                    start: '2025-01-01',
                     end: '2025-01-01',
                 },
                 housingUnitType: {
@@ -173,7 +185,13 @@ describe('PricingService Helper Methods', () => {
                     reservationWindowStart: null,
                     reservationWindowEnd: null,
                 },
-                totalDays: 2,
+                searchPayload: {
+                    dateRange: {
+                        start: '2025-01-01',
+                        end: '2025-01-02',
+                    },
+                    totalDays: 2,
+                },
                 reservations: [],
                 seasonRules: [],
                 specialDates: [],

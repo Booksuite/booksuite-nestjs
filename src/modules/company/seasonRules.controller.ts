@@ -16,7 +16,7 @@ import {
     getSchemaPath,
 } from '@nestjs/swagger'
 
-import { SeasonRuleDTO } from './dto/SeasonRule.dto'
+import { SeasonRuleCreateDTO } from './dto/SeasonRuleCreate.dto'
 import { SeasonRuleResponseDTO } from './dto/SeasonRuleResponse.dto'
 import { SeasonRuleResponseFullDTO } from './dto/SeasonRuleResponseFull.dto'
 import { SeasonRulePaginatedResponseDTO } from './dto/SeasonRuleResponsePaginated.dto'
@@ -45,11 +45,11 @@ export class SeasonRulesController {
     }
 
     @Post()
-    @ApiBody({ type: SeasonRuleDTO })
+    @ApiBody({ type: SeasonRuleCreateDTO })
     @ApiOkResponse({ type: SeasonRuleResponseDTO })
     create(
         @Param('companyId') companyId: string,
-        @Body() rawData: SeasonRuleDTO,
+        @Body() rawData: SeasonRuleCreateDTO,
     ): Promise<SeasonRuleResponseDTO> {
         return this.seasonRuleService.create(companyId, rawData)
     }

@@ -14,7 +14,6 @@ export type AvailAndPricingHostingRules = Prisma.HostingRulesGetPayload<{
         minDaily: true
         fixedWindowPeriod: true
         availableWeekend: true
-
         availableWeekDays: true
     }
 }> & {
@@ -23,12 +22,28 @@ export type AvailAndPricingHostingRules = Prisma.HostingRulesGetPayload<{
 }
 export type AvailAndPricingSeasonRules = Prisma.SeasonRulesGetPayload<{
     include: {
-        housingUnitTypePrices: { select: { housingUnitTypeId: true } }
+        housingUnitTypePrices: {
+            select: {
+                housingUnitTypeId: true
+                baseWeekPrice: true
+                newWeekPrice: true
+                weekendBasePrice: true
+                weekendNewPrice: true
+            }
+        }
     }
 }>
 export type AvailAndPricingSpecialDates = Prisma.SpecialDateGetPayload<{
     include: {
-        housingUnitTypePrices: { select: { housingUnitTypeId: true } }
+        housingUnitTypePrices: {
+            select: {
+                housingUnitTypeId: true
+                baseWeekPrice: true
+                newWeekPrice: true
+                weekendBasePrice: true
+                weekendNewPrice: true
+            }
+        }
     }
 }>
 export type AvailAndPricingOffers = Prisma.OfferGetPayload<{
@@ -49,14 +64,16 @@ export type AvailAndPricingHousingUnitType = Prisma.HousingUnitTypeGetPayload<{
 
 export type AvailAndPricingReservation = Omit<
     Prisma.ReservationGetPayload<{
-        include: {
-            housingUnit: { select: { id: true; housingUnitTypeId: true } }
-        }
+        include: { housingUnit: true }
     }>,
     'startDate' | 'endDate'
 > & {
     startDate: string
     endDate: string
+}
+
+export interface AvailAndPricingSearchPayload {
+    dateRange: DateRangeDTO
 }
 
 export interface AvailAndPricingBasePayload {
@@ -65,17 +82,19 @@ export interface AvailAndPricingBasePayload {
     specialDates: AvailAndPricingSpecialDates[]
     reservations: AvailAndPricingReservation[]
     offers: AvailAndPricingOffers[]
-    dateRange: DateRangeDTO
+    searchPayload?: AvailAndPricingSearchPayload
+    viewWindow: DateRangeDTO
 }
 
 export interface AvailAndPricingPayload extends AvailAndPricingBasePayload {
     housingUnitTypes: AvailAndPricingHousingUnitType[]
+    searchPayload?: AvailAndPricingSearchPayload & { totalDays: number }
 }
 
 export interface HouseUnitTypeAvailAndPricingPayload
     extends AvailAndPricingBasePayload {
-    totalDays: number
     housingUnitType: AvailAndPricingHousingUnitType
+    searchPayload?: AvailAndPricingSearchPayload & { totalDays: number }
 }
 
 export interface Calendar {

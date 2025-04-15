@@ -126,7 +126,13 @@ describe('PricingService Payload Methods', () => {
                     visibilityEnd: null,
                     availableWeekDays: [0, 1, 2, 3, 4, 5, 6],
                     housingUnitTypePrices: [
-                        { housingUnitTypeId: housingUnitTypes[0].id },
+                        {
+                            housingUnitTypeId: housingUnitTypes[0].id,
+                            baseWeekPrice: 200,
+                            newWeekPrice: 150,
+                            weekendBasePrice: 150,
+                            weekendNewPrice: 100,
+                        },
                     ],
                 },
             ]
@@ -179,8 +185,13 @@ describe('PricingService Payload Methods', () => {
                     visibilityEnd: null,
                     availableWeekDays: [0, 1, 2, 3, 4, 5, 6],
                     housingUnitTypePrices: [
-                        { housingUnitTypeId: 'unit-type-1' },
-                        { housingUnitTypeId: 'unit-type-2' },
+                        {
+                            housingUnitTypeId: 'unit-type-1',
+                            baseWeekPrice: 200,
+                            newWeekPrice: 150,
+                            weekendBasePrice: 150,
+                            weekendNewPrice: 100,
+                        },
                     ],
                 },
                 {
@@ -197,7 +208,13 @@ describe('PricingService Payload Methods', () => {
                     visibilityEnd: null,
                     availableWeekDays: [0, 1, 2, 3, 4, 5, 6],
                     housingUnitTypePrices: [
-                        { housingUnitTypeId: 'unit-type-2' },
+                        {
+                            housingUnitTypeId: 'unit-type-1',
+                            baseWeekPrice: 200,
+                            newWeekPrice: 150,
+                            weekendBasePrice: 150,
+                            weekendNewPrice: 100,
+                        },
                     ],
                 },
             ]
@@ -217,7 +234,13 @@ describe('PricingService Payload Methods', () => {
                     description: null,
                     generalDescription: null,
                     housingUnitTypePrices: [
-                        { housingUnitTypeId: 'unit-type-1' },
+                        {
+                            housingUnitTypeId: 'unit-type-1',
+                            baseWeekPrice: 200,
+                            newWeekPrice: 150,
+                            weekendBasePrice: 150,
+                            weekendNewPrice: 100,
+                        },
                     ],
                 },
             ]
@@ -255,7 +278,14 @@ describe('PricingService Payload Methods', () => {
             ]
 
             const payload: AvailAndPricingPayload = {
-                dateRange: {
+                searchPayload: {
+                    dateRange: {
+                        start: '2025-01-01',
+                        end: '2025-01-02',
+                    },
+                    totalDays: 1,
+                },
+                viewWindow: {
                     start: '2025-01-01',
                     end: '2025-01-02',
                 },
@@ -278,14 +308,23 @@ describe('PricingService Payload Methods', () => {
             }
 
             const expectedPayload: HouseUnitTypeAvailAndPricingPayload = {
-                dateRange: payload.dateRange,
                 housingUnitType,
                 hostingRules: payload.hostingRules,
                 seasonRules: [seasonRules[0]], // Only first season rule applies
                 specialDates,
                 offers,
-                totalDays: 1,
                 reservations: [],
+                viewWindow: {
+                    start: '2025-01-01',
+                    end: '2025-01-02',
+                },
+                searchPayload: {
+                    dateRange: {
+                        start: '2025-01-01',
+                        end: '2025-01-02',
+                    },
+                    totalDays: 1,
+                },
             }
             const result = service.filterHousingUnitTypePayload(
                 housingUnitType,

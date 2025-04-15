@@ -4,7 +4,7 @@ import { ApiOkResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger'
 import { AvailAndPricingService } from './availAndPricing.service'
 import { AvailabilityAndPricingResponseDTO } from './dto/AvailabilityAndPricingResponse.dto'
 import {} from './dto/calendar.dto'
-import { CalendarBodyDTO } from './dto/get-calendar-query.dto'
+import { CalendarBodyDTO } from './dto/CalendarBody.dto'
 
 @ApiTags('Availability and Pricing')
 @Controller('company/:companyId/calendar')
@@ -35,7 +35,8 @@ export class PricingController {
         return this.pricingService.getCalendarFromHousingUnitTypeId(
             housingUnitTypeId,
             body.currentDate,
-            body.dateRange,
+            body.viewWindow,
+            body.search,
         )
     }
 
@@ -59,7 +60,8 @@ export class PricingController {
         return this.pricingService.getCalendar(
             companyId,
             body.currentDate,
-            body.dateRange,
+            body.viewWindow,
+            body.search,
         )
     }
 }

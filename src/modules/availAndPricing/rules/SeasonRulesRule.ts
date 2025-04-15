@@ -15,7 +15,7 @@ export class SeasonRulesRule implements AvailAndPricingRule {
     constructor(private readonly pricingHelpers: PricingHelpers) {}
 
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
-        const { currentDate, pricingPayload, calendar } = payload
+        const { currentDate, pricingPayload } = payload
 
         const seasonRules = pricingPayload.seasonRules.find((rule) => {
             const isBetween = dayjs
@@ -32,17 +32,28 @@ export class SeasonRulesRule implements AvailAndPricingRule {
 
         if (!seasonRules) return payload
 
-        const basePrice = calendar[currentDate].basePrice
-
-        const finalPrice = this.pricingHelpers.getPriceVariation(
-            basePrice,
-            seasonRules,
+        const housingUnitTypePrice = seasonRules.housingUnitTypePrices.find(
+            (housingUnitType) =>
+                housingUnitType.housingUnitTypeId ===
+                payload.pricingPayload.housingUnitType.id,
         )
+
+        if (!housingUnitTypePrice) return payload
+
+        const isWeekend = this.pricingHelpers.isWeekend(
+            payload.pricingPayload.hostingRules,
+            currentDate,
+        )
+
+        const finalPrice = isWeekend
+            ? housingUnitTypePrice.weekendNewPrice
+            : housingUnitTypePrice.newWeekPrice
 
         payload.calendar[currentDate].seasonRules = seasonRules
         payload.calendar[currentDate].basePrice = finalPrice
         payload.calendar[currentDate].finalPrice = finalPrice
         payload.calendar[currentDate].finalMinDays = seasonRules.minDaily
+
         payload.calendar[currentDate].availability =
             this.checkAvailability(payload)
 
@@ -54,11 +65,14 @@ export class SeasonRulesRule implements AvailAndPricingRule {
         currentDate,
         pricingPayload,
     }: AvailAndPricingDayPayload): CalendarAvailability {
+        const { searchPayload } = pricingPayload
+
         const seasonRules = calendar[currentDate].seasonRules
 
-        if (!seasonRules) return calendar[currentDate].availability
+        if (!seasonRules || !searchPayload)
+            return calendar[currentDate].availability
 
-        const weekDay = dayjs(pricingPayload.dateRange.start)
+        const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
             .day()
 
@@ -77,7 +91,7 @@ export class SeasonRulesRule implements AvailAndPricingRule {
             }
         }
 
-        if (pricingPayload.totalDays < calendar[currentDate].finalMinDays) {
+        if (searchPayload.totalDays < calendar[currentDate].finalMinDays) {
             return {
                 available: false,
                 unavailabilitySource: UnavailableSource.SEASON_RULES,

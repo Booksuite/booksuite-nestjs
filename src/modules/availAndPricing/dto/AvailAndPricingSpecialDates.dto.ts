@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { PriceVariationType } from '@prisma/client'
 
+import { HousingUnitTypePricingChangeDTO } from '@/common/dto/HousingUnitTypePricingChange.dto'
 import { AvailAndPricingSpecialDates } from '../types'
 
 export class AvailAndPricingSpecialDatesDTO
@@ -80,7 +81,7 @@ export class AvailAndPricingSpecialDatesDTO
             },
         },
     })
-    housingUnitTypePrices: { housingUnitTypeId: string }[]
+    housingUnitTypePrices: HousingUnitTypePricingChangeDTO[]
 
     @ApiProperty({
         description: 'Special date description',

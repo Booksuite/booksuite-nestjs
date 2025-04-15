@@ -1,31 +1,31 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsNumber, IsUUID } from 'class-validator'
 
-export class SeasonRuleHousingUnitTypePriceDTO {
+export class HousingUnitTypePricingChangeDTO {
     @ApiProperty({
-        example: 'f37b28c1-a26b-4f92-8b4e-5a3b6b8d4a77',
+        example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         type: String,
     })
     @IsDefined()
     @IsUUID()
     housingUnitTypeId: string
 
-    @ApiProperty({ example: 1000, type: Number })
+    @ApiProperty({ type: Number, example: 200 })
     @IsDefined()
     @IsNumber()
     baseWeekPrice: number
 
-    @ApiProperty({ example: 1200, type: Number })
+    @ApiProperty({ type: Number, example: 400 })
     @IsDefined()
     @IsNumber()
     newWeekPrice: number
 
-    @ApiProperty({ example: 1500, type: Number })
+    @ApiProperty({ type: Number, example: 200 })
     @IsDefined()
     @IsNumber()
     weekendBasePrice: number
 
-    @ApiProperty({ example: 1800, type: Number })
+    @ApiProperty({ type: Number, example: 400 })
     @IsDefined()
     @IsNumber()
     weekendNewPrice: number

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { PriceVariationType } from '@prisma/client'
 
+import { HousingUnitTypePricingChangeDTO } from '@/common/dto/HousingUnitTypePricingChange.dto'
 import { AvailAndPricingSeasonRules } from '../types'
 
 export class AvailAndPricingSeasonRulesDTO
@@ -96,5 +97,5 @@ export class AvailAndPricingSeasonRulesDTO
             },
         },
     })
-    housingUnitTypePrices: { housingUnitTypeId: string }[]
+    housingUnitTypePrices: HousingUnitTypePricingChangeDTO[]
 }
