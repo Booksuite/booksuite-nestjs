@@ -348,7 +348,7 @@ async function setUserAndRoles() {
                 startDate: new Date('2025-01-14T13:19:15.271598Z'),
                 endDate: new Date('2025-01-14T13:19:15.271598Z'),
                 totalDays: 7,
-                finalReservationPrice: 0,
+                finalPrice: 1200,
                 adults: 2,
                 notes: 'Featured booking',
                 reservationCode: '000001',

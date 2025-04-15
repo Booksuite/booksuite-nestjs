@@ -9,7 +9,7 @@ model Reservation {
     adults                Int
     notes                 String            @db.Text
     status                ReservationStatus
-    finalReservationPrice Float
+    finalPrice            Float             @db.DoublePrecision
 
     saleChannel ReservationSaleChannel @default(BOOKSUITE)
 

@@ -7,6 +7,7 @@ import { AvailAndPricingReservation } from '../types'
 export class AvailAndPricingReservationDTO
     implements AvailAndPricingReservation
 {
+    finalReservationPrice: number
     @ApiProperty({
         description: 'The ID of the reservation',
         example: '123e4567-e89b-12d3-a456-426614174000',
@@ -63,7 +64,7 @@ export class AvailAndPricingReservationDTO
         type: Number,
         nullable: true,
     })
-    finalReservationPrice: number
+    finalPrice: number
 
     @ApiProperty({
         description: 'The adults of the reservation',

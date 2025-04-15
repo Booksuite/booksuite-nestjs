@@ -32,10 +32,10 @@ model SpecialDateHousingUnitType {
     specialDateId     String
     specialDate       SpecialDate     @relation(fields: [specialDateId], references: [id], onDelete: Cascade)
 
-    baseWeekPrice    Float @db.DoublePrecision
-    newWeekPrice     Float @db.DoublePrecision
-    weekendBasePrice Float @db.DoublePrecision
-    weekendNewPrice  Float @db.DoublePrecision
+    baseWeekPrice     Float @db.DoublePrecision
+    finalWeekPrice    Float @db.DoublePrecision
+    baseWeekendPrice  Float @db.DoublePrecision
+    finalWeekendPrice Float @db.DoublePrecision
 
     @@unique([housingUnitTypeId, specialDateId], name: "special_date_housing_unit_type_unique")
     @@map("special_date_housing_unit_types")

@@ -107,7 +107,7 @@ export class ReservationUpdateDTO {
 
     @ApiProperty({ example: 7, type: Number, required: false })
     @IsOptional()
-    finalReservationPrice?: number
+    finalPrice?: number
 
     @ApiProperty({ type: [ReservationServiceDTO], required: false })
     @IsOptional()

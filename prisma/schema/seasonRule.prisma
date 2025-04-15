@@ -31,10 +31,10 @@ model SeasonRuleHousingUnitType {
     seasonRuleId      String
     seasonRule        SeasonRules     @relation(fields: [seasonRuleId], references: [id], onDelete: Cascade)
 
-    baseWeekPrice    Float @db.DoublePrecision
-    newWeekPrice     Float @db.DoublePrecision
-    weekendBasePrice Float @db.DoublePrecision
-    weekendNewPrice  Float @db.DoublePrecision
+    baseWeekPrice     Float @db.DoublePrecision
+    finalWeekPrice    Float @db.DoublePrecision
+    baseWeekendPrice  Float @db.DoublePrecision
+    finalWeekendPrice Float @db.DoublePrecision
 
     @@unique([housingUnitTypeId, seasonRuleId], name: "season_rule_housing_unit_type_unique")
     @@map("season_rule_housing_unit_types")

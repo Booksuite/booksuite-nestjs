@@ -46,8 +46,8 @@ export class SeasonRulesRule implements AvailAndPricingRule {
         )
 
         const finalPrice = isWeekend
-            ? housingUnitTypePrice.weekendNewPrice
-            : housingUnitTypePrice.newWeekPrice
+            ? housingUnitTypePrice.finalWeekendPrice
+            : housingUnitTypePrice.finalWeekPrice
 
         payload.calendar[currentDate].seasonRules = seasonRules
         payload.calendar[currentDate].basePrice = finalPrice

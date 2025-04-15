@@ -18,15 +18,15 @@ export class HousingUnitTypePricingChangeDTO {
     @ApiProperty({ type: Number, example: 400 })
     @IsDefined()
     @IsNumber()
-    newWeekPrice: number
+    finalWeekPrice: number
 
-    @ApiProperty({ type: Number, example: 200 })
+    @ApiProperty({ type: Number, example: 300 })
     @IsDefined()
     @IsNumber()
-    weekendBasePrice: number
+    baseWeekendPrice: number
 
-    @ApiProperty({ type: Number, example: 400 })
+    @ApiProperty({ type: Number, example: 600 })
     @IsDefined()
     @IsNumber()
-    weekendNewPrice: number
+    finalWeekendPrice: number
 }

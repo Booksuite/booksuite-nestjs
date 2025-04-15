@@ -48,7 +48,7 @@ export class SeasonRulesService {
         })
     }
 
-    async update(
+    update(
         id: string,
         rawData: SeasonRuleUpdateDTO,
     ): Promise<SeasonRuleResponseFullDTO> {
@@ -75,25 +75,24 @@ export class SeasonRulesService {
                                 },
                             },
                             update: pick(housingUnitType, [
-                                'housingUnitTypeId',
-                                'weekendBasePrice',
-                                'weekendNewPrice',
+                                'baseWeekendPrice',
+                                'finalWeekendPrice',
                                 'baseWeekPrice',
-                                'newWeekPrice',
+                                'finalWeekPrice',
                             ]),
                             create: pick(housingUnitType, [
                                 'housingUnitTypeId',
-                                'weekendBasePrice',
-                                'weekendNewPrice',
+                                'baseWeekendPrice',
+                                'finalWeekendPrice',
                                 'baseWeekPrice',
-                                'newWeekPrice',
+                                'finalWeekPrice',
                             ]),
                         }),
                     ),
                 },
             })
 
-        return await this.prismaService.seasonRules.update({
+        return this.prismaService.seasonRules.update({
             where: { id },
             data: normalizedData,
             include: {

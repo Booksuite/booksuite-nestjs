@@ -114,9 +114,9 @@ describe('PricingService', () => {
                     {
                         housingUnitTypeId: housingUnitTypes[0].id,
                         baseWeekPrice: 200,
-                        newWeekPrice: 150,
-                        weekendBasePrice: 150,
-                        weekendNewPrice: 100,
+                        finalWeekPrice: 150,
+                        baseWeekendPrice: 150,
+                        finalWeekendPrice: 100,
                     },
                 ],
             }

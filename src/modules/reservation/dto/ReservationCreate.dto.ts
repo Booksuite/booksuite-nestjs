@@ -64,7 +64,7 @@ export class ReservationCreateDTO {
     @ApiProperty({ example: 7, type: Number })
     @IsDefined()
     @IsNumber()
-    finalReservationPrice: number
+    finalPrice: number
 
     @ApiProperty({ example: '2' })
     @IsDefined()

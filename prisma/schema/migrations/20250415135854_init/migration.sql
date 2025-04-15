@@ -358,6 +358,7 @@ CREATE TABLE "reservations" (
     "adults" INTEGER NOT NULL,
     "notes" TEXT NOT NULL,
     "status" "ReservationStatus" NOT NULL,
+    "finalPrice" DOUBLE PRECISION NOT NULL,
     "saleChannel" "ReservationSaleChannel" NOT NULL DEFAULT 'BOOKSUITE',
     "sellerUserId" TEXT,
     "guestUserId" TEXT,
@@ -475,9 +476,9 @@ CREATE TABLE "season_rule_housing_unit_types" (
     "housingUnitTypeId" TEXT NOT NULL,
     "seasonRuleId" TEXT NOT NULL,
     "baseWeekPrice" DOUBLE PRECISION NOT NULL,
-    "newWeekPrice" DOUBLE PRECISION NOT NULL,
-    "weekendBasePrice" DOUBLE PRECISION NOT NULL,
-    "weekendNewPrice" DOUBLE PRECISION NOT NULL,
+    "finalWeekPrice" DOUBLE PRECISION NOT NULL,
+    "baseWeekendPrice" DOUBLE PRECISION NOT NULL,
+    "finalWeekendPrice" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "season_rule_housing_unit_types_pkey" PRIMARY KEY ("id")
 );
@@ -555,9 +556,9 @@ CREATE TABLE "special_date_housing_unit_types" (
     "housingUnitTypeId" TEXT NOT NULL,
     "specialDateId" TEXT NOT NULL,
     "baseWeekPrice" DOUBLE PRECISION NOT NULL,
-    "newWeekPrice" DOUBLE PRECISION NOT NULL,
-    "weekendBasePrice" DOUBLE PRECISION NOT NULL,
-    "weekendNewPrice" DOUBLE PRECISION NOT NULL,
+    "finalWeekPrice" DOUBLE PRECISION NOT NULL,
+    "baseWeekendPrice" DOUBLE PRECISION NOT NULL,
+    "finalWeekendPrice" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "special_date_housing_unit_types_pkey" PRIMARY KEY ("id")
 );

@@ -26,9 +26,9 @@ export type AvailAndPricingSeasonRules = Prisma.SeasonRulesGetPayload<{
             select: {
                 housingUnitTypeId: true
                 baseWeekPrice: true
-                newWeekPrice: true
-                weekendBasePrice: true
-                weekendNewPrice: true
+                finalWeekPrice: true
+                baseWeekendPrice: true
+                finalWeekendPrice: true
             }
         }
     }
@@ -39,9 +39,9 @@ export type AvailAndPricingSpecialDates = Prisma.SpecialDateGetPayload<{
             select: {
                 housingUnitTypeId: true
                 baseWeekPrice: true
-                newWeekPrice: true
-                weekendBasePrice: true
-                weekendNewPrice: true
+                finalWeekPrice: true
+                baseWeekendPrice: true
+                finalWeekendPrice: true
             }
         }
     }
