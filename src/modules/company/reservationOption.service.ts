@@ -173,12 +173,15 @@ export class ReservationOptionService {
         const data: Prisma.ReservationOptionWhereInput = {}
 
         if (query) {
-            data.OR = [{ name: { contains: query, mode: 'insensitive' } }]
+            data.name = { contains: query, mode: 'insensitive' }
         }
 
-        if (filters) {
+        if (filters?.published) {
             data.published = filters?.published
-            data.billingType = filters.billingType
+        }
+
+        if (filters?.billingType) {
+            data.billingType = { in: filters?.billingType }
         }
 
         return data

@@ -10,10 +10,12 @@ export class ReservationOptionSearchFilterDTO {
 
     @ApiProperty({
         enum: BillingType,
+        isArray: true,
         enumName: 'BillingType',
-        example: BillingType.DAILY,
+        example: [BillingType.DAILY],
+        required: false,
     })
     @IsOptional()
-    @IsEnum(BillingType)
-    billingType!: BillingType
+    @IsEnum(BillingType, { each: true })
+    billingType?: BillingType[]
 }
