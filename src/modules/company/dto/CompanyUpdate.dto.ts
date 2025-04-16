@@ -226,33 +226,40 @@ export class CompanyUpdateDTO {
     @ApiProperty({
         example: 'Privacy policy description',
         type: String,
+        required: false,
+        nullable: true,
     })
     @IsOptional()
-    privacyPolicyDescription: string | null
+    privacyPolicyDescriptio?: string | null
 
     @ApiProperty({
         example: 'Privacy policy simple model',
         type: String,
+        required: false,
+        nullable: true,
     })
     @IsOptional()
-    privacyPolicySimpleModel: string | null
+    privacyPolicySimpleModel?: string | null
 
     @ApiProperty({
         example: 'Privacy policy full model',
         type: String,
+        required: false,
+        nullable: true,
     })
     @IsOptional()
-    privacyPolicyFullModel: string | null
+    privacyPolicyFullModel?: string | null
 
     @ApiProperty({
         type: MapCoordinatesDTO,
         example: 'Map coordinates',
         required: false,
+        nullable: true,
     })
     @IsOptional()
     @Type(() => MapCoordinatesDTO)
     @ValidateNested()
-    mapCoordinates?: MapCoordinatesDTO
+    mapCoordinates?: MapCoordinatesDTO | null
 
     @ApiProperty({
         example: 'e23d2e3e-6bf9-4b7c-8aec-73c37a5b9d8f',
