@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsInt, IsString } from 'class-validator'
 
 export class ReservationServiceDTO {
+    @ApiProperty({ example: 2, type: Number })
     @IsDefined()
     @IsInt()
     quantity!: number
