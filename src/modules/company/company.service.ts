@@ -85,6 +85,7 @@ export class CompanyService {
             ...rawData,
             settings: rawData.settings || Prisma.DbNull,
             contacts: rawData.contacts || [],
+            mapCoordinates: rawData.mapCoordinates || Prisma.DbNull,
             facilities: rawData.facilities && {
                 deleteMany: {
                     companyId: id,
