@@ -10,8 +10,10 @@ import { MediaModule } from './modules/media/media.module'
 import { OfferModule } from './modules/offer/offer.module'
 import { PrismaModule } from './modules/prisma/prisma.module'
 import { ReservationModule } from './modules/reservation/reservation.module'
+import { SeasonRulesModule } from './modules/seasonRules/seasonRules.module'
 import { ServiceModule } from './modules/service/service.module'
 import { SpecialDateModule } from './modules/specialDate/specialDate.module'
+import { TariffOptionModule } from './modules/tariffOption/tariffOption.module'
 import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
 
 @Module({
@@ -29,6 +31,8 @@ import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
         BannerModule,
         UtilityLinksModule,
         SpecialDateModule,
+        TariffOptionModule,
+        SeasonRulesModule,
     ],
 })
 export class AppModule {}

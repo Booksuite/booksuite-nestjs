@@ -8,10 +8,10 @@ import {
     IsString,
 } from 'class-validator'
 
-import { ReservationOptionAgeGroupDTO } from './ReservationOptionAgeGroup.dto'
-import { ReservationOptionHousingUnitTypeDTO } from './ReservationOptionHousingUnitType.dto'
+import { TariffOptionAgeGroupDTO } from './TariffOptionAgeGroup.dto'
+import { TariffOptionHousingUnitTypeDTO } from './TariffOptionHousingUnitType.dto'
 
-export class ReservationOptionUpdateDTO {
+export class TariffOptionUpdateDTO {
     @ApiProperty({
         example: 'Standard Reservation',
         type: String,
@@ -56,18 +56,18 @@ export class ReservationOptionUpdateDTO {
     availableWeekend?: PrismaJson.WeekDays
 
     @ApiProperty({
-        type: [ReservationOptionHousingUnitTypeDTO],
+        type: [TariffOptionHousingUnitTypeDTO],
         required: false,
     })
     @IsOptional()
-    availableHousingUnitTypes?: ReservationOptionHousingUnitTypeDTO[]
+    availableHousingUnitTypes?: TariffOptionHousingUnitTypeDTO[]
 
     @ApiProperty({
-        type: [ReservationOptionAgeGroupDTO],
+        type: [TariffOptionAgeGroupDTO],
         required: false,
     })
     @IsOptional()
-    ageGroupPrices?: ReservationOptionAgeGroupDTO[]
+    ageGroupPrices?: TariffOptionAgeGroupDTO[]
 
     @ApiProperty({ type: [String], required: false })
     @IsOptional()

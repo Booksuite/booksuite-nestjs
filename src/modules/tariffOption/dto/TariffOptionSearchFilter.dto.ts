@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 import { BillingType } from '@prisma/client'
 import { IsBoolean, IsEnum, IsOptional } from 'class-validator'
 
-export class ReservationOptionSearchFilterDTO {
+export class TariffOptionSearchFilterDTO {
     @ApiProperty({ example: true, required: false })
     @IsOptional()
     @IsBoolean()

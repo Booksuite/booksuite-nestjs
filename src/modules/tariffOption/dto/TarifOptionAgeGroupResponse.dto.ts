@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-import { AgeGroupDTO } from './AgeGroup.dto'
+import { AgeGroupDTO } from '../../company/dto/AgeGroup.dto'
 
-export class ReservationOptionAgeGroupResponseDTO {
+export class TariffOptionAgeGroupResponseDTO {
     @ApiProperty({
         example: '123e4567-e89b-12d3-a456-426614174000',
         type: String,

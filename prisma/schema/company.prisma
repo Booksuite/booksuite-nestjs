@@ -48,7 +48,7 @@ model Company {
     agePolicy          AgePolicy?
     cancellationPolicy CancellationPolicy?
     reservationConfig  ReservationConfig?
-    reservationOptions ReservationOption[]
+    tariffOption       TariffOption[]
     facilities         CompanyFacility[]
     banners            Banner[]
     reservations       Reservation[]

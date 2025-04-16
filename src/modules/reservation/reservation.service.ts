@@ -44,8 +44,8 @@ export class ReservationService {
             ageGroups: {
                 createMany: { data: rawData.ageGroups },
             },
-            reservationOption: {
-                createMany: { data: rawData.reservationOption },
+            tariffOption: {
+                createMany: { data: rawData.tariffOption },
             },
         })
 
@@ -176,7 +176,7 @@ export class ReservationService {
                 sellerUser: true,
                 guestUser: true,
                 ageGroups: { include: { ageGroup: true } },
-                reservationOption: { include: { reservationOption: true } },
+                tariffOption: { include: { tariffOption: true } },
             },
         })
     }
@@ -236,25 +236,25 @@ export class ReservationService {
                         create: pick(a, ['ageGroupId', 'quantity']),
                     })),
                 },
-                reservationOption: rawData.reservationOption && {
+                tariffOption: rawData.tariffOption && {
                     deleteMany: {
                         reservationId: id,
-                        reservationOptionId: {
-                            notIn: rawData.reservationOption.map(
-                                (r) => r.reservationOptionId,
+                        tariffOptionId: {
+                            notIn: rawData.tariffOption.map(
+                                (r) => r.tariffOptionId,
                             ),
                         },
                     },
 
-                    upsert: rawData.reservationOption.map((r) => ({
+                    upsert: rawData.tariffOption.map((r) => ({
                         where: {
-                            reservation_reservation_option_unique: {
+                            reservation_tariff_option_unique: {
                                 reservationId: id,
-                                reservationOptionId: r.reservationOptionId,
+                                tariffOptionId: r.tariffOptionId,
                             },
                         },
-                        update: pick(r, ['reservationOptionId']),
-                        create: pick(r, ['reservationOptionId']),
+                        update: pick(r, ['tariffOptionId']),
+                        create: pick(r, ['tariffOptionId']),
                     })),
                 },
             })

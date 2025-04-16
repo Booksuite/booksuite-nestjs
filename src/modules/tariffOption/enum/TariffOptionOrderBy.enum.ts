@@ -1,4 +1,4 @@
-export enum ReservationOptionOrderBy {
+export enum TariffOptionOrderBy {
     NAME = 'name',
     BILLINGTYPE = 'billingType',
     ADDITIONALADULTPRICE = 'additionalAdultPrice',

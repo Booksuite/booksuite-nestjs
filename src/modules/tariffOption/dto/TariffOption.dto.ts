@@ -8,10 +8,10 @@ import {
     IsString,
 } from 'class-validator'
 
-import { ReservationOptionAgeGroupDTO } from './ReservationOptionAgeGroup.dto'
-import { ReservationOptionHousingUnitTypeDTO } from './ReservationOptionHousingUnitType.dto'
+import { TariffOptionAgeGroupDTO } from './TariffOptionAgeGroup.dto'
+import { TariffOptionHousingUnitTypeDTO } from './TariffOptionHousingUnitType.dto'
 
-export class ReservationOptionDTO {
+export class TariffOptionDTO {
     @ApiProperty({ example: 'Standard Reservation', type: String })
     @IsDefined()
     @IsString()
@@ -45,13 +45,13 @@ export class ReservationOptionDTO {
     @IsDefined()
     availableWeekend!: PrismaJson.WeekDays
 
-    @ApiProperty({ type: [ReservationOptionHousingUnitTypeDTO] })
+    @ApiProperty({ type: [TariffOptionHousingUnitTypeDTO] })
     @IsDefined()
-    availableHousingUnitTypes!: ReservationOptionHousingUnitTypeDTO[]
+    availableHousingUnitTypes!: TariffOptionHousingUnitTypeDTO[]
 
-    @ApiProperty({ type: [ReservationOptionAgeGroupDTO] })
+    @ApiProperty({ type: [TariffOptionAgeGroupDTO] })
     @IsDefined()
-    ageGroupPrices!: ReservationOptionAgeGroupDTO[]
+    ageGroupPrices!: TariffOptionAgeGroupDTO[]
 
     @ApiProperty({ type: [String] })
     @IsDefined()

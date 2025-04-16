@@ -9,22 +9,20 @@ import {
 } from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { ReservationOptionDTO } from './dto/ReservationOption.dto'
-import { ReservationOptionOrderByDTO } from './dto/ReservationOptionOrderBy.dto'
-import { ReservationOptionPaginatedResponseDTO } from './dto/ReservationOptionPaginatedResponse.dto'
-import { ReservationOptionResponseDTO } from './dto/ReservationOptionResponse.dto'
-import { ReservationOptionResponseFullDTO } from './dto/ReservationOptionResponseFull.dto'
-import { ReservationOptionSearchFilterDTO } from './dto/ReservationOptionSearchFilter.dto'
-import { ReservationOptionUpdateDTO } from './dto/ReservationOptionUpdate.dto'
+import { TariffOptionDTO } from './dto/TariffOption.dto'
+import { TariffOptionOrderByDTO } from './dto/TariffOptionOrderBy.dto'
+import { TariffOptionPaginatedResponseDTO } from './dto/TariffOptionPaginatedResponse.dto'
+import { TariffOptionResponseDTO } from './dto/TariffOptionResponse.dto'
+import { TariffOptionResponseFullDTO } from './dto/TariffOptionResponseFull.dto'
+import { TariffOptionSearchFilterDTO } from './dto/TariffOptionSearchFilter.dto'
+import { TariffOptionUpdateDTO } from './dto/TariffOptionUpdate.dto'
 
 @Injectable()
-export class ReservationOptionService {
+export class TariffOptionService {
     constructor(private prismaService: PrismaService) {}
 
-    async getById(
-        id: string,
-    ): Promise<ReservationOptionResponseFullDTO | null> {
-        return await this.prismaService.reservationOption.findUnique({
+    async getById(id: string): Promise<TariffOptionResponseFullDTO | null> {
+        return await this.prismaService.tariffOption.findUnique({
             where: { id },
             include: {
                 availableHousingUnitTypes: {
@@ -39,10 +37,10 @@ export class ReservationOptionService {
 
     async create(
         companyId: string,
-        rawData: ReservationOptionDTO,
-    ): Promise<ReservationOptionResponseDTO> {
+        rawData: TariffOptionDTO,
+    ): Promise<TariffOptionResponseDTO> {
         const normalizedData =
-            Prisma.validator<Prisma.ReservationOptionCreateInput>()({
+            Prisma.validator<Prisma.TariffOptionCreateInput>()({
                 ...rawData,
                 company: { connect: { id: companyId } },
                 availableHousingUnitTypes: {
@@ -53,22 +51,22 @@ export class ReservationOptionService {
                 },
             })
 
-        return await this.prismaService.reservationOption.create({
+        return await this.prismaService.tariffOption.create({
             data: normalizedData,
         })
     }
 
     async update(
         id: string,
-        rawData: ReservationOptionUpdateDTO,
-    ): Promise<ReservationOptionResponseFullDTO> {
+        rawData: TariffOptionUpdateDTO,
+    ): Promise<TariffOptionResponseFullDTO> {
         const normalizedData =
-            Prisma.validator<Prisma.ReservationOptionUpdateInput>()({
+            Prisma.validator<Prisma.TariffOptionUpdateInput>()({
                 ...rawData,
                 availableHousingUnitTypes:
                     rawData.availableHousingUnitTypes && {
                         deleteMany: {
-                            reservationOptionId: id,
+                            tariffOptionId: id,
                             housingUnitTypeId: {
                                 notIn: rawData.availableHousingUnitTypes.map(
                                     (housingUnitType) =>
@@ -79,8 +77,8 @@ export class ReservationOptionService {
                         upsert: rawData.availableHousingUnitTypes.map(
                             (housingUnitType) => ({
                                 where: {
-                                    reservation_option_housingunittype_unique: {
-                                        reservationOptionId: id,
+                                    tariff_option_housingunittype_unique: {
+                                        tariffOptionId: id,
                                         housingUnitTypeId:
                                             housingUnitType.housingUnitTypeId,
                                     },
@@ -105,8 +103,8 @@ export class ReservationOptionService {
                     },
                     upsert: rawData.ageGroupPrices.map((a) => ({
                         where: {
-                            reservation_option_age_groups: {
-                                reservationOptionId: id,
+                            tariff_option_age_groups: {
+                                tariffOptionId: id,
                                 ageGroupId: a.ageGroupId,
                             },
                         },
@@ -116,7 +114,7 @@ export class ReservationOptionService {
                 },
             })
 
-        return await this.prismaService.reservationOption.update({
+        return await this.prismaService.tariffOption.update({
             where: { id },
             data: normalizedData,
             include: {
@@ -133,14 +131,14 @@ export class ReservationOptionService {
     async search(
         companyId: string,
         pagination: PaginationQuery,
-        order?: ReservationOptionOrderByDTO,
-        filter?: ReservationOptionSearchFilterDTO,
+        order?: TariffOptionOrderByDTO,
+        filter?: TariffOptionSearchFilterDTO,
         query?: string,
-    ): Promise<ReservationOptionPaginatedResponseDTO> {
+    ): Promise<TariffOptionPaginatedResponseDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
         const [reservationOptions, totalReservationOptions] =
-            await this.prismaService.reservationOption.findManyAndCount({
+            await this.prismaService.tariffOption.findManyAndCount({
                 where: {
                     ...this.buildSearchParams(query, filter),
                     companyId,
@@ -168,9 +166,9 @@ export class ReservationOptionService {
 
     private buildSearchParams(
         query?: string,
-        filters?: ReservationOptionSearchFilterDTO,
-    ): Prisma.ReservationOptionWhereInput {
-        const data: Prisma.ReservationOptionWhereInput = {}
+        filters?: TariffOptionSearchFilterDTO,
+    ): Prisma.TariffOptionWhereInput {
+        const data: Prisma.TariffOptionWhereInput = {}
 
         if (query) {
             data.name = { contains: query, mode: 'insensitive' }

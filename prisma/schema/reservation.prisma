@@ -3,13 +3,13 @@ model Reservation {
 
     reservationCode String // PATTERN 2 LETTER CHANNEL + 6 SEQUENTIAL NUMERIC (PER COMPANY)
 
-    startDate             DateTime
-    endDate               DateTime
-    totalDays             Int?              @default(1)
-    adults                Int
-    notes                 String            @db.Text
-    status                ReservationStatus
-    finalPrice            Float             @db.DoublePrecision
+    startDate  DateTime
+    endDate    DateTime
+    totalDays  Int?              @default(1)
+    adults     Int
+    notes      String            @db.Text
+    status     ReservationStatus
+    finalPrice Float             @db.DoublePrecision
 
     saleChannel ReservationSaleChannel @default(BOOKSUITE)
 
@@ -23,9 +23,9 @@ model Reservation {
     housingUnitId String?
     housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
-    services          ReservationService[]
-    ageGroups         ReservationAgeGroup[]
-    reservationOption ReservationReservationOption[]
+    services     ReservationService[]
+    ageGroups    ReservationAgeGroup[]
+    tariffOption TariffOptionReservation[]
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
@@ -74,18 +74,6 @@ model ReservationService {
     @@map("reservation_services")
 }
 
-model ReservationReservationOption {
-    id String @id @default(uuid())
-
-    reservationOptionId String
-    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
-    reservationId       String
-    reservation         Reservation       @relation(fields: [reservationId], references: [id], onDelete: Cascade)
-
-    @@unique([reservationId, reservationOptionId], name: "reservation_reservation_option_unique")
-    @@map("reservation_reservation_option")
-}
-
 model ReservationConfig {
     id String @id @default(uuid())
 
@@ -117,59 +105,6 @@ model ReservationAgeGroup {
 
     @@unique([ageGroupId, reservationId], name: "reservation_age_groups_unique")
     @@map("reservation_age_groups")
-}
-
-model ReservationOption {
-    id String @id @default(uuid())
-
-    name                      String
-    published                 Boolean
-    billingType               BillingType
-    additionalAdultPrice      Float                               @db.DoublePrecision
-    additionalChildrenPrice   Float                               @db.DoublePrecision
-    availableHousingUnitTypes ReservationOptionHousingUnitTypes[]
-    ageGroupPrices            ReservatonOptionAgeGroup[]
-    reservation               ReservationReservationOption[]
-
-    /// [WeekDays]
-    availableWeekend Json
-
-    /// [IncludedItems]
-    includedItems Json
-
-    companyId String
-    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@map("reservation_options")
-}
-
-model ReservatonOptionAgeGroup {
-    id String @id @default(uuid())
-
-    ageGroupId          String
-    ageGroup            AgeGroup          @relation(fields: [ageGroupId], references: [id], onDelete: Cascade)
-    reservationOptionId String
-    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
-
-    price Float @db.DoublePrecision
-
-    @@unique([ageGroupId, reservationOptionId], name: "reservation_option_age_groups")
-    @@map("reservation_option_age_groups")
-}
-
-model ReservationOptionHousingUnitTypes {
-    id String @id @default(uuid())
-
-    housingUnitTypeId   String
-    housingUnitType     HousingUnitType   @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
-    reservationOptionId String
-    reservationOption   ReservationOption @relation(fields: [reservationOptionId], references: [id], onDelete: Cascade)
-
-    @@unique([housingUnitTypeId, reservationOptionId], name: "reservation_option_housingunittype_unique")
-    @@map("reservation_option_housing_unit_types")
 }
 
 enum ReservationDepositType {
