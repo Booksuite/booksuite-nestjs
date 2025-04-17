@@ -15,6 +15,7 @@ import { MapCoordinatesDTO } from '@/common/dto/MapCoodinates.dto'
 
 import { CompanyContactDTO } from './CompanyContact.dto'
 import { CompanyFacilityDTO } from './CompanyFacility.dto'
+import { CompanyHomeMediaDTO } from './CompanyHomeMedia.dto'
 import { CompanySettingsDTO } from './CompanySettings.dto'
 
 export class CompanyUpdateDTO {
@@ -290,4 +291,10 @@ export class CompanyUpdateDTO {
     @IsOptional()
     @IsString()
     bannerDescription?: string | null
+
+    @ApiProperty({ example: 'company page home media', required: false })
+    @IsOptional()
+    @IsArray()
+    @Type(() => CompanyHomeMediaDTO)
+    homeMedia?: CompanyHomeMediaDTO[]
 }

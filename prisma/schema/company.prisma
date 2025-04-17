@@ -59,6 +59,7 @@ model Company {
     hostingRules       HostingRules?
     specialDate        SpecialDate[]
     offers             Offer[]
+    homeMedia          CompanyHomeMedia[]
 
     bannerImageId     String?
     bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
@@ -122,4 +123,18 @@ model CompanyFacility {
 
     @@unique([companyId, facilityId], name: "company_facility_unique")
     @@map("company_facilities")
+}
+
+model CompanyHomeMedia {
+    id String @id @default(uuid())
+
+    order Int? @default(0)
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    mediaId   String
+    media     Media   @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+    @@unique([companyId, mediaId], name: "company_home_media_unique")
+    @@map("company_home_media")
 }

@@ -32,6 +32,9 @@ export class CompanyService {
                       createMany: { data: rawData.facilities },
                   }
                 : undefined,
+            homeMedia: rawData.homeMedia
+                ? { createMany: { data: rawData.homeMedia } }
+                : undefined,
             contacts: rawData.contacts || undefined,
         })
 
@@ -50,6 +53,7 @@ export class CompanyService {
                     orderBy: { order: 'asc' },
                 },
                 bannerImage: true,
+                homeMedia: { include: { media: true } },
             },
         })
     }
@@ -66,6 +70,7 @@ export class CompanyService {
             await this.prismaService.company.findManyAndCount({
                 include: {
                     bannerImage: true,
+                    homeMedia: { include: { media: true } },
                 },
                 where: this.buildSearchParams(query, filters),
                 ...paginationParams,
@@ -86,6 +91,24 @@ export class CompanyService {
             settings: rawData.settings || Prisma.DbNull,
             contacts: rawData.contacts || [],
             mapCoordinates: rawData.mapCoordinates || Prisma.DbNull,
+            homeMedia: rawData.homeMedia && {
+                deleteMany: {
+                    companyId: id,
+                    mediaId: {
+                        notIn: rawData.homeMedia.map((media) => media.mediaId),
+                    },
+                },
+                upsert: rawData.homeMedia.map((media) => ({
+                    where: {
+                        company_home_media_unique: {
+                            companyId: id,
+                            mediaId: media.mediaId,
+                        },
+                    },
+                    update: pick(media, ['mediaId', 'order']),
+                    create: pick(media, ['mediaId', 'order']),
+                })),
+            },
             facilities: rawData.facilities && {
                 deleteMany: {
                     companyId: id,
@@ -112,7 +135,10 @@ export class CompanyService {
         return this.prismaService.company.update({
             where: { id },
             data: normalizedData,
-            include: { bannerImage: true },
+            include: {
+                bannerImage: true,
+                homeMedia: { include: { media: true } },
+            },
         })
     }
 
