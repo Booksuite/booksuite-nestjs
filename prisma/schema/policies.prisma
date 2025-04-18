@@ -64,11 +64,11 @@ model AgeGroup {
     chargeType AgeGroupChargeType
     value      Int?
 
-    ReservatonOptionAgeGroup ReservatonOptionAgeGroup[]
-    ReservationAgeGroup      ReservationAgeGroup[]
+    rateOptions RateOptionAgeGroup[]
+    ageGroups   ReservationAgeGroup[]
 
     agePolicyId String
-    agePolicies AgePolicy @relation(fields: [agePolicyId], references: [id], onDelete: Cascade)
+    agePolicy   AgePolicy @relation(fields: [agePolicyId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

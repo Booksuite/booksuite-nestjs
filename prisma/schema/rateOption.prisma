@@ -1,0 +1,54 @@
+model RateOption {
+    id String @id @default(uuid())
+
+    name                      String
+    published                 Boolean
+    billingType               BillingType
+    additionalAdultPrice      Float                          @db.DoublePrecision
+    additionalChildrenPrice   Float                          @db.DoublePrecision
+    availableHousingUnitTypes RateOptionHousingUnitTypes[]
+    ageGroupPrices            RateOptionAgeGroup[]
+    reservations              Reservation[]
+
+    /// [WeekDays]
+    availableWeekend Json
+
+    /// [IncludedItems]
+    includedItems Json
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("rate_options")
+}
+
+model RateOptionAgeGroup {
+    id String @id @default(uuid())
+
+    ageGroupId     String
+    ageGroup       AgeGroup     @relation(fields: [ageGroupId], references: [id], onDelete: Cascade)
+    rateOptionId   String
+    rateOption     RateOption @relation(fields: [rateOptionId], references: [id], onDelete: Cascade)
+
+    price Float @db.DoublePrecision
+
+    @@unique([ageGroupId, rateOptionId], name: "rate_option_age_groups")
+    @@map("rate_option_age_groups")
+}
+
+model RateOptionHousingUnitTypes {
+    id String @id @default(uuid())
+
+    housingUnitTypeId String
+    housingUnitType   HousingUnitType @relation(fields: [housingUnitTypeId], references: [id], onDelete: Cascade)
+    rateOptionId    String
+    rateOption      RateOption    @relation(fields: [rateOptionId], references: [id], onDelete: Cascade)
+
+    @@unique([housingUnitTypeId, rateOptionId], name: "rate_option_housingunittype_unique")
+    @@map("rate_option_housing_unit_types")
+}
+
+

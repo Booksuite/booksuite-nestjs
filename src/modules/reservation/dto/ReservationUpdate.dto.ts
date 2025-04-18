@@ -12,7 +12,6 @@ import {
 } from 'class-validator'
 
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
-import { ReservationReservationOptionDTO } from './ReservationReservationOption.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
 export class ReservationUpdateDTO {
@@ -115,9 +114,8 @@ export class ReservationUpdateDTO {
     @Type(() => ReservationServiceDTO)
     services?: ReservationServiceDTO[]
 
-    @ApiProperty({ type: [ReservationReservationOptionDTO], required: false })
+    @ApiProperty({ type: String, required: false, nullable: true })
     @IsOptional()
-    @IsArray()
-    @Type(() => ReservationReservationOptionDTO)
-    reservationOption?: ReservationReservationOptionDTO[]
+    @IsUUID()
+    rateOptionId?: string | null
 }

@@ -3,16 +3,16 @@ import { IsDefined, IsEnum } from 'class-validator'
 
 import { OrderDirection } from '@/common/enum/Order'
 import { OrderByRequest } from '@/common/types/orderBy'
-import { ReservationOptionOrderBy } from '../enums/ReservationOptionOrderBy.enum'
+import { SeasonRuleOrderBy } from '../enum/SeasonRuleOrderBy.enum'
 
-export class ReservationOptionOrderByDTO implements OrderByRequest {
+export class SeasonRuleOrderByDTO implements OrderByRequest {
     @ApiProperty({
-        enum: ReservationOptionOrderBy,
-        enumName: 'ReservationOptionOrderBy',
+        enum: SeasonRuleOrderBy,
+        enumName: 'SeasonRuleOrderBy',
     })
     @IsDefined()
-    @IsEnum(ReservationOptionOrderBy)
-    orderBy: ReservationOptionOrderBy
+    @IsEnum(SeasonRuleOrderBy)
+    orderBy: SeasonRuleOrderBy
 
     @ApiProperty({ enum: OrderDirection, enumName: 'OrderDirection' })
     @IsDefined()

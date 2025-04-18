@@ -9,7 +9,9 @@ import { HousingUnitTypeModule } from './modules/housingUnitType/housingUnitType
 import { MediaModule } from './modules/media/media.module'
 import { OfferModule } from './modules/offer/offer.module'
 import { PrismaModule } from './modules/prisma/prisma.module'
+import { RateOptionModule } from './modules/rateOption/rateOption.module'
 import { ReservationModule } from './modules/reservation/reservation.module'
+import { SeasonRulesModule } from './modules/seasonRules/seasonRules.module'
 import { ServiceModule } from './modules/service/service.module'
 import { SpecialDateModule } from './modules/specialDate/specialDate.module'
 import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
@@ -29,6 +31,8 @@ import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
         BannerModule,
         UtilityLinksModule,
         SpecialDateModule,
+        RateOptionModule,
+        SeasonRulesModule,
     ],
 })
 export class AppModule {}

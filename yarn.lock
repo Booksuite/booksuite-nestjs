@@ -1261,13 +1261,13 @@ __metadata:
   linkType: hard
 
 "@eslint-community/eslint-utils@npm:^4.2.0, @eslint-community/eslint-utils@npm:^4.4.0":
-  version: 4.6.0
-  resolution: "@eslint-community/eslint-utils@npm:4.6.0"
+  version: 4.6.1
+  resolution: "@eslint-community/eslint-utils@npm:4.6.1"
   dependencies:
     eslint-visitor-keys: "npm:^3.4.3"
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
-  checksum: 10c0/a64131c1b43021e3a84267f6011fd678a936718097c9be169c37a40ada2c7016bec7d6685ecc88112737d57733f36837bb90d9425ad48d2e2aa351d999d32443
+  checksum: 10c0/cdeb6f8fc33a83726357d7f736075cdbd6e79dc7ac4b00b15680f1111d0f33bda583e7fafa5937245a058cc66302dc47568bba57b251302dc74964d8e87f56d7
   languageName: node
   linkType: hard
 
@@ -2216,16 +2216,17 @@ __metadata:
   linkType: hard
 
 "@nestjs/common@npm:^11.0.1":
-  version: 11.0.17
-  resolution: "@nestjs/common@npm:11.0.17"
+  version: 11.0.20
+  resolution: "@nestjs/common@npm:11.0.20"
   dependencies:
+    file-type: "npm:20.4.1"
     iterare: "npm:1.2.1"
+    load-esm: "npm:1.0.2"
     tslib: "npm:2.8.1"
     uid: "npm:2.0.2"
   peerDependencies:
     class-transformer: "*"
     class-validator: "*"
-    file-type: ^20.4.1
     reflect-metadata: ^0.1.12 || ^0.2.0
     rxjs: ^7.1.0
   peerDependenciesMeta:
@@ -2233,9 +2234,7 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-    file-type:
-      optional: true
-  checksum: 10c0/e5b80c215ac634650e28d2a35045aaf92f57babfb4082ec2dd744e61cd0262c94b1610863c75c74c4b381f59462dbdb5689bb5b92afc9bac32d0aa3373e756dc
+  checksum: 10c0/f60b7f5a15b8371e4a167e1393129f02111f5b7ee248280be9d7851fb294bbe958d998f14c6ba4d18152f671ac9172be72d64f6168edb5967c8ea12bf0310aeb
   languageName: node
   linkType: hard
 
@@ -2254,8 +2253,8 @@ __metadata:
   linkType: hard
 
 "@nestjs/core@npm:^11.0.1":
-  version: 11.0.17
-  resolution: "@nestjs/core@npm:11.0.17"
+  version: 11.0.20
+  resolution: "@nestjs/core@npm:11.0.20"
   dependencies:
     "@nuxt/opencollective": "npm:0.4.1"
     fast-safe-stringify: "npm:2.1.1"
@@ -2277,7 +2276,7 @@ __metadata:
       optional: true
     "@nestjs/websockets":
       optional: true
-  checksum: 10c0/e2b04081f2f683592388bb698e4f9e18f60f65501ec077e5fe8e604ec07dbbeae533c73ec01854e80b07d25c7c0d79bd7bc06a8dc56010ede180b01e723bc7dc
+  checksum: 10c0/6d823fe897c23db43e1a77c85ca98863d8e52d072516830bef9f46e78575c6646b538af87ad651e03fe79ee80d37e1f1883c20cdb504176a73bb8eec0d48da7f
   languageName: node
   linkType: hard
 
@@ -2299,8 +2298,8 @@ __metadata:
   linkType: hard
 
 "@nestjs/platform-express@npm:^11.0.1":
-  version: 11.0.17
-  resolution: "@nestjs/platform-express@npm:11.0.17"
+  version: 11.0.20
+  resolution: "@nestjs/platform-express@npm:11.0.20"
   dependencies:
     cors: "npm:2.8.5"
     express: "npm:5.1.0"
@@ -2310,7 +2309,7 @@ __metadata:
   peerDependencies:
     "@nestjs/common": ^11.0.0
     "@nestjs/core": ^11.0.0
-  checksum: 10c0/7099a1c28abbb3e12ce127a72525cc3dd166a9218f17698372a02c567e568cbc551f8912df85d9c73a684bc17d428cf162ac1c808c83d3311dfbed64cdeddad4
+  checksum: 10c0/60ec436d48a867572b4ac7684e0dd81c1961729da2b92159ecb31bd9b5f288a8e2ea94481f4ade27ac4b8bb157b6660f15531fe7919b68c38f4084df32b03f1c
   languageName: node
   linkType: hard
 
@@ -2330,8 +2329,8 @@ __metadata:
   linkType: hard
 
 "@nestjs/swagger@npm:^11.0.3":
-  version: 11.1.3
-  resolution: "@nestjs/swagger@npm:11.1.3"
+  version: 11.1.4
+  resolution: "@nestjs/swagger@npm:11.1.4"
   dependencies:
     "@microsoft/tsdoc": "npm:0.15.1"
     "@nestjs/mapped-types": "npm:2.1.0"
@@ -2353,13 +2352,13 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-  checksum: 10c0/d91f3862492687fa89b02a2e5ea2b70bfa885852b222d0192164019bc4181cbe54a69376b392cab19e1c3a9fcd718ff4bc00b7b507d942ed6d0bed57b5d7e56b
+  checksum: 10c0/5594330b90975344cc4b6069c5d957837bf2b0b39e5881dd4ec739d427385fe0b02a0b30709c24d83a53e2e9d79c2e83b05460a185923f36ccfcd2d993bb67f0
   languageName: node
   linkType: hard
 
 "@nestjs/testing@npm:^11.0.1":
-  version: 11.0.17
-  resolution: "@nestjs/testing@npm:11.0.17"
+  version: 11.0.20
+  resolution: "@nestjs/testing@npm:11.0.20"
   dependencies:
     tslib: "npm:2.8.1"
   peerDependencies:
@@ -2372,7 +2371,7 @@ __metadata:
       optional: true
     "@nestjs/platform-express":
       optional: true
-  checksum: 10c0/511e0335b5d62fdf7a42c0774a47f111dc7e21f1bc4227969524a9d68702da237c861b6641c5ed6a78d1f564ea4f957e65551fa4aba054347630f077a72379d0
+  checksum: 10c0/413a3ad10b617e2df115e5d26cd11dbc4a626cd6be7060657591571154e0d4a60c17009402d03e7ee5b23b568b3415925495c7ad5fe8bd5386dcaf9e158ce43d
   languageName: node
   linkType: hard
 
@@ -3344,6 +3343,17 @@ __metadata:
   dependencies:
     defer-to-connect: "npm:^2.0.1"
   checksum: 10c0/4629d2fbb2ea67c2e9dc03af235c0991c79ebdddcbc19aed5d5732fb29ce01c13331e9b1a491584b9069bd6ecde6581dcbf871f11b7eefdebbab34de6cf2197e
+  languageName: node
+  linkType: hard
+
+"@tokenizer/inflate@npm:^0.2.6":
+  version: 0.2.7
+  resolution: "@tokenizer/inflate@npm:0.2.7"
+  dependencies:
+    debug: "npm:^4.4.0"
+    fflate: "npm:^0.8.2"
+    token-types: "npm:^6.0.0"
+  checksum: 10c0/75bd0c510810dfd62be9d963216b5852cde021e1f8aab43b37662bc6aa75e65fd7277fcab7d463186b55cee36a5b61129916161bdb2a7d18064016156c7daf4f
   languageName: node
   linkType: hard
 
@@ -4560,6 +4570,7 @@ __metadata:
     "@aws-sdk/client-s3": "npm:^3.750.0"
     "@eslint/eslintrc": "npm:^3.2.0"
     "@eslint/js": "npm:^9.18.0"
+    "@jest/globals": "npm:^29.7.0"
     "@nestjs/cli": "npm:^11.0.0"
     "@nestjs/common": "npm:^11.0.1"
     "@nestjs/config": "npm:^4.0.0"
@@ -4606,6 +4617,7 @@ __metadata:
     tsconfig-paths: "npm:^4.2.0"
     typescript: "npm:^5.7.3"
     typescript-eslint: "npm:^8.20.0"
+    webpack: "npm:^5.99.6"
   languageName: unknown
   linkType: soft
 
@@ -4800,9 +4812,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001688":
-  version: 1.0.30001713
-  resolution: "caniuse-lite@npm:1.0.30001713"
-  checksum: 10c0/f5468abfe73ce30e29cc8bde2ea67df2aab69032bdd93345e0640efefb76b7901c84fe1d28d591a797e65fe52fc24cae97060bb5552f9f9740322aff95ce2f9d
+  version: 1.0.30001714
+  resolution: "caniuse-lite@npm:1.0.30001714"
+  checksum: 10c0/b0e3372f018c5c177912f0282af98049057d83c80846293a4e3df728644a622db42a9e8971d6b7708d76e0fd4e9f6d5ce93802cf4e6818de80fdf371dc0f6a06
   languageName: node
   linkType: hard
 
@@ -5433,9 +5445,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.73":
-  version: 1.5.137
-  resolution: "electron-to-chromium@npm:1.5.137"
-  checksum: 10c0/678613e0a3d023563a1acca4d8103a69d389168efeb3b78c1fcc683ed0778d81bfb00c6f621d6535f3fa9530664fc948fc8f2ed27e7548d46cd3987d4b0add6a
+  version: 1.5.138
+  resolution: "electron-to-chromium@npm:1.5.138"
+  checksum: 10c0/f8e8b334857c3f858bb9ba1fa78b211e4174682fcc62316669a7cad6c86bbd01883a6433841b32effec694f90542bc439f28926826bb7e48d285ba951b4772ec
   languageName: node
   linkType: hard
 
@@ -6137,12 +6149,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fflate@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "fflate@npm:0.8.2"
+  checksum: 10c0/03448d630c0a583abea594835a9fdb2aaf7d67787055a761515bf4ed862913cfd693b4c4ffd5c3f3b355a70cf1e19033e9ae5aedcca103188aaff91b8bd6e293
+  languageName: node
+  linkType: hard
+
 "file-entry-cache@npm:^8.0.0":
   version: 8.0.0
   resolution: "file-entry-cache@npm:8.0.0"
   dependencies:
     flat-cache: "npm:^4.0.0"
   checksum: 10c0/9e2b5938b1cd9b6d7e3612bdc533afd4ac17b2fc646569e9a8abbf2eb48e5eb8e316bc38815a3ef6a1b456f4107f0d0f055a614ca613e75db6bf9ff4d72c1638
+  languageName: node
+  linkType: hard
+
+"file-type@npm:20.4.1":
+  version: 20.4.1
+  resolution: "file-type@npm:20.4.1"
+  dependencies:
+    "@tokenizer/inflate": "npm:^0.2.6"
+    strtok3: "npm:^10.2.0"
+    token-types: "npm:^6.0.0"
+    uint8array-extras: "npm:^1.4.0"
+  checksum: 10c0/ae6f65e537205a9a3e07ae574de74ed5210aa78899d6478351a466f97e3f17096b93d74cb97f3fce7488bc8486a21e449ab076ec358ed06984f4a9a8f48a9f55
   languageName: node
   linkType: hard
 
@@ -7735,9 +7766,9 @@ __metadata:
   linkType: hard
 
 "libphonenumber-js@npm:^1.10.53":
-  version: 1.12.6
-  resolution: "libphonenumber-js@npm:1.12.6"
-  checksum: 10c0/7218d8ce96a19c76c677a89da41c6b55c89c07f64999b464b5fde605d2abfcbefe2afc5bbb13f08be0f5a3dfa9ac27ac9b7ab7b65450563467fa82fb91579389
+  version: 1.12.7
+  resolution: "libphonenumber-js@npm:1.12.7"
+  checksum: 10c0/ac732b5e8bfe093b4c2aa470a69f52304ebe7cfefebe3ef902ba0cbbf2c159da00993cae0425c7e497961ca015d46082925f37a6c8626b07e98e1bb9e45414cb
   languageName: node
   linkType: hard
 
@@ -7786,6 +7817,13 @@ __metadata:
     rfdc: "npm:^1.4.1"
     wrap-ansi: "npm:^9.0.0"
   checksum: 10c0/6b6378e28debda863d31f03ffe880a76b45c07388c74e8e0676fc957de7f2aff24fdea7f48b17d12808440f64680215c36df388c79d2b367c7866dd66f75fb09
+  languageName: node
+  linkType: hard
+
+"load-esm@npm:1.0.2":
+  version: 1.0.2
+  resolution: "load-esm@npm:1.0.2"
+  checksum: 10c0/1d66736d97f8005102dfdd03a77f5b99aa34aa934c7a5de345d0a455b4bfe9cb07bb32802b82777b4c48c217a92f4484681cc3971e6c7d73b39ba967f955f501
   languageName: node
   linkType: hard
 
@@ -8710,6 +8748,13 @@ __metadata:
   version: 5.4.2
   resolution: "peek-readable@npm:5.4.2"
   checksum: 10c0/283d87d5e5f469b1a3f009faa9c1c736a55fd577947208f3834c59b3ca314ce0b2c05c490181feaebddfb8bb9c3245f9b6d44c2fc06ccaea60b9091bb48a0c90
+  languageName: node
+  linkType: hard
+
+"peek-readable@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "peek-readable@npm:7.0.0"
+  checksum: 10c0/a979b0678a5c2b58c2a755eadc5bb990814e479ff17b9fbcec39a6c88f278eb9a788b6ae13371ee84f7a2c6672505dac961f99ccc0c0300354d9b4dc5a207604
   languageName: node
   linkType: hard
 
@@ -9746,6 +9791,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"strtok3@npm:^10.2.0":
+  version: 10.2.2
+  resolution: "strtok3@npm:10.2.2"
+  dependencies:
+    "@tokenizer/token": "npm:^0.3.0"
+    peek-readable: "npm:^7.0.0"
+  checksum: 10c0/0d13a7fee7d773693b9e23c53429a032beb1d0ba9ab1cef3b5f3968c2c65f5c292a54af2b54c8e55abd210544e786a2369c8c241c68bb7d80b0ae5b207e4afd9
+  languageName: node
+  linkType: hard
+
 "strtok3@npm:^9.0.1":
   version: 9.1.1
   resolution: "strtok3@npm:9.1.1"
@@ -10275,7 +10330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uint8array-extras@npm:^1.3.0":
+"uint8array-extras@npm:^1.3.0, uint8array-extras@npm:^1.4.0":
   version: 1.4.0
   resolution: "uint8array-extras@npm:1.4.0"
   checksum: 10c0/eaffd3388634b7e5e1496073b878dd19136043137d3e7e0d2a453e37f566a5a551e640819e1a6596c6df9b9d1f7b70884cc29db6a357bdd424811f3598d504dd
@@ -10484,6 +10539,42 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 10c0/bee4fa77f444802f0beafb2ff30eb5454a606163ad7d3cc9a5dcc9d24033c62407bed04601b25dea49ea3969b352c1b530a86c753246f42560a4a084eefb094e
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5.99.6":
+  version: 5.99.6
+  resolution: "webpack@npm:5.99.6"
+  dependencies:
+    "@types/eslint-scope": "npm:^3.7.7"
+    "@types/estree": "npm:^1.0.6"
+    "@webassemblyjs/ast": "npm:^1.14.1"
+    "@webassemblyjs/wasm-edit": "npm:^1.14.1"
+    "@webassemblyjs/wasm-parser": "npm:^1.14.1"
+    acorn: "npm:^8.14.0"
+    browserslist: "npm:^4.24.0"
+    chrome-trace-event: "npm:^1.0.2"
+    enhanced-resolve: "npm:^5.17.1"
+    es-module-lexer: "npm:^1.2.1"
+    eslint-scope: "npm:5.1.1"
+    events: "npm:^3.2.0"
+    glob-to-regexp: "npm:^0.4.1"
+    graceful-fs: "npm:^4.2.11"
+    json-parse-even-better-errors: "npm:^2.3.1"
+    loader-runner: "npm:^4.2.0"
+    mime-types: "npm:^2.1.27"
+    neo-async: "npm:^2.6.2"
+    schema-utils: "npm:^4.3.0"
+    tapable: "npm:^2.1.1"
+    terser-webpack-plugin: "npm:^5.3.11"
+    watchpack: "npm:^2.4.1"
+    webpack-sources: "npm:^3.2.3"
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 10c0/b8b44b16933a0dd83e185ad42f292bbdfa9c47e245cbe786c48520d681556ece9af6ea7fff33059fafdf3d2cd62674715308d70a6f15eda6c6de7e03ef01842a
   languageName: node
   linkType: hard
 
