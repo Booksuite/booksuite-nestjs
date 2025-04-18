@@ -342,7 +342,6 @@ async function setUserAndRoles() {
         await tx.reservation.create({
             data: {
                 status: ReservationStatus.CONFIRMED,
-                userId: user1.id,
                 sellerUserId: user2.id,
                 saleChannel: 'BOOKSUITE',
                 startDate: new Date('2025-01-14T13:19:15.271598Z'),

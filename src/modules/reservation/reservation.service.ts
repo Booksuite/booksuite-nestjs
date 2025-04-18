@@ -44,9 +44,6 @@ export class ReservationService {
             ageGroups: {
                 createMany: { data: rawData.ageGroups },
             },
-            tariffOption: {
-                createMany: { data: rawData.tariffOption },
-            },
         })
 
         return this.prismaService.reservation.create({
@@ -141,7 +138,7 @@ export class ReservationService {
         if (filter) {
             data.saleChannel = filter.saleChannel
             data.sellerUserId = filter.sellerUserId
-            data.userId = filter.userId
+            data.guestUserId = filter.guestUserId
             data.status = filter.status
 
             if (filter.startDate) {
@@ -167,7 +164,7 @@ export class ReservationService {
         return data
     }
 
-    async getById(id: string): Promise<ReservationResponseFullDTO | null> {
+    getById(id: string): Promise<ReservationResponseFullDTO | null> {
         return this.prismaService.reservation.findUnique({
             where: { id },
             include: {
@@ -176,7 +173,7 @@ export class ReservationService {
                 sellerUser: true,
                 guestUser: true,
                 ageGroups: { include: { ageGroup: true } },
-                tariffOption: { include: { tariffOption: true } },
+                rateOption: true,
             },
         })
     }
@@ -234,27 +231,6 @@ export class ReservationService {
                         },
                         update: pick(a, ['ageGroupId', 'quantity']),
                         create: pick(a, ['ageGroupId', 'quantity']),
-                    })),
-                },
-                tariffOption: rawData.tariffOption && {
-                    deleteMany: {
-                        reservationId: id,
-                        tariffOptionId: {
-                            notIn: rawData.tariffOption.map(
-                                (r) => r.tariffOptionId,
-                            ),
-                        },
-                    },
-
-                    upsert: rawData.tariffOption.map((r) => ({
-                        where: {
-                            reservation_tariff_option_unique: {
-                                reservationId: id,
-                                tariffOptionId: r.tariffOptionId,
-                            },
-                        },
-                        update: pick(r, ['tariffOptionId']),
-                        create: pick(r, ['tariffOptionId']),
                     })),
                 },
             })

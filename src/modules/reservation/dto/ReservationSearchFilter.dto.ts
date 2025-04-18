@@ -28,7 +28,7 @@ export class ReservationSearchFilterDTO {
     })
     @IsOptional()
     @IsUUID()
-    userId?: string
+    guestUserId?: string
 
     @ApiProperty({ type: DateRangeDTO, required: false })
     @IsOptional()

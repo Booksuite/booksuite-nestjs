@@ -3,16 +3,16 @@ import { IsDefined, IsEnum } from 'class-validator'
 
 import { OrderDirection } from '@/common/enum/Order'
 import { OrderByRequest } from '@/common/types/orderBy'
-import { TariffOptionOrderBy } from '../enum/TariffOptionOrderBy.enum'
+import { RateOptionOrderBy } from '../enum/RateOptionOrderBy.enum'
 
-export class TariffOptionOrderByDTO implements OrderByRequest {
+export class RateOptionOrderByDTO implements OrderByRequest {
     @ApiProperty({
-        enum: TariffOptionOrderBy,
-        enumName: 'ReservationOptionOrderBy',
+        enum: RateOptionOrderBy,
+        enumName: 'RateOptionOrderBy',
     })
     @IsDefined()
-    @IsEnum(TariffOptionOrderBy)
-    orderBy: TariffOptionOrderBy
+    @IsEnum(RateOptionOrderBy)
+    orderBy: RateOptionOrderBy
 
     @ApiProperty({ enum: OrderDirection, enumName: 'OrderDirection' })
     @IsDefined()

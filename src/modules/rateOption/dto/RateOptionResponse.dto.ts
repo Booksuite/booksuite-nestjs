@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { BillingType } from '@prisma/client'
 
-export class TariffOptionResponseDTO {
+export class RateOptionResponseDTO {
     @ApiProperty({ example: 'e95517fb-b3bb-492f-b605-d289704cde0e' })
     id: string
 

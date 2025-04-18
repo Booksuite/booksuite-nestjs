@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { HousingUnitResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitResponse.dto'
+import { RateOptionResponseDTO } from '@/modules/rateOption/dto/RateOptionResponse.dto'
 import { UserResponseDTO } from '@/modules/user/dto/UserCreateResponse.dto'
-import { TariffOptionReservationResponseDTO } from '../../tariffOption/dto/TariffOptionReservationResponse.dto'
 
 import { ReservationAgeGroupResponseDTO } from './ReservationAgeGroupResponse.dto'
 import { ReservationResponseDTO } from './ReservationResponse.dto'
@@ -24,6 +24,6 @@ export class ReservationResponseFullDTO extends ReservationResponseDTO {
     @ApiProperty({ type: [ReservationAgeGroupResponseDTO] })
     ageGroups: ReservationAgeGroupResponseDTO[]
 
-    @ApiProperty({ type: [TariffOptionReservationResponseDTO] })
-    tariffOption: TariffOptionReservationResponseDTO[]
+    @ApiProperty({ type: RateOptionResponseDTO, nullable: true })
+    rateOption: RateOptionResponseDTO | null
 }

@@ -27,7 +27,7 @@ model HousingUnitType {
     facilities   HousingUnitTypeFacility[]
     services     ServiceHousingUnitType[]
     seasonRules  SeasonRuleHousingUnitType[]
-    tariffOption TariffOptionHousingUnitTypes[]
+    rateOption   RateOptionHousingUnitTypes[]
     packages     SpecialDateHousingUnitType[]
     offers       OfferHousingUnitType[]
 

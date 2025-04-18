@@ -25,13 +25,12 @@ model Reservation {
 
     services     ReservationService[]
     ageGroups    ReservationAgeGroup[]
-    tariffOption TariffOptionReservation[]
+    rateOptionId String?
+    rateOption   RateOption? @relation(fields: [rateOptionId], references: [id], onDelete: SetNull)
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
     deletedAt DateTime?
-
-    userId String?
 
     @@map("reservations")
 }

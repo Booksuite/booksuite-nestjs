@@ -9,20 +9,20 @@ import {
 } from '@/common/utils/pagination'
 import { PrismaService } from '@/modules/prisma/prisma.service'
 
-import { TariffOptionDTO } from './dto/TariffOption.dto'
-import { TariffOptionOrderByDTO } from './dto/TariffOptionOrderBy.dto'
-import { TariffOptionPaginatedResponseDTO } from './dto/TariffOptionPaginatedResponse.dto'
-import { TariffOptionResponseDTO } from './dto/TariffOptionResponse.dto'
-import { TariffOptionResponseFullDTO } from './dto/TariffOptionResponseFull.dto'
-import { TariffOptionSearchFilterDTO } from './dto/TariffOptionSearchFilter.dto'
-import { TariffOptionUpdateDTO } from './dto/TariffOptionUpdate.dto'
+import { RateOptionDTO } from './dto/RateOption.dto'
+import { RateOptionOrderByDTO } from './dto/RateOptionOrderBy.dto'
+import { RateOptionPaginatedResponseDTO } from './dto/RateOptionPaginatedResponse.dto'
+import { RateOptionResponseDTO } from './dto/RateOptionResponse.dto'
+import { RateOptionResponseFullDTO } from './dto/RateOptionResponseFull.dto'
+import { RateOptionSearchFilterDTO } from './dto/RateOptionSearchFilter.dto'
+import { RateOptionUpdateDTO } from './dto/RateOptionUpdate.dto'
 
 @Injectable()
-export class TariffOptionService {
+export class RateOptionService {
     constructor(private prismaService: PrismaService) {}
 
-    async getById(id: string): Promise<TariffOptionResponseFullDTO | null> {
-        return await this.prismaService.tariffOption.findUnique({
+    async getById(id: string): Promise<RateOptionResponseFullDTO | null> {
+        return await this.prismaService.rateOption.findUnique({
             where: { id },
             include: {
                 availableHousingUnitTypes: {
@@ -37,10 +37,10 @@ export class TariffOptionService {
 
     async create(
         companyId: string,
-        rawData: TariffOptionDTO,
-    ): Promise<TariffOptionResponseDTO> {
-        const normalizedData =
-            Prisma.validator<Prisma.TariffOptionCreateInput>()({
+        rawData: RateOptionDTO,
+    ): Promise<RateOptionResponseDTO> {
+        const normalizedData = Prisma.validator<Prisma.RateOptionCreateInput>()(
+            {
                 ...rawData,
                 company: { connect: { id: companyId } },
                 availableHousingUnitTypes: {
@@ -49,24 +49,25 @@ export class TariffOptionService {
                 ageGroupPrices: {
                     createMany: { data: rawData.ageGroupPrices },
                 },
-            })
+            },
+        )
 
-        return await this.prismaService.tariffOption.create({
+        return await this.prismaService.rateOption.create({
             data: normalizedData,
         })
     }
 
     async update(
         id: string,
-        rawData: TariffOptionUpdateDTO,
-    ): Promise<TariffOptionResponseFullDTO> {
-        const normalizedData =
-            Prisma.validator<Prisma.TariffOptionUpdateInput>()({
+        rawData: RateOptionUpdateDTO,
+    ): Promise<RateOptionResponseFullDTO> {
+        const normalizedData = Prisma.validator<Prisma.RateOptionUpdateInput>()(
+            {
                 ...rawData,
                 availableHousingUnitTypes:
                     rawData.availableHousingUnitTypes && {
                         deleteMany: {
-                            tariffOptionId: id,
+                            id: id,
                             housingUnitTypeId: {
                                 notIn: rawData.availableHousingUnitTypes.map(
                                     (housingUnitType) =>
@@ -77,8 +78,8 @@ export class TariffOptionService {
                         upsert: rawData.availableHousingUnitTypes.map(
                             (housingUnitType) => ({
                                 where: {
-                                    tariff_option_housingunittype_unique: {
-                                        tariffOptionId: id,
+                                    rate_option_housingunittype_unique: {
+                                        rateOptionId: id,
                                         housingUnitTypeId:
                                             housingUnitType.housingUnitTypeId,
                                     },
@@ -103,8 +104,8 @@ export class TariffOptionService {
                     },
                     upsert: rawData.ageGroupPrices.map((a) => ({
                         where: {
-                            tariff_option_age_groups: {
-                                tariffOptionId: id,
+                            rate_option_age_groups: {
+                                rateOptionId: id,
                                 ageGroupId: a.ageGroupId,
                             },
                         },
@@ -112,9 +113,10 @@ export class TariffOptionService {
                         create: pick(a, ['price', 'ageGroupId']),
                     })),
                 },
-            })
+            },
+        )
 
-        return await this.prismaService.tariffOption.update({
+        return await this.prismaService.rateOption.update({
             where: { id },
             data: normalizedData,
             include: {
@@ -131,14 +133,14 @@ export class TariffOptionService {
     async search(
         companyId: string,
         pagination: PaginationQuery,
-        order?: TariffOptionOrderByDTO,
-        filter?: TariffOptionSearchFilterDTO,
+        order?: RateOptionOrderByDTO,
+        filter?: RateOptionSearchFilterDTO,
         query?: string,
-    ): Promise<TariffOptionPaginatedResponseDTO> {
+    ): Promise<RateOptionPaginatedResponseDTO> {
         const paginationParams = getPaginatedParams(pagination)
 
         const [reservationOptions, totalReservationOptions] =
-            await this.prismaService.tariffOption.findManyAndCount({
+            await this.prismaService.rateOption.findManyAndCount({
                 where: {
                     ...this.buildSearchParams(query, filter),
                     companyId,
@@ -166,9 +168,9 @@ export class TariffOptionService {
 
     private buildSearchParams(
         query?: string,
-        filters?: TariffOptionSearchFilterDTO,
-    ): Prisma.TariffOptionWhereInput {
-        const data: Prisma.TariffOptionWhereInput = {}
+        filters?: RateOptionSearchFilterDTO,
+    ): Prisma.RateOptionWhereInput {
+        const data: Prisma.RateOptionWhereInput = {}
 
         if (query) {
             data.name = { contains: query, mode: 'insensitive' }
