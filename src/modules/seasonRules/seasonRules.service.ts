@@ -75,7 +75,7 @@ export class SeasonRulesService {
                                 },
                             },
                             update: pick(housingUnitType, [
-                                'baseWeekPrice',
+                                'baseWeekendPrice',
                                 'finalWeekendPrice',
                                 'baseWeekPrice',
                                 'finalWeekPrice',
