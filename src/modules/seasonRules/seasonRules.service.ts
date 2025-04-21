@@ -55,17 +55,17 @@ export class SeasonRulesService {
         const normalizedData =
             Prisma.validator<Prisma.SeasonRulesUpdateInput>()({
                 ...rawData,
-                housingUnitTypePrices: rawData.housingUnitTypesPrices && {
+                housingUnitTypePrices: rawData.housingUnitTypePrices && {
                     deleteMany: {
                         seasonRuleId: id,
                         housingUnitTypeId: {
                             notIn:
-                                rawData.housingUnitTypesPrices.map(
+                                rawData.housingUnitTypePrices.map(
                                     (h) => h.housingUnitTypeId,
                                 ) || [],
                         },
                     },
-                    upsert: rawData.housingUnitTypesPrices.map(
+                    upsert: rawData.housingUnitTypePrices.map(
                         (housingUnitType) => ({
                             where: {
                                 season_rule_housing_unit_type_unique: {
