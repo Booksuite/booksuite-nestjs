@@ -20,6 +20,7 @@ import {
 
 import { CreateOfferDto } from './dto/create-offer.dto'
 import { OfferResponseDTO } from './dto/offer-response.dto'
+import { OfferResponseFullDTO } from './dto/offer-response-full.dto'
 import { OfferResponsePaginatedDTO } from './dto/OfferResponsePaginated.dto'
 import { OfferSearchBodyDTO } from './dto/OfferSearchBody.dto'
 import { UpdateOfferDto } from './dto/update-offer.dto'
@@ -43,7 +44,7 @@ export class OfferController {
     @ApiOkResponse({
         schema: {
             oneOf: [
-                { $ref: getSchemaPath(OfferResponseDTO) },
+                { $ref: getSchemaPath(OfferResponseFullDTO) },
                 { type: 'null' },
             ],
         },
