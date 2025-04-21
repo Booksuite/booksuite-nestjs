@@ -48,6 +48,7 @@ export class OfferController {
             ],
         },
     })
+    @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'getOfferById' })
     @Get(':id')
     getById(@Param('id') id: string) {
