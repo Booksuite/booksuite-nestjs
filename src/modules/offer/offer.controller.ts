@@ -26,7 +26,7 @@ import { OfferSearchBodyDTO } from './dto/OfferSearchBody.dto'
 import { UpdateOfferDto } from './dto/update-offer.dto'
 import { OfferService } from './offer.service'
 
-@ApiExtraModels(OfferResponseDTO)
+@ApiExtraModels(OfferResponseFullDTO)
 @Controller('company/:companyId/offers')
 export class OfferController {
     constructor(private readonly offerService: OfferService) {}
