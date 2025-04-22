@@ -230,7 +230,7 @@ export class CompanyUpdateDTO {
         nullable: true,
     })
     @IsOptional()
-    privacyPolicyDescriptio?: string | null
+    privacyPolicyDescription?: string | null
 
     @ApiProperty({
         example: 'Privacy policy simple model',
