@@ -24,6 +24,7 @@ export class CalendarBodyDTO {
     @ApiProperty({
         type: AvailAndPricingSearchDTO,
         description: 'Search payload for the calendar',
+        required: false,
     })
     @IsOptional()
     @ValidateNested()
