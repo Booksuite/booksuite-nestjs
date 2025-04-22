@@ -64,7 +64,7 @@ export type AvailAndPricingHousingUnitType = Prisma.HousingUnitTypeGetPayload<{
 
 export type AvailAndPricingReservation = Omit<
     Prisma.ReservationGetPayload<{
-        include: { housingUnit: true }
+        include: { housingUnit: true; guestUser: true }
     }>,
     'startDate' | 'endDate'
 > & {
