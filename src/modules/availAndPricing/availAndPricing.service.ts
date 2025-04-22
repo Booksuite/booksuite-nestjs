@@ -258,6 +258,7 @@ export class AvailAndPricingService {
             },
             include: {
                 housingUnit: true,
+                guestUser: true,
             },
         })
 

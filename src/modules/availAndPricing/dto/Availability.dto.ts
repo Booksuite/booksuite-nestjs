@@ -21,21 +21,24 @@ export class AvailabilityDTO implements CalendarAvailability {
         enumName: 'UnavailableSource',
         description: 'Unavailability source',
         example: UnavailableSource.SEASON_RULES,
+        nullable: true,
     })
-    unavailabilitySource: UnavailableSource
+    unavailabilitySource: UnavailableSource | null
 
     @ApiProperty({
         enum: UnavailabilityReason,
         enumName: 'UnavailabilityReason',
         description: 'Unavailability reason',
         example: UnavailabilityReason.ALL_ROOMS_OCCUPIED,
+        nullable: true,
     })
-    unavailableReason: UnavailabilityReason
+    unavailableReason: UnavailabilityReason | null
 
     @ApiProperty({
         description: 'Unavailability reason message',
         example:
             UNAVAILABLE_REASON_MESSAGE[UnavailabilityReason.ALL_ROOMS_OCCUPIED],
+        nullable: true,
     })
-    unavailableReasonMessage: string
+    unavailableReasonMessage: string | null
 }

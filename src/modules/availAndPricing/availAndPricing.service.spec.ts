@@ -87,6 +87,7 @@ describe('PricingService', () => {
             ]
 
             const hostingRulesMock: AvailAndPricingHostingRules = {
+                id: 'rules-1',
                 checkIn: 14 * 60, // 2:00 PM
                 checkOut: 11 * 60, // 11:00 AM
                 minDaily: 2,

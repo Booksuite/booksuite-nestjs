@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma, ReservationSaleChannel } from '@prisma/client'
+import dayjs from 'dayjs'
 import { pick } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
@@ -46,9 +47,21 @@ export class ReservationService {
             },
         })
 
-        return this.prismaService.reservation.create({
-            data: normalizedData,
-        })
+        const reservation = await this.prismaService.reservation
+            .create({
+                data: normalizedData,
+            })
+            .then((reservation) => {
+                return {
+                    ...reservation,
+                    startDate: dayjs(reservation.startDate).format(
+                        'YYYY-MM-DD',
+                    ),
+                    endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+                }
+            })
+
+        return reservation
     }
 
     private async buildReservationCode(
@@ -83,7 +96,15 @@ export class ReservationService {
                 ...paginationParams,
             })
 
-        return buildPaginatedResponse(reservations, total, pagination)
+        const formattedReservations = reservations.map((reservation) => {
+            return {
+                ...reservation,
+                startDate: dayjs(reservation.startDate).format('YYYY-MM-DD'),
+                endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+            }
+        })
+
+        return buildPaginatedResponse(formattedReservations, total, pagination)
     }
 
     private buildSearchParams(
@@ -164,8 +185,8 @@ export class ReservationService {
         return data
     }
 
-    getById(id: string): Promise<ReservationResponseFullDTO | null> {
-        return this.prismaService.reservation.findUnique({
+    async getById(id: string): Promise<ReservationResponseFullDTO | null> {
+        const reservation = await this.prismaService.reservation.findUnique({
             where: { id },
             include: {
                 housingUnit: true,
@@ -176,15 +197,28 @@ export class ReservationService {
                 rateOption: true,
             },
         })
+        if (!reservation) return null
+
+        return {
+            ...reservation,
+            startDate: dayjs(reservation.startDate).format('YYYY-MM-DD'),
+            endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+        }
     }
 
-    update(
+    async update(
         id: string,
         rawData: ReservationUpdateDTO,
     ): Promise<ReservationResponseDTO> {
         const normalizedData =
             Prisma.validator<Prisma.ReservationUpdateInput>()({
                 ...rawData,
+                startDate: rawData.startDate
+                    ? dayjs(rawData.startDate).toDate()
+                    : undefined,
+                endDate: rawData.endDate
+                    ? dayjs(rawData.endDate).toDate()
+                    : undefined,
                 services: rawData.services && {
                     deleteMany: {
                         reservationId: id,
@@ -235,10 +269,16 @@ export class ReservationService {
                 },
             })
 
-        return this.prismaService.reservation.update({
+        const reservation = await this.prismaService.reservation.update({
             where: { id },
             data: normalizedData,
         })
+
+        return {
+            ...reservation,
+            startDate: dayjs(reservation.startDate).format('YYYY-MM-DD'),
+            endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+        }
     }
 
     delete(id: string) {

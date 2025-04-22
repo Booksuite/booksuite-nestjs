@@ -65,6 +65,7 @@ describe('PricingService Helper Methods', () => {
             }
 
             const hostingRules: AvailAndPricingHostingRules = {
+                id: 'rules-1',
                 checkIn: 14 * 60,
                 checkOut: 11 * 60,
                 minDaily: 2,
@@ -120,6 +121,7 @@ describe('PricingService Helper Methods', () => {
                     housingUnits: [],
                 },
                 hostingRules: {
+                    id: 'rules-1',
                     checkIn: 14 * 60,
                     checkOut: 11 * 60,
                     minDaily: 2,
@@ -176,6 +178,7 @@ describe('PricingService Helper Methods', () => {
                     housingUnits: [],
                 },
                 hostingRules: {
+                    id: 'rules-1',
                     checkIn: 14 * 60,
                     checkOut: 11 * 60,
                     minDaily: 2,

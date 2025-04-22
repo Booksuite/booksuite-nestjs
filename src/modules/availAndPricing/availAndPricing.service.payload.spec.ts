@@ -291,6 +291,7 @@ describe('PricingService Payload Methods', () => {
                 },
                 housingUnitTypes: [housingUnitType],
                 hostingRules: {
+                    id: 'rules-1',
                     checkIn: 14 * 60,
                     checkOut: 11 * 60,
                     minDaily: 2,

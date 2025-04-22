@@ -1,7 +1,7 @@
 import { ApiExtraModels, ApiProperty, getSchemaPath } from '@nestjs/swagger'
 
 import { HousingUnitResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitResponse.dto'
-import { Calendar, HousingUnitTypeAvailability } from '../types'
+import { HousingUnitTypeAvailability } from '../types'
 
 import { CalendarDayResponseDTO } from './calendar.dto'
 
@@ -40,7 +40,7 @@ export class AvailabilityAndPricingResponseDTO
             $ref: getSchemaPath(CalendarDayResponseDTO),
         },
     })
-    calendar: Calendar
+    calendar: Record<string, CalendarDayResponseDTO>
 
     @ApiProperty({
         description: 'List of housing units',

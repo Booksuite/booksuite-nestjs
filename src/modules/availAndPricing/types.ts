@@ -9,6 +9,7 @@ import {
 
 export type AvailAndPricingHostingRules = Prisma.HostingRulesGetPayload<{
     select: {
+        id: true
         checkIn: true
         checkOut: true
         minDaily: true

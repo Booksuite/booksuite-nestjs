@@ -97,17 +97,19 @@ export class AvailAndPricingOffersDTO implements AvailAndPricingOffers {
 
     @ApiProperty({
         description: 'Valid start date',
+        nullable: true,
         type: Date,
         format: 'date-time',
     })
-    validStartDate: Date
+    validStartDate: Date | null
 
     @ApiProperty({
         description: 'Valid end date',
+        nullable: true,
         type: Date,
         format: 'date-time',
     })
-    validEndDate: Date
+    validEndDate: Date | null
 
     @ApiProperty({
         description: 'Price adjustment type',
@@ -133,18 +135,6 @@ export class AvailAndPricingOffersDTO implements AvailAndPricingOffers {
         type: Boolean,
     })
     validForPackages: boolean
-
-    @ApiProperty({
-        description: 'Housing unit type prices',
-        type: 'array',
-        items: {
-            type: 'object',
-            properties: {
-                housingUnitTypeId: { type: 'string' },
-            },
-        },
-    })
-    housingUnitTypePrices: { housingUnitTypeId: string }[]
 
     @ApiProperty({
         description: 'Offer description',

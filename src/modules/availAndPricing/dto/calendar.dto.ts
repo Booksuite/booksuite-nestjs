@@ -5,7 +5,7 @@ import { CalendarDay } from '../types'
 
 import { AvailabilityDTO } from './Availability.dto'
 import { AvailAndPricingOffersDTO } from './AvailAndPricingOffers.dto'
-import { AvailAndPricingReservationDTO } from './AvailAndPricingReservation..dto'
+import { AvailAndPricingReservationDTO } from './AvailAndPricingReservation.dto'
 import { AvailAndPricingSeasonRulesDTO } from './AvailAndPricingSeasonRules.dto'
 import { AvailAndPricingSpecialDatesDTO } from './AvailAndPricingSpecialDates.dto'
 
