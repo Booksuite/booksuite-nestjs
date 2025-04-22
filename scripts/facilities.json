@@ -1,0 +1,2648 @@
+[
+  {
+    "name": "Andares superiores acessíveis por elevador",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Acessbilidade para cadeirantes",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Acessbilidade parcial para cadeirantes",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Acessibilidade",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Ar-Condicionado",
+    "icon": "air-vent",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ar-condicionado (quente e frio)",
+    "icon": "air-vent",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Purificadores de ar",
+    "icon": "air-vent",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Serviço de Streaming",
+    "icon": "airplay",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Despertador",
+    "icon": "alarm-clock-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Serviço de despertar",
+    "icon": "alarm-clock-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Casa de Bonecas",
+    "icon": "baby",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Espaço Kids",
+    "icon": "baby",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Parquinho infantil",
+    "icon": "baby",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Berço",
+    "icon": "baby",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cadeirinha para refeições (crianças)",
+    "icon": "baby",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cama Elástica para Crianças",
+    "icon": "baby",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Depósito de bagagens",
+    "icon": "baggage-claim",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Lavanderia",
+    "icon": "baggage-claim",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Lavanderia (mediante consulta)",
+    "icon": "baggage-claim",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Banheira ao ar livre",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Banho de Espuma na banheira",
+    "icon": "bath",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Hidromassagem Casal",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Hidromassagem Solteiro",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Ofurô compartilhado",
+    "icon": "bath",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Banheira",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Banheira de hidromassagem",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Banheira de imersão",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Hidromassagem",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Hidromassagem Vista Panorâmica",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Jacuzzi",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ofurô",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ofurô externo",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Jacuzzi Aquecida",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Jacuzzi Casal",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Carregador p/ Carro Elétrico",
+    "icon": "battery-charging",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Roupa de cama",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Roupa de cama e banho",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Roupa de Cama Especial",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Roupas de Cama e Banho (Trussardi)",
+    "icon": "bed",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Serviço de camareira",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Cama box casal",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama box king-size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama Box Queen",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama king-size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama Queen Size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama super king-size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama Box Solteiro",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama de Solteiro",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Cama dobrável",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Camas de Solteiro",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES"
+  },
+  {
+    "name": "Churrasqueira coletiva",
+    "icon": "beef",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Churrasqueira",
+    "icon": "beef",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Churrasqueira Elétrica",
+    "icon": "beef",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Bar molhado",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Bebidas - custo extra",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Máquina de venda automática (bebidas)",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Choppeira",
+    "icon": "beer",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Bar",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Bicicletário",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Aluguel de bicicletas",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Ciclismo",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Empréstimo Bicicletas",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Vista Incrível",
+    "icon": "binoculars",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Favorável à observação de aves",
+    "icon": "bird",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Brinquedos",
+    "icon": "blocks",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Brinquedoteca",
+    "icon": "blocks",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Caiaque",
+    "icon": "blocks",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Caiaque e Stand UP disponível para aluguel",
+    "icon": "blocks",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Sala de Leitura",
+    "icon": "book-open-text",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Sala de leitura/TV",
+    "icon": "book-open-text",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Vista para a Cidade",
+    "icon": "building",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Estacionamento",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Estacionamento não coberto",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Estacionamento coberto",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Estacionamento externo",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Estacionamento gratuito",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Aluguel de carros",
+    "icon": "car-front",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Estacionamento mediante reserva",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Estacionamento com custo adicional",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Estacionamento com manobrista",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Estacionamento em frente ao hotel",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Estacionamento gratuito (conforme disponibilidade)",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Serviço de Transfer",
+    "icon": "car-taxi-front",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Transfer (aeroporto)",
+    "icon": "car-taxi-front",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Transfer aeroporto (gratuito)",
+    "icon": "car-taxi-front",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Câmeras de Vigilância 24h",
+    "icon": "cctv",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Pequena Igreja",
+    "icon": "church",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Quartos para não fumantes",
+    "icon": "cigarette-off",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Balanço",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Cemitério Cenográfico",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Deck com Espreguiçadeiras",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Paintball",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Redário",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Rooftop",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Trapiche",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Viveiros",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Aluguel de moto",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Aula de Yoga",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Balonismo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Boliche",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Campo de Futebol",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Canionismo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Escalada",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Esqui",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Frescobol",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Galinheiro",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Passeio a Cavalo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Passeio de 4x4",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Passeio de Canoa",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Passeio de jangada",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Patinete",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Pebolim",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Pedalinho",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Piquenique no vinhedo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Quadra de Beach tennis",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Quadra de Tênis",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Quadra de tênis de saibro",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Quadra Poliesportiva",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Quadriciclo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Rafting",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Ski bunda kids",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Squash",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Stand-Up",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Tênis de Mesa/Pingue-pongue",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Tirolesa",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Windsurf",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Airfryer",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Área de estar",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Babyliss",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Balanço suspenso",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Bidê",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Chaleira elétrica",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Chapinha de cabelo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cooktop",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Área gourmet",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Espelhos",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ferro de passar roupa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Fogão",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Liquidificador",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Mesa externa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Mezanino",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Pé direiro duplo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Prancha de cabelo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Rede",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Rede suspensa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Sacada privativa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Sala de jantar",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Secador de Cabelo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Stand-Up Paddle",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Terraço",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Toda a unidade localizada no térreo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Varanda",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cobertor elétrico",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Comodidades para hóspedes com mobilidade reduzida",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Cooktop por indução",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Elevador",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Entrada privativa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Exemplares de Animais como Pônei e Gado",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Lobby",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Mini Fazenda",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Mini Tirolesa",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Mirante",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Papel higiênico",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Pergolado",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Produtos de higiene pessoal",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Produtos de limpeza",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Quartos para famílias",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Roda d'água",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Suíte nupcial",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Toalhas",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Aluguel de Máscara de Mergulho e Snorkel",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Balcão de turismo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Cadeiras de praia e guarda-sol grátis",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Cadeiras de praia e guarda-sol para aluguel",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Cave de maturação de queijos",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Cursos de mergulho (custo adicional)",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Massagem Relaxante (Serviço Adicional)",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Operadora de mergulho (custo adicional)",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Organização de Passeios",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Portaria 24 horas",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Serviço de massagem",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Serviço de Praia em frente à Pousada",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Serviços de massagem",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Serviço de câmbio",
+    "icon": "circle-dollar-sign",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Espaço de Convivência",
+    "icon": "club",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Café da manhã",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Café da Manhã Incluso na Diária",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Café da manhã no quarto",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Café da Manhã no Quarto Incluso na Diária",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Plantação de café",
+    "icon": "coffee",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Cafeteira",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Máquina de café",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Máquina Nespresso",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cafeteira Elétrica",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Cesta de Café",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Almoços para viagem",
+    "icon": "cooking-pot",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Piquenique",
+    "icon": "croissant",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Jogo de Dardos",
+    "icon": "crosshair",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Discoteca",
+    "icon": "disc-3",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Aceita os animais de estimação",
+    "icon": "dog",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Aceita os animais de pequeno porte",
+    "icon": "dog",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Aceita pets",
+    "icon": "dog",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Cachoeira",
+    "icon": "droplets",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Academia",
+    "icon": "dumbbell",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Snooker Oficial",
+    "icon": "eclipse",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Bilhar",
+    "icon": "eclipse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Ventilador",
+    "icon": "fan",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ventilador Teto",
+    "icon": "fan",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Pescaria",
+    "icon": "fish",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Área de Fogueira",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Lareira ao ar livre",
+    "icon": "flame-kindling",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Fogueira central",
+    "icon": "flame-kindling",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Fogão à lenha",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Fogo de chão externo",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Lareira",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Lareira externa",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Fogo de chão",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Lareira em área interna",
+    "icon": "flame-kindling",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Trilhas a pé",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Trilhas ecológicas",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Pantufas",
+    "icon": "footprints",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Chinelos",
+    "icon": "footprints",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Trilha com Ponte",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Trilha de lendas pela mata",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Videogame",
+    "icon": "gamepad-2",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Spa",
+    "icon": "gem",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Spa / Centro de bem-estar",
+    "icon": "gem",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Água Mineral Grátis",
+    "icon": "glass-water",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Abastecimento com água de mina",
+    "icon": "glass-water",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Wine Garden",
+    "icon": "grape",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Vinhedos",
+    "icon": "grape",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Área gourmet com churrasqueira",
+    "icon": "ham",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Serviço de Quarto",
+    "icon": "hand-heart",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Serviço de Quarto - à parte",
+    "icon": "hand-heart",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Concierge",
+    "icon": "hand-helping",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Recepção",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Recepção 24 horas",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Recepção Virtual",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Serviço de limpeza diário",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Restaurante",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Restaurante (à la carte)",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Restaurante (buffet)",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Restaurante colonial",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Serviço de Jantar",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Suíte Lua de Mel",
+    "icon": "heart",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Aquecedor portátil",
+    "icon": "heater",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Calefação",
+    "icon": "heater",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Climatizador",
+    "icon": "heater",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Vista para a entrada",
+    "icon": "hotel",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Luminária na cabeceira",
+    "icon": "lamp",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Campo de Golf",
+    "icon": "land-plot",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Minigolfe",
+    "icon": "land-plot",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Alemão",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Espanhol",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Francês",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Grego",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Hebraico",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Inglês",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Italiano",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Japonês",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Português",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Russo",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Mesa de trabalho",
+    "icon": "laptop",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Computador",
+    "icon": "laptop-minimal-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Coworking",
+    "icon": "laptop-minimal-check",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Gazebo para massagens",
+    "icon": "leaf",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Campo de Futebol Society",
+    "icon": "loader-pinwheel",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "\"Serviço de Bar",
+    "icon": "FALSE",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Centro de Esportes",
+    "icon": "medal",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Forno",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Forno elétrico",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Forno a gás",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Micro-ondas",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Vista para a montanha",
+    "icon": "mountain",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Recreação",
+    "icon": "party-popper",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Ambiente Privativo",
+    "icon": "person-standing",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Telefone",
+    "icon": "phone",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Mina em atividade",
+    "icon": "pickaxe",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Garrafa térmica",
+    "icon": "pill-bottle",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Playground",
+    "icon": "play",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Tomada perto da cama",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Voltagem 110V",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Voltagem 110V e 220V",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Voltagem 220V",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Cinema",
+    "icon": "popcorn",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Sala de reuniões/eventos",
+    "icon": "presentation",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Sala de cinema",
+    "icon": "projector",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Celeiro com animais",
+    "icon": "rabbit",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Campo de bocha",
+    "icon": "rectangle-ellipsis",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Cozinha",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cozinha compacta",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cozinha Compartilhada",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cozinha completa",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Frigobar",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Geladeira",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Geladeira/cervejeira",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cervejeira",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Passeio de veleiro (adicional)",
+    "icon": "sailboat",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Lanchonete",
+    "icon": "sandwich",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Máquina de venda automática (lanches)",
+    "icon": "sandwich",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Torradeira",
+    "icon": "sandwich",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Cofre",
+    "icon": "shield-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Sacada com tela de proteção",
+    "icon": "shield-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Álcool em Gel",
+    "icon": "shield-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Caiaque para aluguel",
+    "icon": "ship",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Aluguel de embarcações",
+    "icon": "ship",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Passeios de barco (adicional)",
+    "icon": "ship",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Arara para roupas",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Closet",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Guarda-roupa ou armário",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Varal de secar roupas",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Roupão",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Loja de Conveniência",
+    "icon": "shopping-basket",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Loja de Conveniência 24 horas",
+    "icon": "shopping-basket",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Entrega de Compras",
+    "icon": "shopping-cart",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Ducha externa",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Banheiro ducha dupla",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Chuveiro",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Chuveiro Elétrico",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ducha",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ducha à gás",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ducha dupla à gás",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ducha higienica",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Amenidades Banho",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Chuveiro Aquecido a Gás",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Jardins Europeus",
+    "icon": "shrub",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Jardim",
+    "icon": "shrub",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Interfone",
+    "icon": "smartphone",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Atendimento via interfone 24h",
+    "icon": "smartphone",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Máquina de gelo",
+    "icon": "snowflake",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Sofá",
+    "icon": "sofa",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Sofá-cama",
+    "icon": "sofa",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Contato com a natureza",
+    "icon": "sprout",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Horta orgânica",
+    "icon": "sprout",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Manobrista",
+    "icon": "square-parking",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Lojas",
+    "icon": "store",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  },
+  {
+    "name": "Solário",
+    "icon": "sun",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Aquecimento solar",
+    "icon": "sunset",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Geração de energia solar",
+    "icon": "sunset",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Pole Dance",
+    "icon": "tally-1",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Banho com águas termais",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Sauna",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Sauna a vapor",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Sauna Masculina",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Sauna seca",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Sauna",
+    "icon": "thermometer",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Lençol térmico",
+    "icon": "thermometer",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Aquecimento",
+    "icon": "thermometer-sun",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Aquecimento à gás",
+    "icon": "thermometer-sun",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Banheiro Externo",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Banheiro no quarto",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Banheiro privativo",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Toalete",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Vaso sanitário",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Aquecedor de toalhas",
+    "icon": "tower-control",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Arvorismo",
+    "icon": "tree-pine",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Casa na árvore",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Jardim Privativo",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Sacada com vista para a natureza",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Reserva Natural",
+    "icon": "trees",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista externa",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista Panorâmica",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista para a lagoa",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista para a Mata Atlântica",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista para jardins",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Sala de Jogos",
+    "icon": "trophy",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Sala de TV",
+    "icon": "tv",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Smart TV",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Televisão",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "TV",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "TV a Cabo",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "TV na sala",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "TV no quarto",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Canais a cabo",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Canais pay-per-view",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Canais via satélite",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Sala de TV Com Sofá-Cama",
+    "icon": "tv",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Protetores de tomadas",
+    "icon": "unplug",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Ambiente Compartilhado",
+    "icon": "users",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "All inclusive",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Jantar (pago a parte)",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Jantar (incluso)",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Meia pensão",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Pensão Completa",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Lava-louças",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Mesa de jantar",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Utensílios de cozinha",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Área de refeições externa",
+    "icon": "utensils-crossed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Área para refeições",
+    "icon": "utensils-crossed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Isolamento acústico",
+    "icon": "volume-off",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Garagem",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Garagem coberta",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Garagem descoberta",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Garagem privativa",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Máquina de lavar roupa",
+    "icon": "washing-machine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Secadora de roupas",
+    "icon": "washing-machine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Serviço de lavanderia",
+    "icon": "washing-machine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Beira-mar",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Deck a beira da lagoa",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Deck a beira mar",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Lago",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Lago ornamental",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Praia privativa",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Rio",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Acesso privativo à lagoa",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Açude",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista para o Mar",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista para o rio",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Área da piscina com lareira e aquecedores",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Toboágua",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS"
+  },
+  {
+    "name": "Bolha Aquática",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Mergulho",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Parque Aquático",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "ACTIVITIES"
+  },
+  {
+    "name": "Deck com piscina",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina ao ar livre",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina aquecida",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina climatizada",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina coberta",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina com borda infinita",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina com hidromassagem",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina de ondas",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina natural",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina privativa",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscina subterrânea",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Piscinas",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE"
+  },
+  {
+    "name": "Toalhas de praia e piscina",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Vista para a piscina",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Internet",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Internet sem fio (Wi-Fi)",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Wi-Fi gratuito",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Wifi",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Internet gratuita por Wi-Fi",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "INTERNET"
+  },
+  {
+    "name": "Internet Wi-Fi pago à parte",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "INTERNET"
+  },
+  {
+    "name": "Wi-Fi a rádio gratuito com sinal nas áreas comuns",
+    "icon": "wifi",
+    "type": "COMPANY",
+    "category": "INTERNET"
+  },
+  {
+    "name": "Wi-Fi gratuito nas áreas comuns",
+    "icon": "wifi",
+    "type": "COMPANY",
+    "category": "INTERNET"
+  },
+  {
+    "name": "Adega de Vinhos",
+    "icon": "wine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Degustação guiada de vinhos e queijos",
+    "icon": "wine",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES"
+  },
+  {
+    "name": "Sala de degustação de vinhos",
+    "icon": "wine",
+    "type": "COMPANY",
+    "category": "GENERAL"
+  },
+  {
+    "name": "Wine bar",
+    "icon": "wine",
+    "type": "COMPANY",
+    "category": "SERVICES"
+  }
+]

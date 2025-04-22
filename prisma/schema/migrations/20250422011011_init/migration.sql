@@ -349,6 +349,42 @@ CREATE TABLE "age_groups" (
 );
 
 -- CreateTable
+CREATE TABLE "rate_options" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL,
+    "billingType" "BillingType" NOT NULL,
+    "additionalAdultPrice" DOUBLE PRECISION NOT NULL,
+    "additionalChildrenPrice" DOUBLE PRECISION NOT NULL,
+    "availableWeekend" JSONB NOT NULL,
+    "includedItems" JSONB NOT NULL,
+    "companyId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "rate_options_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "rate_option_age_groups" (
+    "id" TEXT NOT NULL,
+    "ageGroupId" TEXT NOT NULL,
+    "rateOptionId" TEXT NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+
+    CONSTRAINT "rate_option_age_groups_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "rate_option_housing_unit_types" (
+    "id" TEXT NOT NULL,
+    "housingUnitTypeId" TEXT NOT NULL,
+    "rateOptionId" TEXT NOT NULL,
+
+    CONSTRAINT "rate_option_housing_unit_types_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "reservations" (
     "id" TEXT NOT NULL,
     "reservationCode" TEXT NOT NULL,
@@ -364,10 +400,10 @@ CREATE TABLE "reservations" (
     "guestUserId" TEXT,
     "companyId" TEXT NOT NULL,
     "housingUnitId" TEXT,
+    "rateOptionId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "deletedAt" TIMESTAMP(3),
-    "userId" TEXT,
 
     CONSTRAINT "reservations_pkey" PRIMARY KEY ("id")
 );
@@ -540,51 +576,6 @@ CREATE TABLE "special_date_medias" (
 );
 
 -- CreateTable
-CREATE TABLE "tariff_options" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "published" BOOLEAN NOT NULL,
-    "billingType" "BillingType" NOT NULL,
-    "additionalAdultPrice" DOUBLE PRECISION NOT NULL,
-    "additionalChildrenPrice" DOUBLE PRECISION NOT NULL,
-    "availableWeekend" JSONB NOT NULL,
-    "includedItems" JSONB NOT NULL,
-    "companyId" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "tariff_options_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "tariff_option_age_groups" (
-    "id" TEXT NOT NULL,
-    "ageGroupId" TEXT NOT NULL,
-    "tariffOptionId" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
-
-    CONSTRAINT "tariff_option_age_groups_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "tariff_option_housing_unit_types" (
-    "id" TEXT NOT NULL,
-    "housingUnitTypeId" TEXT NOT NULL,
-    "tariffOptionId" TEXT NOT NULL,
-
-    CONSTRAINT "tariff_option_housing_unit_types_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "reservation_tariff_option" (
-    "id" TEXT NOT NULL,
-    "tariffOptionId" TEXT NOT NULL,
-    "reservationId" TEXT NOT NULL,
-
-    CONSTRAINT "reservation_tariff_option_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -674,6 +665,12 @@ CREATE UNIQUE INDEX "cancellation_policies_companyId_key" ON "cancellation_polic
 CREATE UNIQUE INDEX "age_policies_companyId_key" ON "age_policies"("companyId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "rate_option_age_groups_ageGroupId_rateOptionId_key" ON "rate_option_age_groups"("ageGroupId", "rateOptionId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "rate_option_housing_unit_types_housingUnitTypeId_rateOption_key" ON "rate_option_housing_unit_types"("housingUnitTypeId", "rateOptionId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "reservation_services_reservationId_serviceId_key" ON "reservation_services"("reservationId", "serviceId");
 
 -- CreateIndex
@@ -699,15 +696,6 @@ CREATE UNIQUE INDEX "special_date_service_serviceId_specialDateId_key" ON "speci
 
 -- CreateIndex
 CREATE UNIQUE INDEX "special_date_medias_specialDateId_mediaId_key" ON "special_date_medias"("specialDateId", "mediaId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "tariff_option_age_groups_ageGroupId_tariffOptionId_key" ON "tariff_option_age_groups"("ageGroupId", "tariffOptionId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "tariff_option_housing_unit_types_housingUnitTypeId_tariffOp_key" ON "tariff_option_housing_unit_types"("housingUnitTypeId", "tariffOptionId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "reservation_tariff_option_reservationId_tariffOptionId_key" ON "reservation_tariff_option"("reservationId", "tariffOptionId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
@@ -791,6 +779,21 @@ ALTER TABLE "age_policies" ADD CONSTRAINT "age_policies_companyId_fkey" FOREIGN 
 ALTER TABLE "age_groups" ADD CONSTRAINT "age_groups_agePolicyId_fkey" FOREIGN KEY ("agePolicyId") REFERENCES "age_policies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "rate_options" ADD CONSTRAINT "rate_options_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "rate_option_age_groups" ADD CONSTRAINT "rate_option_age_groups_ageGroupId_fkey" FOREIGN KEY ("ageGroupId") REFERENCES "age_groups"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "rate_option_age_groups" ADD CONSTRAINT "rate_option_age_groups_rateOptionId_fkey" FOREIGN KEY ("rateOptionId") REFERENCES "rate_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "rate_option_housing_unit_types" ADD CONSTRAINT "rate_option_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "rate_option_housing_unit_types" ADD CONSTRAINT "rate_option_housing_unit_types_rateOptionId_fkey" FOREIGN KEY ("rateOptionId") REFERENCES "rate_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "reservations" ADD CONSTRAINT "reservations_sellerUserId_fkey" FOREIGN KEY ("sellerUserId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -801,6 +804,9 @@ ALTER TABLE "reservations" ADD CONSTRAINT "reservations_companyId_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "reservations" ADD CONSTRAINT "reservations_housingUnitId_fkey" FOREIGN KEY ("housingUnitId") REFERENCES "housing_units"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservations" ADD CONSTRAINT "reservations_rateOptionId_fkey" FOREIGN KEY ("rateOptionId") REFERENCES "rate_options"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "reservation_services" ADD CONSTRAINT "reservation_services_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -864,27 +870,6 @@ ALTER TABLE "special_date_medias" ADD CONSTRAINT "special_date_medias_specialDat
 
 -- AddForeignKey
 ALTER TABLE "special_date_medias" ADD CONSTRAINT "special_date_medias_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "medias"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "tariff_options" ADD CONSTRAINT "tariff_options_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "tariff_option_age_groups" ADD CONSTRAINT "tariff_option_age_groups_ageGroupId_fkey" FOREIGN KEY ("ageGroupId") REFERENCES "age_groups"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "tariff_option_age_groups" ADD CONSTRAINT "tariff_option_age_groups_tariffOptionId_fkey" FOREIGN KEY ("tariffOptionId") REFERENCES "tariff_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "tariff_option_housing_unit_types" ADD CONSTRAINT "tariff_option_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "tariff_option_housing_unit_types" ADD CONSTRAINT "tariff_option_housing_unit_types_tariffOptionId_fkey" FOREIGN KEY ("tariffOptionId") REFERENCES "tariff_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "reservation_tariff_option" ADD CONSTRAINT "reservation_tariff_option_tariffOptionId_fkey" FOREIGN KEY ("tariffOptionId") REFERENCES "tariff_options"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "reservation_tariff_option" ADD CONSTRAINT "reservation_tariff_option_reservationId_fkey" FOREIGN KEY ("reservationId") REFERENCES "reservations"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "users_companies" ADD CONSTRAINT "users_companies_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

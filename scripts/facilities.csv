@@ -1,0 +1,442 @@
+Tipo,Comodidade pt-br,Ícone destaque,iconName,Quarto,Hotel
+Estrutura,Andares superiores acessíveis por elevador,FALSE,accessibility,TRUE,FALSE
+Gerais,Acessbilidade para cadeirantes,FALSE,accessibility,TRUE,TRUE
+Gerais,Acessbilidade parcial para cadeirantes,FALSE,accessibility,TRUE,TRUE
+Gerais,Acessibilidade,TRUE,accessibility,TRUE,TRUE
+Estrutura,Ar-Condicionado,TRUE,air-vent,TRUE,TRUE
+Estrutura,Ar-condicionado (quente e frio),TRUE,air-vent,TRUE,FALSE
+Estrutura,Purificadores de ar,FALSE,air-vent,TRUE,FALSE
+Gerais,Serviço de Streaming,FALSE,airplay,TRUE,FALSE
+Estrutura,Despertador,FALSE,alarm-clock-check,TRUE,FALSE
+Gerais,Serviço de despertar,FALSE,alarm-clock-check,TRUE,FALSE
+Áreas de lazer,Casa de Bonecas,FALSE,baby,FALSE,TRUE
+Atividades,Espaço Kids,FALSE,baby,TRUE,TRUE
+Atividades,Parquinho infantil,TRUE,baby,FALSE,TRUE
+Estrutura,Berço,FALSE,baby,TRUE,FALSE
+Estrutura,Cadeirinha para refeições (crianças),FALSE,baby,TRUE,FALSE
+Gerais,Cama Elástica para Crianças,FALSE,baby,FALSE,TRUE
+Serviços,Depósito de bagagens,FALSE,baggage-claim,TRUE,TRUE
+Serviços,Lavanderia,FALSE,baggage-claim,FALSE,TRUE
+Serviços,Lavanderia (mediante consulta),FALSE,baggage-claim,FALSE,TRUE
+Áreas de lazer,Banheira ao ar livre,TRUE,bath,TRUE,TRUE
+Áreas de lazer,Banho de Espuma na banheira,FALSE,bath,FALSE,TRUE
+Áreas de lazer,Hidromassagem Casal,TRUE,bath,TRUE,TRUE
+Áreas de lazer,Hidromassagem Solteiro,TRUE,bath,TRUE,TRUE
+Áreas de lazer,Ofurô compartilhado,TRUE,bath,FALSE,TRUE
+Estrutura,Banheira,TRUE,bath,TRUE,FALSE
+Estrutura,Banheira de hidromassagem,TRUE,bath,TRUE,TRUE
+Estrutura,Banheira de imersão,TRUE,bath,TRUE,FALSE
+Estrutura,Hidromassagem,TRUE,bath,TRUE,TRUE
+Estrutura,Hidromassagem Vista Panorâmica,TRUE,bath,TRUE,TRUE
+Estrutura,Jacuzzi,TRUE,bath,TRUE,TRUE
+Estrutura,Ofurô,TRUE,bath,TRUE,FALSE
+Estrutura,Ofurô externo,TRUE,bath,TRUE,FALSE
+Gerais,Jacuzzi Aquecida,TRUE,bath,TRUE,TRUE
+Gerais,Jacuzzi Casal,TRUE,bath,TRUE,TRUE
+Serviços,Carregador p/ Carro Elétrico,FALSE,battery-charging,TRUE,TRUE
+Gerais,Roupa de cama,FALSE,bed,TRUE,FALSE
+Gerais,Roupa de cama e banho,FALSE,bed,TRUE,FALSE
+Gerais,Roupa de Cama Especial,FALSE,bed,TRUE,FALSE
+Gerais,Roupas de Cama e Banho (Trussardi),FALSE,bed,FALSE,TRUE
+Gerais,Serviço de camareira,FALSE,bed,TRUE,FALSE
+Tipos de cama,Cama box casal,TRUE,bed-double,TRUE,FALSE
+Tipos de cama,Cama box king-size,TRUE,bed-double,TRUE,FALSE
+Tipos de cama,Cama Box Queen,TRUE,bed-double,TRUE,FALSE
+Tipos de cama,Cama king-size,TRUE,bed-double,TRUE,FALSE
+Tipos de cama,Cama Queen Size,TRUE,bed-double,TRUE,FALSE
+Tipos de cama,Cama super king-size,TRUE,bed-double,TRUE,FALSE
+Tipos de cama,Cama Box Solteiro,TRUE,bed-single,TRUE,FALSE
+Tipos de cama,Cama de Solteiro,TRUE,bed-single,TRUE,FALSE
+Tipos de cama,Cama dobrável,TRUE,bed-single,TRUE,FALSE
+Tipos de cama,Camas de Solteiro,TRUE,bed-single,TRUE,FALSE
+Alimentos e Bebidas,Churrasqueira coletiva,TRUE,beef,TRUE,TRUE
+Estrutura,Churrasqueira,TRUE,beef,TRUE,FALSE
+Gerais,Churrasqueira Elétrica,TRUE,beef,TRUE,TRUE
+Alimentos e Bebidas,Bar molhado,FALSE,beer,FALSE,TRUE
+Alimentos e Bebidas,Bebidas - custo extra,FALSE,beer,FALSE,TRUE
+Alimentos e Bebidas,Máquina de venda automática (bebidas),FALSE,beer,FALSE,TRUE
+Estrutura,Choppeira,FALSE,beer,TRUE,FALSE
+Gerais,Bar,TRUE,beer,FALSE,TRUE
+Áreas de lazer,Bicicletário,FALSE,bike,FALSE,TRUE
+Atividades,Aluguel de bicicletas,FALSE,bike,FALSE,TRUE
+Atividades,Ciclismo,FALSE,bike,FALSE,TRUE
+Atividades,Empréstimo Bicicletas,FALSE,bike,FALSE,TRUE
+Áreas de lazer,Vista Incrível,FALSE,binoculars,FALSE,TRUE
+Gerais,Favorável à observação de aves,FALSE,bird,TRUE,TRUE
+Áreas de lazer,Brinquedos,FALSE,blocks,FALSE,TRUE
+Atividades,Brinquedoteca,FALSE,blocks,FALSE,TRUE
+Atividades,Caiaque,FALSE,blocks,TRUE,TRUE
+Atividades,Caiaque e Stand UP disponível para aluguel,FALSE,blocks,TRUE,TRUE
+Áreas de lazer,Sala de Leitura,FALSE,book-open-text,FALSE,TRUE
+Áreas de lazer,Sala de leitura/TV,FALSE,book-open-text,FALSE,TRUE
+Gerais,Vista para a Cidade,TRUE,building,TRUE,FALSE
+Gerais,Estacionamento,TRUE,car-front,TRUE,TRUE
+Gerais,Estacionamento não coberto,TRUE,car-front,TRUE,TRUE
+Gerais,Estacionamento coberto,TRUE,car-front,TRUE,TRUE
+Gerais,Estacionamento externo,TRUE,car-front,TRUE,TRUE
+Gerais,Estacionamento gratuito,TRUE,car-front,TRUE,TRUE
+Serviços,Aluguel de carros,FALSE,car-front,FALSE,TRUE
+Serviços,Estacionamento mediante reserva,TRUE,car-front,TRUE,TRUE
+Serviços,Estacionamento com custo adicional,TRUE,car-front,TRUE,TRUE
+Serviços,Estacionamento com manobrista,TRUE,car-front,TRUE,TRUE
+Serviços,Estacionamento em frente ao hotel,TRUE,car-front,TRUE,TRUE
+Serviços,Estacionamento gratuito (conforme disponibilidade),TRUE,car-front,TRUE,TRUE
+Serviços,Serviço de Transfer,FALSE,car-taxi-front,FALSE,TRUE
+Serviços,Transfer (aeroporto),TRUE,car-taxi-front,FALSE,TRUE
+Serviços,Transfer aeroporto (gratuito),TRUE,car-taxi-front,FALSE,TRUE
+Gerais,Câmeras de Vigilância 24h,FALSE,cctv,FALSE,TRUE
+Gerais,Pequena Igreja,FALSE,church,FALSE,TRUE
+Gerais,Quartos para não fumantes,FALSE,cigarette-off,FALSE,TRUE
+Áreas de lazer,Balanço,FALSE,circle-check,TRUE,TRUE
+Áreas de lazer,Cemitério Cenográfico,FALSE,circle-check,FALSE,TRUE
+Áreas de lazer,Deck com Espreguiçadeiras,FALSE,circle-check,TRUE,TRUE
+Áreas de lazer,Paintball,FALSE,circle-check,FALSE,TRUE
+Áreas de lazer,Redário,FALSE,circle-check,FALSE,TRUE
+Áreas de lazer,Rooftop,FALSE,circle-check,FALSE,TRUE
+Áreas de lazer,Trapiche,FALSE,circle-check,FALSE,TRUE
+Áreas de lazer,Viveiros,FALSE,circle-check,FALSE,TRUE
+Atividades,Aluguel de moto,FALSE,circle-check,FALSE,TRUE
+Atividades,Aula de Yoga,FALSE,circle-check,FALSE,TRUE
+Atividades,Balonismo,FALSE,circle-check,FALSE,TRUE
+Atividades,Boliche,FALSE,circle-check,FALSE,TRUE
+Atividades,Campo de Futebol,FALSE,circle-check,FALSE,TRUE
+Atividades,Canionismo,FALSE,circle-check,FALSE,TRUE
+Atividades,Escalada,FALSE,circle-check,FALSE,TRUE
+Atividades,Esqui,FALSE,circle-check,FALSE,TRUE
+Atividades,Frescobol,FALSE,circle-check,FALSE,TRUE
+Atividades,Galinheiro,FALSE,circle-check,FALSE,TRUE
+Atividades,Passeio a Cavalo,FALSE,circle-check,FALSE,TRUE
+Atividades,Passeio de 4x4,FALSE,circle-check,FALSE,TRUE
+Atividades,Passeio de Canoa,FALSE,circle-check,FALSE,TRUE
+Atividades,Passeio de jangada,FALSE,circle-check,FALSE,TRUE
+Atividades,Patinete,FALSE,circle-check,FALSE,TRUE
+Atividades,Pebolim,FALSE,circle-check,TRUE,TRUE
+Atividades,Pedalinho,FALSE,circle-check,FALSE,TRUE
+Atividades,Piquenique no vinhedo,FALSE,circle-check,FALSE,TRUE
+Atividades,Quadra de Beach tennis,FALSE,circle-check,FALSE,TRUE
+Atividades,Quadra de Tênis,FALSE,circle-check,FALSE,TRUE
+Atividades,Quadra de tênis de saibro,FALSE,circle-check,FALSE,TRUE
+Atividades,Quadra Poliesportiva,FALSE,circle-check,FALSE,TRUE
+Atividades,Quadriciclo,FALSE,circle-check,FALSE,TRUE
+Atividades,Rafting,FALSE,circle-check,FALSE,TRUE
+Atividades,Ski bunda kids,FALSE,circle-check,FALSE,TRUE
+Atividades,Squash,FALSE,circle-check,FALSE,TRUE
+Atividades,Stand-Up,FALSE,circle-check,FALSE,TRUE
+Atividades,Tênis de Mesa/Pingue-pongue,FALSE,circle-check,FALSE,TRUE
+Atividades,Tirolesa,FALSE,circle-check,FALSE,TRUE
+Atividades,Windsurf,FALSE,circle-check,FALSE,TRUE
+Estrutura,Airfryer,FALSE,circle-check,TRUE,FALSE
+Estrutura,Área de estar,FALSE,circle-check,TRUE,TRUE
+Estrutura,Babyliss,FALSE,circle-check,TRUE,FALSE
+Estrutura,Balanço suspenso,FALSE,circle-check,TRUE,TRUE
+Estrutura,Bidê,FALSE,circle-check,TRUE,FALSE
+Estrutura,Chaleira elétrica,FALSE,circle-check,TRUE,FALSE
+Estrutura,Chapinha de cabelo,FALSE,circle-check,TRUE,FALSE
+Estrutura,Cooktop,FALSE,circle-check,TRUE,FALSE
+Estrutura,Área gourmet,FALSE,circle-check,TRUE,TRUE
+Estrutura,Espelhos,FALSE,circle-check,TRUE,FALSE
+Estrutura,Ferro de passar roupa,FALSE,circle-check,TRUE,FALSE
+Estrutura,Fogão,FALSE,circle-check,TRUE,FALSE
+Estrutura,Liquidificador,FALSE,circle-check,TRUE,FALSE
+Estrutura,Mesa externa,FALSE,circle-check,TRUE,FALSE
+Estrutura,Mezanino,FALSE,circle-check,TRUE,FALSE
+Estrutura,Pé direiro duplo,FALSE,circle-check,TRUE,FALSE
+Estrutura,Prancha de cabelo,FALSE,circle-check,TRUE,FALSE
+Estrutura,Rede,FALSE,circle-check,TRUE,FALSE
+Estrutura,Rede suspensa,FALSE,circle-check,TRUE,FALSE
+Estrutura,Sacada privativa,FALSE,circle-check,TRUE,FALSE
+Estrutura,Sala de jantar,FALSE,circle-check,TRUE,FALSE
+Estrutura,Secador de Cabelo,FALSE,circle-check,TRUE,FALSE
+Estrutura,Stand-Up Paddle,FALSE,circle-check,TRUE,FALSE
+Estrutura,Terraço,FALSE,circle-check,TRUE,FALSE
+Estrutura,Toda a unidade localizada no térreo,FALSE,circle-check,TRUE,FALSE
+Estrutura,Varanda,FALSE,circle-check,TRUE,FALSE
+Gerais,Cobertor elétrico,FALSE,circle-check,TRUE,FALSE
+Gerais,Comodidades para hóspedes com mobilidade reduzida,FALSE,circle-check,FALSE,TRUE
+Gerais,Cooktop por indução,FALSE,circle-check,TRUE,FALSE
+Gerais,Elevador,FALSE,circle-check,TRUE,TRUE
+Gerais,Entrada privativa,FALSE,circle-check,TRUE,FALSE
+Gerais,Exemplares de Animais como Pônei e Gado,FALSE,circle-check,FALSE,TRUE
+Gerais,Lobby,FALSE,circle-check,FALSE,TRUE
+Gerais,Mini Fazenda,FALSE,circle-check,FALSE,TRUE
+Gerais,Mini Tirolesa,FALSE,circle-check,FALSE,TRUE
+Gerais,Mirante,FALSE,circle-check,TRUE,TRUE
+Gerais,Papel higiênico,FALSE,circle-check,TRUE,FALSE
+Gerais,Pergolado,FALSE,circle-check,TRUE,TRUE
+Gerais,Produtos de higiene pessoal,FALSE,circle-check,TRUE,FALSE
+Gerais,Produtos de limpeza,FALSE,circle-check,TRUE,FALSE
+Gerais,Quartos para famílias,FALSE,circle-check,FALSE,TRUE
+Gerais,Roda d'água,FALSE,circle-check,FALSE,TRUE
+Gerais,Suíte nupcial,FALSE,circle-check,FALSE,TRUE
+Gerais,Toalhas,FALSE,circle-check,TRUE,FALSE
+Serviços,Aluguel de Máscara de Mergulho e Snorkel,FALSE,circle-check,FALSE,TRUE
+Serviços,Balcão de turismo,FALSE,circle-check,FALSE,TRUE
+Serviços,Cadeiras de praia e guarda-sol grátis,FALSE,circle-check,FALSE,TRUE
+Serviços,Cadeiras de praia e guarda-sol para aluguel,FALSE,circle-check,FALSE,TRUE
+Serviços,Cave de maturação de queijos,FALSE,circle-check,FALSE,TRUE
+Serviços,Cursos de mergulho (custo adicional),FALSE,circle-check,FALSE,TRUE
+Serviços,Massagem Relaxante (Serviço Adicional),FALSE,circle-check,FALSE,TRUE
+Serviços,Operadora de mergulho (custo adicional),FALSE,circle-check,FALSE,TRUE
+Serviços,Organização de Passeios,FALSE,circle-check,FALSE,TRUE
+Serviços,Portaria 24 horas,FALSE,circle-check,FALSE,TRUE
+Serviços,Serviço de massagem,FALSE,circle-check,FALSE,TRUE
+Serviços,Serviço de Praia em frente à Pousada,FALSE,circle-check,FALSE,TRUE
+Serviços,Serviços de massagem,FALSE,circle-check,FALSE,TRUE
+Serviços,Serviço de câmbio,FALSE,circle-dollar-sign,FALSE,TRUE
+Áreas de lazer,Espaço de Convivência,FALSE,club,FALSE,TRUE
+Alimentos e Bebidas,Café da manhã,TRUE,coffee,TRUE,TRUE
+Alimentos e Bebidas,Café da Manhã Incluso na Diária,TRUE,coffee,TRUE,TRUE
+Alimentos e Bebidas,Café da manhã no quarto,TRUE,coffee,TRUE,TRUE
+Alimentos e Bebidas,Café da Manhã no Quarto Incluso na Diária,TRUE,coffee,TRUE,TRUE
+Áreas de lazer,Plantação de café,FALSE,coffee,FALSE,TRUE
+Estrutura,Cafeteira,TRUE,coffee,TRUE,FALSE
+Estrutura,Máquina de café,TRUE,coffee,TRUE,FALSE
+Estrutura,Máquina Nespresso,TRUE,coffee,TRUE,FALSE
+Gerais,Cafeteira Elétrica,FALSE,coffee,TRUE,FALSE
+Gerais,Cesta de Café,TRUE,coffee,TRUE,FALSE
+Alimentos e Bebidas,Almoços para viagem,FALSE,cooking-pot,FALSE,TRUE
+Atividades,Piquenique,TRUE,croissant,FALSE,TRUE
+Atividades,Jogo de Dardos,FALSE,crosshair,TRUE,TRUE
+Áreas de lazer,Discoteca,FALSE,disc-3,FALSE,TRUE
+Gerais,Aceita os animais de estimação,TRUE,dog,TRUE,TRUE
+Gerais,Aceita os animais de pequeno porte,TRUE,dog,TRUE,TRUE
+Gerais,Aceita pets,TRUE,dog,TRUE,TRUE
+Áreas de lazer,Cachoeira,FALSE,droplets,FALSE,TRUE
+Atividades,Academia,TRUE,dumbbell,FALSE,TRUE
+Áreas de lazer,Snooker Oficial,FALSE,eclipse,FALSE,TRUE
+Atividades,Bilhar,FALSE,eclipse,TRUE,TRUE
+Estrutura,Ventilador,FALSE,fan,TRUE,FALSE
+Estrutura,Ventilador Teto,FALSE,fan,TRUE,FALSE
+Atividades,Pescaria,FALSE,fish,TRUE,TRUE
+Áreas de lazer,Área de Fogueira,FALSE,flame-kindling,TRUE,TRUE
+Áreas de lazer,Lareira ao ar livre,TRUE,flame-kindling,FALSE,TRUE
+Atividades,Fogueira central,FALSE,flame-kindling,FALSE,TRUE
+Estrutura,Fogão à lenha,FALSE,flame-kindling,TRUE,FALSE
+Estrutura,Fogo de chão externo,TRUE,flame-kindling,TRUE,FALSE
+Estrutura,Lareira,TRUE,flame-kindling,TRUE,TRUE
+Estrutura,Lareira externa,TRUE,flame-kindling,TRUE,FALSE
+Gerais,Fogo de chão,FALSE,flame-kindling,TRUE,TRUE
+Gerais,Lareira em área interna,TRUE,flame-kindling,FALSE,TRUE
+Atividades,Trilhas a pé,TRUE,footprints,FALSE,TRUE
+Atividades,Trilhas ecológicas,TRUE,footprints,FALSE,TRUE
+Estrutura,Pantufas,FALSE,footprints,TRUE,FALSE
+Gerais,Chinelos,FALSE,footprints,TRUE,FALSE
+Gerais,Trilha com Ponte,TRUE,footprints,FALSE,TRUE
+Gerais,Trilha de lendas pela mata,TRUE,footprints,FALSE,TRUE
+Gerais,Videogame,FALSE,gamepad-2,TRUE,FALSE
+Áreas de lazer,Spa,TRUE,gem,FALSE,TRUE
+Gerais,Spa / Centro de bem-estar,TRUE,gem,FALSE,TRUE
+Alimentos e Bebidas,Água Mineral Grátis,FALSE,glass-water,TRUE,TRUE
+Gerais,Abastecimento com água de mina,FALSE,glass-water,FALSE,TRUE
+Áreas de lazer,Wine Garden,FALSE,grape,FALSE,TRUE
+Gerais,Vinhedos,FALSE,grape,FALSE,TRUE
+Estrutura,Área gourmet com churrasqueira,FALSE,ham,TRUE,FALSE
+Gerais,Serviço de Quarto,FALSE,hand-heart,TRUE,TRUE
+Gerais,Serviço de Quarto - à parte,FALSE,hand-heart,TRUE,FALSE
+Serviços,Concierge,TRUE,hand-helping,TRUE,TRUE
+Serviços,Recepção,TRUE,hand-helping,FALSE,TRUE
+Serviços,Recepção 24 horas,TRUE,hand-helping,FALSE,TRUE
+Serviços,Recepção Virtual,TRUE,hand-helping,FALSE,TRUE
+Serviços,Serviço de limpeza diário,FALSE,hand-helping,FALSE,TRUE
+Alimentos e Bebidas,Restaurante,TRUE,hand-platter,FALSE,TRUE
+Alimentos e Bebidas,Restaurante (à la carte),TRUE,hand-platter,FALSE,TRUE
+Alimentos e Bebidas,Restaurante (buffet),TRUE,hand-platter,FALSE,TRUE
+Alimentos e Bebidas,Restaurante colonial,TRUE,hand-platter,FALSE,TRUE
+Alimentos e Bebidas,Serviço de Jantar,FALSE,hand-platter,FALSE,TRUE
+Gerais,Suíte Lua de Mel,FALSE,heart,FALSE,TRUE
+Estrutura,Aquecedor portátil,FALSE,heater,TRUE,FALSE
+Estrutura,Calefação,FALSE,heater,TRUE,FALSE
+Estrutura,Climatizador,FALSE,heater,TRUE,FALSE
+Gerais,Vista para a entrada,TRUE,hotel,TRUE,FALSE
+Estrutura,Luminária na cabeceira,FALSE,lamp,TRUE,FALSE
+Atividades,Campo de Golf,FALSE,land-plot,FALSE,TRUE
+Atividades,Minigolfe,FALSE,land-plot,FALSE,TRUE
+Idiomas falados,Alemão,FALSE,languages,FALSE,TRUE
+Idiomas falados,Espanhol,FALSE,languages,FALSE,TRUE
+Idiomas falados,Francês,FALSE,languages,FALSE,TRUE
+Idiomas falados,Grego,FALSE,languages,FALSE,TRUE
+Idiomas falados,Hebraico,FALSE,languages,FALSE,TRUE
+Idiomas falados,Inglês,FALSE,languages,FALSE,TRUE
+Idiomas falados,Italiano,FALSE,languages,FALSE,TRUE
+Idiomas falados,Japonês,FALSE,languages,FALSE,TRUE
+Idiomas falados,Português,FALSE,languages,FALSE,TRUE
+Idiomas falados,Russo,FALSE,languages,FALSE,TRUE
+Estrutura,Mesa de trabalho,FALSE,laptop,TRUE,FALSE
+Gerais,Computador,FALSE,laptop-minimal-check,TRUE,FALSE
+Gerais,Coworking,FALSE,laptop-minimal-check,FALSE,TRUE
+Gerais,Gazebo para massagens,FALSE,leaf,FALSE,TRUE
+Áreas de lazer,Campo de Futebol Society,FALSE,loader-pinwheel,FALSE,TRUE
+Serviços,"Serviço de Bar, Piscina e Praia",FALSE,martini,FALSE,TRUE
+Atividades,Centro de Esportes,FALSE,medal,FALSE,TRUE
+Estrutura,Forno,FALSE,microwave,TRUE,FALSE
+Estrutura,Forno elétrico,FALSE,microwave,TRUE,FALSE
+Estrutura,Forno a gás,FALSE,microwave,TRUE,FALSE
+Estrutura,Micro-ondas,FALSE,microwave,TRUE,FALSE
+Gerais,Vista para a montanha,TRUE,mountain,TRUE,FALSE
+Serviços,Recreação,TRUE,party-popper,FALSE,TRUE
+Gerais,Ambiente Privativo,FALSE,person-standing,TRUE,FALSE
+Estrutura,Telefone,FALSE,phone,TRUE,FALSE
+Áreas de lazer,Mina em atividade,FALSE,pickaxe,FALSE,TRUE
+Estrutura,Garrafa térmica,FALSE,pill-bottle,TRUE,FALSE
+Áreas de lazer,Playground,FALSE,play,FALSE,TRUE
+Estrutura,Tomada perto da cama,FALSE,plug-zap,TRUE,FALSE
+Gerais,Voltagem 110V,FALSE,plug-zap,TRUE,TRUE
+Gerais,Voltagem 110V e 220V,FALSE,plug-zap,TRUE,TRUE
+Gerais,Voltagem 220V,FALSE,plug-zap,TRUE,TRUE
+Áreas de lazer,Cinema,FALSE,popcorn,TRUE,TRUE
+Gerais,Sala de reuniões/eventos,FALSE,presentation,FALSE,TRUE
+Estrutura,Sala de cinema,FALSE,projector,TRUE,TRUE
+Atividades,Celeiro com animais,FALSE,rabbit,FALSE,TRUE
+Áreas de lazer,Campo de bocha,FALSE,rectangle-ellipsis,FALSE,TRUE
+Estrutura,Cozinha,TRUE,refrigerator,TRUE,FALSE
+Estrutura,Cozinha compacta,TRUE,refrigerator,TRUE,FALSE
+Estrutura,Cozinha Compartilhada,TRUE,refrigerator,TRUE,FALSE
+Estrutura,Cozinha completa,TRUE,refrigerator,TRUE,FALSE
+Estrutura,Frigobar,FALSE,refrigerator,TRUE,FALSE
+Estrutura,Geladeira,FALSE,refrigerator,TRUE,FALSE
+Estrutura,Geladeira/cervejeira,FALSE,refrigerator,TRUE,FALSE
+Estrutura,Cervejeira,FALSE,refrigerator,TRUE,FALSE
+Serviços,Passeio de veleiro (adicional),TRUE,sailboat,FALSE,TRUE
+Alimentos e Bebidas,Lanchonete,FALSE,sandwich,FALSE,TRUE
+Alimentos e Bebidas,Máquina de venda automática (lanches),FALSE,sandwich,FALSE,TRUE
+Estrutura,Torradeira,FALSE,sandwich,TRUE,FALSE
+Estrutura,Cofre,FALSE,shield-check,TRUE,TRUE
+Estrutura,Sacada com tela de proteção,FALSE,shield-check,TRUE,FALSE
+Gerais,Álcool em Gel,FALSE,shield-check,TRUE,FALSE
+Estrutura,Caiaque para aluguel,TRUE,ship,TRUE,TRUE
+Serviços,Aluguel de embarcações,FALSE,ship,FALSE,TRUE
+Serviços,Passeios de barco (adicional),TRUE,ship,FALSE,TRUE
+Estrutura,Arara para roupas,FALSE,shirt,TRUE,FALSE
+Estrutura,Closet,FALSE,shirt,TRUE,FALSE
+Estrutura,Guarda-roupa ou armário,FALSE,shirt,TRUE,FALSE
+Estrutura,Varal de secar roupas,FALSE,shirt,TRUE,FALSE
+Gerais,Roupão,TRUE,shirt,TRUE,FALSE
+Alimentos e Bebidas,Loja de Conveniência,TRUE,shopping-basket,FALSE,TRUE
+Alimentos e Bebidas,Loja de Conveniência 24 horas,TRUE,shopping-basket,FALSE,TRUE
+Alimentos e Bebidas,Entrega de Compras,FALSE,shopping-cart,TRUE,TRUE
+Áreas de lazer,Ducha externa,FALSE,shower-head,TRUE,FALSE
+Estrutura,Banheiro ducha dupla,TRUE,shower-head,TRUE,FALSE
+Estrutura,Chuveiro,FALSE,shower-head,TRUE,FALSE
+Estrutura,Chuveiro Elétrico,FALSE,shower-head,TRUE,FALSE
+Estrutura,Ducha,FALSE,shower-head,TRUE,FALSE
+Estrutura,Ducha à gás,FALSE,shower-head,TRUE,FALSE
+Estrutura,Ducha dupla à gás,FALSE,shower-head,TRUE,FALSE
+Estrutura,Ducha higienica,FALSE,shower-head,TRUE,FALSE
+Gerais,Amenidades Banho,TRUE,shower-head,TRUE,TRUE
+Gerais,Chuveiro Aquecido a Gás,TRUE,shower-head,TRUE,FALSE
+Áreas de lazer,Jardins Europeus,TRUE,shrub,TRUE,TRUE
+Gerais,Jardim,TRUE,shrub,TRUE,TRUE
+Gerais,Interfone,FALSE,smartphone,TRUE,TRUE
+Serviços,Atendimento via interfone 24h,FALSE,smartphone,FALSE,TRUE
+Estrutura,Máquina de gelo,FALSE,snowflake,TRUE,FALSE
+Estrutura,Sofá,FALSE,sofa,TRUE,FALSE
+Estrutura,Sofá-cama,FALSE,sofa,TRUE,FALSE
+Áreas de lazer,Contato com a natureza,FALSE,sprout,TRUE,TRUE
+Áreas de lazer,Horta orgânica,FALSE,sprout,FALSE,TRUE
+Serviços,Manobrista,FALSE,square-parking,FALSE,TRUE
+Serviços,Lojas,FALSE,store,FALSE,TRUE
+Áreas de lazer,Solário,FALSE,sun,FALSE,TRUE
+Gerais,Aquecimento solar,FALSE,sunset,TRUE,TRUE
+Gerais,Geração de energia solar,FALSE,sunset,TRUE,TRUE
+Áreas de lazer,Pole Dance,FALSE,tally-1,FALSE,TRUE
+Áreas de lazer,Banho com águas termais,FALSE,thermometer,FALSE,TRUE
+Áreas de lazer,Sauna,FALSE,thermometer,FALSE,TRUE
+Áreas de lazer,Sauna a vapor,FALSE,thermometer,FALSE,TRUE
+Áreas de lazer,Sauna Masculina,FALSE,thermometer,FALSE,TRUE
+Áreas de lazer,Sauna seca,FALSE,thermometer,FALSE,TRUE
+Estrutura,Sauna,FALSE,thermometer,TRUE,FALSE
+Gerais,Lençol térmico,FALSE,thermometer,TRUE,FALSE
+Estrutura,Aquecimento,FALSE,thermometer-sun,TRUE,TRUE
+Estrutura,Aquecimento à gás,FALSE,thermometer-sun,TRUE,TRUE
+Estrutura,Banheiro Externo,FALSE,toilet,TRUE,FALSE
+Estrutura,Banheiro no quarto,FALSE,toilet,TRUE,FALSE
+Estrutura,Banheiro privativo,FALSE,toilet,TRUE,FALSE
+Estrutura,Toalete,FALSE,toilet,TRUE,FALSE
+Estrutura,Vaso sanitário,FALSE,toilet,TRUE,FALSE
+Estrutura,Aquecedor de toalhas,FALSE,tower-control,TRUE,FALSE
+Atividades,Arvorismo,FALSE,tree-pine,FALSE,TRUE
+Áreas de lazer,Casa na árvore,FALSE,trees,TRUE,TRUE
+Estrutura,Jardim Privativo,FALSE,trees,TRUE,TRUE
+Estrutura,Sacada com vista para a natureza,FALSE,trees,TRUE,FALSE
+Gerais,Reserva Natural,FALSE,trees,FALSE,TRUE
+Gerais,Vista,TRUE,trees,TRUE,FALSE
+Gerais,Vista externa,TRUE,trees,TRUE,FALSE
+Gerais,Vista Panorâmica,TRUE,trees,TRUE,FALSE
+Gerais,Vista para a lagoa,TRUE,trees,TRUE,FALSE
+Gerais,Vista para a Mata Atlântica,TRUE,trees,TRUE,FALSE
+Gerais,Vista para jardins,TRUE,trees,TRUE,FALSE
+Atividades,Sala de Jogos,TRUE,trophy,FALSE,TRUE
+Atividades,Sala de TV,FALSE,tv,FALSE,TRUE
+Estrutura,Smart TV,TRUE,tv,TRUE,FALSE
+Estrutura,Televisão,TRUE,tv,TRUE,FALSE
+Estrutura,TV,TRUE,tv,TRUE,FALSE
+Estrutura,TV a Cabo,TRUE,tv,TRUE,FALSE
+Estrutura,TV na sala,TRUE,tv,TRUE,FALSE
+Estrutura,TV no quarto,TRUE,tv,TRUE,FALSE
+Gerais,Canais a cabo,FALSE,tv,TRUE,FALSE
+Gerais,Canais pay-per-view,FALSE,tv,TRUE,FALSE
+Gerais,Canais via satélite,FALSE,tv,TRUE,FALSE
+Gerais,Sala de TV Com Sofá-Cama,FALSE,tv,FALSE,TRUE
+Estrutura,Protetores de tomadas,FALSE,unplug,TRUE,FALSE
+Gerais,Ambiente Compartilhado,FALSE,users,TRUE,FALSE
+Alimentos e Bebidas,All inclusive,TRUE,utensils,TRUE,TRUE
+Alimentos e Bebidas,Jantar (pago a parte),TRUE,utensils,FALSE,TRUE
+Alimentos e Bebidas,Jantar (incluso),FALSE,utensils,FALSE,TRUE
+Alimentos e Bebidas,Meia pensão,TRUE,utensils,FALSE,TRUE
+Alimentos e Bebidas,Pensão Completa,TRUE,utensils,FALSE,TRUE
+Estrutura,Lava-louças,FALSE,utensils,TRUE,FALSE
+Estrutura,Mesa de jantar,FALSE,utensils,TRUE,FALSE
+Estrutura,Utensílios de cozinha,FALSE,utensils,TRUE,FALSE
+Estrutura,Área de refeições externa,FALSE,utensils-crossed,TRUE,TRUE
+Estrutura,Área para refeições,FALSE,utensils-crossed,TRUE,TRUE
+Estrutura,Isolamento acústico,FALSE,volume-off,TRUE,FALSE
+Estrutura,Garagem,TRUE,warehouse,TRUE,FALSE
+Estrutura,Garagem coberta,TRUE,warehouse,TRUE,FALSE
+Estrutura,Garagem descoberta,TRUE,warehouse,TRUE,FALSE
+Estrutura,Garagem privativa,TRUE,warehouse,TRUE,FALSE
+Estrutura,Máquina de lavar roupa,FALSE,washing-machine,TRUE,FALSE
+Gerais,Secadora de roupas,FALSE,washing-machine,TRUE,FALSE
+Gerais,Serviço de lavanderia,FALSE,washing-machine,TRUE,FALSE
+Áreas de lazer,Beira-mar,FALSE,waves,TRUE,TRUE
+áreas de lazer,Deck a beira da lagoa,FALSE,waves,FALSE,TRUE
+Áreas de lazer,Deck a beira mar,FALSE,waves,FALSE,TRUE
+Áreas de lazer,Lago,FALSE,waves,TRUE,TRUE
+Áreas de lazer,Lago ornamental,TRUE,waves,TRUE,TRUE
+Áreas de lazer,Praia privativa,TRUE,waves,FALSE,TRUE
+Áreas de lazer,Rio,FALSE,waves,FALSE,TRUE
+Gerais,Acesso privativo à lagoa,TRUE,waves,FALSE,TRUE
+Gerais,Açude,FALSE,waves,FALSE,TRUE
+Gerais,Vista para o Mar,TRUE,waves,TRUE,FALSE
+Gerais,Vista para o rio,TRUE,waves,TRUE,FALSE
+Áreas de lazer,Área da piscina com lareira e aquecedores,FALSE,waves-ladder,TRUE,TRUE
+Áreas de lazer,Toboágua,FALSE,waves-ladder,FALSE,TRUE
+Atividades,Bolha Aquática,FALSE,waves-ladder,FALSE,TRUE
+Atividades,Mergulho,FALSE,waves-ladder,FALSE,TRUE
+Atividades,Parque Aquático,FALSE,waves-ladder,FALSE,TRUE
+Estrutura,Deck com piscina,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina ao ar livre,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina aquecida,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina climatizada,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina coberta,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina com borda infinita,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina com hidromassagem,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina de ondas,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina natural,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina privativa,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscina subterrânea,TRUE,waves-ladder,TRUE,TRUE
+Estrutura,Piscinas,TRUE,waves-ladder,TRUE,TRUE
+Gerais,Toalhas de praia e piscina,FALSE,waves-ladder,FALSE,TRUE
+Gerais,Vista para a piscina,TRUE,waves-ladder,TRUE,FALSE
+Gerais,Internet,TRUE,wifi,TRUE,TRUE
+Gerais,Internet sem fio (Wi-Fi),TRUE,wifi,TRUE,TRUE
+Gerais,Wi-Fi gratuito,TRUE,wifi,TRUE,TRUE
+Gerais,Wifi,TRUE,wifi,TRUE,TRUE
+Internet,Internet gratuita por Wi-Fi,TRUE,wifi,TRUE,TRUE
+Internet,Internet Wi-Fi pago à parte,TRUE,wifi,TRUE,TRUE
+Internet,Wi-Fi a rádio gratuito com sinal nas áreas comuns,TRUE,wifi,FALSE,TRUE
+Internet,Wi-Fi gratuito nas áreas comuns,TRUE,wifi,FALSE,TRUE
+Alimentos e Bebidas,Adega de Vinhos,FALSE,wine,TRUE,TRUE
+Alimentos e Bebidas,Degustação guiada de vinhos e queijos,FALSE,wine,FALSE,TRUE
+Gerais,Sala de degustação de vinhos,FALSE,wine,FALSE,TRUE
+Serviços,Wine bar,FALSE,wine,FALSE,TRUE

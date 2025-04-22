@@ -1,10 +1,13 @@
 /* eslint-disable no-console */
 
-import { PrismaClient, ReservationStatus } from '@prisma/client'
+import { Facility, PrismaClient, ReservationStatus } from '@prisma/client'
 import * as bcrypt from 'bcrypt'
 import dayjs from 'dayjs'
 import IsBetween from 'dayjs/plugin/isBetween'
 import Utc from 'dayjs/plugin/utc'
+
+import facilities from '../scripts/facilities.json'
+
 dayjs.extend(IsBetween)
 dayjs.extend(Utc)
 
@@ -190,28 +193,7 @@ async function setUserAndRoles() {
         console.log('Added default housing unit type')
         //Facilities
         await tx.facility.createMany({
-            data: [
-                {
-                    name: 'WiFi',
-                    type: 'COMPANY',
-                    category: 'INTERNET',
-                },
-                {
-                    name: 'TV a cabo/smart TV',
-                    type: 'HOUSING_UNIT_TYPE',
-                    category: 'STRUCTURE',
-                },
-                {
-                    name: 'Spa e massagem',
-                    type: 'HOUSING_UNIT_TYPE',
-                    category: 'SERVICES',
-                },
-                {
-                    name: 'Elevador',
-                    type: 'COMPANY',
-                    category: 'STRUCTURE',
-                },
-            ],
+            data: facilities as Facility[],
         })
         console.log('Added default facilities')
         //Services
@@ -353,6 +335,7 @@ async function setUserAndRoles() {
                 reservationCode: '000001',
                 housingUnitId: suiteDiamante.housingUnits[0].id,
                 companyId: company.id,
+                rateOptionId: null,
                 services: {
                     create: {
                         serviceId: barco.id,
