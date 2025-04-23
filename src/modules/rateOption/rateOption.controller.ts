@@ -59,7 +59,7 @@ export class RateOptionController {
     }
 
     @ApiOkResponse({ type: RateOptionResponseFullDTO })
-    @ApiBody({ type: RateOptionResponseFullDTO })
+    @ApiBody({ type: RateOptionUpdateDTO })
     @ApiParam({ name: 'companyId', type: String })
     @ApiOperation({ operationId: 'updateRateOption' })
     @Patch(':id')
