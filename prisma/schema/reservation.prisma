@@ -3,8 +3,8 @@ model Reservation {
 
     reservationCode String // PATTERN 2 LETTER CHANNEL + 6 SEQUENTIAL NUMERIC (PER COMPANY)
 
-    startDate  DateTime
-    endDate    DateTime
+    startDate  DateTime          @db.Date
+    endDate    DateTime          @db.Date
     totalDays  Int?              @default(1)
     adults     Int
     notes      String            @db.Text
@@ -15,8 +15,8 @@ model Reservation {
 
     sellerUserId String?
     sellerUser   User?   @relation("sellerUser", fields: [sellerUserId], references: [id], onDelete: SetNull)
-    guestUserId  String?
-    guestUser    User?   @relation("guestUser", fields: [guestUserId], references: [id], onDelete: SetNull)
+    guestUserId  String
+    guestUser    User   @relation("guestUser", fields: [guestUserId], references: [id], onDelete: SetNull)
 
     companyId     String
     company       Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)

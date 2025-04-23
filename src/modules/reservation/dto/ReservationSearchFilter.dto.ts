@@ -1,13 +1,20 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 import { Type } from 'class-transformer'
-import { IsEnum, IsOptional, IsUUID, ValidateNested } from 'class-validator'
+import {
+    IsArray,
+    IsEnum,
+    IsOptional,
+    IsUUID,
+    ValidateNested,
+} from 'class-validator'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 
 export class ReservationSearchFilterDTO {
     @ApiProperty({
         enum: ReservationSaleChannel,
+        enumName: 'ReservationSaleChannel',
         required: false,
     })
     @IsOptional()
@@ -34,13 +41,7 @@ export class ReservationSearchFilterDTO {
     @IsOptional()
     @ValidateNested()
     @Type(() => DateRangeDTO)
-    startDate?: DateRangeDTO
-
-    @ApiProperty({ type: DateRangeDTO, required: false })
-    @IsOptional()
-    @ValidateNested()
-    @Type(() => DateRangeDTO)
-    endDate?: DateRangeDTO
+    dateRange?: DateRangeDTO
 
     @ApiProperty({ type: DateRangeDTO, required: false })
     @IsOptional()
@@ -48,8 +49,14 @@ export class ReservationSearchFilterDTO {
     @Type(() => DateRangeDTO)
     createdDate?: DateRangeDTO
 
-    @ApiProperty({ enum: ReservationStatus, required: false })
+    @ApiProperty({
+        enum: ReservationStatus,
+        enumName: 'ReservationStatus',
+        isArray: true,
+        required: false,
+    })
     @IsOptional()
-    @IsEnum(ReservationStatus)
-    status?: ReservationStatus
+    @IsArray()
+    @IsEnum(ReservationStatus, { each: true })
+    status?: ReservationStatus[]
 }

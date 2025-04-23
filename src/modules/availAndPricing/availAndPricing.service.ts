@@ -240,19 +240,27 @@ export class AvailAndPricingService {
                 OR: [
                     {
                         startDate: {
-                            gte: formattedDateRangeStart,
-                            lte: formattedDateRangeEnd,
+                            lte: formattedDateRangeStart,
                         },
-                    },
-                    {
                         endDate: {
-                            gte: formattedDateRangeStart,
-                            lte: formattedDateRangeEnd,
+                            gte: formattedDateRangeEnd,
                         },
                     },
                     {
-                        startDate: { lt: formattedDateRangeStart },
-                        endDate: { gt: formattedDateRangeEnd },
+                        startDate: {
+                            lte: formattedDateRangeEnd,
+                        },
+                        endDate: {
+                            gte: formattedDateRangeEnd,
+                        },
+                    },
+                    {
+                        startDate: {
+                            gte: formattedDateRangeStart,
+                        },
+                        endDate: {
+                            lte: formattedDateRangeEnd,
+                        },
                     },
                 ],
             },
@@ -278,13 +286,17 @@ export class AvailAndPricingService {
             hostingRules: {
                 ...hostingRules,
                 reservationWindowStart:
-                    dayjs
-                        .utc(hostingRules.reservationWindowStart)
-                        .toISOString() ?? null,
+                    (hostingRules.reservationWindowStart &&
+                        dayjs
+                            .utc(hostingRules.reservationWindowStart)
+                            .toISOString()) ??
+                    null,
                 reservationWindowEnd:
-                    dayjs
-                        .utc(hostingRules.reservationWindowEnd)
-                        .toISOString() ?? null,
+                    (hostingRules.reservationWindowEnd &&
+                        dayjs
+                            .utc(hostingRules.reservationWindowEnd)
+                            .toISOString()) ??
+                    null,
             },
             seasonRules,
             specialDates,

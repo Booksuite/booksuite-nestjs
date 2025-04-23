@@ -3,10 +3,10 @@ import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
+    IsDateString,
     IsDefined,
     IsEnum,
     IsInt,
-    IsISO8601,
     IsNumber,
     IsOptional,
     IsString,
@@ -27,9 +27,8 @@ export class ReservationCreateDTO {
 
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsDefined()
-    @IsOptional()
     @IsUUID()
-    userId: string
+    guestUserId: string
 
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsOptional()
@@ -45,15 +44,15 @@ export class ReservationCreateDTO {
     @IsEnum(ReservationSaleChannel)
     saleChannel?: ReservationSaleChannel
 
-    @ApiProperty({ example: '2025-01-14T13:19:15.271598Z' })
+    @ApiProperty({ example: '2025-01-14' })
     @IsDefined()
-    @IsISO8601()
-    startDate!: Date
+    @IsDateString()
+    startDate!: string
 
-    @ApiProperty({ example: '2024-10-10T13:19:15.271627Z' })
+    @ApiProperty({ example: '2024-10-10' })
     @IsDefined()
-    @IsISO8601()
-    endDate!: Date
+    @IsDateString()
+    endDate!: string
 
     @ApiProperty({ example: '7' })
     @IsOptional()

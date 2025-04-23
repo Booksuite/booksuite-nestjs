@@ -35,6 +35,8 @@ export class ReservationService {
             Prisma.ReservationCreateArgs['data']
         >()({
             ...rawData,
+            startDate: dayjs.utc(rawData.startDate).toDate(),
+            endDate: dayjs.utc(rawData.endDate).toDate(),
             companyId,
             reservationCode,
             saleChannel:
@@ -50,14 +52,20 @@ export class ReservationService {
         const reservation = await this.prismaService.reservation
             .create({
                 data: normalizedData,
+                include: {
+                    guestUser: true,
+                    housingUnit: true,
+                },
             })
             .then((reservation) => {
                 return {
                     ...reservation,
-                    startDate: dayjs(reservation.startDate).format(
-                        'YYYY-MM-DD',
-                    ),
-                    endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+                    startDate: dayjs
+                        .utc(reservation.startDate)
+                        .format('YYYY-MM-DD'),
+                    endDate: dayjs
+                        .utc(reservation.endDate)
+                        .format('YYYY-MM-DD'),
                 }
             })
 
@@ -89,7 +97,16 @@ export class ReservationService {
 
         const [reservations, total] =
             await this.prismaService.reservation.findManyAndCount({
-                where: { ...this.buildSearchParams(query, filter), companyId },
+                include: {
+                    guestUser: true,
+                    housingUnit: true,
+                },
+                where: {
+                    AND: [
+                        ...this.buildSearchParams(query, filter),
+                        { companyId },
+                    ],
+                },
                 orderBy: order
                     ? { [order.orderBy]: order.direction }
                     : undefined,
@@ -99,8 +116,10 @@ export class ReservationService {
         const formattedReservations = reservations.map((reservation) => {
             return {
                 ...reservation,
-                startDate: dayjs(reservation.startDate).format('YYYY-MM-DD'),
-                endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+                startDate: dayjs
+                    .utc(reservation.startDate)
+                    .format('YYYY-MM-DD'),
+                endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
             }
         })
 
@@ -111,78 +130,102 @@ export class ReservationService {
         query?: string,
         filter?: ReservationSearchFilterDTO,
     ) {
-        const data: Prisma.ReservationFindManyArgs['where'] = {}
+        const FILTER: Prisma.ReservationWhereInput[] = []
 
         if (query) {
-            data.OR = [
-                { reservationCode: { contains: query, mode: 'insensitive' } },
+            FILTER.push({
+                OR: [
+                    {
+                        reservationCode: {
+                            contains: query,
+                            mode: 'insensitive',
+                        },
+                    },
 
-                {
-                    housingUnit: {
-                        housingUnitType: {
+                    {
+                        housingUnit: {
+                            housingUnitType: {
+                                name: { contains: query, mode: 'insensitive' },
+                            },
+                        },
+                    },
+                    {
+                        housingUnit: {
                             name: { contains: query, mode: 'insensitive' },
                         },
                     },
-                },
-                {
-                    housingUnit: {
-                        name: { contains: query, mode: 'insensitive' },
+                    {
+                        guestUser: {
+                            OR: [
+                                {
+                                    firstName: {
+                                        contains: query,
+                                        mode: 'insensitive',
+                                    },
+                                },
+                                {
+                                    lastName: {
+                                        contains: query,
+                                        mode: 'insensitive',
+                                    },
+                                },
+                                {
+                                    email: {
+                                        contains: query,
+                                        mode: 'insensitive',
+                                    },
+                                },
+                            ],
+                        },
                     },
-                },
-                {
-                    guestUser: {
-                        OR: [
-                            {
-                                firstName: {
-                                    contains: query,
-                                    mode: 'insensitive',
-                                },
-                            },
-                            {
-                                lastName: {
-                                    contains: query,
-                                    mode: 'insensitive',
-                                },
-                            },
-                            {
-                                email: {
-                                    contains: query,
-                                    mode: 'insensitive',
-                                },
-                            },
-                        ],
-                    },
-                },
-            ]
+                ],
+            })
         }
 
         if (filter) {
-            data.saleChannel = filter.saleChannel
-            data.sellerUserId = filter.sellerUserId
-            data.guestUserId = filter.guestUserId
-            data.status = filter.status
+            FILTER.push({ saleChannel: filter.saleChannel })
+            FILTER.push({ sellerUserId: filter.sellerUserId })
+            FILTER.push({ guestUserId: filter.guestUserId })
+            FILTER.push({ status: { in: filter.status } })
 
-            if (filter.startDate) {
-                data.startDate = {
-                    gte: filter.startDate?.start,
-                    lte: filter.startDate?.end,
-                }
+            if (filter.dateRange) {
+                FILTER.push({
+                    OR: [
+                        {
+                            startDate: {
+                                lte: dayjs.utc(filter.dateRange.start).toDate(),
+                                gte: dayjs.utc(filter.dateRange.start).toDate(),
+                            },
+                        },
+                        {
+                            endDate: {
+                                lte: dayjs.utc(filter.dateRange.end).toDate(),
+                                gte: dayjs.utc(filter.dateRange.end).toDate(),
+                            },
+                        },
+                        {
+                            startDate: {
+                                gte: dayjs.utc(filter.dateRange.start).toDate(),
+                            },
+                            endDate: {
+                                lte: dayjs.utc(filter.dateRange.end).toDate(),
+                            },
+                        },
+                    ],
+                })
             }
-            if (filter.endDate) {
-                data.endDate = {
-                    gte: filter.endDate?.start,
-                    lte: filter.endDate?.end,
-                }
-            }
+
             if (filter.createdDate) {
-                data.createdAt = {
-                    gte: filter.createdDate?.start,
-                    lte: filter.createdDate?.end,
-                }
+                FILTER.push({
+                    createdAt: {
+                        gte: filter.createdDate?.start,
+                        lte: filter.createdDate?.end,
+                    },
+                })
             }
         }
 
-        return data
+        return FILTER
     }
 
     async getById(id: string): Promise<ReservationResponseFullDTO | null> {
@@ -201,8 +244,8 @@ export class ReservationService {
 
         return {
             ...reservation,
-            startDate: dayjs(reservation.startDate).format('YYYY-MM-DD'),
-            endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+            startDate: dayjs.utc(reservation.startDate).format('YYYY-MM-DD'),
+            endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
         }
     }
 
@@ -214,10 +257,10 @@ export class ReservationService {
             Prisma.validator<Prisma.ReservationUpdateInput>()({
                 ...rawData,
                 startDate: rawData.startDate
-                    ? dayjs(rawData.startDate).toDate()
+                    ? dayjs.utc(rawData.startDate).toDate()
                     : undefined,
                 endDate: rawData.endDate
-                    ? dayjs(rawData.endDate).toDate()
+                    ? dayjs.utc(rawData.endDate).toDate()
                     : undefined,
                 services: rawData.services && {
                     deleteMany: {
@@ -272,12 +315,16 @@ export class ReservationService {
         const reservation = await this.prismaService.reservation.update({
             where: { id },
             data: normalizedData,
+            include: {
+                guestUser: true,
+                housingUnit: true,
+            },
         })
 
         return {
             ...reservation,
-            startDate: dayjs(reservation.startDate).format('YYYY-MM-DD'),
-            endDate: dayjs(reservation.endDate).format('YYYY-MM-DD'),
+            startDate: dayjs.utc(reservation.startDate).format('YYYY-MM-DD'),
+            endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
         }
     }
 

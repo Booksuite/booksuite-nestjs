@@ -3,9 +3,9 @@ import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
     IsArray,
+    IsDateString,
     IsEnum,
     IsInt,
-    IsISO8601,
     IsOptional,
     IsString,
     IsUUID,
@@ -58,7 +58,7 @@ export class ReservationUpdateDTO {
         type: String,
     })
     @IsOptional()
-    @IsISO8601()
+    @IsDateString()
     startDate?: string
 
     @ApiProperty({
@@ -67,7 +67,7 @@ export class ReservationUpdateDTO {
         type: String,
     })
     @IsOptional()
-    @IsISO8601()
+    @IsDateString()
     endDate?: string
 
     @ApiProperty({

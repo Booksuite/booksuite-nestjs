@@ -94,8 +94,8 @@ export class ReservationRule implements AvailAndPricingRule {
             )
 
         const isSearchRangeAroundReservation =
-            searchStartDate.isBefore(reservationStartDate, 'day') &&
-            dayjs.utc(searchEndDate).isAfter(reservationEndDate, 'day')
+            searchStartDate.isSameOrBefore(reservationStartDate, 'day') &&
+            searchEndDate.isSameOrAfter(reservationEndDate, 'day')
 
         return (
             isSearchRangeAroundReservation ||

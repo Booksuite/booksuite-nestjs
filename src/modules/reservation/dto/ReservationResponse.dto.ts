@@ -1,6 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 
+import { HousingUnitResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitResponse.dto'
+import { UserResponseDTO } from '@/modules/user/dto/UserCreateResponse.dto'
+
 export class ReservationResponseDTO {
     @ApiProperty({
         example: '123e4567-e89b-12d3-a456-426614174000',
@@ -49,14 +52,14 @@ export class ReservationResponseDTO {
     @ApiProperty({
         example: '123e4567-e89b-12d3-a456-426614174000',
         nullable: true,
+        type: String,
     })
     sellerUserId: string | null
 
     @ApiProperty({
         example: '123e4567-e89b-12d3-a456-426614174000',
-        nullable: true,
     })
-    guestUserId: string | null
+    guestUserId: string
 
     @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174000' })
     companyId!: string
@@ -75,6 +78,16 @@ export class ReservationResponseDTO {
     })
     rateOptionId: string | null
 
-    @ApiProperty({ example: '2024-07-29T13:19:15.271631Z', nullable: true })
+    @ApiProperty({
+        example: '2024-07-29T13:19:15.271631Z',
+        type: Date,
+        nullable: true,
+    })
     deletedAt: Date | null
+
+    @ApiProperty({ type: HousingUnitResponseDTO, nullable: true })
+    housingUnit!: HousingUnitResponseDTO | null
+
+    @ApiProperty({ type: UserResponseDTO })
+    guestUser: UserResponseDTO
 }
