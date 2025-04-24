@@ -13,6 +13,8 @@ import {
     IsUUID,
 } from 'class-validator'
 
+import { UserCreateDTO } from '@/modules/user/dto/UserCreate.dto'
+
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
@@ -25,10 +27,12 @@ export class ReservationCreateDTO {
     @IsEnum(ReservationStatus)
     status!: ReservationStatus
 
-    @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
+    @ApiProperty({
+        type: UserCreateDTO,
+    })
     @IsDefined()
-    @IsUUID()
-    guestUserId: string
+    @Type(() => UserCreateDTO)
+    guestUser: UserCreateDTO
 
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsOptional()
