@@ -10,7 +10,7 @@ import { AgePolicyResponseFullDTO } from './dto/AgePolicyResponseFull.dto'
 export class AgePolicyService {
     constructor(private prismaService: PrismaService) {}
 
-    async getByCompanyId(
+    getByCompanyId(
         companyId: string,
     ): Promise<AgePolicyResponseFullDTO | null> {
         return this.prismaService.agePolicy.findUnique({
@@ -21,28 +21,25 @@ export class AgePolicyService {
 
     async upsert(
         companyId: string,
-        id: string,
         rawData: AgePolicyDTO,
     ): Promise<AgePolicyResponseFullDTO> {
-        const normalizedDataCreate =
-            Prisma.validator<Prisma.AgePolicyCreateInput>()({
-                ...rawData,
-                company: { connect: { id: companyId } },
-                ageGroups: {
-                    createMany: {
-                        data: rawData.ageGroups.map((group) => ({
-                            ...group,
-                        })),
-                    },
-                },
-            })
-        const normalizedDataUpdate =
+        const policy = await this.getByCompanyId(companyId)
+        if (policy) {
+            return this.update(policy.id, rawData)
+        }
+        return this.create(companyId, rawData)
+    }
+
+    update(
+        policyId: string,
+        rawData: AgePolicyDTO,
+    ): Promise<AgePolicyResponseFullDTO> {
+        const normalizedUpdateData =
             Prisma.validator<Prisma.AgePolicyUpdateInput>()({
                 ...rawData,
-
-                ageGroups: rawData.ageGroups && {
+                ageGroups: {
                     deleteMany: {
-                        agePolicyId: id,
+                        agePolicyId: policyId,
                         id: {
                             notIn: rawData.ageGroups
                                 .map((group) => group.id || '')
@@ -57,10 +54,30 @@ export class AgePolicyService {
                 },
             })
 
-        return this.prismaService.agePolicy.upsert({
-            where: { companyId },
-            create: normalizedDataCreate,
-            update: normalizedDataUpdate,
+        return this.prismaService.agePolicy.update({
+            where: { id: policyId },
+            data: normalizedUpdateData,
+            include: { ageGroups: true },
+        })
+    }
+
+    create(
+        companyId: string,
+        rawData: AgePolicyDTO,
+    ): Promise<AgePolicyResponseFullDTO> {
+        const normalizedCreateData =
+            Prisma.validator<Prisma.AgePolicyCreateInput>()({
+                ...rawData,
+                company: { connect: { id: companyId } },
+                ageGroups: {
+                    create: rawData.ageGroups.map((group) => ({
+                        ...group,
+                    })),
+                },
+            })
+
+        return this.prismaService.agePolicy.create({
+            data: normalizedCreateData,
             include: { ageGroups: true },
         })
     }
