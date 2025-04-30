@@ -7,7 +7,6 @@ import {
     ApiParam,
     getSchemaPath,
 } from '@nestjs/swagger'
-import { v4 as uuidv4 } from 'uuid'
 
 import { AgePolicyService } from './agePolicy.service'
 import { AgePolicyDTO } from './dto/AgePolicy.dto'
@@ -45,24 +44,16 @@ export class AgePolicyController {
         operationId: 'upsertCompanyAgePolicy',
     })
     @ApiParam({ name: 'companyId', type: String, description: 'Company ID' })
-    @ApiParam({
-        name: 'id',
-        type: String,
-        description: 'Age Policy ID',
-        required: false,
-    })
     @ApiBody({ type: AgePolicyDTO })
     @ApiOkResponse({
         description: 'Age policy created or updated',
         type: AgePolicyResponseFullDTO,
     })
-    @Patch(':id')
+    @Patch()
     async upsert(
         @Param('companyId') companyId: string,
-        @Param('id') id: string,
         @Body() data: AgePolicyDTO,
     ): Promise<AgePolicyResponseFullDTO> {
-        const policyId = id || uuidv4()
-        return this.agePolicyService.upsert(companyId, policyId, data)
+        return this.agePolicyService.upsert(companyId, data)
     }
 }

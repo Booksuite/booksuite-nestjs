@@ -19,22 +19,21 @@ export class AgePolicyService {
         })
     }
 
-    upsert(
+    async upsert(
         companyId: string,
+        rawData: AgePolicyDTO,
+    ): Promise<AgePolicyResponseFullDTO> {
+        const policy = await this.getByCompanyId(companyId)
+        if (policy) {
+            return this.update(policy.id, rawData)
+        }
+        return this.create(companyId, rawData)
+    }
+
+    update(
         policyId: string,
         rawData: AgePolicyDTO,
     ): Promise<AgePolicyResponseFullDTO> {
-        const normalizedCreateData =
-            Prisma.validator<Prisma.AgePolicyCreateInput>()({
-                ...rawData,
-                company: { connect: { id: companyId } },
-                ageGroups: {
-                    create: rawData.ageGroups.map((group) => ({
-                        ...group,
-                    })),
-                },
-            })
-
         const normalizedUpdateData =
             Prisma.validator<Prisma.AgePolicyUpdateInput>()({
                 ...rawData,
@@ -55,10 +54,30 @@ export class AgePolicyService {
                 },
             })
 
-        return this.prismaService.agePolicy.upsert({
-            where: { companyId },
-            create: normalizedCreateData,
-            update: normalizedUpdateData,
+        return this.prismaService.agePolicy.update({
+            where: { id: policyId },
+            data: normalizedUpdateData,
+            include: { ageGroups: true },
+        })
+    }
+
+    create(
+        companyId: string,
+        rawData: AgePolicyDTO,
+    ): Promise<AgePolicyResponseFullDTO> {
+        const normalizedCreateData =
+            Prisma.validator<Prisma.AgePolicyCreateInput>()({
+                ...rawData,
+                company: { connect: { id: companyId } },
+                ageGroups: {
+                    create: rawData.ageGroups.map((group) => ({
+                        ...group,
+                    })),
+                },
+            })
+
+        return this.prismaService.agePolicy.create({
+            data: normalizedCreateData,
             include: { ageGroups: true },
         })
     }
