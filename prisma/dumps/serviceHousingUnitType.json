@@ -1,0 +1,57 @@
+[
+  {
+    "id": "a0fb440d-6270-48a3-8c61-b1054389594f",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "serviceId": "0bbe11dd-a8b0-4ce7-b540-5c26baa0b9bd"
+  },
+  {
+    "id": "c7fc6a62-34ed-47b4-80c9-d105c559322d",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "serviceId": "bc35dab1-983a-4503-802c-e9a968eb4044"
+  },
+  {
+    "id": "0ec2905e-b3f7-4062-a51c-b0450035bd95",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "serviceId": "8e1f820b-9e6e-4e88-be80-7cffaac58a7c"
+  },
+  {
+    "id": "92dda5fb-6e92-4b7e-9b94-7d3cad4ee9ff",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "serviceId": "8e1f820b-9e6e-4e88-be80-7cffaac58a7c"
+  },
+  {
+    "id": "194838d7-bec1-4b62-b70c-3cd3ef97be39",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "serviceId": "8e1f820b-9e6e-4e88-be80-7cffaac58a7c"
+  },
+  {
+    "id": "0eb21e4b-966e-4001-ba84-54d7f0efc6df",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "serviceId": "90cc5d62-8aa9-4621-ba73-48de3caa39b8"
+  },
+  {
+    "id": "495c6a21-38dc-45af-94ae-eb7f4e582fe6",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "serviceId": "90cc5d62-8aa9-4621-ba73-48de3caa39b8"
+  },
+  {
+    "id": "a966c654-b426-435d-b016-ae5009547ef4",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "serviceId": "90cc5d62-8aa9-4621-ba73-48de3caa39b8"
+  },
+  {
+    "id": "c69b6d24-aa14-43db-86f9-57872505956e",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "serviceId": "6b19eafa-e7cb-4f23-9f04-5828d7c56b23"
+  },
+  {
+    "id": "7d2a5c6b-eaec-43c5-a0ef-9b87995e676f",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "serviceId": "6b19eafa-e7cb-4f23-9f04-5828d7c56b23"
+  },
+  {
+    "id": "70028c25-ebef-4950-8f77-406cef13a8c9",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "serviceId": "6b19eafa-e7cb-4f23-9f04-5828d7c56b23"
+  }
+]

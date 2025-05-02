@@ -1,0 +1,22 @@
+[
+  {
+    "id": "aa059bc1-e21c-41e1-9dd8-294fa24fc061",
+    "initialAge": 0,
+    "finalAge": 2,
+    "chargeType": "FREE",
+    "value": 0,
+    "agePolicyId": "",
+    "createdAt": "2025-05-01T19:43:15.125Z",
+    "updatedAt": "2025-05-01T23:58:05.800Z"
+  },
+  {
+    "id": "24985a5d-3583-4353-bf68-7e59c68afc92",
+    "initialAge": 3,
+    "finalAge": 13,
+    "chargeType": "DAILY_PER_CHILDREN",
+    "value": 150,
+    "agePolicyId": "",
+    "createdAt": "2025-05-01T23:58:05.800Z",
+    "updatedAt": "2025-05-01T23:58:05.800Z"
+  }
+]

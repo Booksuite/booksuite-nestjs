@@ -1,0 +1,21 @@
+[
+  {
+    "id": "bbe836ba-430c-45c6-a052-889a603e1225",
+    "checkIn": 14,
+    "checkOut": 12,
+    "minDaily": 2,
+    "fixedWindowPeriod": 120,
+    "reservationWindowStart": "2025-12-01T00:00:00.000Z",
+    "reservationWindowEnd": "2025-12-31T00:00:00.000Z",
+    "availableWeekend": [
+      2
+    ],
+    "availableWeekDays": [
+      0,
+      1,
+      3,
+      4
+    ],
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  }
+]

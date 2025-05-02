@@ -1,0 +1,32 @@
+[
+  {
+    "id": "3af767d2-1066-4458-bd59-fec366ecebc9",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "rateOptionId": "e418bda9-a79f-4863-a8de-4942cd05027a"
+  },
+  {
+    "id": "1a1910f2-8b34-4e88-af19-cfc0f1fdc3f5",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "rateOptionId": "e418bda9-a79f-4863-a8de-4942cd05027a"
+  },
+  {
+    "id": "7ce24220-b47b-4d67-8695-a92b79eb1e33",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "rateOptionId": "e418bda9-a79f-4863-a8de-4942cd05027a"
+  },
+  {
+    "id": "8babe720-5828-4d5c-9772-7b5c7eecb0c1",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "rateOptionId": "cb71bbc5-1485-41dc-b466-9dc7fed2da12"
+  },
+  {
+    "id": "85bd1fac-cbc5-4411-a7a0-6d47496a69a2",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "rateOptionId": "cb71bbc5-1485-41dc-b466-9dc7fed2da12"
+  },
+  {
+    "id": "229cdc7e-59c8-44b7-88be-6b81a9948858",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "rateOptionId": "cb71bbc5-1485-41dc-b466-9dc7fed2da12"
+  }
+]

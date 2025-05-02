@@ -1,0 +1,52 @@
+[
+  {
+    "id": "22240a70-24fa-467f-8f0c-cb6bab891ec8",
+    "email": "john.doe@gmail.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "489831034",
+    "password": "securePassword123",
+    "confirmationCode": null,
+    "isAdmin": false,
+    "metaData": {
+      "preferences": {
+        "notifications": true
+      }
+    },
+    "createdAt": "2025-04-29T14:39:10.808Z",
+    "updatedAt": "2025-04-29T14:39:10.808Z",
+    "deletedAt": null
+  },
+  {
+    "id": "ed737e44-736e-4c2a-9a7f-f29e7dbb1d6d",
+    "email": "jane.smith@gmail.com",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "phone": "479831024",
+    "password": "anotherSecurePassword456",
+    "confirmationCode": null,
+    "isAdmin": false,
+    "metaData": {
+      "preferences": {
+        "notifications": false
+      }
+    },
+    "createdAt": "2025-04-29T14:39:10.857Z",
+    "updatedAt": "2025-04-29T14:39:10.857Z",
+    "deletedAt": null
+  },
+  {
+    "id": "a9994c41-bfac-40b0-aebc-1296e4f8ddbb",
+    "email": "admin@booksuite.com.br",
+    "firstName": "BookSuite Admin",
+    "lastName": null,
+    "phone": null,
+    "password": "$2b$10$u6Edmq2qCjMba/9fqO67SexIdAt8Ouw314BpC7Z3uSOvjMTwpHgt2",
+    "confirmationCode": null,
+    "isAdmin": true,
+    "metaData": null,
+    "createdAt": "2025-04-29T14:39:12.647Z",
+    "updatedAt": "2025-04-29T14:39:12.647Z",
+    "deletedAt": null
+  }
+]

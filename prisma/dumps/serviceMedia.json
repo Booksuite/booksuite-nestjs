@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ffd7b0a5-422d-43dd-82d1-3b4ce4d25816",
+    "order": 0,
+    "serviceId": "0bbe11dd-a8b0-4ce7-b540-5c26baa0b9bd",
+    "mediaId": "88792167-03e5-4d12-9b32-f4a3e8949606",
+    "createdAt": "2025-04-29T14:39:12.131Z",
+    "updatedAt": "2025-05-01T23:59:45.914Z"
+  },
+  {
+    "id": "804a29ab-ff7b-4408-ad8f-50f060b044a5",
+    "order": 0,
+    "serviceId": "bc35dab1-983a-4503-802c-e9a968eb4044",
+    "mediaId": "967f4d31-ed61-42ca-b6c5-452ea6bd4257",
+    "createdAt": "2025-04-29T14:39:11.874Z",
+    "updatedAt": "2025-05-02T00:00:13.448Z"
+  },
+  {
+    "id": "9e6db81b-dc7e-44d4-ac23-e2e06cb209dc",
+    "order": 0,
+    "serviceId": "8e1f820b-9e6e-4e88-be80-7cffaac58a7c",
+    "mediaId": "0a3dbf69-816a-4654-b6c9-dc55c88c33bb",
+    "createdAt": "2025-05-02T00:06:12.164Z",
+    "updatedAt": "2025-05-02T00:12:22.418Z"
+  },
+  {
+    "id": "d25dda4c-d9f3-46aa-8918-4082facd25fd",
+    "order": 0,
+    "serviceId": "90cc5d62-8aa9-4621-ba73-48de3caa39b8",
+    "mediaId": "3554ad86-714b-4845-8d56-1d6aedb8233c",
+    "createdAt": "2025-05-02T00:20:59.977Z",
+    "updatedAt": "2025-05-02T00:20:59.977Z"
+  },
+  {
+    "id": "85a3f82a-156f-4700-94e5-2fd47f021b3c",
+    "order": 0,
+    "serviceId": "6b19eafa-e7cb-4f23-9f04-5828d7c56b23",
+    "mediaId": "349883e4-dab5-4ecf-8fe8-c36d73803ac0",
+    "createdAt": "2025-05-02T00:25:16.608Z",
+    "updatedAt": "2025-05-02T00:25:16.608Z"
+  }
+]

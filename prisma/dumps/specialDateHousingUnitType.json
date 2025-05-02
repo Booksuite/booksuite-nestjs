@@ -1,0 +1,20 @@
+[
+  {
+    "id": "6ed7bc55-a1eb-4824-a9c0-611d9b70b862",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "specialDateId": "24ce73c6-bcfa-4149-a28d-753b20319a1e",
+    "baseWeekPrice": 100,
+    "finalWeekPrice": 90,
+    "baseWeekendPrice": 150,
+    "finalWeekendPrice": 135
+  },
+  {
+    "id": "340d64a1-dce3-471a-a2de-4bb828df70d7",
+    "housingUnitTypeId": "619cead8-b516-402d-8868-e889aa32a245",
+    "specialDateId": "24ce73c6-bcfa-4149-a28d-753b20319a1e",
+    "baseWeekPrice": 100,
+    "finalWeekPrice": 90,
+    "baseWeekendPrice": 150,
+    "finalWeekendPrice": 135
+  }
+]

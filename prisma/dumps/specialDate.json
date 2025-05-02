@@ -1,0 +1,20 @@
+[
+  {
+    "id": "24ce73c6-bcfa-4149-a28d-753b20319a1e",
+    "name": "teste",
+    "published": false,
+    "startDate": "2025-05-15T00:00:00.000Z",
+    "endDate": "2025-05-28T00:00:00.000Z",
+    "minDaily": 2,
+    "description": null,
+    "generalDescription": "t",
+    "availableWeekDays": [
+      1,
+      4,
+      3
+    ],
+    "priceVariationType": "PERCENTAGE_REDUCTION",
+    "price": 10,
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  }
+]

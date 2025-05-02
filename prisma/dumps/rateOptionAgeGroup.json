@@ -1,0 +1,20 @@
+[
+  {
+    "id": "d46046ea-c169-4424-9f28-a29026833a0b",
+    "ageGroupId": "aa059bc1-e21c-41e1-9dd8-294fa24fc061",
+    "rateOptionId": "e418bda9-a79f-4863-a8de-4942cd05027a",
+    "price": 0
+  },
+  {
+    "id": "79f24923-b51d-4e83-890c-8bdc26da6d5d",
+    "ageGroupId": "aa059bc1-e21c-41e1-9dd8-294fa24fc061",
+    "rateOptionId": "cb71bbc5-1485-41dc-b466-9dc7fed2da12",
+    "price": 0
+  },
+  {
+    "id": "6dec64cc-6af3-49f5-b219-c5e293595c70",
+    "ageGroupId": "24985a5d-3583-4353-bf68-7e59c68afc92",
+    "rateOptionId": "cb71bbc5-1485-41dc-b466-9dc7fed2da12",
+    "price": 87
+  }
+]

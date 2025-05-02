@@ -1,0 +1,50 @@
+[
+  {
+    "id": "e418bda9-a79f-4863-a8de-4942cd05027a",
+    "name": "Café da manhã",
+    "published": true,
+    "billingType": "PER_GUEST_DAILY",
+    "additionalAdultPrice": 0,
+    "additionalChildrenPrice": 0,
+    "availableWeekend": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "includedItems": [
+      "Cesta de café da manhã"
+    ],
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd",
+    "createdAt": "2025-05-01T23:52:20.253Z",
+    "updatedAt": "2025-05-01T23:52:20.253Z"
+  },
+  {
+    "id": "cb71bbc5-1485-41dc-b466-9dc7fed2da12",
+    "name": "Pensão completa",
+    "published": true,
+    "billingType": "PER_GUEST_DAILY",
+    "additionalAdultPrice": 257,
+    "additionalChildrenPrice": 0,
+    "availableWeekend": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      2
+    ],
+    "includedItems": [
+      "Café da manhã",
+      "Almoço",
+      "Jantar"
+    ],
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd",
+    "createdAt": "2025-05-01T23:52:57.178Z",
+    "updatedAt": "2025-05-02T12:43:06.486Z"
+  }
+]

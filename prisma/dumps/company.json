@@ -1,0 +1,69 @@
+[
+  {
+    "id": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd",
+    "name": "Chalé Lagoa da Serra",
+    "slug": "booksuites",
+    "shortDescription": null,
+    "description": null,
+    "published": true,
+    "type": "HOTEL",
+    "timezone": "Brasília (GMT -03:00)",
+    "logo": "https://booksuite.com.br/logo.png",
+    "favIcon": "",
+    "settings": null,
+    "contacts": [
+      {
+        "type": "email",
+        "value": "teste1@gmail.com",
+        "category": "Reservas"
+      },
+      {
+        "type": "phone",
+        "value": "48 99999999",
+        "category": "Telefone para Atendimento"
+      },
+      {
+        "type": "instagram",
+        "value": "insta",
+        "category": ""
+      },
+      {
+        "type": "facebook",
+        "value": "fac",
+        "category": ""
+      },
+      {
+        "type": "linkedin",
+        "value": "link",
+        "category": ""
+      },
+      {
+        "type": "x",
+        "value": "X",
+        "category": ""
+      }
+    ],
+    "responsible": "BookSuite",
+    "responsibleEmail": "admin@booksuite.com.br",
+    "responsiblePhone": "1234567890",
+    "docType": "CNPJ",
+    "identification": "1234567890",
+    "companyName": "BookSuite",
+    "stateRegistration": null,
+    "municipalRegistration": null,
+    "address": "Rua das Flores, 123",
+    "zipcode": "1234567890",
+    "number": "123",
+    "country": "Brasil",
+    "state": "SP",
+    "city": "São Paulo",
+    "privacyPolicyDescription": null,
+    "privacyPolicySimpleModel": null,
+    "privacyPolicyFullModel": null,
+    "mapCoordinates": null,
+    "bannerTitle": null,
+    "bannerDescription": null,
+    "createdAt": "2025-04-29T14:39:10.940Z",
+    "updatedAt": "2025-05-01T19:40:46.295Z"
+  }
+]

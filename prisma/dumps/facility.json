@@ -1,0 +1,3971 @@
+[
+  {
+    "id": "58429d8a-6ca2-4454-aceb-0d9cbf1b0504",
+    "name": "Andares superiores acessíveis por elevador",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "dd76d4a5-502c-4f29-8f0f-c9d005518c48",
+    "name": "Acessbilidade para cadeirantes",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a83db5cb-aa56-464c-a363-bbfd9bf87b0b",
+    "name": "Acessbilidade parcial para cadeirantes",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "75a949ed-0f34-4508-81d1-9cd57b0a2b9e",
+    "name": "Acessibilidade",
+    "icon": "accessibility",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "515688d1-acf9-4255-b212-0d5b594305ba",
+    "name": "Ar-Condicionado",
+    "icon": "air-vent",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6c2732df-0fb7-49eb-acbd-5e68d7816e4a",
+    "name": "Ar-condicionado (quente e frio)",
+    "icon": "air-vent",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0f5d140a-263e-4bdf-a382-31ce65ffe6e4",
+    "name": "Purificadores de ar",
+    "icon": "air-vent",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "daf437ec-8b57-4036-92fb-a12d0b49e69b",
+    "name": "Serviço de Streaming",
+    "icon": "airplay",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "078176b3-7c1e-4892-b226-c483d5739cad",
+    "name": "Despertador",
+    "icon": "alarm-clock-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "188f4516-5abd-4f6c-9a27-e5683918069c",
+    "name": "Serviço de despertar",
+    "icon": "alarm-clock-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b3efb290-ed8f-40c4-a4e4-6d52dd14e8b3",
+    "name": "Casa de Bonecas",
+    "icon": "baby",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0aa96436-9307-4cfa-a512-bd30f64623e8",
+    "name": "Espaço Kids",
+    "icon": "baby",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "72359514-ef54-4b1e-8fa5-7e0d5bf51e35",
+    "name": "Parquinho infantil",
+    "icon": "baby",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "070bb04c-a7d9-44ce-a581-9df03e3f23be",
+    "name": "Berço",
+    "icon": "baby",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7c873826-8c2a-4be0-b3aa-fbf36f30ebd6",
+    "name": "Cadeirinha para refeições (crianças)",
+    "icon": "baby",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "68be5a1a-1009-40f4-a162-3353d5b1ef7e",
+    "name": "Cama Elástica para Crianças",
+    "icon": "baby",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "148fe8de-4200-4908-a7e2-975f79a5cf80",
+    "name": "Depósito de bagagens",
+    "icon": "baggage-claim",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "187bf0d0-372d-4734-86a9-4ac11dfce6ac",
+    "name": "Lavanderia",
+    "icon": "baggage-claim",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a02725c0-407e-4b79-a160-87000bccd63b",
+    "name": "Lavanderia (mediante consulta)",
+    "icon": "baggage-claim",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "4fea9921-b0bf-4353-acca-b23341981816",
+    "name": "Banheira ao ar livre",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "677519d0-b30d-44dd-9a4c-91e341d9a755",
+    "name": "Banho de Espuma na banheira",
+    "icon": "bath",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2bd234c2-4bd6-46b4-8fb9-422c826f2fbf",
+    "name": "Hidromassagem Casal",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "74fb7b72-de96-488a-bb9e-c4a51c60ea77",
+    "name": "Hidromassagem Solteiro",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "593b9526-ee59-470c-a1b6-f47683f8035c",
+    "name": "Ofurô compartilhado",
+    "icon": "bath",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "124d96f0-5806-41fc-b9e6-701c2ba781a3",
+    "name": "Banheira",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d72bcfb6-466b-41c1-bf80-0f112f1185d3",
+    "name": "Banheira de hidromassagem",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e6173e29-d6b8-4b01-866b-a8874c3e81d4",
+    "name": "Banheira de imersão",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5ccf66bf-9a46-4546-b708-1837d9a8ace7",
+    "name": "Hidromassagem",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2d783c96-504c-405d-a275-77d8b77b8299",
+    "name": "Hidromassagem Vista Panorâmica",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3fba7ed4-2045-4cef-8dac-ea52f4b870d2",
+    "name": "Jacuzzi",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "df240f05-4b80-462b-8b36-18d0cafbe53c",
+    "name": "Ofurô",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "02f94fa2-a2d0-4262-b86b-36cb0511b1b5",
+    "name": "Ofurô externo",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3be5519e-88ca-4195-b4f6-0b1995515bb0",
+    "name": "Jacuzzi Aquecida",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b8d9e8bc-0984-41e3-8f74-4a3d067127ed",
+    "name": "Jacuzzi Casal",
+    "icon": "bath",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "083758ba-20d2-4a9c-b4c4-440cda6bb74f",
+    "name": "Carregador p/ Carro Elétrico",
+    "icon": "battery-charging",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7cffdaa1-0cf3-4beb-a0aa-6bb18aa2dd8c",
+    "name": "Roupa de cama",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "69ac33e0-0ab9-4450-b77f-4f59d6c72c0d",
+    "name": "Roupa de cama e banho",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "fd4e7bc9-fb46-4f11-9bb6-8632eccdb1f8",
+    "name": "Roupa de Cama Especial",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5e53336b-fc6a-481a-b431-961680a324fe",
+    "name": "Roupas de Cama e Banho (Trussardi)",
+    "icon": "bed",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "60e20dd2-b6ba-4d66-acc9-76cf570d3a23",
+    "name": "Serviço de camareira",
+    "icon": "bed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f562584c-1d7a-4e40-a25f-3dabe394fbf6",
+    "name": "Cama box casal",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "357b1630-8d9e-476d-bcc0-f79cd509fcdd",
+    "name": "Cama box king-size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "977305a0-bd69-4472-ab16-f1225af6cceb",
+    "name": "Cama Box Queen",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1cc627af-a32e-49db-800d-6ffce583266d",
+    "name": "Cama king-size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "91f42f40-7ac1-478b-9623-7426ff34dde5",
+    "name": "Cama Queen Size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c178e064-58d4-4360-a309-5c1aaa7db1f7",
+    "name": "Cama super king-size",
+    "icon": "bed-double",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5b999e8d-9fb2-40dc-ba06-12039532b465",
+    "name": "Cama Box Solteiro",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1d0189e2-3dfe-4235-b58f-66caa5808dd3",
+    "name": "Cama de Solteiro",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c88eda4b-4359-4da2-b4de-7ac4e678849d",
+    "name": "Cama dobrável",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9c596270-8fe9-4335-8ef7-f219c2692a37",
+    "name": "Camas de Solteiro",
+    "icon": "bed-single",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "BED_TYPES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0288c3fe-0aa2-4341-b545-e53f04c90c48",
+    "name": "Churrasqueira coletiva",
+    "icon": "beef",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6f69c6e4-e90b-44c2-b020-7d7c8685a7e6",
+    "name": "Churrasqueira",
+    "icon": "beef",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "78642813-1260-4069-a935-91b8326a08e2",
+    "name": "Churrasqueira Elétrica",
+    "icon": "beef",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f39e0c6e-5f8f-4f5d-b602-446de1d71fb8",
+    "name": "Bar molhado",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0c2f2372-cb26-4087-8b58-bdd7b18e99ce",
+    "name": "Bebidas - custo extra",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "603e7439-19b1-42f5-a73f-4e5ecbf0cf58",
+    "name": "Máquina de venda automática (bebidas)",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "66cccecc-20bf-4c93-be6e-748092bf0599",
+    "name": "Choppeira",
+    "icon": "beer",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "239871a9-391a-448e-af56-dfed30e38911",
+    "name": "Bar",
+    "icon": "beer",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "258fe1ed-f045-4e3a-aa62-6b54ad83924f",
+    "name": "Bicicletário",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6a284918-85dd-4650-8f01-a7403788287b",
+    "name": "Aluguel de bicicletas",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ad9aa9ba-0148-48f3-8b3a-61f1e2afe2e0",
+    "name": "Ciclismo",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c4360f95-9802-423a-a512-ad62e1032647",
+    "name": "Empréstimo Bicicletas",
+    "icon": "bike",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d345baa2-5f8e-4722-911b-440e2c975d68",
+    "name": "Vista Incrível",
+    "icon": "binoculars",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5ad809c2-5558-4d29-8649-52536865df20",
+    "name": "Favorável à observação de aves",
+    "icon": "bird",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1a2db4d5-b1b7-4c9a-8067-bb6d5f19dd4d",
+    "name": "Brinquedos",
+    "icon": "blocks",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "447e11ca-4d31-4dc8-9ad9-49758db8e7f2",
+    "name": "Brinquedoteca",
+    "icon": "blocks",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "73aa92f6-b874-4f41-80ee-d1794dfffc00",
+    "name": "Caiaque",
+    "icon": "blocks",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bbb44dad-fa3a-452f-b75d-c92fcb1b42cc",
+    "name": "Caiaque e Stand UP disponível para aluguel",
+    "icon": "blocks",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "076a1aa6-457b-409a-a8a7-0451f19a4a42",
+    "name": "Sala de Leitura",
+    "icon": "book-open-text",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1ad26825-caf2-4e1a-851d-6a6ad8b33ee9",
+    "name": "Sala de leitura/TV",
+    "icon": "book-open-text",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a1fbdc48-c9cb-4ae6-8ff5-1597fc1fff93",
+    "name": "Vista para a Cidade",
+    "icon": "building",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b73617d5-f32c-447c-b862-ea7b0f58e645",
+    "name": "Estacionamento",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e5452795-97a0-49ab-b370-3de30acff395",
+    "name": "Estacionamento não coberto",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "132a9653-d04e-4ef9-b618-5daadf7cf3b1",
+    "name": "Estacionamento coberto",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "df82c57b-e863-4222-973e-57da4a19dd08",
+    "name": "Estacionamento externo",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "accaf658-086f-4af1-8c75-67905e82337e",
+    "name": "Estacionamento gratuito",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5153e438-7f3b-4161-b021-d2c65d7cf748",
+    "name": "Aluguel de carros",
+    "icon": "car-front",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "11204ca9-f898-44aa-b4ab-5265cd7ebce5",
+    "name": "Estacionamento mediante reserva",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6503d4a5-8fbf-4403-b52a-f8eba0cf8b3b",
+    "name": "Estacionamento com custo adicional",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0edfa5f3-edc1-4935-9f8f-ab7336a236ce",
+    "name": "Estacionamento com manobrista",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3f88c09d-5c6e-4a4f-9e55-057ada0aff67",
+    "name": "Estacionamento em frente ao hotel",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7cef2e35-0154-4192-8033-e3889aa242be",
+    "name": "Estacionamento gratuito (conforme disponibilidade)",
+    "icon": "car-front",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b075afb4-9e3c-4109-af92-be8517e788c6",
+    "name": "Serviço de Transfer",
+    "icon": "car-taxi-front",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "228b7972-1531-41b6-a14f-3c849729c08f",
+    "name": "Transfer (aeroporto)",
+    "icon": "car-taxi-front",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1b5afb58-4f94-4fdb-8f0d-c9cdf358e31d",
+    "name": "Transfer aeroporto (gratuito)",
+    "icon": "car-taxi-front",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9ecbb260-5651-45ee-bd86-f0a969c57cbf",
+    "name": "Câmeras de Vigilância 24h",
+    "icon": "cctv",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0995efbe-bcab-4459-94de-d676030d54e9",
+    "name": "Pequena Igreja",
+    "icon": "church",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b374e20e-e6b3-4c30-a408-9058555cfe55",
+    "name": "Quartos para não fumantes",
+    "icon": "cigarette-off",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "cebccfc9-29b8-4f66-a4e3-8311953858c9",
+    "name": "Balanço",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a1a680cf-087e-4a19-b05e-e6f96c04a803",
+    "name": "Cemitério Cenográfico",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "321d2aff-8326-4703-b5cc-660451cd7d8b",
+    "name": "Deck com Espreguiçadeiras",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d118ebfd-c66b-488f-8535-5b437ebb3b7e",
+    "name": "Paintball",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3ef20cd1-84cf-4d52-8efe-3d81aaf74524",
+    "name": "Redário",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "07a1b364-aaf3-4a4f-98cd-c9bcc70fc04b",
+    "name": "Rooftop",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2ed87163-8299-45d0-972b-a0fff010f59a",
+    "name": "Trapiche",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "76077faa-7533-4410-a47d-1c779654c989",
+    "name": "Viveiros",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0eb02874-76a6-4a06-8552-079db107c485",
+    "name": "Aluguel de moto",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2d05688a-2ae0-42c0-bc83-2736d472b582",
+    "name": "Aula de Yoga",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8c089446-bbdf-4b9c-aff7-27c5dd25ca46",
+    "name": "Balonismo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "07162b28-74b3-4d12-9804-f1a86af92154",
+    "name": "Boliche",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c692ae40-b72f-4165-b5e4-f2b25baf7415",
+    "name": "Campo de Futebol",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e3a4cd4c-a24c-48be-a64c-820c3158efcb",
+    "name": "Canionismo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9db1eb18-d3b1-4e89-b47d-fbea8586a185",
+    "name": "Escalada",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "730d5aa8-bfce-4c90-bd27-a855fd98d9ab",
+    "name": "Esqui",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "83e9a8de-a23c-4972-9c06-0685adb84616",
+    "name": "Frescobol",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1066f6e4-e3dd-4172-a4b9-923a685df9a6",
+    "name": "Galinheiro",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "922a9f73-9770-4f0c-83a9-363b536f32a4",
+    "name": "Passeio a Cavalo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5e07aa71-fc7b-4f83-861a-2fc9e5f29cdc",
+    "name": "Passeio de 4x4",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ee00da62-265e-4ad1-9bee-d61ca28df1b7",
+    "name": "Passeio de Canoa",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "694be84c-3718-4556-aa97-81a3eea229dd",
+    "name": "Passeio de jangada",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b4223144-627a-4ca7-8420-19d841c66b94",
+    "name": "Patinete",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "99daddaa-01d8-4a21-ab71-cc3eef7e1f01",
+    "name": "Pebolim",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bc65c70e-ee39-45b6-8ae7-52993633248b",
+    "name": "Pedalinho",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a18c4a57-60fb-459b-a5ea-a7014ec21413",
+    "name": "Piquenique no vinhedo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1dfc17aa-0666-48cf-b875-a0599974473b",
+    "name": "Quadra de Beach tennis",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3c0064a0-483f-4dc2-b892-42732f6ed26e",
+    "name": "Quadra de Tênis",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b4704409-4697-4f9e-8c98-00d3637b76ec",
+    "name": "Quadra de tênis de saibro",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9abdee1f-ba3a-46c3-a138-d3d7d0ce04fe",
+    "name": "Quadra Poliesportiva",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e9e39d0d-f393-412b-8661-d2ee6758132a",
+    "name": "Quadriciclo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "53ab4653-220c-4644-b2b2-19b945f37fb6",
+    "name": "Rafting",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "4f5ca894-ca02-4de6-8b6b-2aed8466c6fe",
+    "name": "Ski bunda kids",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a5b52833-f5cd-4c3c-bf6a-5eaa44d30c73",
+    "name": "Squash",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "630cace0-8356-46a7-84ef-f2ad7d1fdba0",
+    "name": "Stand-Up",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "233c712b-43ad-4493-a40c-5c17eee1a680",
+    "name": "Tênis de Mesa/Pingue-pongue",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6d952036-1160-4c11-937a-edd77e594c5a",
+    "name": "Tirolesa",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "843faf4d-e8d0-4db1-9b21-7a36a55b1810",
+    "name": "Windsurf",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f9007e79-3260-486f-8e57-f32778726157",
+    "name": "Airfryer",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f8b2d158-ded3-4bcd-9924-695c4d8206c7",
+    "name": "Área de estar",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7b408154-be4b-4f7d-933e-8c72d5d8bffe",
+    "name": "Babyliss",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7899d599-3c94-41a8-a0a2-02df06cad0e1",
+    "name": "Balanço suspenso",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3e326752-2bfc-44c2-9fe6-9d7993db4f7e",
+    "name": "Bidê",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "47a3258c-3ae9-4d4d-bd7b-3d0714a360c8",
+    "name": "Chaleira elétrica",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "aa9aea49-efd8-4fc6-b8fa-54dbc61dc4f3",
+    "name": "Chapinha de cabelo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "27b2cfb1-f082-4044-a145-bc373b256770",
+    "name": "Cooktop",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8c2bd67d-6035-4b93-aeb0-8a311dd499f2",
+    "name": "Área gourmet",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5fee1101-cf87-43df-bc1d-b5c9bdc5f585",
+    "name": "Espelhos",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9ab3335d-cda7-4106-b84d-0cca8d781317",
+    "name": "Ferro de passar roupa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8e6d5041-fde1-4f89-8020-29e889e21524",
+    "name": "Fogão",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d7d66b9f-6697-4ba1-9484-b90494e4a7ab",
+    "name": "Liquidificador",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0da36fce-e174-4318-a041-b48a7d6921a3",
+    "name": "Mesa externa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "85629e2b-aab5-4d6c-aeb4-9c3837d7631c",
+    "name": "Mezanino",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "618278c3-512e-47a8-b4e9-3f49c4feec06",
+    "name": "Pé direiro duplo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f24ea0ad-8750-41d0-afd1-63f80f16d900",
+    "name": "Prancha de cabelo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "971ab7bd-ccd4-4e3d-af12-6f3c70c0c4ea",
+    "name": "Rede",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "405e4cbd-4f68-4d6d-b2d4-70409bf8a4d0",
+    "name": "Rede suspensa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a1e973f0-b83f-4738-87da-e4deac3c6202",
+    "name": "Sacada privativa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "42a7f9ba-72a2-407c-a278-d55afaacfcdf",
+    "name": "Sala de jantar",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6fe02a65-7a51-4c60-96f8-aea704a8d8b4",
+    "name": "Secador de Cabelo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "00f9dcb9-a15f-4f13-9c99-c8594fc41ebd",
+    "name": "Stand-Up Paddle",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "29b0592f-b3c8-49bb-b92b-50a5131db885",
+    "name": "Terraço",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ec339297-e2b8-41c7-8f02-7ded7036e9d4",
+    "name": "Toda a unidade localizada no térreo",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "93c25bef-50aa-4d39-b22f-02e2551d9ed4",
+    "name": "Varanda",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "83b3f648-2f86-4d9b-a3ca-3083e2f292e2",
+    "name": "Cobertor elétrico",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a2696e18-2a88-4f22-9dc1-eb3b66c74b37",
+    "name": "Comodidades para hóspedes com mobilidade reduzida",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b93b316d-9a72-400a-812c-1ff54f88fff3",
+    "name": "Cooktop por indução",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "dcba6f72-c82d-471f-ad7f-61460b420fad",
+    "name": "Elevador",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5160173c-74dc-4d62-9a18-0dbb7cd913b1",
+    "name": "Entrada privativa",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3349474e-a0c4-4512-8689-810bf40dea19",
+    "name": "Exemplares de Animais como Pônei e Gado",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "34154ff9-a9b9-4d3b-8c07-dbe810288a3c",
+    "name": "Lobby",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "fd1d403c-7022-4eac-8dd4-42da23298bc2",
+    "name": "Mini Fazenda",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f4294cdb-c0d1-47f4-8411-cd9f7a7d6a57",
+    "name": "Mini Tirolesa",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c681f00e-2af0-44d9-99c2-cc1b914955c0",
+    "name": "Mirante",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0c2dcd52-de31-4673-9c8e-5078f2f7c16a",
+    "name": "Papel higiênico",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "49708061-3483-4bd4-9103-c0ab7fb6b5e2",
+    "name": "Pergolado",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b75ba891-3a84-4661-99bf-959347d9c292",
+    "name": "Produtos de higiene pessoal",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "742c8bd4-e19a-47d6-a0d4-8b62af42f619",
+    "name": "Produtos de limpeza",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "477a9f43-2a5b-475b-954c-db0b8e11ac3e",
+    "name": "Quartos para famílias",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bd22a00c-cd34-4800-9b28-d05a46a9113a",
+    "name": "Roda d'água",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "087c13d2-65af-4a29-b134-0f1c243bf60c",
+    "name": "Suíte nupcial",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a137a2bb-f0ad-4b4a-a4bd-9524874c3aa0",
+    "name": "Toalhas",
+    "icon": null,
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d2d9256c-8d18-4304-b8c0-5b5832a29db2",
+    "name": "Aluguel de Máscara de Mergulho e Snorkel",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9d4514ac-b801-4117-aeb5-f66384c1c6c8",
+    "name": "Balcão de turismo",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "dcb78357-1418-4538-a584-8c7f4a1184fb",
+    "name": "Cadeiras de praia e guarda-sol grátis",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1cef1a7c-da57-403c-bfbe-bed16959c3dc",
+    "name": "Cadeiras de praia e guarda-sol para aluguel",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "cf57d7b4-8ee4-432f-96fa-cc70f2cb1e57",
+    "name": "Cave de maturação de queijos",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "fafd7782-39df-4446-881c-bca4829db639",
+    "name": "Cursos de mergulho (custo adicional)",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "50e79539-153f-432c-a509-42ca40bb7c87",
+    "name": "Massagem Relaxante (Serviço Adicional)",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "57985290-c054-40df-97a1-d7e4a28e873b",
+    "name": "Operadora de mergulho (custo adicional)",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0ecc8a28-9191-4296-a14d-b48adca998b9",
+    "name": "Organização de Passeios",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "30373374-7c69-47d6-8cd4-a222d9c5ff50",
+    "name": "Portaria 24 horas",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "23c3baec-d9ba-4768-bb72-139c92fbd2c8",
+    "name": "Serviço de massagem",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1ecfacf0-34be-4b74-8bde-66fc4743350e",
+    "name": "Serviço de Praia em frente à Pousada",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "914821c5-c9c6-4fdb-b77d-97fc55903798",
+    "name": "Serviços de massagem",
+    "icon": null,
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e2166710-8432-4d54-8008-bd772dd49b9c",
+    "name": "Serviço de câmbio",
+    "icon": "circle-dollar-sign",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a6af575b-8aa5-4a02-9e3c-7b84d3239b8c",
+    "name": "Espaço de Convivência",
+    "icon": "club",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "127b9b21-ca39-49bb-903c-4c74fa4dddea",
+    "name": "Café da manhã",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f1d9e125-1ec0-4e04-a2d3-f641cd5276ed",
+    "name": "Café da Manhã Incluso na Diária",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bf68d147-a7f6-4580-aacd-d2a1178137e9",
+    "name": "Café da manhã no quarto",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e6a7dba1-55a5-4d2e-b7da-4d18f6962164",
+    "name": "Café da Manhã no Quarto Incluso na Diária",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "25d9a016-fd2f-4805-8c64-31c527f05570",
+    "name": "Plantação de café",
+    "icon": "coffee",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "689e02f7-b792-4314-a849-e01bf861bdca",
+    "name": "Cafeteira",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "74a2550a-26e9-4070-ac47-cc78089b759f",
+    "name": "Máquina de café",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "917d2153-2bbe-414f-aa15-807215502589",
+    "name": "Máquina Nespresso",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ff7559da-a024-40d2-994d-ddcc4625c057",
+    "name": "Cafeteira Elétrica",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0e43ead4-1f24-41ce-99f9-b78dd0ed2df4",
+    "name": "Cesta de Café",
+    "icon": "coffee",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "38ce81ac-7e49-4644-b175-096380ee1621",
+    "name": "Almoços para viagem",
+    "icon": "cooking-pot",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "58965cf1-4a25-4a7d-b6b9-39c639580aaa",
+    "name": "Piquenique",
+    "icon": "croissant",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "afa6836b-c3a8-462a-bcd4-d8d7cecb6f45",
+    "name": "Jogo de Dardos",
+    "icon": "crosshair",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "40e05036-5823-43a4-b524-90e64d7ce6e8",
+    "name": "Discoteca",
+    "icon": "disc-3",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8697face-17a5-47fa-8e65-88c5ab2a7439",
+    "name": "Aceita os animais de estimação",
+    "icon": "dog",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f20b02e3-2f07-47dd-9127-da01b0a736a3",
+    "name": "Aceita os animais de pequeno porte",
+    "icon": "dog",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "357a0ca9-ba73-440a-b7f1-c5e73c05397d",
+    "name": "Aceita pets",
+    "icon": "dog",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "455400de-75c5-4229-a373-50462def5372",
+    "name": "Cachoeira",
+    "icon": "droplets",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8bd08def-e0aa-4dd5-aef6-14f580c3c3e8",
+    "name": "Academia",
+    "icon": "dumbbell",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "be7a8732-7c74-46ed-8ff8-aff5ca2318c6",
+    "name": "Snooker Oficial",
+    "icon": "eclipse",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "aa7d216e-396f-44d1-986b-b5ea894961a7",
+    "name": "Bilhar",
+    "icon": "eclipse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3d129848-5fcd-4485-bc7f-6e1e195df92d",
+    "name": "Ventilador",
+    "icon": "fan",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "039a3102-c4db-464f-916c-f69e660f0509",
+    "name": "Ventilador Teto",
+    "icon": "fan",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6bf480ff-8982-43a2-b9b1-d6f5d75c5646",
+    "name": "Pescaria",
+    "icon": "fish",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b754c69c-5e6b-4bc0-8d33-766cca33315a",
+    "name": "Área de Fogueira",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "002aa7a6-5ec6-47ae-8ed2-6e9a31e11f8e",
+    "name": "Lareira ao ar livre",
+    "icon": "flame-kindling",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "faa6ec27-1fe9-4ea3-81c8-11aa6cb99bbc",
+    "name": "Fogueira central",
+    "icon": "flame-kindling",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c7d73995-e908-4a6f-a051-19a395256e25",
+    "name": "Fogão à lenha",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ea822cf8-7d24-4b1a-88ab-bf40070deb4f",
+    "name": "Fogo de chão externo",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "dbc8fd0c-539e-4781-bcd0-0489ea30e840",
+    "name": "Lareira",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d2d2d734-deea-4833-a2ba-e4aafe31f006",
+    "name": "Lareira externa",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "fbc9a5d0-46f6-4f95-9195-58f1879aa7e9",
+    "name": "Fogo de chão",
+    "icon": "flame-kindling",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3dc5c84e-d973-4952-a0c4-73d0ae752c3d",
+    "name": "Lareira em área interna",
+    "icon": "flame-kindling",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9f0e17a3-2e20-452f-8680-42af5741200a",
+    "name": "Trilhas a pé",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "05d519e2-af9d-4bae-9c98-311b1f532079",
+    "name": "Trilhas ecológicas",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "231e761b-f202-433c-855e-7b091b3f8492",
+    "name": "Pantufas",
+    "icon": "footprints",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "eef494e7-1685-42af-b7c6-482b42f3e28c",
+    "name": "Chinelos",
+    "icon": "footprints",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a4478555-90c4-45a8-9601-d82995bc60b7",
+    "name": "Trilha com Ponte",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "92504c58-f39b-4f78-aed9-26529804c4be",
+    "name": "Trilha de lendas pela mata",
+    "icon": "footprints",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c7a64035-6415-418f-bed1-a5964e845f9e",
+    "name": "Videogame",
+    "icon": "gamepad-2",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "4251eea8-f1a7-4200-8194-d3d8363582ee",
+    "name": "Spa",
+    "icon": "gem",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7ec8da20-7001-4afa-b749-4e0d4a9d679a",
+    "name": "Spa / Centro de bem-estar",
+    "icon": "gem",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "15dd367b-9bb2-4d51-8633-2b6b81132fb0",
+    "name": "Água Mineral Grátis",
+    "icon": "glass-water",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "54b46c1a-b6dc-4869-ae19-79cbbedd1607",
+    "name": "Abastecimento com água de mina",
+    "icon": "glass-water",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1b2c49f7-cd82-4835-9878-0870391336d8",
+    "name": "Wine Garden",
+    "icon": "grape",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "79384a2b-bc68-4d76-bf1d-91c8d00b39fb",
+    "name": "Vinhedos",
+    "icon": "grape",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "105b3b51-2ab2-4a9b-999d-e13246e45fda",
+    "name": "Área gourmet com churrasqueira",
+    "icon": "ham",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d44a1c66-c654-41b5-a7e5-81f2a1b01a85",
+    "name": "Serviço de Quarto",
+    "icon": "hand-heart",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7f277ed6-44ff-436a-96e3-a17eac12e835",
+    "name": "Serviço de Quarto - à parte",
+    "icon": "hand-heart",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6a0aa681-dc17-4764-bb68-3967fb2adc66",
+    "name": "Concierge",
+    "icon": "hand-helping",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b9b818d7-4bd1-4102-b3df-0a14616c22bf",
+    "name": "Recepção",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0dc4b794-2d06-4f62-9ba4-c91728665e85",
+    "name": "Recepção 24 horas",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "fecdba63-f431-4ef7-9c7e-aabeb0886f33",
+    "name": "Recepção Virtual",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7c01b1c9-1c83-45a2-ba84-1ef1501226a8",
+    "name": "Serviço de limpeza diário",
+    "icon": "hand-helping",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b693de2f-2286-42b2-a93a-426a2a052cce",
+    "name": "Restaurante",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a3191bb5-8a29-4e4b-9561-d5b70f508613",
+    "name": "Restaurante (à la carte)",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "61578123-4d5b-46ca-a451-42f3c8c40557",
+    "name": "Restaurante (buffet)",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "84eabe09-25cd-4bad-bf8c-262b79d62e0a",
+    "name": "Restaurante colonial",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "41ddd5c4-4efd-42a1-989c-a16fe022718b",
+    "name": "Serviço de Jantar",
+    "icon": "hand-platter",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d31b2b21-6e31-408a-8146-8bb59e088804",
+    "name": "Suíte Lua de Mel",
+    "icon": "heart",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0ce422d1-d03f-495c-a142-d3106b7fa272",
+    "name": "Aquecedor portátil",
+    "icon": "heater",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8c079973-3039-40ba-914e-49abd3b2cff1",
+    "name": "Calefação",
+    "icon": "heater",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ce5db9ef-84e1-45f0-aa73-ac332b1ed144",
+    "name": "Climatizador",
+    "icon": "heater",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1bd7d64c-3701-499a-b0d9-c57d66e3794f",
+    "name": "Vista para a entrada",
+    "icon": "hotel",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c9e0fb8a-8028-479d-b215-3991b22281ec",
+    "name": "Luminária na cabeceira",
+    "icon": "lamp",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0ae63aaf-1c3b-418f-bcd6-abc9121a8b87",
+    "name": "Campo de Golf",
+    "icon": "land-plot",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ea20dcf1-1265-4702-b824-d250413b521f",
+    "name": "Minigolfe",
+    "icon": "land-plot",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d57a98e8-bbc2-4b83-9a1e-87175f354777",
+    "name": "Alemão",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0949e6e8-27d8-496e-88a0-9db3f404b559",
+    "name": "Espanhol",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bd56197c-30a1-4eea-95b6-c75ac9d842bc",
+    "name": "Francês",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b525e5be-ca65-46ea-b26e-13485bf07d40",
+    "name": "Grego",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a67345f1-4fab-4932-9e12-fbc82b47ba9f",
+    "name": "Hebraico",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "4f865c7a-73eb-486b-9d2d-31204eea0d14",
+    "name": "Inglês",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "56ebafd6-63d1-4dfe-9e73-174843d009aa",
+    "name": "Italiano",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d39703b5-a39a-484d-a360-c503b06b8b80",
+    "name": "Japonês",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f627ea4d-2021-4ff0-a57d-4b19ae335d05",
+    "name": "Português",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8a667514-462d-4bf6-9e25-6020c00ed35a",
+    "name": "Russo",
+    "icon": "languages",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "43ebc527-2971-4577-963b-67e818e68a06",
+    "name": "Mesa de trabalho",
+    "icon": "laptop",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f428a345-0518-4a2d-9456-9a96545e5994",
+    "name": "Computador",
+    "icon": "laptop-minimal-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "447bacb9-4bdd-4d04-b61e-42e86060d2cc",
+    "name": "Coworking",
+    "icon": "laptop-minimal-check",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1ac604a6-3cfe-4122-99ef-d4cee3ebc6af",
+    "name": "Gazebo para massagens",
+    "icon": "leaf",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bfea860d-191c-41cd-92ef-b4ab8b519d58",
+    "name": "Campo de Futebol Society",
+    "icon": "loader-pinwheel",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "69fd60ba-5eff-483f-9907-b266a400aa49",
+    "name": "\"Serviço de Bar",
+    "icon": "FALSE",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "eb69c981-91dc-4361-b091-3c77fa0cfe3d",
+    "name": "Centro de Esportes",
+    "icon": "medal",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e2cba9d9-40c2-4854-a3e2-c995bfb90989",
+    "name": "Forno",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "026539ee-d881-4cd3-a492-0a728fcf7b83",
+    "name": "Forno elétrico",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "da4d2293-cec1-4362-8489-4d2a8d2a71a5",
+    "name": "Forno a gás",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6dee252e-1815-4c14-aa97-e811023239b7",
+    "name": "Micro-ondas",
+    "icon": "microwave",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6802e322-1430-4558-a01d-151bb6653bfb",
+    "name": "Vista para a montanha",
+    "icon": "mountain",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "af9932f4-3bb4-4e6e-b97a-d1f8eb08f867",
+    "name": "Recreação",
+    "icon": "party-popper",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "82e44fde-4677-4331-93bf-da9d3b9d4c3a",
+    "name": "Ambiente Privativo",
+    "icon": "person-standing",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3f441d6a-97fb-41bf-84e5-51cb5adcb5ff",
+    "name": "Telefone",
+    "icon": "phone",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "07161b18-a961-4f3e-aebe-54170c117634",
+    "name": "Mina em atividade",
+    "icon": "pickaxe",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b51bd26e-5efe-4e3c-aa4b-f93c3b250817",
+    "name": "Garrafa térmica",
+    "icon": "pill-bottle",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e4237265-07f6-4302-a0b2-c3e002663be5",
+    "name": "Playground",
+    "icon": "play",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "327f8aa8-4ae6-4653-9978-3b85cdc5d53f",
+    "name": "Tomada perto da cama",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "282f83bf-7775-4e45-8636-f5e447d78cde",
+    "name": "Voltagem 110V",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ca3e5b5f-afb0-40c6-bb63-66772f6543bf",
+    "name": "Voltagem 110V e 220V",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ef477190-0f99-4b32-a0e5-ed19f77baab2",
+    "name": "Voltagem 220V",
+    "icon": "plug-zap",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1fd5a9a1-6e10-4c86-8050-f09405c509ef",
+    "name": "Cinema",
+    "icon": "popcorn",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "526421a3-fc21-4d39-9712-9ae6af81ef4e",
+    "name": "Sala de reuniões/eventos",
+    "icon": "presentation",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "392055ef-9e83-42a8-8b9a-5150254624ef",
+    "name": "Sala de cinema",
+    "icon": "projector",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c8134e54-47e7-4206-ab37-db71f1b3f94d",
+    "name": "Celeiro com animais",
+    "icon": "rabbit",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "19187d64-8865-49ee-b66e-f8a3a590a337",
+    "name": "Campo de bocha",
+    "icon": "rectangle-ellipsis",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e1413af3-5f4c-4996-bf04-bc6e2183a7d8",
+    "name": "Cozinha",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6f23d9fe-5a52-44f8-abe4-be2ecfc9fee0",
+    "name": "Cozinha compacta",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "66d17910-a08d-4732-b3ba-e28d0d997c39",
+    "name": "Cozinha Compartilhada",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "038c9c66-ba81-4d3f-9a1a-8f3f66923bc9",
+    "name": "Cozinha completa",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "74f25210-2dee-44c4-86ad-515c6d58cb9f",
+    "name": "Frigobar",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "027b7df1-71b2-4f15-a61e-89caa21fa2ab",
+    "name": "Geladeira",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5baff9f2-b467-49c0-bd3e-f613195f62ed",
+    "name": "Geladeira/cervejeira",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d0348270-ce41-4b50-891f-f54f1ac414df",
+    "name": "Cervejeira",
+    "icon": "refrigerator",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "821a8ae1-8fd2-4183-8e98-201a11a7c03d",
+    "name": "Passeio de veleiro (adicional)",
+    "icon": "sailboat",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7b4f5204-1be9-4354-8249-9ea9e93475fb",
+    "name": "Lanchonete",
+    "icon": "sandwich",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "75f6d5f1-0db4-4059-82c4-a9b06e71decb",
+    "name": "Máquina de venda automática (lanches)",
+    "icon": "sandwich",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9eff1548-041f-40dc-ad0d-4688495b9703",
+    "name": "Torradeira",
+    "icon": "sandwich",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5bdc3f4b-285f-4023-92e9-648e4e48d87e",
+    "name": "Cofre",
+    "icon": "shield-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "13abae46-ffa2-4cdc-8faf-bcc479b3891a",
+    "name": "Sacada com tela de proteção",
+    "icon": "shield-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b1bf8d2d-7558-43a5-a08f-3948f212e6b8",
+    "name": "Álcool em Gel",
+    "icon": "shield-check",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "db11680c-a3ef-4d71-98fd-941c717c0f4e",
+    "name": "Caiaque para aluguel",
+    "icon": "ship",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d001c3b4-cccf-4a61-9b14-25bed9f0a999",
+    "name": "Aluguel de embarcações",
+    "icon": "ship",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a712bc19-cb07-4d16-97c8-c44fa6100824",
+    "name": "Passeios de barco (adicional)",
+    "icon": "ship",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d633ba74-c589-44c8-87c5-8cc0705673a1",
+    "name": "Arara para roupas",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "43ff919d-8042-42d6-a695-13b8058dd95f",
+    "name": "Closet",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d1ca0f6d-3c64-4f60-baee-6042a8fe5f2b",
+    "name": "Guarda-roupa ou armário",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "99c7f08a-f120-4884-a863-3f4f7f455a70",
+    "name": "Varal de secar roupas",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "feb1b95f-5dce-43fc-be15-e529fa64fac4",
+    "name": "Roupão",
+    "icon": "shirt",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5f131f81-b7ff-434d-8acb-0c40426b1409",
+    "name": "Loja de Conveniência",
+    "icon": "shopping-basket",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a45a8dde-e388-464a-977d-1b15f7d8f38e",
+    "name": "Loja de Conveniência 24 horas",
+    "icon": "shopping-basket",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3c71946c-c709-48c2-8727-9b4d03290666",
+    "name": "Entrega de Compras",
+    "icon": "shopping-cart",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "378646df-912a-458d-bf4e-51738b7491fa",
+    "name": "Ducha externa",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "fa755bd4-6972-4573-8d37-b904801a166a",
+    "name": "Banheiro ducha dupla",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a85e7051-a16e-4e9b-ba92-307c9eb7b2da",
+    "name": "Chuveiro",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "398238ad-6b0f-4236-a20d-02bc8c15ae76",
+    "name": "Chuveiro Elétrico",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ad16479d-ecbd-44f4-93ea-ddd419d62511",
+    "name": "Ducha",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "646fd20c-ad35-4d52-9b6b-f656872e0134",
+    "name": "Ducha à gás",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f245d481-15f7-4755-bde4-27a412e16d67",
+    "name": "Ducha dupla à gás",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6c16e048-8db4-4c75-bb67-135ee4fd4f26",
+    "name": "Ducha higienica",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c4a923d8-f939-49ef-b4f4-478a1bdd9574",
+    "name": "Amenidades Banho",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d63b58eb-47ae-4ebc-b3a2-86777319d2b8",
+    "name": "Chuveiro Aquecido a Gás",
+    "icon": "shower-head",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "76de31a2-9127-42b4-9ff5-893f80f161bf",
+    "name": "Jardins Europeus",
+    "icon": "shrub",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b20aa2ad-b1cb-4f98-b9a4-a07a5eb993cb",
+    "name": "Jardim",
+    "icon": "shrub",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a57603e1-33a3-4ed5-a6ff-6ac53d1c5399",
+    "name": "Interfone",
+    "icon": "smartphone",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8b5cc85d-ff83-4175-a135-2819e5cc76a4",
+    "name": "Atendimento via interfone 24h",
+    "icon": "smartphone",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8292c286-f5d8-46ba-b6f5-569d43cdb93f",
+    "name": "Máquina de gelo",
+    "icon": "snowflake",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8dea9ccc-36fe-4675-8035-e925e9bcebdf",
+    "name": "Sofá",
+    "icon": "sofa",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "4a66fd2a-c838-4bc2-bd06-481531ae3f28",
+    "name": "Sofá-cama",
+    "icon": "sofa",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "32bbf863-7e7c-4fad-9b82-6eba66dfe461",
+    "name": "Contato com a natureza",
+    "icon": "sprout",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "79785bcc-ef29-4305-b6d5-7a7fa493c628",
+    "name": "Horta orgânica",
+    "icon": "sprout",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9815c274-e5b3-466a-ac5f-3986dda13740",
+    "name": "Manobrista",
+    "icon": "square-parking",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2b9ed640-e3d3-4903-9063-3a640bb2d59b",
+    "name": "Lojas",
+    "icon": "store",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "78be28a2-8c65-45c9-92c9-bcebb37f8f97",
+    "name": "Solário",
+    "icon": "sun",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f43b86f3-f4c3-431f-a98d-dad1bcdedb03",
+    "name": "Aquecimento solar",
+    "icon": "sunset",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3c1a031d-1c2c-41e6-8705-d955e524a9fc",
+    "name": "Geração de energia solar",
+    "icon": "sunset",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "893ac359-5c9d-4afc-ac21-edfadea2c59e",
+    "name": "Pole Dance",
+    "icon": "tally-1",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "77112771-0455-4b93-8597-d6469be59097",
+    "name": "Banho com águas termais",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0b4c16d3-5e0d-41cd-bcc5-d2154a10216d",
+    "name": "Sauna",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "54a91242-918c-41d9-9b2a-748c134da848",
+    "name": "Sauna a vapor",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c561ebd9-5b74-466b-a98a-132b6a6b79f2",
+    "name": "Sauna Masculina",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2b853b80-84e8-4bb3-bfb9-8986b00fc679",
+    "name": "Sauna seca",
+    "icon": "thermometer",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "012afd2b-b760-4cbb-ab84-17c9751d1311",
+    "name": "Sauna",
+    "icon": "thermometer",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "26eae3ff-7fcd-476c-a0b6-277eda06d75d",
+    "name": "Lençol térmico",
+    "icon": "thermometer",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "541bacd2-9373-4a35-8613-4369b54372df",
+    "name": "Aquecimento",
+    "icon": "thermometer-sun",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "47941684-64ae-4206-b481-f7d9f351d95f",
+    "name": "Aquecimento à gás",
+    "icon": "thermometer-sun",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "11d1902e-1ee3-49d9-a24b-41246c791a29",
+    "name": "Banheiro Externo",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "873de530-420d-4b9d-bda3-3be4dcc2e8e0",
+    "name": "Banheiro no quarto",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8f2971be-6788-43ea-93ec-0dda766173fa",
+    "name": "Banheiro privativo",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1bc43816-2d16-4452-8b6f-6a2cd8ddfe8e",
+    "name": "Toalete",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b8bac126-0688-4ff8-8439-f9ed5313d017",
+    "name": "Vaso sanitário",
+    "icon": "toilet",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5f1feda1-ff59-46ab-b1f7-d1d0a00af526",
+    "name": "Aquecedor de toalhas",
+    "icon": "tower-control",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5a5602de-1720-42f6-ab33-218bbdb6ac86",
+    "name": "Arvorismo",
+    "icon": "tree-pine",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "86636935-4b61-455d-89dd-dfce322b8e7f",
+    "name": "Casa na árvore",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5015274f-44ed-497b-8e0b-a7f7069757e1",
+    "name": "Jardim Privativo",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8fc4a5f6-289b-4c55-81d5-f4d2b5d11a64",
+    "name": "Sacada com vista para a natureza",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b12a7df2-df3c-4a98-8a45-326d96a87647",
+    "name": "Reserva Natural",
+    "icon": "trees",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "48703ff1-15c1-4876-b1f3-c9bbfe53d325",
+    "name": "Vista",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e8ed6fcb-b751-42cb-ab84-75cfb806b8cf",
+    "name": "Vista externa",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "a893df60-090f-4ca6-9b98-ae0f22b493cb",
+    "name": "Vista Panorâmica",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7fe57ea1-545f-422e-9a0b-9ccbd6fb6622",
+    "name": "Vista para a lagoa",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3edbc1f4-3880-4f24-a2d0-286496620298",
+    "name": "Vista para a Mata Atlântica",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "cadf5253-df91-4854-82f4-383e788d94d6",
+    "name": "Vista para jardins",
+    "icon": "trees",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "eef8dd87-d44a-4751-a51e-e76f5f9e2aa8",
+    "name": "Sala de Jogos",
+    "icon": "trophy",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "5f1b1dff-93a3-4392-855a-63108ddd64c5",
+    "name": "Sala de TV",
+    "icon": "tv",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6a78f81d-5d9a-43e2-9a4e-37431fd5aa3c",
+    "name": "Smart TV",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "02bd8e7d-f9ad-4ffe-b616-eb9bf3ab012b",
+    "name": "Televisão",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "eef8ab25-6524-4e9e-9ac1-7739fd76b253",
+    "name": "TV",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1ce2db80-253f-4098-8612-6f411f76eeea",
+    "name": "TV a Cabo",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7634064e-7127-45b7-81ac-b8014c11eed3",
+    "name": "TV na sala",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d95e8c26-5c85-4cf8-89e8-076b6c6542e0",
+    "name": "TV no quarto",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "9603c027-c38f-4892-877b-f1d5f317844c",
+    "name": "Canais a cabo",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0f3f0576-6ad7-459e-9b76-12816c46f15f",
+    "name": "Canais pay-per-view",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7beea405-cef4-4219-b711-19f0ac93bd3d",
+    "name": "Canais via satélite",
+    "icon": "tv",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "93c62485-3810-49e9-96ab-b3bd84bd68f2",
+    "name": "Sala de TV Com Sofá-Cama",
+    "icon": "tv",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "23ae8934-8420-452c-9547-c03914fe0cae",
+    "name": "Protetores de tomadas",
+    "icon": "unplug",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2899187f-ab9f-4c8a-ab3c-f18afed9332f",
+    "name": "Ambiente Compartilhado",
+    "icon": "users",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "91bfdf5f-a892-4600-bc1c-81163584d40e",
+    "name": "All inclusive",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "46771857-a8e1-4347-a66b-9a077af6cbf9",
+    "name": "Jantar (pago a parte)",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2495433a-1d17-4712-9ce0-08bab399cca2",
+    "name": "Jantar (incluso)",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b2245bf9-7d47-4964-aa3d-4731586ab404",
+    "name": "Meia pensão",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e4476fad-38da-495c-8333-038338715cfb",
+    "name": "Pensão Completa",
+    "icon": "utensils",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "0885ffaa-7f77-4429-8a34-59af9f93887c",
+    "name": "Lava-louças",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6542188e-0fd3-4d74-97be-2711250b014a",
+    "name": "Mesa de jantar",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6074c1d2-a671-42c5-9738-ef50faf584b5",
+    "name": "Utensílios de cozinha",
+    "icon": "utensils",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "3cfa2c0f-5053-4f08-b3f4-a5ad82b40e31",
+    "name": "Área de refeições externa",
+    "icon": "utensils-crossed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bd8f1c16-0a10-4c2a-a0ba-5a5fdc620a52",
+    "name": "Área para refeições",
+    "icon": "utensils-crossed",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6ef02b8e-a775-4be4-9277-f6a10aa4e63e",
+    "name": "Isolamento acústico",
+    "icon": "volume-off",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "28bcde0e-a6e3-4d59-8ce8-4dd5ee3e9f3a",
+    "name": "Garagem",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "de46e3aa-6ecd-416c-a393-515e46e86c29",
+    "name": "Garagem coberta",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ce944ee9-72ef-4e51-8488-b79555632f1a",
+    "name": "Garagem descoberta",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "475e1c8d-6c0a-4be2-900c-23081865ef09",
+    "name": "Garagem privativa",
+    "icon": "warehouse",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "099aa563-ef5a-49d1-a0f6-bfd63f1ae683",
+    "name": "Máquina de lavar roupa",
+    "icon": "washing-machine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "08d4a52c-0eb6-4c04-b92c-0cb476305bae",
+    "name": "Secadora de roupas",
+    "icon": "washing-machine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "960161ed-8a57-42a7-bec7-5a3bd7a236ef",
+    "name": "Serviço de lavanderia",
+    "icon": "washing-machine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1e92155b-d815-4dc8-912e-989d29e68a65",
+    "name": "Beira-mar",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "59da9360-c55c-4a07-8f5e-87b3ddf290d0",
+    "name": "Deck a beira da lagoa",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "1f1d022b-09e4-4b42-a6a0-f2880d9f994d",
+    "name": "Deck a beira mar",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "eb74f0c9-4faa-4dbf-a411-34ea2a245492",
+    "name": "Lago",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "676dce1d-a520-4c08-a15e-d739bae2d628",
+    "name": "Lago ornamental",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "aa54ea60-583b-4e41-92ee-b48067588dec",
+    "name": "Praia privativa",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8d24fb36-0014-44cf-b5ca-ab3223569e33",
+    "name": "Rio",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d1b875e9-f713-41da-a38b-1cfe0e517dd2",
+    "name": "Acesso privativo à lagoa",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "cf399414-d870-4555-8e2d-9f970e10a55c",
+    "name": "Açude",
+    "icon": "waves",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c80fa905-2857-42f5-9741-2249b61fdf1d",
+    "name": "Vista para o Mar",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "e79a2c62-6b19-4bb0-a357-c4928978cd2c",
+    "name": "Vista para o rio",
+    "icon": "waves",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7f497458-210a-4063-9e7f-23c4e6630857",
+    "name": "Área da piscina com lareira e aquecedores",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "14d53f91-e551-454c-96cb-327e7b7a86da",
+    "name": "Toboágua",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "LEISURE_AREAS",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "03da80cd-9235-46a3-ae35-a8212e07c847",
+    "name": "Bolha Aquática",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "df605783-3155-48b6-bdea-58ec9cffa1ab",
+    "name": "Mergulho",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "60a9cabd-865d-443e-aac9-858c5283f6e1",
+    "name": "Parque Aquático",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "ACTIVITIES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6624f82f-f3af-41ee-b805-782b04ad13d9",
+    "name": "Deck com piscina",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f5aa375e-ec34-428c-bfd0-fe17f356eb15",
+    "name": "Piscina",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8e4f8751-7355-4df8-b8a9-3a529215372d",
+    "name": "Piscina ao ar livre",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c8c621b9-6a1c-41ac-ac26-08cecd638fca",
+    "name": "Piscina aquecida",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "bcf9ff65-2ee3-4fa2-b44f-e08c1fd45d3e",
+    "name": "Piscina climatizada",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7cd0b6d3-4e64-4881-a372-c9e77824cdce",
+    "name": "Piscina coberta",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "30b8d938-7ca1-41c0-aab7-1e1562f954bd",
+    "name": "Piscina com borda infinita",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "ba44c160-36d6-4eea-8332-1bac6e79480e",
+    "name": "Piscina com hidromassagem",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d7608231-dfc9-42ff-97d2-30c48e1dea5c",
+    "name": "Piscina de ondas",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "f6f6ec4e-7282-44fc-9dfb-66a51b8645e5",
+    "name": "Piscina natural",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "336da9e0-79c9-436e-8805-e3b8a61dc4c0",
+    "name": "Piscina privativa",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "88c77d9a-640c-4fbb-afe1-1e55850e19cf",
+    "name": "Piscina subterrânea",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6854d040-bf31-4cb6-9329-a891e5415e9c",
+    "name": "Piscinas",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "STRUCTURE",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "077975ba-7837-41b9-8223-3028b9268434",
+    "name": "Toalhas de praia e piscina",
+    "icon": "waves-ladder",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "d055a904-0f03-4db2-95c7-592d95c2fa19",
+    "name": "Vista para a piscina",
+    "icon": "waves-ladder",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2b233411-f5e1-4b02-bcf7-d472420a1fb3",
+    "name": "Internet",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "b3c9e1d7-538b-4749-a9cb-cafcb9ddd359",
+    "name": "Internet sem fio (Wi-Fi)",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "488343be-20cc-4dd8-a284-34230e17691a",
+    "name": "Wi-Fi gratuito",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "2188e073-b491-4667-a7ef-a46fd04213df",
+    "name": "Wifi",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "6763eb4b-c052-45f3-98e8-944dd19390ee",
+    "name": "Internet gratuita por Wi-Fi",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "INTERNET",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "fe4c82c3-da21-42ff-900e-0573d23bbd8d",
+    "name": "Internet Wi-Fi pago à parte",
+    "icon": "wifi",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "INTERNET",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "8aa4788d-5b74-4690-b8a3-e66f469c23b2",
+    "name": "Wi-Fi a rádio gratuito com sinal nas áreas comuns",
+    "icon": "wifi",
+    "type": "COMPANY",
+    "category": "INTERNET",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "25221f37-50db-4c47-8d02-276b958195bd",
+    "name": "Wi-Fi gratuito nas áreas comuns",
+    "icon": "wifi",
+    "type": "COMPANY",
+    "category": "INTERNET",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "4c0365b0-44f9-4f8a-8c44-793bc68fb379",
+    "name": "Adega de Vinhos",
+    "icon": "wine",
+    "type": "HOUSING_UNIT_TYPE",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "55ca1b3b-97bc-4ad8-88e6-3ecc0a22193e",
+    "name": "Degustação guiada de vinhos e queijos",
+    "icon": "wine",
+    "type": "COMPANY",
+    "category": "FOOD_AND_BEVERAGES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "7d509caa-acb8-4b12-8ff8-397d0081fd7d",
+    "name": "Sala de degustação de vinhos",
+    "icon": "wine",
+    "type": "COMPANY",
+    "category": "GENERAL",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  },
+  {
+    "id": "c096113c-8982-404e-bcb4-98771a816b83",
+    "name": "Wine bar",
+    "icon": "wine",
+    "type": "COMPANY",
+    "category": "SERVICES",
+    "createdAt": "2025-04-29T14:39:11.638Z",
+    "updatedAt": "2025-04-29T14:39:11.638Z"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "a145c519-ad3b-4cb1-9610-a82ee23fd7ae",
+    "name": "Promoção de Verão",
+    "position": "HOME_TOP",
+    "order": 1,
+    "published": true,
+    "title": "Descontos Imperdíveis!",
+    "description": "Aproveite os melhores descontos da temporada.",
+    "action": "CUSTOM",
+    "actionButtonText": "Compre Agora",
+    "actionButtonLink": "https://www.exemplo.com/comprar",
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd",
+    "startAt": "2025-03-10T00:00:00.000Z",
+    "endAt": "2025-03-20T00:00:00.000Z",
+    "createdAt": "2025-04-29T14:39:12.268Z",
+    "updatedAt": "2025-04-29T14:39:12.268Z",
+    "deletedAt": null
+  }
+]

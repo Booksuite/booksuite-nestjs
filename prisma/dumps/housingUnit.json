@@ -1,0 +1,50 @@
+[
+  {
+    "id": "a1bbdd89-4122-4eb6-8ff6-ddf2cb8c4f55",
+    "name": "204",
+    "order": 0,
+    "housingUnitTypeId": "619cead8-b516-402d-8868-e889aa32a245",
+    "createdAt": "2025-04-29T14:39:11.213Z",
+    "updatedAt": "2025-05-01T23:45:02.501Z"
+  },
+  {
+    "id": "c7cd2463-402b-4d5d-b0e9-86f1fe85f63e",
+    "name": "205",
+    "order": 0,
+    "housingUnitTypeId": "619cead8-b516-402d-8868-e889aa32a245",
+    "createdAt": "2025-04-29T14:39:11.213Z",
+    "updatedAt": "2025-05-01T23:45:02.501Z"
+  },
+  {
+    "id": "04bd34a0-28bf-463d-be20-6365b4faa66b",
+    "name": "Torre dos Sonhos 1",
+    "order": 0,
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "createdAt": "2025-05-01T23:47:29.294Z",
+    "updatedAt": "2025-05-01T23:47:29.294Z"
+  },
+  {
+    "id": "4df621ea-1a88-4b4f-a62c-6db922b8eccf",
+    "name": "Chalé Requinte 1",
+    "order": 0,
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "createdAt": "2025-05-01T23:50:41.927Z",
+    "updatedAt": "2025-05-01T23:50:41.927Z"
+  },
+  {
+    "id": "062118f0-1ae3-4197-8067-1e9e4bba24ab",
+    "name": "Chalé Requinte 2",
+    "order": 0,
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "createdAt": "2025-05-01T23:50:41.927Z",
+    "updatedAt": "2025-05-01T23:50:41.927Z"
+  },
+  {
+    "id": "4877ec63-ba87-469f-9438-8d5aacbb8d58",
+    "name": "Chalé Imperial 1",
+    "order": 0,
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "createdAt": "2025-04-29T14:39:11.484Z",
+    "updatedAt": "2025-05-02T12:39:23.412Z"
+  }
+]

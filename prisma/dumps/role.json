@@ -1,0 +1,16 @@
+[
+  {
+    "id": "7ac7a5b7-c9df-4cdb-a295-53876772df8c",
+    "name": "Admin",
+    "slug": "admin",
+    "permissions": [],
+    "createdAt": "2025-04-29T14:39:10.752Z"
+  },
+  {
+    "id": "7a60fffb-df00-4e2b-aa03-b8b94dfea6fa",
+    "name": "Usuário",
+    "slug": "user",
+    "permissions": [],
+    "createdAt": "2025-04-29T14:39:10.752Z"
+  }
+]
