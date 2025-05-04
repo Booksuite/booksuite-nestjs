@@ -7,7 +7,10 @@ import {
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { AvailAndPricingDayPayload, CalendarAvailability } from '../types'
+import {
+    AvailAndPricingDayPayload,
+    HousingUnitTypeAvailability,
+} from '../types'
 import { AvailAndPricingRule } from '../types'
 
 @Injectable()
@@ -24,7 +27,7 @@ export class SpecialDatesRule implements AvailAndPricingRule {
                     dayjs.utc(rule.startDate).startOf('day'),
                     dayjs.utc(rule.endDate).endOf('day'),
                     'day',
-                    '[]',
+                    '[)',
                 )
 
             return isBetween
@@ -53,7 +56,7 @@ export class SpecialDatesRule implements AvailAndPricingRule {
         calendar,
         currentDate,
         pricingPayload,
-    }: AvailAndPricingDayPayload): CalendarAvailability {
+    }: AvailAndPricingDayPayload): HousingUnitTypeAvailability {
         const { searchPayload } = pricingPayload
 
         const specialDates = calendar[currentDate].specialDates
@@ -67,7 +70,6 @@ export class SpecialDatesRule implements AvailAndPricingRule {
 
         const isWeekDayAvailable =
             specialDates.availableWeekDays.includes(weekDay)
-
         if (!isWeekDayAvailable) {
             return {
                 available: false,

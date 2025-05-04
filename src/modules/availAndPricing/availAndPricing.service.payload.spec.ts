@@ -18,7 +18,7 @@ import { SeasonRulesRule } from './rules/SeasonRulesRule'
 import { SpecialDatesRule } from './rules/SpecialDatesRule'
 import {
     AvailAndPricingHousingUnitType,
-    AvailAndPricingOffers,
+    AvailAndPricingOffer,
     AvailAndPricingPayload,
     AvailAndPricingSeasonRules,
     AvailAndPricingSpecialDates,
@@ -245,7 +245,7 @@ describe('PricingService Payload Methods', () => {
                 },
             ]
 
-            const offers: AvailAndPricingOffers[] = [
+            const offers: AvailAndPricingOffer[] = [
                 {
                     id: 'offer-1',
                     companyId: 'company-1',

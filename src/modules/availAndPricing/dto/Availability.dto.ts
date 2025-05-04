@@ -6,9 +6,9 @@ import {
     UnavailabilityReason,
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
-import { CalendarAvailability } from '../types'
+import { HousingUnitTypeAvailability } from '../types'
 
-export class AvailabilityDTO implements CalendarAvailability {
+export class AvailabilityDTO implements HousingUnitTypeAvailability {
     @ApiProperty({
         description: 'Availability',
         example: true,

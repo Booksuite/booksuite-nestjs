@@ -29,7 +29,7 @@ import {
     AvailAndPricingHostingRules,
     AvailAndPricingHousingUnitType,
     AvailAndPricingSeasonRules,
-    HousingUnitTypeAvailability,
+    HousingUnitTypeWithCalendar,
 } from './types'
 
 describe('PricingService', () => {
@@ -122,7 +122,7 @@ describe('PricingService', () => {
                 ],
             }
 
-            const responseCalendar: HousingUnitTypeAvailability[] = [
+            const responseCalendar: HousingUnitTypeWithCalendar[] = [
                 {
                     ...housingUnitTypes[0],
                     calendar: {

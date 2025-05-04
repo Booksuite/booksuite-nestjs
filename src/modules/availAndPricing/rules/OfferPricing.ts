@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
 
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { AvailAndPricingDayPayload } from '../types'
+import { AvailAndPricingDayPayload, AvailAndPricingOffer } from '../types'
 import { AvailAndPricingRule } from '../types'
 
 @Injectable()
@@ -13,21 +13,12 @@ export class OfferRule implements AvailAndPricingRule {
         const { currentDate, pricingPayload, calendar } = payload
 
         const offer = pricingPayload.offers.find((rule) => {
-            const isBetween = dayjs
-                .utc(currentDate)
-                .isBetween(
-                    dayjs.utc(rule.validStartDate).startOf('day'),
-                    dayjs.utc(rule.validEndDate).endOf('day'),
-                    'day',
-                    '[]',
-                )
-
-            return isBetween
+            return this.checkOfferApplicability(rule, payload)
         })
 
-        if (!offer || !this.checkOfferApplicability(payload)) return payload
+        if (!offer) return payload
 
-        const basePrice = calendar[currentDate].basePrice
+        const basePrice = calendar[currentDate].finalPrice
 
         const finalPrice = this.pricingHelpers.getPriceVariation(basePrice, {
             price: offer.priceAdjustmentValue,
@@ -40,15 +31,34 @@ export class OfferRule implements AvailAndPricingRule {
         return payload
     }
 
-    private checkOfferApplicability({
-        calendar,
-        currentDate,
-    }: AvailAndPricingDayPayload): boolean {
-        const offer = calendar[currentDate].offers
-
+    private checkOfferApplicability(
+        offer: AvailAndPricingOffer,
+        { calendar, currentDate, pricingPayload }: AvailAndPricingDayPayload,
+    ): boolean {
         if (!offer) return false
 
-        const weekDay = dayjs.utc(currentDate).startOf('day').day()
+        const currentDateDayjs = dayjs.utc(currentDate)
+
+        if (pricingPayload.searchPayload) {
+            if (
+                (offer.minDays &&
+                    pricingPayload.searchPayload.totalDays < offer.minDays) ||
+                (offer.maxDays &&
+                    pricingPayload.searchPayload.totalDays > offer.maxDays)
+            )
+                return false
+        }
+
+        const isBetween = currentDateDayjs.isBetween(
+            dayjs.utc(offer.validStartDate).startOf('day'),
+            dayjs.utc(offer.validEndDate).endOf('day'),
+            'day',
+            '[]',
+        )
+
+        if (!isBetween) return false
+
+        const weekDay = currentDateDayjs.startOf('day').day()
 
         const isWeekDayAvailable = offer.availableWeekDays.includes(weekDay)
 

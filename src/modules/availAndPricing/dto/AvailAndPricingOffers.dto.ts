@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { PriceVariationType } from '@prisma/client'
 
-import { AvailAndPricingOffers } from '../types'
+import { AvailAndPricingOffer } from '../types'
 
-export class AvailAndPricingOffersDTO implements AvailAndPricingOffers {
+export class AvailAndPricingOffersDTO implements AvailAndPricingOffer {
     @ApiProperty({
         description: 'Purchase start date',
         type: Date,
