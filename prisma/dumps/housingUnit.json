@@ -1,5 +1,13 @@
 [
   {
+    "id": "4877ec63-ba87-469f-9438-8d5aacbb8d58",
+    "name": "Chalé Imperial 1",
+    "order": 0,
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "createdAt": "2025-04-29T14:39:11.484Z",
+    "updatedAt": "2025-05-03T21:51:51.592Z"
+  },
+  {
     "id": "a1bbdd89-4122-4eb6-8ff6-ddf2cb8c4f55",
     "name": "204",
     "order": 0,
@@ -38,13 +46,5 @@
     "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
     "createdAt": "2025-05-01T23:50:41.927Z",
     "updatedAt": "2025-05-01T23:50:41.927Z"
-  },
-  {
-    "id": "4877ec63-ba87-469f-9438-8d5aacbb8d58",
-    "name": "Chalé Imperial 1",
-    "order": 0,
-    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
-    "createdAt": "2025-04-29T14:39:11.484Z",
-    "updatedAt": "2025-05-02T12:39:23.412Z"
   }
 ]

@@ -1,20 +1,24 @@
 [
   {
     "id": "bbe836ba-430c-45c6-a052-889a603e1225",
-    "checkIn": 14,
-    "checkOut": 12,
+    "checkIn": 840,
+    "checkOut": 720,
     "minDaily": 2,
-    "fixedWindowPeriod": 120,
-    "reservationWindowStart": "2025-12-01T00:00:00.000Z",
-    "reservationWindowEnd": "2025-12-31T00:00:00.000Z",
+    "fixedWindowPeriod": 365,
+    "reservationWindowStart": null,
+    "reservationWindowEnd": null,
     "availableWeekend": [
-      2
+      5,
+      6
     ],
     "availableWeekDays": [
       0,
       1,
+      2,
       3,
-      4
+      4,
+      5,
+      6
     ],
     "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
   }

@@ -16,5 +16,93 @@
     "priceVariationType": "PERCENTAGE_REDUCTION",
     "price": 10,
     "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  },
+  {
+    "id": "c304daa0-e592-4483-a98f-8f7f5f102ef1",
+    "name": "Pacote de Natal",
+    "published": true,
+    "startDate": "2025-12-23T00:00:00.000Z",
+    "endDate": "2025-12-27T00:00:00.000Z",
+    "minDaily": 4,
+    "description": "Celebre a magia do Natal e hospede-se em nossos chalés em meio à natureza.",
+    "generalDescription": "• Check-in à partir das 14h e check-out até 12h;\n• Crianças de até 6 anos não pagam, acima, pagam valor integral como adulto;\n• Adicione serviços extras em sua reserva para ter uma experiência ainda mais completa em seu pacote.",
+    "availableWeekDays": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "priceVariationType": "ABSOLUTE_INCREASE",
+    "price": 100,
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  },
+  {
+    "id": "5d54ca11-4346-4def-a94d-09d5198e6717",
+    "name": "Corpus Christi",
+    "published": true,
+    "startDate": "2025-06-18T00:00:00.000Z",
+    "endDate": "2025-06-22T00:00:00.000Z",
+    "minDaily": 4,
+    "description": "Aproveite o feriadão de Corpus Christi para descansar e curtir em nossos chalés em meio à natureza.",
+    "generalDescription": "Neste pacote, além das diárias para o chalé desejado, você tem direito a:\n• Cesta de café da manhã (1 por diária)\n• 4 cápsulas de café Dolce Gusto \n• Internet wi-fi \n• Comodidades gerais da pousada e chalé escolhido.\n• Além disso, você pode usufruir de toda a nossa estrutura externa, como como área deck, caiaques, stand up paddle e barco de pesca para aproveitar melhor a lagoa, que é própria para banho.\n\nInformações gerais do pacote\n• Check-in à partir das 14h e check-out até 12h;\n• Crianças de até 6 anos não pagam, acima, pagam valor integral como adulto;\n• Adicione serviços extras em sua reserva para ter uma experiência ainda mais completa em seu pacote.",
+    "availableWeekDays": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "priceVariationType": "ABSOLUTE_INCREASE",
+    "price": 100,
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  },
+  {
+    "id": "91d51c73-a3e7-4b7e-8518-807c582f40af",
+    "name": "Pacote de Réveillon",
+    "published": true,
+    "startDate": "2025-12-27T00:00:00.000Z",
+    "endDate": "2026-01-02T00:00:00.000Z",
+    "minDaily": 6,
+    "description": "Aproveite o Pacote de Réveillon e celebre a chegada do ano novo em meio à natureza com quem você ama.",
+    "generalDescription": "• Check-in à partir das 14h e check-out até 12h;\n• Crianças de até 6 anos não pagam, acima, pagam valor integral como adulto;\n• Adicione serviços extras em sua reserva para ter uma experiência ainda mais completa em seu pacote.",
+    "availableWeekDays": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "priceVariationType": "ABSOLUTE_INCREASE",
+    "price": 100,
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  },
+  {
+    "id": "2ec28a86-13fa-4dcf-a1e5-83ca1c43352b",
+    "name": "Pacote de Carnaval 2026",
+    "published": true,
+    "startDate": "2026-02-13T00:00:00.000Z",
+    "endDate": "2026-02-17T00:00:00.000Z",
+    "minDaily": 4,
+    "description": "Comemore o Carnaval em um local tranquilo para relaxar com quem você ama.",
+    "generalDescription": "• Check-in à partir das 14h e check-out até 12h;\n• Adicione serviços extras em sua reserva para ter uma experiência ainda mais completa em seu pacote.",
+    "availableWeekDays": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "priceVariationType": "ABSOLUTE_INCREASE",
+    "price": 100,
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
   }
 ]

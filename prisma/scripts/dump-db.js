@@ -14,7 +14,10 @@ async function dumpDatabase() {
 
         // Get all models from Prisma schema
         const models = Object.keys(prisma).filter(
-            (key) => !key.startsWith('_') && !key.startsWith('$'),
+            (key) =>
+                !key.startsWith('_') &&
+                !key.startsWith('$') &&
+                key !== 'constructor',
         )
 
         // Dump each model's data

@@ -2,7 +2,7 @@
   {
     "id": "acf01b13-1ba0-404d-8d1f-9336996adf34",
     "name": "Teste Season Rules",
-    "published": true,
+    "published": false,
     "startDate": "2025-05-09T00:00:00.000Z",
     "endDate": "2025-05-25T00:00:00.000Z",
     "minDaily": 2,
@@ -15,6 +15,28 @@
     ],
     "priceVariationType": "PERCENTAGE_REDUCTION",
     "price": 10,
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  },
+  {
+    "id": "451bd3e8-ce39-4915-8bcd-9d83a25b7028",
+    "name": "Alta temporada novembro 2025",
+    "published": false,
+    "startDate": "2025-11-01T00:00:00.000Z",
+    "endDate": "2025-11-30T00:00:00.000Z",
+    "minDaily": 3,
+    "visibilityStart": null,
+    "visibilityEnd": null,
+    "availableWeekDays": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "priceVariationType": "ABSOLUTE_INCREASE",
+    "price": 100,
     "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
   }
 ]

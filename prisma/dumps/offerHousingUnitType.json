@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "be8d34f1-5736-45da-97f1-3b8785c3ccd6",
+    "offerId": "d6ebb3ca-6fbc-43e7-81be-aaa2fd48b482",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3"
+  },
+  {
+    "id": "21e32951-5436-466d-8c8d-b1cd98030896",
+    "offerId": "d6ebb3ca-6fbc-43e7-81be-aaa2fd48b482",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d"
+  },
+  {
+    "id": "f0b890f5-19a4-4c3c-93b1-3190c57e17ab",
+    "offerId": "d6ebb3ca-6fbc-43e7-81be-aaa2fd48b482",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c"
+  },
+  {
+    "id": "290fd32d-b82c-41ff-a2ea-1cbf78a7a4db",
+    "offerId": "88f75de6-2d5b-4b18-8d60-e7829b54e94c",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3"
+  },
+  {
+    "id": "759550a5-10f0-4105-a90c-161a5a4baba1",
+    "offerId": "88f75de6-2d5b-4b18-8d60-e7829b54e94c",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d"
+  },
+  {
+    "id": "5958dd61-0403-4ba1-aa8c-7eaef6efb39b",
+    "offerId": "88f75de6-2d5b-4b18-8d60-e7829b54e94c",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c"
+  }
+]

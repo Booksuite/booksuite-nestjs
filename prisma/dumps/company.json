@@ -11,38 +11,7 @@
     "logo": "https://booksuite.com.br/logo.png",
     "favIcon": "",
     "settings": null,
-    "contacts": [
-      {
-        "type": "email",
-        "value": "teste1@gmail.com",
-        "category": "Reservas"
-      },
-      {
-        "type": "phone",
-        "value": "48 99999999",
-        "category": "Telefone para Atendimento"
-      },
-      {
-        "type": "instagram",
-        "value": "insta",
-        "category": ""
-      },
-      {
-        "type": "facebook",
-        "value": "fac",
-        "category": ""
-      },
-      {
-        "type": "linkedin",
-        "value": "link",
-        "category": ""
-      },
-      {
-        "type": "x",
-        "value": "X",
-        "category": ""
-      }
-    ],
+    "contacts": [],
     "responsible": "BookSuite",
     "responsibleEmail": "admin@booksuite.com.br",
     "responsiblePhone": "1234567890",
@@ -61,9 +30,10 @@
     "privacyPolicySimpleModel": null,
     "privacyPolicyFullModel": null,
     "mapCoordinates": null,
+    "bannerImageId": "dee7bb75-6344-4869-b64e-abc779e5ef96",
     "bannerTitle": null,
     "bannerDescription": null,
     "createdAt": "2025-04-29T14:39:10.940Z",
-    "updatedAt": "2025-05-01T19:40:46.295Z"
+    "updatedAt": "2025-05-02T15:07:01.031Z"
   }
 ]

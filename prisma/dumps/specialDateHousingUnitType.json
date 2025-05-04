@@ -16,5 +16,149 @@
     "finalWeekPrice": 90,
     "baseWeekendPrice": 150,
     "finalWeekendPrice": 135
+  },
+  {
+    "id": "cfa8d671-92a0-4ae3-9753-02c6448dcaac",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "specialDateId": "5d54ca11-4346-4def-a94d-09d5198e6717",
+    "baseWeekPrice": 1770,
+    "finalWeekPrice": 1870,
+    "baseWeekendPrice": 1770,
+    "finalWeekendPrice": 1870
+  },
+  {
+    "id": "ea1c39a6-ac41-44db-989d-5ee763f3c76c",
+    "housingUnitTypeId": "619cead8-b516-402d-8868-e889aa32a245",
+    "specialDateId": "5d54ca11-4346-4def-a94d-09d5198e6717",
+    "baseWeekPrice": 100,
+    "finalWeekPrice": 200,
+    "baseWeekendPrice": 150,
+    "finalWeekendPrice": 250
+  },
+  {
+    "id": "88e2adbb-841d-4645-8a86-0359c1636b08",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "specialDateId": "5d54ca11-4346-4def-a94d-09d5198e6717",
+    "baseWeekPrice": 1230,
+    "finalWeekPrice": 1330,
+    "baseWeekendPrice": 1230,
+    "finalWeekendPrice": 1330
+  },
+  {
+    "id": "a2f7aab9-e43d-4a12-bddc-3e2ff9989c74",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "specialDateId": "5d54ca11-4346-4def-a94d-09d5198e6717",
+    "baseWeekPrice": 1070,
+    "finalWeekPrice": 1170,
+    "baseWeekendPrice": 1070,
+    "finalWeekendPrice": 1170
+  },
+  {
+    "id": "9f83825f-84b6-4540-9fc4-32d99e4d4ebc",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "specialDateId": "c304daa0-e592-4483-a98f-8f7f5f102ef1",
+    "baseWeekPrice": 1770,
+    "finalWeekPrice": 1870,
+    "baseWeekendPrice": 1770,
+    "finalWeekendPrice": 1870
+  },
+  {
+    "id": "fe8a0576-f212-45d2-a5f3-243bb6aa2807",
+    "housingUnitTypeId": "619cead8-b516-402d-8868-e889aa32a245",
+    "specialDateId": "c304daa0-e592-4483-a98f-8f7f5f102ef1",
+    "baseWeekPrice": 100,
+    "finalWeekPrice": 200,
+    "baseWeekendPrice": 150,
+    "finalWeekendPrice": 250
+  },
+  {
+    "id": "08ca5c83-6541-4a81-b8db-9137a1594166",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "specialDateId": "c304daa0-e592-4483-a98f-8f7f5f102ef1",
+    "baseWeekPrice": 1230,
+    "finalWeekPrice": 1330,
+    "baseWeekendPrice": 1230,
+    "finalWeekendPrice": 1330
+  },
+  {
+    "id": "3be4351d-f9b6-4170-89d1-a028a9fdeacf",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "specialDateId": "c304daa0-e592-4483-a98f-8f7f5f102ef1",
+    "baseWeekPrice": 1070,
+    "finalWeekPrice": 1170,
+    "baseWeekendPrice": 1070,
+    "finalWeekendPrice": 1170
+  },
+  {
+    "id": "ce92e481-9243-4e24-92a3-e5e421cf92c1",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "specialDateId": "91d51c73-a3e7-4b7e-8518-807c582f40af",
+    "baseWeekPrice": 1770,
+    "finalWeekPrice": 1870,
+    "baseWeekendPrice": 1770,
+    "finalWeekendPrice": 1870
+  },
+  {
+    "id": "48fa82f8-ef8a-40ad-939a-0d0b547a62c4",
+    "housingUnitTypeId": "619cead8-b516-402d-8868-e889aa32a245",
+    "specialDateId": "91d51c73-a3e7-4b7e-8518-807c582f40af",
+    "baseWeekPrice": 100,
+    "finalWeekPrice": 200,
+    "baseWeekendPrice": 150,
+    "finalWeekendPrice": 250
+  },
+  {
+    "id": "1698af59-1a3c-4339-8ce1-2447df79ec51",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "specialDateId": "91d51c73-a3e7-4b7e-8518-807c582f40af",
+    "baseWeekPrice": 1230,
+    "finalWeekPrice": 1330,
+    "baseWeekendPrice": 1230,
+    "finalWeekendPrice": 1330
+  },
+  {
+    "id": "ea10eeaa-9e4b-448d-b190-ad4e66d867d2",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "specialDateId": "91d51c73-a3e7-4b7e-8518-807c582f40af",
+    "baseWeekPrice": 1070,
+    "finalWeekPrice": 1170,
+    "baseWeekendPrice": 1070,
+    "finalWeekendPrice": 1170
+  },
+  {
+    "id": "999ecd6f-c307-4369-8b04-bada15ba6fad",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "specialDateId": "2ec28a86-13fa-4dcf-a1e5-83ca1c43352b",
+    "baseWeekPrice": 1770,
+    "finalWeekPrice": 1870,
+    "baseWeekendPrice": 1770,
+    "finalWeekendPrice": 1870
+  },
+  {
+    "id": "e2010516-ea1a-44b9-a6e2-5fb9b08d4dc2",
+    "housingUnitTypeId": "619cead8-b516-402d-8868-e889aa32a245",
+    "specialDateId": "2ec28a86-13fa-4dcf-a1e5-83ca1c43352b",
+    "baseWeekPrice": 100,
+    "finalWeekPrice": 200,
+    "baseWeekendPrice": 150,
+    "finalWeekendPrice": 250
+  },
+  {
+    "id": "e706af25-c044-45f2-b2a6-9e71b33a07d2",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "specialDateId": "2ec28a86-13fa-4dcf-a1e5-83ca1c43352b",
+    "baseWeekPrice": 1230,
+    "finalWeekPrice": 1330,
+    "baseWeekendPrice": 1230,
+    "finalWeekendPrice": 1330
+  },
+  {
+    "id": "2d3ef8a7-494b-4be9-865b-d164bc6cff7d",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "specialDateId": "2ec28a86-13fa-4dcf-a1e5-83ca1c43352b",
+    "baseWeekPrice": 1070,
+    "finalWeekPrice": 1170,
+    "baseWeekendPrice": 1070,
+    "finalWeekendPrice": 1170
   }
 ]

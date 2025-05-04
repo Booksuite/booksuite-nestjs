@@ -396,5 +396,17 @@
     "createdAt": "2025-05-02T00:24:53.411Z",
     "updatedAt": "2025-05-02T00:24:53.411Z",
     "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
+  },
+  {
+    "id": "ebcf4eec-6285-4eba-b7c1-4a7d9f21653c",
+    "url": "https://media.booksuite.io/1746223787358-logo-site-2021.png",
+    "metadata": {
+      "key": "1746223787358-logo-site-2021.png",
+      "bucket": "media",
+      "mimetype": "image/png"
+    },
+    "createdAt": "2025-05-02T22:09:47.965Z",
+    "updatedAt": "2025-05-02T22:09:47.965Z",
+    "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
   }
 ]

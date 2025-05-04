@@ -16,5 +16,32 @@
     "finalWeekPrice": 90,
     "baseWeekendPrice": 150,
     "finalWeekendPrice": 135
+  },
+  {
+    "id": "ec895b87-388a-48ad-be8d-148957dc24d0",
+    "housingUnitTypeId": "052d2d58-0762-48ff-a947-1b8998a7b19c",
+    "seasonRuleId": "451bd3e8-ce39-4915-8bcd-9d83a25b7028",
+    "baseWeekPrice": 1770,
+    "finalWeekPrice": 1870,
+    "baseWeekendPrice": 1770,
+    "finalWeekendPrice": 1870
+  },
+  {
+    "id": "d5e30c35-e539-4a1a-83e4-029809a63c7b",
+    "housingUnitTypeId": "74e1fd64-24d1-4b22-8d17-f4188865d59d",
+    "seasonRuleId": "451bd3e8-ce39-4915-8bcd-9d83a25b7028",
+    "baseWeekPrice": 1230,
+    "finalWeekPrice": 1330,
+    "baseWeekendPrice": 1230,
+    "finalWeekendPrice": 1330
+  },
+  {
+    "id": "70684b58-b721-491b-8047-7cad12d33836",
+    "housingUnitTypeId": "cd6bd9b3-b5c2-4f2b-b48d-9f8326c05ed3",
+    "seasonRuleId": "451bd3e8-ce39-4915-8bcd-9d83a25b7028",
+    "baseWeekPrice": 1070,
+    "finalWeekPrice": 1170,
+    "baseWeekendPrice": 1070,
+    "finalWeekendPrice": 1170
   }
 ]
