@@ -59,4 +59,10 @@ export class HousingUnitTypeAvailAndPriceSummaryDTO
         type: [HostingRulesResponseDTO],
     })
     hostingRules: HostingRulesResponseDTO[]
+
+    @ApiProperty({
+        description: 'Total days for the day',
+        type: Number,
+    })
+    totalDays: number
 }

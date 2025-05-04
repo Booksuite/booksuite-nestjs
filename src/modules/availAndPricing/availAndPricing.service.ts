@@ -8,6 +8,7 @@ import { PrismaService } from '../prisma/prisma.service'
 import { OCCUPIED_RESERVATION_STATUS } from './constants'
 import { AvailAndPricingRules } from './rules/PricingRules'
 import {
+    AvailAndPricingHostingRules,
     AvailAndPricingHousingUnitType,
     AvailAndPricingPayload,
     AvailAndPricingSearchPayload,
@@ -32,7 +33,7 @@ export class AvailAndPricingService {
         viewWindow: DateRangeDTO,
         searchPayload?: AvailAndPricingSearchPayload,
     ): Promise<HousingUnitTypeWithCalendar> {
-        const adjustedSearchPayload = this.dateAdjustment(searchPayload)
+        const adjustedSearchPayload = this.adjustSearchPayload(searchPayload)
 
         const housingUnitType =
             await this.prismaService.housingUnitType.findUnique({
@@ -57,7 +58,7 @@ export class AvailAndPricingService {
         )
     }
 
-    private dateAdjustment(
+    private adjustSearchPayload(
         searchPayload?: AvailAndPricingSearchPayload,
     ): AvailAndPricingSearchPayload | undefined {
         if (!searchPayload) return undefined
@@ -76,13 +77,23 @@ export class AvailAndPricingService {
         }
     }
 
+    private getTotalDays(dateRange: DateRangeDTO): number {
+        return (
+            dayjs
+                .utc(dateRange.end)
+                .endOf('day')
+                .diff(dayjs.utc(dateRange.start).startOf('day'), 'days') + 1
+        )
+    }
+
     async getCalendar(
         companyId: string,
         currentDate: string,
         viewWindow: DateRangeDTO,
         searchPayload?: AvailAndPricingSearchPayload,
     ): Promise<HousingUnitTypeWithCalendar[]> {
-        const adjustedSearchPayload = this.dateAdjustment(searchPayload)
+        const adjustedSearchPayload = this.adjustSearchPayload(searchPayload)
+
         const housingUnitTypes =
             await this.prismaService.housingUnitType.findMany({
                 where: {
@@ -126,12 +137,19 @@ export class AvailAndPricingService {
         currentDate: string,
         searchPayload: AvailAndPricingSearchPayload,
     ): Promise<HousingUnitTypeAvailAndPrice[]> {
+        const adjustedSearchPayload = this.adjustSearchPayload(searchPayload)
+        if (!adjustedSearchPayload)
+            throw new Error('Search payload is required')
+
         const housingUnitTypeAP = await this.getCalendar(
             companyId,
             currentDate,
-            searchPayload.dateRange,
+            adjustedSearchPayload.dateRange,
             searchPayload,
         )
+
+        if (!adjustedSearchPayload)
+            throw new Error('Search payload is required')
 
         return housingUnitTypeAP.reduce<HousingUnitTypeAvailAndPrice[]>(
             (acc, housingUnitType) => {
@@ -139,9 +157,14 @@ export class AvailAndPricingService {
                     ...acc,
                     {
                         ...omit(housingUnitType, ['calendar']),
-                        summary: this.sumCalendarPrices(
-                            Object.values(housingUnitType.calendar),
-                        ),
+                        summary: {
+                            ...this.sumCalendarPrices(
+                                Object.values(housingUnitType.calendar),
+                            ),
+                            totalDays: this.getTotalDays(
+                                adjustedSearchPayload.dateRange,
+                            ),
+                        },
                     },
                 ]
             },
@@ -155,7 +178,7 @@ export class AvailAndPricingService {
             (acc, day) => {
                 acc.basePrice += day.basePrice
                 acc.finalPrice += day.finalPrice
-                acc.hostingRules.push(day.hostingRules)
+                if (!acc.hostingRules) acc.hostingRules = day.hostingRules
 
                 if (day.seasonRules) acc.seasonRules.push(day.seasonRules)
                 if (day.specialDates) acc.specialDates.push(day.specialDates)
@@ -167,9 +190,10 @@ export class AvailAndPricingService {
                 return acc
             },
             {
+                totalDays: 0,
                 basePrice: 0,
                 finalPrice: 0,
-                hostingRules: [],
+                hostingRules: null as unknown as AvailAndPricingHostingRules,
                 seasonRules: [],
                 specialDates: [],
                 offers: [],
@@ -178,7 +202,6 @@ export class AvailAndPricingService {
             },
         )
 
-        summary.hostingRules = unique(summary.hostingRules, (item) => item.id)
         summary.seasonRules = unique(summary.seasonRules, (item) => item.id)
         summary.specialDates = unique(summary.specialDates, (item) => item.id)
         summary.offers = unique(summary.offers, (item) => item.id)
@@ -427,20 +450,10 @@ export class AvailAndPricingService {
                   })
             : []
 
-        const totalDays = searchPayload
-            ? dayjs
-                  .utc(searchPayload.dateRange.end)
-                  .endOf('day')
-                  .diff(
-                      dayjs.utc(searchPayload.dateRange.start).startOf('day'),
-                      'days',
-                  ) + 1
-            : 0
-
         return {
             searchPayload: searchPayload && {
                 ...searchPayload,
-                totalDays,
+                totalDays: this.getTotalDays(searchPayload.dateRange),
             },
             ageGroups,
             viewWindow,

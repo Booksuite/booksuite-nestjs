@@ -137,12 +137,13 @@ export interface CalendarDay {
 export interface HousingUnitTypeAvailAndPriceSummary {
     basePrice: number
     finalPrice: number
-    hostingRules: AvailAndPricingHostingRules[]
+    hostingRules: AvailAndPricingHostingRules
     seasonRules: AvailAndPricingSeasonRules[]
     specialDates: AvailAndPricingSpecialDates[]
     offers: AvailAndPricingOffer[]
     reservations: AvailAndPricingReservation[]
     availability: HousingUnitTypeAvailability[]
+    totalDays: number
 }
 
 export interface HousingUnitTypeAvailAndPrice
