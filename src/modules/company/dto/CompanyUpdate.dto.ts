@@ -15,6 +15,7 @@ import { MapCoordinatesDTO } from '@/common/dto/MapCoodinates.dto'
 
 import { CompanyContactDTO } from './CompanyContact.dto'
 import { CompanyFacilityDTO } from './CompanyFacility.dto'
+import { CompanyMediaDTO } from './CompanyMedia.dto'
 import { CompanySettingsDTO } from './CompanySettings.dto'
 
 export class CompanyUpdateDTO {
@@ -290,4 +291,10 @@ export class CompanyUpdateDTO {
     @IsOptional()
     @IsString()
     bannerDescription?: string | null
+
+    @ApiProperty({ type: [CompanyMediaDTO], required: false })
+    @IsOptional()
+    @Type(() => CompanyMediaDTO)
+    @ValidateNested({ each: true })
+    companyMedias?: CompanyMediaDTO[]
 }
