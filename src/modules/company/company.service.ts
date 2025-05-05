@@ -21,7 +21,7 @@ import { CompanyUpdateDTO } from './dto/CompanyUpdate.dto'
 export class CompanyService {
     constructor(private prismaService: PrismaService) {}
 
-    create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
+    async create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyCreateInput>()({
             ...omit(rawData, ['bannerImageId']),
             bannerImage: {
@@ -35,14 +35,24 @@ export class CompanyService {
             contacts: rawData.contacts || undefined,
         })
 
-        return this.prismaService.company.create({
+        const result = await this.prismaService.company.create({
             data: normalizedData,
-            include: { bannerImage: true },
+            include: { bannerImage: true, medias: true },
         })
+
+        return {
+            ...result,
+            companyMedias: result.medias.map((media) => ({
+                id: media.id,
+                isFeatured: false,
+                order: null,
+                media,
+            })),
+        }
     }
 
     async getById(id: string): Promise<CompanyResponseFullDTO | null> {
-        return this.prismaService.company.findUnique({
+        const result = await this.prismaService.company.findUnique({
             where: { id },
             include: {
                 facilities: {
@@ -50,8 +60,21 @@ export class CompanyService {
                     orderBy: { order: 'asc' },
                 },
                 bannerImage: true,
+                medias: true,
             },
         })
+
+        if (!result) return null
+
+        return {
+            ...result,
+            companyMedias: result.medias.map((media) => ({
+                id: media.id,
+                isFeatured: false,
+                order: null,
+                media,
+            })),
+        }
     }
 
     async search(
@@ -66,6 +89,7 @@ export class CompanyService {
             await this.prismaService.company.findManyAndCount({
                 include: {
                     bannerImage: true,
+                    medias: true,
                 },
                 where: this.buildSearchParams(query, filters),
                 ...paginationParams,
@@ -74,7 +98,17 @@ export class CompanyService {
                     : undefined,
             })
 
-        return buildPaginatedResponse(companies, total, pagination)
+        const transformedCompanies = companies.map((company) => ({
+            ...company,
+            companyMedias: company.medias.map((media) => ({
+                id: media.id,
+                isFeatured: false,
+                order: null,
+                media,
+            })),
+        }))
+
+        return buildPaginatedResponse(transformedCompanies, total, pagination)
     }
 
     async update(
@@ -113,11 +147,21 @@ export class CompanyService {
             },
         })
 
-        return this.prismaService.company.update({
+        const result = await this.prismaService.company.update({
             where: { id },
             data: normalizedData,
-            include: { bannerImage: true },
+            include: { bannerImage: true, medias: true },
         })
+
+        return {
+            ...result,
+            companyMedias: result.medias.map((media) => ({
+                id: media.id,
+                isFeatured: false,
+                order: null,
+                media,
+            })),
+        }
     }
 
     detele(id: string) {
