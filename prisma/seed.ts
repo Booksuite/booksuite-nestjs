@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import './utils/dayjs'
+import '../src/common/utils/dayjs'
 
 import { PrismaClient } from '@prisma/client'
 import * as fs from 'fs'

@@ -3,12 +3,14 @@ model SpecialDate {
 
     name               String
     published          Boolean
-    startDate          DateTime @db.Date
-    endDate            DateTime @db.Date
     minDaily           Int
     description        String?
     generalDescription String?
 
+    visibilityStartDate DateTime @db.Date
+    startDate           DateTime @db.Date
+    endDate             DateTime @db.Date
+    
     /// [WeekDays]
     availableWeekDays Json
 

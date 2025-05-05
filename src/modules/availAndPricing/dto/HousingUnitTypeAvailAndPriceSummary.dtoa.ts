@@ -56,9 +56,9 @@ export class HousingUnitTypeAvailAndPriceSummaryDTO
 
     @ApiProperty({
         description: 'Hosting rules for the day',
-        type: [HostingRulesResponseDTO],
+        type: HostingRulesResponseDTO,
     })
-    hostingRules: HostingRulesResponseDTO[]
+    hostingRules: HostingRulesResponseDTO
 
     @ApiProperty({
         description: 'Total days for the day',
