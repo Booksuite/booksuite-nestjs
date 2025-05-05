@@ -82,10 +82,14 @@ export class CompanyService {
         rawData: CompanyUpdateDTO,
     ): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyUpdateInput>()({
-            ...rawData,
-            settings: rawData.settings || Prisma.DbNull,
-            contacts: rawData.contacts || [],
-            mapCoordinates: rawData.mapCoordinates || Prisma.DbNull,
+            ...omit(rawData, ['settings', 'contacts']),
+            settings:
+                rawData.settings !== null ? rawData.settings : Prisma.DbNull,
+            contacts: rawData.contacts ? rawData.contacts : undefined,
+            mapCoordinates:
+                rawData.mapCoordinates !== null
+                    ? rawData.mapCoordinates
+                    : Prisma.DbNull,
             facilities: rawData.facilities && {
                 deleteMany: {
                     companyId: id,
