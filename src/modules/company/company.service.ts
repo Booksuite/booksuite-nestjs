@@ -116,7 +116,7 @@ export class CompanyService {
         rawData: CompanyUpdateDTO,
     ): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyUpdateInput>()({
-            ...omit(rawData, ['settings', 'contacts']),
+            ...omit(rawData, ['settings', 'contacts', 'companyMedias']),
             settings:
                 rawData.settings !== null ? rawData.settings : Prisma.DbNull,
             contacts: rawData.contacts ? rawData.contacts : undefined,
@@ -145,6 +145,13 @@ export class CompanyService {
                     create: pick(facility, ['facilityId', 'order']),
                 })),
             },
+            medias: rawData.companyMedias
+                ? {
+                      connect: rawData.companyMedias.map((media) => ({
+                          id: media.mediaId,
+                      })),
+                  }
+                : undefined,
         })
 
         const result = await this.prismaService.company.update({
@@ -159,7 +166,14 @@ export class CompanyService {
                 id: media.id,
                 isFeatured: false,
                 order: null,
-                media,
+                media: {
+                    id: media.id,
+                    url: media.url,
+                    metadata: media.metadata,
+                    companyId: id,
+                    createdAt: media.createdAt,
+                    updatedAt: media.updatedAt,
+                },
             })),
         }
     }
