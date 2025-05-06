@@ -14,17 +14,33 @@ export class SeasonRuleResponseDTO {
     @ApiProperty({ example: false, type: Boolean })
     published: boolean
 
-    @ApiProperty({ example: '2025-06-01', type: Date })
-    startDate: Date
+    @ApiProperty({
+        example: '2025-06-01',
+        type: String,
+        format: 'date',
+        nullable: true,
+    })
+    visibilityStartDate: string | null
 
-    @ApiProperty({ example: '2025-08-31', type: Date })
-    endDate: Date
+    @ApiProperty({
+        example: '2025-06-01',
+        type: String,
+        format: 'date',
+    })
+    startDate: string
+
+    @ApiProperty({
+        example: '2025-08-31',
+        type: String,
+        format: 'date',
+    })
+    endDate: string
 
     @ApiProperty({ example: 3 })
-    minDaily: number
+    minStay: number
 
     @ApiProperty({ type: Number, isArray: true })
-    availableWeekDays: PrismaJson.WeekDays
+    validWeekDays: PrismaJson.WeekDays
 
     @ApiProperty({
         enum: PriceVariationType,
@@ -34,5 +50,5 @@ export class SeasonRuleResponseDTO {
     priceVariationType: PriceVariationType
 
     @ApiProperty({ example: 20 })
-    price: number
+    priceVariationValue: number
 }

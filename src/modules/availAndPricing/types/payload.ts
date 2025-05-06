@@ -1,72 +1,22 @@
-import { AgeGroup, Prisma } from '@prisma/client'
+import { Prisma, RateOption, Service } from '@prisma/client'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
-
-import { AvailAndPricingAgeGroupSearchDTO } from './dto/AvailAndPricingAgeGroupSearch.dto'
+import { ReservationServiceDTO } from '@/modules/reservation/dto/ReservationService.dto'
+import { AvailAndPricingAgeGroupSearchDTO } from '../dto/AvailAndPricingAgeGroupSearch.dto'
 import {
     UnavailabilityReason,
     UnavailableSource,
-} from './enum/UnavailableReason.enum'
-
-export type AvailAndPricingHostingRules = Prisma.HostingRulesGetPayload<{
-    select: {
-        id: true
-        checkIn: true
-        checkOut: true
-        minDaily: true
-        fixedWindowPeriod: true
-        availableWeekend: true
-        availableWeekDays: true
-    }
-}> & {
-    reservationWindowStart: string | null
-    reservationWindowEnd: string | null
-}
-export type AvailAndPricingSeasonRules = Prisma.SeasonRulesGetPayload<{
-    include: {
-        housingUnitTypePrices: {
-            select: {
-                housingUnitTypeId: true
-                baseWeekPrice: true
-                finalWeekPrice: true
-                baseWeekendPrice: true
-                finalWeekendPrice: true
-            }
-        }
-    }
-}>
-
-export type AvailAndPricingAgeGroup = AgeGroup & {
-    quantity: number
-}
-
-export type AvailAndPricingSpecialDates = Prisma.SpecialDateGetPayload<{
-    include: {
-        housingUnitTypePrices: {
-            select: {
-                housingUnitTypeId: true
-                baseWeekPrice: true
-                finalWeekPrice: true
-                baseWeekendPrice: true
-                finalWeekendPrice: true
-            }
-        }
-    }
-}>
-export type AvailAndPricingOffer = Prisma.OfferGetPayload<{
-    include: {
-        availableHousingUnitTypes: { select: { housingUnitTypeId: true } }
-    }
-}>
-
-export type AvailAndPricingHousingUnitType = Prisma.HousingUnitTypeGetPayload<{
-    include: {
-        housingUnits: { orderBy: { order: 'asc' } }
-    }
-    omit: {
-        companyId: true
-    }
-}>
+} from '../enum/UnavailableReason.enum'
+import {
+    AvailAndPricingAgeGroup,
+    AvailAndPricingHousingUnitType,
+    AvailAndPricingOffer,
+    AvailAndPricingRateOption,
+    AvailAndPricingSeasonRules,
+    AvailAndPricingService,
+    AvailAndPricingSpecialDates,
+} from '.'
+import { AvailAndPricingHostingRules } from '.'
 
 export type AvailAndPricingReservation = Omit<
     Prisma.ReservationGetPayload<{
@@ -82,28 +32,32 @@ export interface AvailAndPricingSearchPayload {
     dateRange: DateRangeDTO
     adults: number
     ageGroups?: AvailAndPricingAgeGroupSearchDTO[]
+    services?: Omit<ReservationServiceDTO, 'totalPrice'>[]
+    rateOptionId?: string
 }
 
-export interface AvailAndPricingBasePayload {
+interface AvailAndPricingBasePayload {
     hostingRules: AvailAndPricingHostingRules
     seasonRules: AvailAndPricingSeasonRules[]
     specialDates: AvailAndPricingSpecialDates[]
     reservations: AvailAndPricingReservation[]
     ageGroups: AvailAndPricingAgeGroup[]
     offers: AvailAndPricingOffer[]
+    services: Service[]
+    rateOption: RateOption | null
     searchPayload?: AvailAndPricingSearchPayload
     viewWindow: DateRangeDTO
 }
 
 export interface AvailAndPricingPayload extends AvailAndPricingBasePayload {
     housingUnitTypes: AvailAndPricingHousingUnitType[]
-    searchPayload?: AvailAndPricingSearchPayload & { totalDays: number }
+    searchPayload?: AvailAndPricingSearchPayload & { totalStay: number }
 }
 
 export interface HouseUnitTypeAvailAndPricingPayload
     extends AvailAndPricingBasePayload {
     housingUnitType: AvailAndPricingHousingUnitType
-    searchPayload?: AvailAndPricingSearchPayload & { totalDays: number }
+    searchPayload?: AvailAndPricingSearchPayload & { totalStay: number }
 }
 
 export interface Calendar {
@@ -125,7 +79,7 @@ export interface HousingUnitTypeAvailability {
 export interface CalendarDay {
     basePrice: number
     finalPrice: number
-    finalMinDays: number
+    finalMinStay: number
     hostingRules: AvailAndPricingHostingRules
     seasonRules: AvailAndPricingSeasonRules | null
     specialDates: AvailAndPricingSpecialDates | null
@@ -142,8 +96,10 @@ export interface HousingUnitTypeAvailAndPriceSummary {
     specialDates: AvailAndPricingSpecialDates[]
     offers: AvailAndPricingOffer[]
     reservations: AvailAndPricingReservation[]
+    services: AvailAndPricingService[]
+    rateOption: AvailAndPricingRateOption | null
     availability: HousingUnitTypeAvailability[]
-    totalDays: number
+    totalStay: number
 }
 
 export interface HousingUnitTypeAvailAndPrice

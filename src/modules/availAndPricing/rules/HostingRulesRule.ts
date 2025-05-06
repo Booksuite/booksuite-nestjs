@@ -9,8 +9,8 @@ import {
 import {
     AvailAndPricingDayPayload,
     HousingUnitTypeAvailability,
-} from '../types'
-import { AvailAndPricingRule } from '../types'
+} from '../types/payload'
+import { AvailAndPricingRule } from '../types/payload'
 
 @Injectable()
 export class HostingRulesRule implements AvailAndPricingRule {
@@ -95,8 +95,8 @@ export class HostingRulesRule implements AvailAndPricingRule {
         }
 
         if (
-            searchPayload.totalDays <
-            payload.calendar[payload.currentDate].finalMinDays
+            searchPayload.totalStay <
+            payload.calendar[payload.currentDate].finalMinStay
         ) {
             return {
                 available: false,

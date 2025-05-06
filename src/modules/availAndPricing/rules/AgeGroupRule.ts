@@ -3,12 +3,12 @@ import { Injectable } from '@nestjs/common'
 import { UNAVAILABLE_REASON_MESSAGE } from '../constants'
 import { UnavailableSource } from '../enum/UnavailableReason.enum'
 import { UnavailabilityReason } from '../enum/UnavailableReason.enum'
+import { AvailAndPricingAgeGroup } from '../types'
 import {
-    AvailAndPricingAgeGroup,
     AvailAndPricingDayPayload,
     AvailAndPricingRule,
     HousingUnitTypeAvailability,
-} from '../types'
+} from '../types/payload'
 
 @Injectable()
 export class AgeGroupRule implements AvailAndPricingRule {

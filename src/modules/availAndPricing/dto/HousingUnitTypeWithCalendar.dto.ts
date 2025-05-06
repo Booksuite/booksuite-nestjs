@@ -6,7 +6,7 @@ import {
 } from '@nestjs/swagger'
 
 import { HousingUnitTypeResponseFullDTO } from '@/modules/housingUnitType/dto/HousingUnitTypeResponseFull.dto'
-import { HousingUnitTypeWithCalendar } from '../types'
+import { HousingUnitTypeWithCalendar } from '../types/payload'
 
 import { CalendarDayResponseDTO } from './calendar.dto'
 

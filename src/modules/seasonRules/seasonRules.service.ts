@@ -22,13 +22,30 @@ import { SeasonRuleUpdateDTO } from './dto/SeasonRuleUpdate.dto'
 export class SeasonRulesService {
     constructor(private prismaService: PrismaService) {}
 
-    async getById(id: string): Promise<SeasonRuleResponseFullDTO | null> {
-        return await this.prismaService.seasonRules.findUnique({
-            where: { id },
-            include: {
-                housingUnitTypePrices: { include: { housingUnitType: true } },
-            },
-        })
+    getById(id: string): Promise<SeasonRuleResponseFullDTO | null> {
+        return this.prismaService.seasonRules
+            .findUnique({
+                where: { id },
+                include: {
+                    housingUnitTypePrices: {
+                        include: { housingUnitType: true },
+                    },
+                },
+            })
+            .then((seasonRule) => {
+                if (!seasonRule) return null
+
+                return {
+                    ...seasonRule,
+                    visibilityStartDate: seasonRule.visibilityStartDate
+                        ? dayjs(seasonRule.visibilityStartDate).format(
+                              'YYYY-MM-DD',
+                          )
+                        : null,
+                    startDate: dayjs(seasonRule.startDate).format('YYYY-MM-DD'),
+                    endDate: dayjs(seasonRule.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     async create(
@@ -46,9 +63,22 @@ export class SeasonRulesService {
                 },
             })
 
-        return this.prismaService.seasonRules.create({
-            data: normalizedData,
-        })
+        return this.prismaService.seasonRules
+            .create({
+                data: normalizedData,
+            })
+            .then((seasonRule) => {
+                return {
+                    ...seasonRule,
+                    visibilityStartDate: seasonRule.visibilityStartDate
+                        ? dayjs(seasonRule.visibilityStartDate).format(
+                              'YYYY-MM-DD',
+                          )
+                        : null,
+                    startDate: dayjs(seasonRule.startDate).format('YYYY-MM-DD'),
+                    endDate: dayjs(seasonRule.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     update(
@@ -95,13 +125,28 @@ export class SeasonRulesService {
                 },
             })
 
-        return this.prismaService.seasonRules.update({
-            where: { id },
-            data: normalizedData,
-            include: {
-                housingUnitTypePrices: { include: { housingUnitType: true } },
-            },
-        })
+        return this.prismaService.seasonRules
+            .update({
+                where: { id },
+                data: normalizedData,
+                include: {
+                    housingUnitTypePrices: {
+                        include: { housingUnitType: true },
+                    },
+                },
+            })
+            .then((seasonRule) => {
+                return {
+                    ...seasonRule,
+                    visibilityStartDate: seasonRule.visibilityStartDate
+                        ? dayjs(seasonRule.visibilityStartDate).format(
+                              'YYYY-MM-DD',
+                          )
+                        : null,
+                    startDate: dayjs(seasonRule.startDate).format('YYYY-MM-DD'),
+                    endDate: dayjs(seasonRule.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     async search(
@@ -130,7 +175,18 @@ export class SeasonRulesService {
                 },
             })
 
-        return buildPaginatedResponse(seasonRules, totalSeasonRules, pagination)
+        return buildPaginatedResponse(
+            seasonRules.map((seasonRule) => ({
+                ...seasonRule,
+                visibilityStartDate: seasonRule.visibilityStartDate
+                    ? dayjs(seasonRule.visibilityStartDate).format('YYYY-MM-DD')
+                    : null,
+                startDate: dayjs(seasonRule.startDate).format('YYYY-MM-DD'),
+                endDate: dayjs(seasonRule.endDate).format('YYYY-MM-DD'),
+            })),
+            totalSeasonRules,
+            pagination,
+        )
     }
 
     private buildSearchParams(

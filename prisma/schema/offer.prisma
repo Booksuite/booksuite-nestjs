@@ -3,31 +3,27 @@ model Offer {
 
     name        String
     description String?
+    type        OfferType
     published   Boolean @default(false)
 
-    // Purchase Period
-    purchaseStartDate DateTime @db.Date
-    purchaseEndDate   DateTime @db.Date
-
-    validStartDate DateTime? @db.Date
-    validEndDate   DateTime? @db.Date
+    visibilityStartDate DateTime @db.Date
+    startDate           DateTime @db.Date
+    endDate             DateTime @db.Date
 
     // Applicability Conditions
-    minDays           Int?
-    maxDays           Int?
     minAdvanceDays    Int?
     maxAdvanceDays    Int?
+    minStay           Int?
+    maxStay           Int?
     validForAbandoned Boolean @default(false)
     validForPackages  Boolean @default(false)
 
-    availableHousingUnitTypes OfferHousingUnitType[]
-    validPaymentMethods       OfferPaymentMethod[]
+    validServices OfferService[]
+    validHousingUnitTypes OfferHousingUnitType[]
+    validPaymentMethods   OfferPaymentMethod[]
 
     /// [WeekDays]
-    availableWeekDays Json // Array of week days (0-6)
-
-    // Valid Services
-    validServices OfferService[]
+    validWeekDays Json // Array of week days (0-6)
 
     // Price Adjustment
     priceAdjustmentType  PriceVariationType
@@ -83,4 +79,9 @@ model OfferService {
 
     @@unique([offerId, serviceId], name: "offer_service_unique")
     @@map("offer_services")
+}
+
+enum OfferType {
+    SERVICE
+    HOUSING_UNIT_TYPE
 }

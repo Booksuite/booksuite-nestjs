@@ -1,7 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { HostingRulesResponseDTO } from '@/modules/company/dto/HostingRulesResponse.dto'
-import { HousingUnitTypeAvailAndPriceSummary } from '../types'
+import { RateOptionResponseDTO } from '@/modules/rateOption/dto/RateOptionResponse.dto'
+import { ServiceResponseDTO } from '@/modules/service/dtos/ServiceResponse.dto'
+import { HousingUnitTypeAvailAndPriceSummary } from '../types/payload'
 
 import { AvailabilityDTO } from './Availability.dto'
 import { AvailAndPricingOffersDTO } from './AvailAndPricingOffers.dto'
@@ -61,8 +63,21 @@ export class HousingUnitTypeAvailAndPriceSummaryDTO
     hostingRules: HostingRulesResponseDTO
 
     @ApiProperty({
+        description: 'Services for the day',
+        type: [ServiceResponseDTO],
+    })
+    services: ServiceResponseDTO[]
+
+    @ApiProperty({
+        description: 'Rate option for the day',
+        type: RateOptionResponseDTO,
+        nullable: true,
+    })
+    rateOption: RateOptionResponseDTO | null
+
+    @ApiProperty({
         description: 'Total days for the day',
         type: Number,
     })
-    totalDays: number
+    totalStay: number
 }

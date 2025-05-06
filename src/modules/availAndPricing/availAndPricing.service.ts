@@ -10,6 +10,8 @@ import { AvailAndPricingRules } from './rules/PricingRules'
 import {
     AvailAndPricingHostingRules,
     AvailAndPricingHousingUnitType,
+} from './types'
+import {
     AvailAndPricingPayload,
     AvailAndPricingSearchPayload,
     Calendar,
@@ -18,7 +20,7 @@ import {
     HousingUnitTypeAvailAndPrice,
     HousingUnitTypeAvailAndPriceSummary,
     HousingUnitTypeWithCalendar,
-} from './types'
+} from './types/payload'
 
 @Injectable()
 export class AvailAndPricingService {
@@ -55,34 +57,6 @@ export class AvailAndPricingService {
 
         return this.getHousingUnitTypeCalendar(
             this.filterHousingUnitTypePayload(housingUnitType, calendarPayload),
-        )
-    }
-
-    private adjustSearchPayload(
-        searchPayload?: AvailAndPricingSearchPayload,
-    ): AvailAndPricingSearchPayload | undefined {
-        if (!searchPayload) return undefined
-
-        const dateRange = {
-            start: searchPayload.dateRange.start,
-            end: dayjs
-                .utc(searchPayload.dateRange.end)
-                .subtract(1, 'day')
-                .format('YYYY-MM-DD'),
-        }
-
-        return {
-            ...searchPayload,
-            dateRange,
-        }
-    }
-
-    private getTotalDays(dateRange: DateRangeDTO): number {
-        return (
-            dayjs
-                .utc(dateRange.end)
-                .endOf('day')
-                .diff(dayjs.utc(dateRange.start).startOf('day'), 'days') + 1
         )
     }
 
@@ -161,7 +135,7 @@ export class AvailAndPricingService {
                             ...this.sumCalendarPrices(
                                 Object.values(housingUnitType.calendar),
                             ),
-                            totalDays: this.getTotalDays(
+                            totalStay: this.getTotalDays(
                                 adjustedSearchPayload.dateRange,
                             ),
                         },
@@ -171,6 +145,35 @@ export class AvailAndPricingService {
             [],
         )
     }
+
+    private adjustSearchPayload(
+        searchPayload?: AvailAndPricingSearchPayload,
+    ): AvailAndPricingSearchPayload | undefined {
+        if (!searchPayload) return undefined
+
+        const dateRange = {
+            start: searchPayload.dateRange.start,
+            end: dayjs
+                .utc(searchPayload.dateRange.end)
+                .subtract(1, 'day')
+                .format('YYYY-MM-DD'),
+        }
+
+        return {
+            ...searchPayload,
+            dateRange,
+        }
+    }
+
+    private getTotalDays(dateRange: DateRangeDTO): number {
+        return (
+            dayjs
+                .utc(dateRange.end)
+                .endOf('day')
+                .diff(dayjs.utc(dateRange.start).startOf('day'), 'days') + 1
+        )
+    }
+
     private sumCalendarPrices(
         calendar: CalendarDay[],
     ): HousingUnitTypeAvailAndPriceSummary {
@@ -190,7 +193,7 @@ export class AvailAndPricingService {
                 return acc
             },
             {
-                totalDays: 0,
+                totalStay: 0,
                 basePrice: 0,
                 finalPrice: 0,
                 hostingRules: null as unknown as AvailAndPricingHostingRules,
@@ -199,6 +202,8 @@ export class AvailAndPricingService {
                 offers: [],
                 reservations: [],
                 availability: [],
+                services: [],
+                rateOption: null,
             },
         )
 
@@ -215,7 +220,7 @@ export class AvailAndPricingService {
         return summary
     }
 
-    getHousingUnitTypeCalendar(
+    private getHousingUnitTypeCalendar(
         housingUnitTypePayload: HouseUnitTypeAvailAndPricingPayload,
     ): HousingUnitTypeWithCalendar {
         const housingUnitType = housingUnitTypePayload.housingUnitType
@@ -229,7 +234,7 @@ export class AvailAndPricingService {
         }
     }
 
-    async getCalendarPayload(
+    private async getCalendarPayload(
         companyId: string,
         housingUnitTypes: AvailAndPricingHousingUnitType[],
         currentDate: string,
@@ -270,23 +275,18 @@ export class AvailAndPricingService {
                 AND: [
                     {
                         OR: [
-                            { visibilityStart: null },
+                            { visibilityStartDate: null },
                             {
-                                visibilityStart: {
+                                visibilityStartDate: {
                                     lte: formattedCurrentDate,
                                 },
                             },
                         ],
                     },
                     {
-                        OR: [
-                            { visibilityEnd: null },
-                            {
-                                visibilityEnd: {
-                                    gte: formattedCurrentDate,
-                                },
-                            },
-                        ],
+                        endDate: {
+                            gte: formattedCurrentDate,
+                        },
                     },
                 ],
             },
@@ -301,6 +301,14 @@ export class AvailAndPricingService {
                     some: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 },
                 published: true,
+
+                visibilityStartDate: {
+                    lte: formattedCurrentDate,
+                },
+                // the visibility end date is the end date of the special date
+                endDate: {
+                    gte: formattedCurrentDate,
+                },
 
                 OR: [
                     {
@@ -337,10 +345,10 @@ export class AvailAndPricingService {
 
         const offers = await this.prismaService.offer.findMany({
             include: {
-                availableHousingUnitTypes: true,
+                validHousingUnitTypes: true,
             },
             where: {
-                availableHousingUnitTypes: {
+                validHousingUnitTypes: {
                     some: {
                         housingUnitTypeId: { in: housingUnitTypesIds },
                     },
@@ -362,26 +370,26 @@ export class AvailAndPricingService {
                     {
                         OR: [
                             {
-                                validStartDate: {
+                                startDate: {
                                     lte: formattedDateRangeStart,
                                 },
-                                validEndDate: {
+                                endDate: {
                                     gte: formattedDateRangeStart,
                                 },
                             },
                             {
-                                validStartDate: {
+                                startDate: {
                                     lte: formattedDateRangeEnd,
                                 },
-                                validEndDate: {
+                                endDate: {
                                     gte: formattedDateRangeEnd,
                                 },
                             },
                             {
-                                validStartDate: {
+                                startDate: {
                                     gte: formattedDateRangeStart,
                                 },
-                                validEndDate: {
+                                endDate: {
                                     lte: formattedDateRangeEnd,
                                 },
                             },
@@ -428,6 +436,24 @@ export class AvailAndPricingService {
             },
         })
 
+        const services = searchPayload?.services
+            ? await this.prismaService.service.findMany({
+                  where: {
+                      availableHousingUnitTypes: {
+                          some: {
+                              housingUnitTypeId: { in: housingUnitTypesIds },
+                          },
+                      },
+                  },
+              })
+            : []
+
+        const rateOption = searchPayload?.rateOptionId
+            ? await this.prismaService.rateOption.findUnique({
+                  where: { id: searchPayload.rateOptionId },
+              })
+            : null
+
         const ageGroups = searchPayload?.ageGroups
             ? await this.prismaService.ageGroup
                   .findMany({
@@ -453,7 +479,7 @@ export class AvailAndPricingService {
         return {
             searchPayload: searchPayload && {
                 ...searchPayload,
-                totalDays: this.getTotalDays(searchPayload.dateRange),
+                totalStay: this.getTotalDays(searchPayload.dateRange),
             },
             ageGroups,
             viewWindow,
@@ -473,6 +499,8 @@ export class AvailAndPricingService {
                             .toISOString()) ??
                     null,
             },
+            services,
+            rateOption,
             seasonRules,
             specialDates,
             reservations: reservations.map((reservation) => ({
@@ -486,7 +514,7 @@ export class AvailAndPricingService {
         }
     }
 
-    filterHousingUnitTypePayload(
+    private filterHousingUnitTypePayload(
         housingUnitType: AvailAndPricingHousingUnitType,
         {
             seasonRules,
@@ -509,7 +537,7 @@ export class AvailAndPricingService {
         )
 
         const housingUnitTypeOffers = offers.filter((offer) =>
-            offer.availableHousingUnitTypes.some(
+            offer.validHousingUnitTypes.some(
                 (h) => h.housingUnitTypeId === housingUnitType.id,
             ),
         )
@@ -530,7 +558,7 @@ export class AvailAndPricingService {
         }
     }
 
-    calculateHousingUnitTypeCalendar(
+    private calculateHousingUnitTypeCalendar(
         payload: HouseUnitTypeAvailAndPricingPayload,
     ): Calendar {
         const dayjsStart = dayjs.utc(payload.viewWindow.start).startOf('day')
@@ -550,13 +578,13 @@ export class AvailAndPricingService {
         return days
     }
 
-    getInitialCalendarDay(
+    private getInitialCalendarDay(
         payload: HouseUnitTypeAvailAndPricingPayload,
     ): CalendarDay {
         return {
             basePrice: 0,
             finalPrice: 0,
-            finalMinDays: payload.hostingRules.minDaily,
+            finalMinStay: payload.hostingRules.minStay,
             hostingRules: payload.hostingRules,
             seasonRules: null,
             specialDates: null,

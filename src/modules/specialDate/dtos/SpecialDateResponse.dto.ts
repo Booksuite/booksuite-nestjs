@@ -11,14 +11,29 @@ export class SpecialDateResponseDTO {
     @ApiProperty({ example: true })
     published!: boolean
 
-    @ApiProperty({ example: '2025-12-20' })
-    startDate!: Date
+    @ApiProperty({
+        type: String,
+        format: 'date',
+        example: '2025-12-20',
+    })
+    visibilityStartDate!: string
 
-    @ApiProperty({ example: '2026-01-02' })
-    endDate!: Date
+    @ApiProperty({
+        type: String,
+        format: 'date',
+        example: '2025-12-20',
+    })
+    startDate!: string
+
+    @ApiProperty({
+        type: String,
+        format: 'date',
+        example: '2026-01-02',
+    })
+    endDate!: string
 
     @ApiProperty({ example: 2 })
-    minDaily!: number
+    minStay!: number
 
     @ApiProperty({
         example: 'Special holiday discount',
@@ -37,7 +52,7 @@ export class SpecialDateResponseDTO {
         isArray: true,
         example: [1, 2, 3, 4, 5],
     })
-    availableWeekDays!: PrismaJson.WeekDays
+    validWeekDays!: PrismaJson.WeekDays
 
     @ApiProperty({
         enum: PriceVariationType,
@@ -47,5 +62,5 @@ export class SpecialDateResponseDTO {
     priceVariationType!: PriceVariationType
 
     @ApiProperty({ example: 100.5 })
-    price!: number
+    priceVariationValue!: number
 }

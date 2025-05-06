@@ -10,8 +10,11 @@ import {
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { AvailAndPricingDayPayload, AvailAndPricingReservation } from '../types'
-import { AvailAndPricingRule } from '../types'
+import {
+    AvailAndPricingDayPayload,
+    AvailAndPricingReservation,
+} from '../types/payload'
+import { AvailAndPricingRule } from '../types/payload'
 
 @Injectable()
 export class ReservationRule implements AvailAndPricingRule {

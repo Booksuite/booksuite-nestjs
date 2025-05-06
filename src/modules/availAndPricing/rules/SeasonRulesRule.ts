@@ -10,8 +10,8 @@ import { PricingHelpers } from '../helpers/PricingHelpers'
 import {
     AvailAndPricingDayPayload,
     HousingUnitTypeAvailability,
-} from '../types'
-import { AvailAndPricingRule } from '../types'
+} from '../types/payload'
+import { AvailAndPricingRule } from '../types/payload'
 
 @Injectable()
 export class SeasonRulesRule implements AvailAndPricingRule {
@@ -55,7 +55,7 @@ export class SeasonRulesRule implements AvailAndPricingRule {
         payload.calendar[currentDate].seasonRules = seasonRules
         payload.calendar[currentDate].basePrice = finalPrice
         payload.calendar[currentDate].finalPrice = finalPrice
-        payload.calendar[currentDate].finalMinDays = seasonRules.minDaily
+        payload.calendar[currentDate].finalMinStay = seasonRules.minStay
 
         payload.calendar[currentDate].availability =
             this.checkAvailability(payload)
@@ -79,8 +79,7 @@ export class SeasonRulesRule implements AvailAndPricingRule {
             .startOf('day')
             .day()
 
-        const isWeekDayAvailable =
-            seasonRules.availableWeekDays.includes(weekDay)
+        const isWeekDayAvailable = seasonRules.validWeekDays.includes(weekDay)
 
         if (!isWeekDayAvailable) {
             return {
@@ -94,7 +93,7 @@ export class SeasonRulesRule implements AvailAndPricingRule {
             }
         }
 
-        if (searchPayload.totalDays < calendar[currentDate].finalMinDays) {
+        if (searchPayload.totalStay < calendar[currentDate].finalMinStay) {
             return {
                 available: false,
                 unavailabilitySource: UnavailableSource.SEASON_RULES,

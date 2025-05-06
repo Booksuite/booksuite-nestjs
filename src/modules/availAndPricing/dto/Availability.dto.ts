@@ -6,7 +6,7 @@ import {
     UnavailabilityReason,
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
-import { HousingUnitTypeAvailability } from '../types'
+import { HousingUnitTypeAvailability } from '../types/payload'
 
 export class AvailabilityDTO implements HousingUnitTypeAvailability {
     @ApiProperty({

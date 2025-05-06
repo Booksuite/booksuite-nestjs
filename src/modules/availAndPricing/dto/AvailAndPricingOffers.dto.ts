@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { PriceVariationType } from '@prisma/client'
+import { $Enums, PriceVariationType } from '@prisma/client'
 
 import { AvailAndPricingOffer } from '../types'
 
@@ -9,28 +9,35 @@ export class AvailAndPricingOffersDTO implements AvailAndPricingOffer {
         type: Date,
         format: 'date-time',
     })
-    purchaseStartDate: Date
-
-    @ApiProperty({
-        description: 'Purchase end date',
-        type: Date,
-        format: 'date-time',
-    })
-    purchaseEndDate: Date
+    visibilityStartDate: Date
 
     @ApiProperty({
         description: 'Minimum number of days for the offer',
         type: Number,
         nullable: true,
     })
-    minDays: number | null
+    minStay: number | null
+
+    @ApiProperty({
+        description: 'Valid week days',
+        type: 'array',
+        items: { type: 'number' },
+    })
+    validWeekDays: number[]
+
+    @ApiProperty({
+        description: 'Offer type',
+        enum: $Enums.OfferType,
+        enumName: 'OfferType',
+    })
+    type: $Enums.OfferType
 
     @ApiProperty({
         description: 'Maximum number of days for the offer',
         type: Number,
         nullable: true,
     })
-    maxDays: number | null
+    maxStay: number | null
 
     @ApiProperty({
         description: 'Minimum advance days required',
@@ -97,19 +104,17 @@ export class AvailAndPricingOffersDTO implements AvailAndPricingOffer {
 
     @ApiProperty({
         description: 'Valid start date',
-        nullable: true,
         type: Date,
         format: 'date-time',
     })
-    validStartDate: Date | null
+    startDate: Date
 
     @ApiProperty({
         description: 'Valid end date',
-        nullable: true,
         type: Date,
         format: 'date-time',
     })
-    validEndDate: Date | null
+    endDate: Date
 
     @ApiProperty({
         description: 'Price adjustment type',
@@ -123,12 +128,6 @@ export class AvailAndPricingOffersDTO implements AvailAndPricingOffer {
         type: Number,
     })
     priceAdjustmentValue: number
-
-    @ApiProperty({
-        description: 'Available week days',
-        type: [Number],
-    })
-    availableWeekDays: number[]
 
     @ApiProperty({
         description: 'Whether the offer is valid for packages',
@@ -153,7 +152,7 @@ export class AvailAndPricingOffersDTO implements AvailAndPricingOffer {
             },
         },
     })
-    availableHousingUnitTypes: { housingUnitTypeId: string }[]
+    validHousingUnitTypes: { housingUnitTypeId: string }[]
 
     @ApiProperty({
         description: 'Whether the offer is published',

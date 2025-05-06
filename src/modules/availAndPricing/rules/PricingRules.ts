@@ -6,7 +6,7 @@ import {
     AvailAndPricingRule,
     Calendar,
     HouseUnitTypeAvailAndPricingPayload,
-} from '../types'
+} from '../types/payload'
 
 import { AgeGroupRule } from './AgeGroupRule'
 import { HostingRulesRule } from './HostingRulesRule'

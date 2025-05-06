@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
 
 import { PricingHelpers } from '../helpers/PricingHelpers'
-import { AvailAndPricingDayPayload, AvailAndPricingOffer } from '../types'
-import { AvailAndPricingRule } from '../types'
+import { AvailAndPricingOffer } from '../types'
+import { AvailAndPricingDayPayload } from '../types/payload'
+import { AvailAndPricingRule } from '../types/payload'
 
 @Injectable()
 export class OfferRule implements AvailAndPricingRule {
@@ -21,7 +22,7 @@ export class OfferRule implements AvailAndPricingRule {
         const basePrice = calendar[currentDate].finalPrice
 
         const finalPrice = this.pricingHelpers.getPriceVariation(basePrice, {
-            price: offer.priceAdjustmentValue,
+            priceVariationValue: offer.priceAdjustmentValue,
             priceVariationType: offer.priceAdjustmentType,
         })
 
@@ -41,17 +42,17 @@ export class OfferRule implements AvailAndPricingRule {
 
         if (pricingPayload.searchPayload) {
             if (
-                (offer.minDays &&
-                    pricingPayload.searchPayload.totalDays < offer.minDays) ||
-                (offer.maxDays &&
-                    pricingPayload.searchPayload.totalDays > offer.maxDays)
+                (offer.minStay &&
+                    pricingPayload.searchPayload.totalStay < offer.minStay) ||
+                (offer.maxStay &&
+                    pricingPayload.searchPayload.totalStay > offer.maxStay)
             )
                 return false
         }
 
         const isBetween = currentDateDayjs.isBetween(
-            dayjs.utc(offer.validStartDate).startOf('day'),
-            dayjs.utc(offer.validEndDate).endOf('day'),
+            dayjs.utc(offer.startDate).startOf('day'),
+            dayjs.utc(offer.endDate).endOf('day'),
             'day',
             '[]',
         )
@@ -60,7 +61,7 @@ export class OfferRule implements AvailAndPricingRule {
 
         const weekDay = currentDateDayjs.startOf('day').day()
 
-        const isWeekDayAvailable = offer.availableWeekDays.includes(weekDay)
+        const isWeekDayAvailable = offer.validWeekDays.includes(weekDay)
 
         if (!isWeekDayAvailable) return false
 

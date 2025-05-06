@@ -76,7 +76,7 @@ model HostingRules {
 
     checkIn  Int
     checkOut Int
-    minDaily Int
+    minStay Int
 
     fixedWindowPeriod Int
 

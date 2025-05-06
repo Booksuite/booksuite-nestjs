@@ -11,7 +11,7 @@ export class HostingRulesResponseDTO {
     checkOut: number
 
     @ApiProperty({ example: 2 })
-    minDaily: number
+    minStay: number
 
     @ApiProperty({ example: 120, type: Number })
     fixedWindowPeriod: number

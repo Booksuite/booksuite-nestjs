@@ -6,7 +6,7 @@ export const hostingRulesFixture = defineFixture<HostingRules>((fx) => {
     fx.id.as(() => faker.string.uuid())
     fx.checkIn.as(() => 840)
     fx.checkOut.as(() => 720)
-    fx.minDaily.as(() => 2)
+    fx.minStay.as(() => 2)
     fx.fixedWindowPeriod.as(() => 365)
     fx.reservationWindowStart.as(() => null)
     fx.reservationWindowEnd.as(() => null)

@@ -64,10 +64,12 @@ describe('getTotalPrice', () => {
     const offer = offerFullFixture.create({
         priceAdjustmentType: 'PERCENTAGE_REDUCTION',
         priceAdjustmentValue: 10,
-        availableHousingUnitTypes:
-            availableHousingUnitTypesFixture.createArrayWith(1, {
+        validHousingUnitTypes: availableHousingUnitTypesFixture.createArrayWith(
+            1,
+            {
                 housingUnitTypeId: housingUnitType.id,
-            }),
+            },
+        ),
     })
 
     const ageGroupId = '24985a5d-3583-4353-bf68-7e59c68afc92'
@@ -106,7 +108,7 @@ describe('getTotalPrice', () => {
             {
                 ...housingUnitType,
                 summary: {
-                    totalDays: 2,
+                    totalStay: 2,
                     basePrice: 3540,
                     finalPrice: 3186,
                     hostingRules,

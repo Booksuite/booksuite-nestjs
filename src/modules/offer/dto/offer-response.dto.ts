@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { PriceVariationType } from '@prisma/client'
+import { OfferType, PriceVariationType } from '@prisma/client'
 
 export class OfferResponseDTO {
     @ApiProperty({ example: '550e8400-e29b-41d4-a716-446655440000' })
@@ -7,6 +7,12 @@ export class OfferResponseDTO {
 
     @ApiProperty({ example: 'Summer Special' })
     name: string
+
+    @ApiProperty({
+        example: OfferType.HOUSING_UNIT_TYPE,
+        enum: OfferType,
+    })
+    type: OfferType
 
     @ApiProperty({
         example: 'Special summer offer with 20% discount',
@@ -18,23 +24,32 @@ export class OfferResponseDTO {
     @ApiProperty({ example: true, type: Boolean })
     published: boolean
 
-    @ApiProperty({ example: '2024-06-01T00:00:00.000Z' })
-    purchaseStartDate: Date
+    @ApiProperty({
+        type: String,
+        format: 'date',
+        example: '2024-06-01T00:00:00.000Z',
+    })
+    visibilityStartDate: string
 
-    @ApiProperty({ example: '2024-08-31T00:00:00.000Z' })
-    purchaseEndDate: Date
+    @ApiProperty({
+        type: String,
+        format: 'date',
+        example: '2024-06-15T00:00:00.000Z',
+    })
+    startDate: string
 
-    @ApiProperty({ example: '2024-06-15T00:00:00.000Z', nullable: true })
-    validStartDate: Date | null
-
-    @ApiProperty({ example: '2024-09-15T00:00:00.000Z', nullable: true })
-    validEndDate: Date | null
+    @ApiProperty({
+        type: String,
+        format: 'date',
+        example: '2024-09-15T00:00:00.000Z',
+    })
+    endDate: string
 
     @ApiProperty({ example: 2, type: Number, nullable: true })
-    minDays: number | null
+    minStay: number | null
 
     @ApiProperty({ example: 7, type: Number, nullable: true })
-    maxDays: number | null
+    maxStay: number | null
 
     @ApiProperty({ example: 14, type: Number, nullable: true })
     minAdvanceDays: number | null
@@ -49,7 +64,7 @@ export class OfferResponseDTO {
     validForPackages: boolean
 
     @ApiProperty({ example: [1, 2, 3, 4, 5], type: [Number] })
-    availableWeekDays: number[]
+    validWeekDays: number[]
 
     @ApiProperty({ example: 'PERCENTAGE', enum: PriceVariationType })
     priceAdjustmentType: PriceVariationType

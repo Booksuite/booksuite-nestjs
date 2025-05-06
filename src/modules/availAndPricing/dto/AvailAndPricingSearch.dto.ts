@@ -9,9 +9,10 @@ import {
 } from 'class-validator'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
-import { AvailAndPricingSearchPayload } from '../types'
+import { AvailAndPricingSearchPayload } from '../types/payload'
 
 import { AvailAndPricingAgeGroupSearchDTO } from './AvailAndPricingAgeGroupSearch.dto'
+import { AvailAndPricingServiceDTO } from './AvailAndPricingService.dto'
 
 export class AvailAndPricingSearchDTO implements AvailAndPricingSearchPayload {
     @ApiProperty({
@@ -41,4 +42,15 @@ export class AvailAndPricingSearchDTO implements AvailAndPricingSearchPayload {
     @ValidateNested({ each: true })
     @Type(() => AvailAndPricingAgeGroupSearchDTO)
     ageGroups?: AvailAndPricingAgeGroupSearchDTO[]
+
+    @ApiProperty({
+        type: [AvailAndPricingServiceDTO],
+        description: 'Services',
+        required: false,
+    })
+    @IsOptional()
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => AvailAndPricingServiceDTO)
+    services?: AvailAndPricingServiceDTO[]
 }

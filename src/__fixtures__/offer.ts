@@ -13,18 +13,18 @@ export const offerFixture = defineFixture<Offer>((fx) => {
     fx.name.as(() => faker.lorem.word())
     fx.description.as(() => faker.lorem.sentence())
     fx.published.as(() => true)
-    fx.purchaseStartDate.as(() =>
+    fx.visibilityStartDate.as(() =>
         dayjs.utc('2025-05-01T00:00:00.000Z').toDate(),
     )
-    fx.purchaseEndDate.as(() => dayjs.utc('2025-05-31T00:00:00.000Z').toDate())
-    fx.validStartDate.as(() => dayjs.utc('2025-05-01T00:00:00.000Z').toDate())
-    fx.validEndDate.as(() => dayjs.utc('2025-05-31T00:00:00.000Z').toDate())
-    fx.minDays.as(() => 1)
-    fx.maxDays.as(() => null)
+
+    fx.startDate.as(() => dayjs.utc('2025-05-01T00:00:00.000Z').toDate())
+    fx.endDate.as(() => dayjs.utc('2025-05-31T00:00:00.000Z').toDate())
+    fx.minStay.as(() => 1)
+    fx.maxStay.as(() => null)
     fx.minAdvanceDays.as(() => 1)
     fx.maxAdvanceDays.as(() => null)
     fx.validForAbandoned.as(() => false)
-    fx.availableWeekDays.as(() => [0, 1, 2, 3, 4, 5, 6])
+    fx.validWeekDays.as(() => [0, 1, 2, 3, 4, 5, 6])
     fx.companyId.as(() => faker.string.uuid())
     fx.createdAt.as(() => faker.date.past())
     fx.updatedAt.as(() => faker.date.recent())
@@ -45,11 +45,11 @@ export const availableHousingUnitTypesFixture =
     })
 
 export const offerFullFixture = defineFixture<
-    Prisma.OfferGetPayload<{ include: { availableHousingUnitTypes: true } }>
+    Prisma.OfferGetPayload<{ include: { validHousingUnitTypes: true } }>
 >((fx) => {
     fx.extends(offerFixture)
 
-    fx.availableHousingUnitTypes.arrayOfFixture({
+    fx.validHousingUnitTypes.arrayOfFixture({
         fixture: availableHousingUnitTypesFixture,
     })
 })

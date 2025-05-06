@@ -5,16 +5,16 @@
     "published": false,
     "startDate": "2025-05-09T00:00:00.000Z",
     "endDate": "2025-05-25T00:00:00.000Z",
-    "minDaily": 2,
-    "visibilityStart": null,
-    "visibilityEnd": null,
-    "availableWeekDays": [
+    "minStay": 2,
+    "visibilityStartDate": null,
+    
+    "validWeekDays": [
       6,
       3,
       0
     ],
     "priceVariationType": "PERCENTAGE_REDUCTION",
-    "price": 10,
+    "priceVariationValue": 10,
     "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
   },
   {
@@ -23,10 +23,9 @@
     "published": false,
     "startDate": "2025-11-01T00:00:00.000Z",
     "endDate": "2025-11-30T00:00:00.000Z",
-    "minDaily": 3,
-    "visibilityStart": null,
-    "visibilityEnd": null,
-    "availableWeekDays": [
+    "minStay": 3,
+    "visibilityStartDate": null,
+    "validWeekDays": [
       0,
       1,
       2,
@@ -36,7 +35,7 @@
       6
     ],
     "priceVariationType": "ABSOLUTE_INCREASE",
-    "price": 100,
+    "priceVariationValue": 100,
     "companyId": "c1c3c5c7-c9cb-4cdd-8e15-c3c5c7c9cbcd"
   }
 ]

@@ -7,7 +7,7 @@ import { OfferServiceResponseDTO } from './OfferServiceResponse.dto'
 
 export class OfferResponseFullDTO extends OfferResponseDTO {
     @ApiProperty({ type: [OfferHousingUnitTypeResponseDTO] })
-    availableHousingUnitTypes: OfferHousingUnitTypeResponseDTO[]
+    validHousingUnitTypes: OfferHousingUnitTypeResponseDTO[]
 
     @ApiProperty({ type: [OfferPaymentMethodResponseDTO] })
     validPaymentMethods: OfferPaymentMethodResponseDTO[]

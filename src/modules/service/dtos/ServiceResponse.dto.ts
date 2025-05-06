@@ -16,7 +16,7 @@ export class ServiceResponseDTO {
     @ApiProperty({
         enum: BillingType,
         enumName: 'BillingType',
-        example: 'PER_GUEST_DAILY',
+        example: BillingType.PER_GUEST_DAILY,
     })
     billingType!: BillingType
 
@@ -27,7 +27,7 @@ export class ServiceResponseDTO {
     adults!: number
 
     @ApiProperty({ example: 1 })
-    minDaily!: number
+    minStay!: number
 
     @ApiProperty({ example: 1 })
     minNotice!: number

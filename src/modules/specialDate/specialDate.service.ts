@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import dayjs from 'dayjs'
 import { pick } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
@@ -27,6 +28,11 @@ export class SpecialDateService {
         const normalizedData =
             Prisma.validator<Prisma.SpecialDateCreateInput>()({
                 ...rawData,
+                visibilityStartDate: dayjs(
+                    rawData.visibilityStartDate,
+                ).toDate(),
+                startDate: dayjs(rawData.startDate).toDate(),
+                endDate: dayjs(rawData.endDate).toDate(),
                 company: { connect: { id: companyId } },
                 housingUnitTypePrices: {
                     createMany: {
@@ -43,20 +49,50 @@ export class SpecialDateService {
                 },
             })
 
-        return this.prismaService.specialDate.create({
-            data: normalizedData,
-        })
+        return this.prismaService.specialDate
+            .create({
+                data: normalizedData,
+            })
+            .then((specialDate) => {
+                return {
+                    ...specialDate,
+                    visibilityStartDate: dayjs(
+                        specialDate.visibilityStartDate,
+                    ).format('YYYY-MM-DD'),
+                    startDate: dayjs(specialDate.startDate).format(
+                        'YYYY-MM-DD',
+                    ),
+                    endDate: dayjs(specialDate.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     getById(id: string): Promise<SpecialDateResponseFullDTO | null> {
-        return this.prismaService.specialDate.findUnique({
-            where: { id },
-            include: {
-                housingUnitTypePrices: { include: { housingUnitType: true } },
-                medias: { include: { media: true } },
-                includedServices: { include: { service: true } },
-            },
-        })
+        return this.prismaService.specialDate
+            .findUnique({
+                where: { id },
+                include: {
+                    housingUnitTypePrices: {
+                        include: { housingUnitType: true },
+                    },
+                    medias: { include: { media: true } },
+                    includedServices: { include: { service: true } },
+                },
+            })
+            .then((specialDate) => {
+                if (!specialDate) return null
+
+                return {
+                    ...specialDate,
+                    visibilityStartDate: dayjs(
+                        specialDate.visibilityStartDate,
+                    ).format('YYYY-MM-DD'),
+                    startDate: dayjs(specialDate.startDate).format(
+                        'YYYY-MM-DD',
+                    ),
+                    endDate: dayjs(specialDate.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     update(
@@ -146,10 +182,23 @@ export class SpecialDateService {
                 },
             })
 
-        return this.prismaService.specialDate.update({
-            where: { id },
-            data: normalizedData,
-        })
+        return this.prismaService.specialDate
+            .update({
+                where: { id },
+                data: normalizedData,
+            })
+            .then((specialDate) => {
+                return {
+                    ...specialDate,
+                    visibilityStartDate: dayjs(
+                        specialDate.visibilityStartDate,
+                    ).format('YYYY-MM-DD'),
+                    startDate: dayjs(specialDate.startDate).format(
+                        'YYYY-MM-DD',
+                    ),
+                    endDate: dayjs(specialDate.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     async search(
@@ -160,7 +209,7 @@ export class SpecialDateService {
         query?: string,
     ): Promise<SpecialDatePaginatedResponseDTO> {
         const paginationParams = getPaginatedParams(pagination)
-        const [specialDate, totalSpecialDates] =
+        const [specialDates, totalSpecialDates] =
             await this.prismaService.specialDate.findManyAndCount({
                 where: {
                     ...this.buildSearchParams(query, filter),
@@ -183,7 +232,14 @@ export class SpecialDateService {
             })
 
         return buildPaginatedResponse(
-            specialDate,
+            specialDates.map((specialDate) => ({
+                ...specialDate,
+                visibilityStartDate: dayjs(
+                    specialDate.visibilityStartDate,
+                ).format('YYYY-MM-DD'),
+                startDate: dayjs(specialDate.startDate).format('YYYY-MM-DD'),
+                endDate: dayjs(specialDate.endDate).format('YYYY-MM-DD'),
+            })),
             totalSpecialDates,
             pagination,
         )

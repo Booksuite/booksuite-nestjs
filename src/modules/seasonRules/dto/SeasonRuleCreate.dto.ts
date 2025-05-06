@@ -9,6 +9,7 @@ import {
     IsEnum,
     IsInt,
     IsNumber,
+    IsOptional,
     IsString,
     ValidateNested,
 } from 'class-validator'
@@ -27,12 +28,31 @@ export class SeasonRuleCreateDTO {
     @IsBoolean()
     published: boolean
 
-    @ApiProperty({ example: '2025-06-01', type: String })
+    @ApiProperty({
+        example: '2025-06-01',
+        type: String,
+        format: 'date',
+        required: false,
+        nullable: true,
+    })
+    @IsOptional()
+    @IsDateString()
+    visibilityStartDate?: string | null
+
+    @ApiProperty({
+        example: '2025-06-01',
+        type: String,
+        format: 'date',
+    })
     @IsDefined()
     @IsDateString()
     startDate: string
 
-    @ApiProperty({ example: '2025-08-31', type: String })
+    @ApiProperty({
+        example: '2025-08-31',
+        type: String,
+        format: 'date',
+    })
     @IsDefined()
     @IsDateString()
     endDate: string
@@ -40,12 +60,12 @@ export class SeasonRuleCreateDTO {
     @ApiProperty({ example: 3, type: Number })
     @IsDefined()
     @IsInt()
-    minDaily: number
+    minStay: number
 
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()
     @IsWeekDays()
-    availableWeekDays: PrismaJson.WeekDays
+    validWeekDays: PrismaJson.WeekDays
 
     @ApiProperty({
         enum: PriceVariationType,
@@ -59,7 +79,7 @@ export class SeasonRuleCreateDTO {
     @ApiProperty({ example: 20, type: Number })
     @IsDefined()
     @IsNumber()
-    price: number
+    priceVariationValue: number
 
     @ApiProperty({ type: [HousingUnitTypePricingChangeDTO] })
     @IsDefined()

@@ -50,7 +50,7 @@ export class ServiceCreateDTO {
     @ApiProperty({ example: 1 })
     @IsDefined()
     @IsInt()
-    minDaily!: number
+    minStay!: number
 
     @ApiProperty({ example: 1 })
     @IsDefined()

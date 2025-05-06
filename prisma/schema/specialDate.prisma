@@ -3,7 +3,7 @@ model SpecialDate {
 
     name               String
     published          Boolean
-    minDaily           Int
+    minStay            Int
     description        String?
     generalDescription String?
 
@@ -12,18 +12,18 @@ model SpecialDate {
     endDate             DateTime @db.Date
     
     /// [WeekDays]
-    availableWeekDays Json
+    validWeekDays Json
 
     housingUnitTypePrices SpecialDateHousingUnitType[]
     includedServices      SpecialDateServices[]
     medias                SpecialDateMedias[]
     priceVariationType    PriceVariationType
-    price                 Float                        @db.DoublePrecision
+    priceVariationValue   Float                        @db.DoublePrecision
 
     companyId String
     company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
-    @@map("special_date")
+    @@map("special_dates")
 }
 
 model SpecialDateHousingUnitType {
