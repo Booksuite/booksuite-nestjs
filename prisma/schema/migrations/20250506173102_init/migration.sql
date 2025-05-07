@@ -14,6 +14,9 @@ CREATE TYPE "FacilityType" AS ENUM ('HOUSING_UNIT_TYPE', 'COMPANY');
 CREATE TYPE "FacilityCategory" AS ENUM ('GENERAL', 'FOOD_AND_BEVERAGES', 'LEISURE_AREAS', 'ACTIVITIES', 'STRUCTURE', 'LANGUAGES_SPOKEN', 'INTERNET', 'SERVICES', 'BED_TYPES');
 
 -- CreateEnum
+CREATE TYPE "OfferType" AS ENUM ('SERVICE', 'HOUSING_UNIT_TYPE');
+
+-- CreateEnum
 CREATE TYPE "AgeGroupChargeType" AS ENUM ('DAILY_PER_CHILDREN', 'DAILY_PERCENTAGE_PER_CHILDREN', 'FREE');
 
 -- CreateEnum
@@ -112,7 +115,7 @@ CREATE TABLE "hosting_rules" (
     "id" TEXT NOT NULL,
     "checkIn" INTEGER NOT NULL,
     "checkOut" INTEGER NOT NULL,
-    "minDaily" INTEGER NOT NULL,
+    "minStay" INTEGER NOT NULL,
     "fixedWindowPeriod" INTEGER NOT NULL,
     "reservationWindowStart" DATE,
     "reservationWindowEnd" DATE,
@@ -228,18 +231,18 @@ CREATE TABLE "offers" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
+    "type" "OfferType" NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
-    "purchaseStartDate" DATE NOT NULL,
-    "purchaseEndDate" DATE NOT NULL,
-    "validStartDate" DATE,
-    "validEndDate" DATE,
-    "minDays" INTEGER,
-    "maxDays" INTEGER,
+    "visibilityStartDate" DATE NOT NULL,
+    "startDate" DATE NOT NULL,
+    "endDate" DATE NOT NULL,
     "minAdvanceDays" INTEGER,
     "maxAdvanceDays" INTEGER,
+    "minStay" INTEGER,
+    "maxStay" INTEGER,
     "validForAbandoned" BOOLEAN NOT NULL DEFAULT false,
     "validForPackages" BOOLEAN NOT NULL DEFAULT false,
-    "availableWeekDays" JSONB NOT NULL,
+    "validWeekDays" JSONB NOT NULL,
     "priceAdjustmentType" "PriceVariationType" NOT NULL,
     "priceAdjustmentValue" DOUBLE PRECISION NOT NULL,
     "showInHighlights" BOOLEAN NOT NULL DEFAULT false,
@@ -448,14 +451,13 @@ CREATE TABLE "season_rules" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL,
+    "minStay" INTEGER NOT NULL,
+    "visibilityStartDate" DATE,
     "startDate" DATE NOT NULL,
     "endDate" DATE NOT NULL,
-    "minDaily" INTEGER NOT NULL,
-    "visibilityStart" DATE,
-    "visibilityEnd" DATE,
-    "availableWeekDays" JSONB NOT NULL,
+    "validWeekDays" JSONB NOT NULL,
     "priceVariationType" "PriceVariationType" NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
+    "priceVariationValue" DOUBLE PRECISION NOT NULL,
     "companyId" TEXT NOT NULL,
 
     CONSTRAINT "season_rules_pkey" PRIMARY KEY ("id")
@@ -481,7 +483,7 @@ CREATE TABLE "services" (
     "billingType" "BillingType" NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "adults" INTEGER NOT NULL,
-    "minDaily" INTEGER NOT NULL,
+    "minStay" INTEGER NOT NULL,
     "minNotice" INTEGER NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "onlineSale" BOOLEAN NOT NULL DEFAULT false,
@@ -524,21 +526,22 @@ CREATE TABLE "service_medias" (
 );
 
 -- CreateTable
-CREATE TABLE "special_date" (
+CREATE TABLE "special_dates" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL,
-    "startDate" DATE NOT NULL,
-    "endDate" DATE NOT NULL,
-    "minDaily" INTEGER NOT NULL,
+    "minStay" INTEGER NOT NULL,
     "description" TEXT,
     "generalDescription" TEXT,
-    "availableWeekDays" JSONB NOT NULL,
+    "visibilityStartDate" DATE NOT NULL,
+    "startDate" DATE NOT NULL,
+    "endDate" DATE NOT NULL,
+    "validWeekDays" JSONB NOT NULL,
     "priceVariationType" "PriceVariationType" NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
+    "priceVariationValue" DOUBLE PRECISION NOT NULL,
     "companyId" TEXT NOT NULL,
 
-    CONSTRAINT "special_date_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "special_dates_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -851,22 +854,22 @@ ALTER TABLE "service_medias" ADD CONSTRAINT "service_medias_serviceId_fkey" FORE
 ALTER TABLE "service_medias" ADD CONSTRAINT "service_medias_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "medias"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "special_date" ADD CONSTRAINT "special_date_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "special_dates" ADD CONSTRAINT "special_dates_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "special_date_housing_unit_types" ADD CONSTRAINT "special_date_housing_unit_types_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "special_date_housing_unit_types" ADD CONSTRAINT "special_date_housing_unit_types_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_date"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "special_date_housing_unit_types" ADD CONSTRAINT "special_date_housing_unit_types_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_dates"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "special_date_service" ADD CONSTRAINT "special_date_service_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "special_date_service" ADD CONSTRAINT "special_date_service_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_date"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "special_date_service" ADD CONSTRAINT "special_date_service_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_dates"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "special_date_medias" ADD CONSTRAINT "special_date_medias_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_date"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "special_date_medias" ADD CONSTRAINT "special_date_medias_specialDateId_fkey" FOREIGN KEY ("specialDateId") REFERENCES "special_dates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "special_date_medias" ADD CONSTRAINT "special_date_medias_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "medias"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -15,4 +15,6 @@ export const UNAVAILABLE_REASON_MESSAGE: Record<UnavailabilityReason, string> =
         ALL_ROOMS_OCCUPIED: 'Todos quartos estão ocupados',
         WEEKDAY_NOT_AVAILABLE:
             'Este dia da semana não está disponível para hospedagem',
+        MAX_GUESTS_EXCEEDED: 'O número de hóspedes excede o máximo permitido',
+        MAX_CHILDREN_EXCEEDED: 'O número de crianças excede o máximo permitido',
     }

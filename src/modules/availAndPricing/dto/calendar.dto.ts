@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { HostingRulesResponseDTO } from '@/modules/company/dto/HostingRulesResponse.dto'
-import { CalendarDay } from '../types'
+import { CalendarDay } from '../types/payload'
 
 import { AvailabilityDTO } from './Availability.dto'
 import { AvailAndPricingOffersDTO } from './AvailAndPricingOffers.dto'
@@ -26,7 +26,7 @@ export class CalendarDayResponseDTO implements CalendarDay {
         description: 'Final minimum days required',
         type: Number,
     })
-    finalMinDays: number
+    finalMinStay: number
 
     @ApiProperty({
         description: 'Hosting rules for the day',

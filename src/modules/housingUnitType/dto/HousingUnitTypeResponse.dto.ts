@@ -46,14 +46,14 @@ export class HousingUnitTypeResponseDTO {
     @ApiProperty({ example: 3, type: Number, nullable: true })
     maxChildren: number | null
 
-    @ApiProperty({ example: 300, type: Number, nullable: true })
-    weekdaysPrice!: number | null
+    @ApiProperty({ example: 300, type: Number })
+    weekdaysPrice!: number
 
-    @ApiProperty({ example: 500, type: Number, nullable: true })
-    weekendPrice!: number | null
+    @ApiProperty({ example: 500, type: Number })
+    weekendPrice!: number
 
-    @ApiProperty({ example: 50, type: Number, nullable: true })
-    extraAdultPrice!: number | null
+    @ApiProperty({ example: 50, type: Number })
+    extraAdultPrice!: number
 
     @ApiProperty({ example: 70, type: Number })
     chargeExtraAdultHigherThan!: number
@@ -63,4 +63,7 @@ export class HousingUnitTypeResponseDTO {
 
     @ApiProperty({ example: '2024-01-01T00:00:00.000Z' })
     updatedAt: Date
+
+    @ApiProperty({ example: '2024-01-01T00:00:00.000Z', nullable: true })
+    deletedAt: Date | null
 }

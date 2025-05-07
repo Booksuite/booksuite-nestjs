@@ -3,7 +3,7 @@
     "id": "bbe836ba-430c-45c6-a052-889a603e1225",
     "checkIn": 840,
     "checkOut": 720,
-    "minDaily": 2,
+    "minStay": 2,
     "fixedWindowPeriod": 365,
     "reservationWindowStart": null,
     "reservationWindowEnd": null,

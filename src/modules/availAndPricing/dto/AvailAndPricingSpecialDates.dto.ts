@@ -40,10 +40,17 @@ export class AvailAndPricingSpecialDatesDTO
     endDate: Date
 
     @ApiProperty({
+        description: 'Visibility start date',
+        type: Date,
+        format: 'date-time',
+    })
+    visibilityStartDate: Date
+
+    @ApiProperty({
         description: 'Minimum daily price',
         type: Number,
     })
-    minDaily: number
+    minStay: number
 
     @ApiProperty({
         description: 'Price variation type',
@@ -56,7 +63,7 @@ export class AvailAndPricingSpecialDatesDTO
         description: 'Price value',
         type: Number,
     })
-    price: number
+    priceVariationValue: number
 
     @ApiProperty({
         description: 'Whether the special date rule is published',
@@ -69,7 +76,7 @@ export class AvailAndPricingSpecialDatesDTO
         type: 'array',
         items: { type: 'number' },
     })
-    availableWeekDays: number[]
+    validWeekDays: number[]
 
     @ApiProperty({
         description: 'Housing unit type prices',

@@ -6,8 +6,9 @@ import {
     AvailAndPricingRule,
     Calendar,
     HouseUnitTypeAvailAndPricingPayload,
-} from '../types'
+} from '../types/payload'
 
+import { AgeGroupRule } from './AgeGroupRule'
 import { HostingRulesRule } from './HostingRulesRule'
 import { OfferRule } from './OfferPricing'
 import { ReservationRule } from './ReservationRule'
@@ -22,6 +23,7 @@ export class AvailAndPricingRules {
         private readonly specialDates: SpecialDatesRule,
         private readonly offers: OfferRule,
         private readonly reservations: ReservationRule,
+        private readonly ageGroupRule: AgeGroupRule,
     ) {}
 
     private readonly RULES: AvailAndPricingRule[] = [
@@ -29,6 +31,7 @@ export class AvailAndPricingRules {
         this.seasonRules,
         this.specialDates,
         this.reservations,
+        this.ageGroupRule,
         this.offers,
     ]
 

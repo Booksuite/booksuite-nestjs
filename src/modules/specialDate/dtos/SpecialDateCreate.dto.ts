@@ -31,20 +31,37 @@ export class SpecialDateCreateDTO {
     @IsBoolean()
     published: boolean
 
-    @ApiProperty({ example: '2025-12-20', type: Date })
+    @ApiProperty({
+        example: '2025-12-20',
+        type: String,
+        format: 'date',
+    })
     @IsDefined()
     @IsDateString()
-    startDate: Date
+    visibilityStartDate: string
 
-    @ApiProperty({ example: '2026-01-02', type: Date })
+    @ApiProperty({
+        example: '2025-12-20',
+        type: String,
+        format: 'date',
+    })
     @IsDefined()
     @IsDateString()
-    endDate: Date
+    startDate: string
+
+    @ApiProperty({
+        example: '2026-01-02',
+        type: Date,
+        format: 'date',
+    })
+    @IsDefined()
+    @IsDateString()
+    endDate: string
 
     @ApiProperty({ example: 2, type: Number })
     @IsDefined()
     @IsInt()
-    minDaily: number
+    minStay: number
 
     @ApiProperty({
         example: 'Special holiday discount',
@@ -69,7 +86,7 @@ export class SpecialDateCreateDTO {
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()
     @IsWeekDays()
-    availableWeekDays: PrismaJson.WeekDays
+    validWeekDays: PrismaJson.WeekDays
 
     @ApiProperty({
         enum: PriceVariationType,
@@ -83,7 +100,7 @@ export class SpecialDateCreateDTO {
     @ApiProperty({ example: 100.5, type: Number })
     @IsDefined()
     @IsNumber()
-    price: number
+    priceVariationValue: number
 
     @ApiProperty({ type: [HousingUnitTypePricingChangeDTO] })
     @IsDefined()

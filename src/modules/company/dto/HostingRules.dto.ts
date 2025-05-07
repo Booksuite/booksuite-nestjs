@@ -14,7 +14,7 @@ export class HostingRulesDTO {
 
     @ApiProperty({ example: 2 })
     @IsInt()
-    minDaily: number
+    minStay: number
 
     @ApiProperty({ example: 120, type: Number })
     fixedWindowPeriod: number

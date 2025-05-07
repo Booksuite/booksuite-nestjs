@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import dayjs from 'dayjs'
 
 import { PaginationQueryDTO } from '@/common/dto/PaginationRequest.dto'
 import {
@@ -25,50 +26,74 @@ export class OfferService {
         createOfferDto: CreateOfferDto,
     ): Promise<OfferResponseDTO> {
         const {
-            availableHousingUnitTypes,
+            validHousingUnitTypes,
             validPaymentMethods,
             validServices,
             ...offerData
         } = createOfferDto
 
-        return this.prismaService.offer.create({
-            data: {
-                ...offerData,
-                companyId,
-                availableHousingUnitTypes: {
-                    create: availableHousingUnitTypes.map((typeId) => ({
-                        housingUnitType: { connect: { id: typeId } },
-                    })),
+        return this.prismaService.offer
+            .create({
+                data: {
+                    ...offerData,
+                    companyId,
+                    validHousingUnitTypes: {
+                        create: validHousingUnitTypes.map((typeId) => ({
+                            housingUnitType: { connect: { id: typeId } },
+                        })),
+                    },
+                    validPaymentMethods: {
+                        create: validPaymentMethods.map((methodId) => ({
+                            paymentMethod: { connect: { id: methodId } },
+                        })),
+                    },
+                    validServices: {
+                        create: validServices.map((serviceId) => ({
+                            service: { connect: { id: serviceId } },
+                        })),
+                    },
                 },
-                validPaymentMethods: {
-                    create: validPaymentMethods.map((methodId) => ({
-                        paymentMethod: { connect: { id: methodId } },
-                    })),
-                },
-                validServices: {
-                    create: validServices.map((serviceId) => ({
-                        service: { connect: { id: serviceId } },
-                    })),
-                },
-            },
-        })
+            })
+            .then((offer) => {
+                return {
+                    ...offer,
+                    visibilityStartDate: dayjs(
+                        offer.visibilityStartDate,
+                    ).format('YYYY-MM-DD'),
+                    startDate: dayjs(offer.startDate).format('YYYY-MM-DD'),
+                    endDate: dayjs(offer.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     async getById(id: string): Promise<OfferResponseFullDTO | null> {
-        return this.prismaService.offer.findUnique({
-            where: { id },
-            include: {
-                availableHousingUnitTypes: {
-                    include: { housingUnitType: true },
+        return this.prismaService.offer
+            .findUnique({
+                where: { id },
+                include: {
+                    validHousingUnitTypes: {
+                        include: { housingUnitType: true },
+                    },
+                    validPaymentMethods: {
+                        include: { paymentMethod: true },
+                    },
+                    validServices: {
+                        include: { service: true },
+                    },
                 },
-                validPaymentMethods: {
-                    include: { paymentMethod: true },
-                },
-                validServices: {
-                    include: { service: true },
-                },
-            },
-        })
+            })
+            .then((offer) => {
+                if (!offer) return null
+
+                return {
+                    ...offer,
+                    visibilityStartDate: dayjs(
+                        offer.visibilityStartDate,
+                    ).format('YYYY-MM-DD'),
+                    startDate: dayjs(offer.startDate).format('YYYY-MM-DD'),
+                    endDate: dayjs(offer.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     async search(
@@ -101,7 +126,18 @@ export class OfferService {
             },
         )
 
-        return buildPaginatedResponse(offers, total, pagination)
+        return buildPaginatedResponse(
+            offers.map((offer) => ({
+                ...offer,
+                visibilityStartDate: dayjs(offer.visibilityStartDate).format(
+                    'YYYY-MM-DD',
+                ),
+                startDate: dayjs(offer.startDate).format('YYYY-MM-DD'),
+                endDate: dayjs(offer.endDate).format('YYYY-MM-DD'),
+            })),
+            total,
+            pagination,
+        )
     }
 
     update(
@@ -109,77 +145,88 @@ export class OfferService {
         updateOfferDto: UpdateOfferDto,
     ): Promise<OfferResponseDTO> {
         const {
-            availableHousingUnitTypes,
+            validHousingUnitTypes,
             validPaymentMethods,
             validServices,
             ...offerData
         } = updateOfferDto
 
-        return this.prismaService.offer.update({
-            where: { id },
-            data: {
-                ...offerData,
-                availableHousingUnitTypes: availableHousingUnitTypes && {
-                    deleteMany: {
-                        offerId: id,
-                        id: { notIn: availableHousingUnitTypes },
-                    },
-                    upsert: availableHousingUnitTypes.map((typeId) => ({
-                        where: {
-                            offer_housing_unit_type_unique: {
-                                offerId: id,
-                                housingUnitTypeId: typeId,
-                            },
+        return this.prismaService.offer
+            .update({
+                where: { id },
+                data: {
+                    ...offerData,
+                    validHousingUnitTypes: validHousingUnitTypes && {
+                        deleteMany: {
+                            offerId: id,
+                            id: { notIn: validHousingUnitTypes },
                         },
-                        update: { housingUnitTypeId: typeId },
-                        create: { housingUnitTypeId: typeId },
-                    })),
-                },
-                validPaymentMethods: validPaymentMethods && {
-                    deleteMany: {
-                        offerId: id,
-                        id: { notIn: validPaymentMethods },
-                    },
-                    upsert: validPaymentMethods.map((methodId) => ({
-                        where: {
-                            offer_payment_method_unique: {
-                                offerId: id,
-                                paymentMethodId: methodId,
+                        upsert: validHousingUnitTypes.map((typeId) => ({
+                            where: {
+                                offer_housing_unit_type_unique: {
+                                    offerId: id,
+                                    housingUnitTypeId: typeId,
+                                },
                             },
-                        },
-                        update: { paymentMethodId: methodId },
-                        create: { paymentMethodId: methodId },
-                    })),
-                },
-                validServices: validServices && {
-                    deleteMany: {
-                        offerId: id,
-                        id: { notIn: validServices },
+                            update: { housingUnitTypeId: typeId },
+                            create: { housingUnitTypeId: typeId },
+                        })),
                     },
-                    upsert: validServices.map((serviceId) => ({
-                        where: {
-                            offer_service_unique: {
-                                offerId: id,
-                                serviceId: serviceId,
-                            },
+                    validPaymentMethods: validPaymentMethods && {
+                        deleteMany: {
+                            offerId: id,
+                            id: { notIn: validPaymentMethods },
                         },
-                        update: { serviceId: serviceId },
-                        create: { serviceId: serviceId },
-                    })),
+                        upsert: validPaymentMethods.map((methodId) => ({
+                            where: {
+                                offer_payment_method_unique: {
+                                    offerId: id,
+                                    paymentMethodId: methodId,
+                                },
+                            },
+                            update: { paymentMethodId: methodId },
+                            create: { paymentMethodId: methodId },
+                        })),
+                    },
+                    validServices: validServices && {
+                        deleteMany: {
+                            offerId: id,
+                            id: { notIn: validServices },
+                        },
+                        upsert: validServices.map((serviceId) => ({
+                            where: {
+                                offer_service_unique: {
+                                    offerId: id,
+                                    serviceId: serviceId,
+                                },
+                            },
+                            update: { serviceId: serviceId },
+                            create: { serviceId: serviceId },
+                        })),
+                    },
                 },
-            },
-            include: {
-                availableHousingUnitTypes: {
-                    include: { housingUnitType: true },
+                include: {
+                    validHousingUnitTypes: {
+                        include: { housingUnitType: true },
+                    },
+                    validPaymentMethods: {
+                        include: { paymentMethod: true },
+                    },
+                    validServices: {
+                        include: { service: true },
+                    },
                 },
-                validPaymentMethods: {
-                    include: { paymentMethod: true },
-                },
-                validServices: {
-                    include: { service: true },
-                },
-            },
-        })
+            })
+            .then((offer) => {
+                return {
+                    ...offer,
+                    visibilityStartDate: dayjs(
+                        offer.visibilityStartDate,
+                    ).format('YYYY-MM-DD'),
+                    startDate: dayjs(offer.startDate).format('YYYY-MM-DD'),
+                    endDate: dayjs(offer.endDate).format('YYYY-MM-DD'),
+                }
+            })
     }
 
     delete(id: string) {

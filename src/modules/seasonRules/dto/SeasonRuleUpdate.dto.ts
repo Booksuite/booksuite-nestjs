@@ -24,12 +24,33 @@ export class SeasonRuleUpdateDTO {
     @IsBoolean()
     published: boolean
 
-    @ApiProperty({ example: '2025-06-01', type: String, required: false })
+    @ApiProperty({
+        example: '2025-06-01',
+        type: String,
+        format: 'date',
+        required: false,
+        nullable: true,
+    })
+    @IsOptional()
+    @IsDateString()
+    visibilityStartDate?: string | null
+
+    @ApiProperty({
+        example: '2025-06-01',
+        type: String,
+        format: 'date',
+        required: false,
+    })
     @IsOptional()
     @IsDateString()
     startDate?: string
 
-    @ApiProperty({ example: '2025-08-31', type: String, required: false })
+    @ApiProperty({
+        example: '2025-08-31',
+        type: String,
+        format: 'date',
+        required: false,
+    })
     @IsOptional()
     @IsDateString()
     endDate?: string
@@ -42,7 +63,7 @@ export class SeasonRuleUpdateDTO {
     @ApiProperty({ type: Number, isArray: true, required: false })
     @IsOptional()
     @IsWeekDays()
-    availableWeekDays?: PrismaJson.WeekDays
+    validWeekDays?: PrismaJson.WeekDays
 
     @ApiProperty({
         enum: PriceVariationType,
@@ -57,7 +78,7 @@ export class SeasonRuleUpdateDTO {
     @ApiProperty({ example: 20, type: Number, required: false })
     @IsOptional()
     @IsInt()
-    price?: number
+    priceVariationValue?: number
 
     @ApiProperty({
         type: [HousingUnitTypePricingChangeDTO],

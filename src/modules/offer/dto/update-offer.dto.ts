@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { PriceVariationType } from '@prisma/client'
+import { OfferType, PriceVariationType } from '@prisma/client'
 import {
     IsArray,
     IsBoolean,
@@ -19,6 +19,15 @@ export class UpdateOfferDto {
     @IsString()
     @IsOptional()
     name?: string
+
+    @ApiProperty({
+        example: OfferType.HOUSING_UNIT_TYPE,
+        enum: OfferType,
+        required: false,
+    })
+    @IsEnum(OfferType)
+    @IsOptional()
+    type?: OfferType
 
     @ApiProperty({
         example: 'Special summer offer with 20% discount',
@@ -46,7 +55,7 @@ export class UpdateOfferDto {
     })
     @IsDateString()
     @IsOptional()
-    purchaseStartDate?: string
+    visibilityStartDate?: string
 
     @ApiProperty({
         example: '2024-08-31',
@@ -56,39 +65,27 @@ export class UpdateOfferDto {
     })
     @IsDateString()
     @IsOptional()
-    purchaseEndDate?: string
+    startDate?: string
 
     @ApiProperty({
         example: '2024-06-15',
         type: String,
         format: 'date',
         required: false,
-        nullable: true,
     })
     @IsDateString()
     @IsOptional()
-    validStartDate?: string | null
-
-    @ApiProperty({
-        example: '2024-09-15',
-        type: String,
-        format: 'date',
-        required: false,
-        nullable: true,
-    })
-    @IsDateString()
-    @IsOptional()
-    validEndDate?: string | null
+    endDate?: string
 
     @ApiProperty({ example: 2, type: Number, required: false, nullable: true })
     @IsInt()
     @IsOptional()
-    minDays?: number | null
+    minStay?: number | null
 
     @ApiProperty({ example: 7, type: Number, required: false, nullable: true })
     @IsInt()
     @IsOptional()
-    maxDays?: number | null
+    maxStay?: number | null
 
     @ApiProperty({ example: 14, type: Number, required: false, nullable: true })
     @IsInt()
@@ -126,7 +123,7 @@ export class UpdateOfferDto {
     @IsOptional()
     @IsArray()
     @IsUUID('4', { each: true })
-    availableHousingUnitTypes?: string[]
+    validHousingUnitTypes?: string[]
 
     @ApiProperty({
         example: ['550e8400-e29b-41d4-a716-446655440000'],
@@ -141,7 +138,7 @@ export class UpdateOfferDto {
     @ApiProperty({ example: [1, 2, 3, 4, 5], type: [Number], required: false })
     @IsOptional()
     @IsWeekDays()
-    availableWeekDays?: number[]
+    validWeekDays?: number[]
 
     @ApiProperty({
         example: ['BREAKFAST', 'PARKING'],

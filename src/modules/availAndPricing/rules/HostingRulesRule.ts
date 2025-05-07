@@ -6,21 +6,20 @@ import {
     UnavailabilityReason,
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
-import { AvailAndPricingDayPayload, CalendarAvailability } from '../types'
-import { AvailAndPricingRule } from '../types'
+import {
+    AvailAndPricingDayPayload,
+    HousingUnitTypeAvailability,
+} from '../types/payload'
+import { AvailAndPricingRule } from '../types/payload'
 
 @Injectable()
 export class HostingRulesRule implements AvailAndPricingRule {
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const {
-            pricingPayload: { searchPayload, housingUnitType },
+            pricingPayload: { housingUnitType, viewWindow },
         } = payload
 
-        if (!searchPayload) return payload
-
-        const weekDay = dayjs(searchPayload.dateRange.start)
-            .startOf('day')
-            .day()
+        const weekDay = dayjs(viewWindow.start).startOf('day').day()
 
         const isWeekend =
             payload.pricingPayload.hostingRules.availableWeekend.includes(
@@ -31,6 +30,14 @@ export class HostingRulesRule implements AvailAndPricingRule {
             ? housingUnitType.weekendPrice
             : housingUnitType.weekdaysPrice
 
+        const adults = payload.pricingPayload.searchPayload?.adults ?? 1
+        const maxAdults = housingUnitType.maxAdults
+
+        let finalPrice = basePrice
+
+        if (maxAdults && adults > maxAdults)
+            finalPrice += housingUnitType.extraAdultPrice * (adults - maxAdults)
+
         const newPayload: AvailAndPricingDayPayload = {
             ...payload,
             calendar: {
@@ -38,6 +45,7 @@ export class HostingRulesRule implements AvailAndPricingRule {
                 [payload.currentDate]: {
                     ...payload.calendar[payload.currentDate],
                     basePrice,
+                    finalPrice,
                 },
             },
         }
@@ -57,9 +65,9 @@ export class HostingRulesRule implements AvailAndPricingRule {
 
     private checkAvailability(
         payload: AvailAndPricingDayPayload,
-    ): CalendarAvailability {
+    ): HousingUnitTypeAvailability {
         const {
-            pricingPayload: { searchPayload },
+            pricingPayload: { searchPayload, housingUnitType },
         } = payload
 
         if (!searchPayload)
@@ -87,8 +95,8 @@ export class HostingRulesRule implements AvailAndPricingRule {
         }
 
         if (
-            searchPayload.totalDays <
-            payload.calendar[payload.currentDate].finalMinDays
+            searchPayload.totalStay <
+            payload.calendar[payload.currentDate].finalMinStay
         ) {
             return {
                 available: false,
@@ -97,6 +105,30 @@ export class HostingRulesRule implements AvailAndPricingRule {
                 unavailableReasonMessage:
                     UNAVAILABLE_REASON_MESSAGE[
                         UnavailabilityReason.MIN_DAYS_NOT_REACHED
+                    ],
+            }
+        }
+
+        const totalAdults = searchPayload?.adults ?? 1
+        const totalChildren =
+            searchPayload?.ageGroups?.reduce(
+                (acc, curr) => acc + curr.quantity,
+                0,
+            ) ?? 0
+
+        const totalGuests = totalAdults + totalChildren
+
+        if (
+            housingUnitType.maxGuests !== null &&
+            totalGuests > housingUnitType.maxGuests
+        ) {
+            return {
+                available: false,
+                unavailabilitySource: UnavailableSource.HOSTING_RULES,
+                unavailableReason: UnavailabilityReason.MAX_GUESTS_EXCEEDED,
+                unavailableReasonMessage:
+                    UNAVAILABLE_REASON_MESSAGE[
+                        UnavailabilityReason.MAX_GUESTS_EXCEEDED
                     ],
             }
         }

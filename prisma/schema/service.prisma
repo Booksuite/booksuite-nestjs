@@ -5,7 +5,7 @@ model Service {
     billingType BillingType
     price       Float       @db.DoublePrecision
     adults      Int
-    minDaily    Int
+    minStay     Int
     minNotice   Int
 
     published    Boolean @default(false)
@@ -16,6 +16,7 @@ model Service {
     seasonStart       DateTime
     seasonEnd         DateTime
     hosting           Json?
+    
     /// [WeekDays]
     availableWeekDays Json?
 

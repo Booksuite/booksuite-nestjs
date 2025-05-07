@@ -43,7 +43,7 @@ export class AvailAndPricingSeasonRulesDTO
         description: 'Minimum daily price',
         type: Number,
     })
-    minDaily: number
+    minStay: number
 
     @ApiProperty({
         description: 'Price variation type',
@@ -56,7 +56,7 @@ export class AvailAndPricingSeasonRulesDTO
         description: 'Price value',
         type: Number,
     })
-    price: number
+    priceVariationValue: number
 
     @ApiProperty({
         description: 'Whether the season rule is published',
@@ -70,22 +70,14 @@ export class AvailAndPricingSeasonRulesDTO
         format: 'date-time',
         nullable: true,
     })
-    visibilityStart: Date | null
-
-    @ApiProperty({
-        description: 'Visibility end date',
-        type: Date,
-        format: 'date-time',
-        nullable: true,
-    })
-    visibilityEnd: Date | null
+    visibilityStartDate: Date | null
 
     @ApiProperty({
         description: 'Available week days',
         type: 'array',
         items: { type: 'number' },
     })
-    availableWeekDays: number[]
+    validWeekDays: PrismaJson.WeekDays
 
     @ApiProperty({
         description: 'Housing unit type prices',

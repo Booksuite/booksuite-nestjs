@@ -5,6 +5,7 @@ import { PipeFns } from '@/common/utils/PipeFns'
 import { PricingController } from './availAndPricing.controller'
 import { AvailAndPricingService } from './availAndPricing.service'
 import { PricingHelpers } from './helpers/PricingHelpers'
+import { AgeGroupRule } from './rules/AgeGroupRule'
 import { HostingRulesRule } from './rules/HostingRulesRule'
 import { OfferRule } from './rules/OfferPricing'
 import { AvailAndPricingRules } from './rules/PricingRules'
@@ -24,6 +25,7 @@ import { SpecialDatesRule } from './rules/SpecialDatesRule'
         HostingRulesRule,
         SpecialDatesRule,
         OfferRule,
+        AgeGroupRule,
     ],
 })
 export class AvailAndPricingModule {}

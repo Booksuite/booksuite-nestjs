@@ -15,19 +15,22 @@ export class PricingHelpers {
 
     getPriceVariation(
         basePrice: number,
-        seasonRule: { priceVariationType: PriceVariationType; price: number },
+        seasonRule: {
+            priceVariationType: PriceVariationType
+            priceVariationValue: number
+        },
     ): number {
         switch (seasonRule.priceVariationType) {
             case PriceVariationType.ABSOLUTE_INCREASE:
-                return basePrice + seasonRule.price
+                return basePrice + seasonRule.priceVariationValue
             case PriceVariationType.ABSOLUTE_REDUCTION:
-                return basePrice - seasonRule.price
+                return basePrice - seasonRule.priceVariationValue
             case PriceVariationType.PERCENTAGE_INCREASE:
-                return basePrice * (1 + seasonRule.price / 100)
+                return basePrice * (1 + seasonRule.priceVariationValue / 100)
             case PriceVariationType.PERCENTAGE_REDUCTION:
-                return basePrice * (1 - seasonRule.price / 100)
+                return basePrice * (1 - seasonRule.priceVariationValue / 100)
             case PriceVariationType.CUSTOM:
-                return seasonRule.price
+                return seasonRule.priceVariationValue
             default:
                 return basePrice
         }
