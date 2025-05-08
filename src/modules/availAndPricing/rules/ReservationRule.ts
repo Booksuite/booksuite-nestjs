@@ -1,10 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
 
-import {
-    OCCUPIED_RESERVATION_STATUS,
-    UNAVAILABLE_REASON_MESSAGE,
-} from '../constants'
+import { OCCUPIED_RESERVATION_STATUS } from '../constants'
 import {
     UnavailabilityReason,
     UnavailableSource,
@@ -13,6 +10,7 @@ import { PricingHelpers } from '../helpers/PricingHelpers'
 import {
     AvailAndPricingDayPayload,
     AvailAndPricingReservation,
+    HousingUnitTypeAvailability,
 } from '../types/payload'
 import { AvailAndPricingRule } from '../types/payload'
 
@@ -50,20 +48,8 @@ export class ReservationRule implements AvailAndPricingRule {
         if (!reservations.length) return payload
 
         payload.calendar[currentDate].reservations = reservations
-
-        if (!this.checkReservationAvailability(payload)) {
-            payload.calendar[currentDate].availability.available = false
-            payload.calendar[currentDate].availability.unavailabilitySource =
-                UnavailableSource.RESERVATION
-            payload.calendar[currentDate].availability.unavailableReason =
-                UnavailabilityReason.ALL_ROOMS_OCCUPIED
-            payload.calendar[
-                currentDate
-            ].availability.unavailableReasonMessage =
-                UNAVAILABLE_REASON_MESSAGE[
-                    UnavailabilityReason.ALL_ROOMS_OCCUPIED
-                ]
-        }
+        payload.calendar[currentDate].availability =
+            this.checkReservationAvailability(payload)
 
         return payload
     }
@@ -109,15 +95,19 @@ export class ReservationRule implements AvailAndPricingRule {
 
     private checkReservationAvailability(
         payload: AvailAndPricingDayPayload,
-    ): boolean {
+    ): HousingUnitTypeAvailability[] {
         const {
             pricingPayload: { searchPayload },
+            calendar,
+            currentDate,
         } = payload
 
-        if (!searchPayload) return true
+        const currentAvailability = calendar[currentDate].availability
+
+        if (!searchPayload) return currentAvailability
 
         if (!payload.calendar[payload.currentDate].reservations.length)
-            return true
+            return currentAvailability
 
         const searchStartDate = dayjs
             .utc(searchPayload.dateRange.start)
@@ -156,6 +146,16 @@ export class ReservationRule implements AvailAndPricingRule {
                 },
             )
 
-        return hasAvailability
+        if (!hasAvailability) {
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.RESERVATION,
+                    UnavailabilityReason.ALL_ROOMS_OCCUPIED,
+                ),
+            )
+        }
+
+        return currentAvailability
     }
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
 
-import { UNAVAILABLE_REASON_MESSAGE } from '../constants'
 import {
     UnavailabilityReason,
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
+import { PricingHelpers } from '../helpers/PricingHelpers'
 import {
     AvailAndPricingDayPayload,
     HousingUnitTypeAvailability,
@@ -14,6 +14,8 @@ import { AvailAndPricingRule } from '../types/payload'
 
 @Injectable()
 export class HostingRulesRule implements AvailAndPricingRule {
+    constructor(private readonly pricingHelpers: PricingHelpers) {}
+
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const {
             pricingPayload: { housingUnitType, viewWindow },
@@ -65,13 +67,15 @@ export class HostingRulesRule implements AvailAndPricingRule {
 
     private checkAvailability(
         payload: AvailAndPricingDayPayload,
-    ): HousingUnitTypeAvailability {
+    ): HousingUnitTypeAvailability[] {
         const {
             pricingPayload: { searchPayload, housingUnitType },
         } = payload
 
-        if (!searchPayload)
-            return payload.calendar[payload.currentDate].availability
+        const currentAvailability =
+            payload.calendar[payload.currentDate].availability
+
+        if (!searchPayload) return currentAvailability
 
         const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
@@ -83,30 +87,26 @@ export class HostingRulesRule implements AvailAndPricingRule {
             )
 
         if (!isWeekDayAvailable) {
-            return {
-                available: false,
-                unavailabilitySource: UnavailableSource.HOSTING_RULES,
-                unavailableReason: UnavailabilityReason.WEEKDAY_NOT_AVAILABLE,
-                unavailableReasonMessage:
-                    UNAVAILABLE_REASON_MESSAGE[
-                        UnavailabilityReason.WEEKDAY_NOT_AVAILABLE
-                    ],
-            }
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.HOSTING_RULES,
+                    UnavailabilityReason.WEEKDAY_NOT_AVAILABLE,
+                ),
+            )
         }
 
         if (
             searchPayload.totalStay <
             payload.calendar[payload.currentDate].finalMinStay
         ) {
-            return {
-                available: false,
-                unavailabilitySource: UnavailableSource.HOSTING_RULES,
-                unavailableReason: UnavailabilityReason.MIN_DAYS_NOT_REACHED,
-                unavailableReasonMessage:
-                    UNAVAILABLE_REASON_MESSAGE[
-                        UnavailabilityReason.MIN_DAYS_NOT_REACHED
-                    ],
-            }
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.HOSTING_RULES,
+                    UnavailabilityReason.MIN_DAYS_NOT_REACHED,
+                ),
+            )
         }
 
         const totalAdults = searchPayload?.adults ?? 1
@@ -122,22 +122,15 @@ export class HostingRulesRule implements AvailAndPricingRule {
             housingUnitType.maxGuests !== null &&
             totalGuests > housingUnitType.maxGuests
         ) {
-            return {
-                available: false,
-                unavailabilitySource: UnavailableSource.HOSTING_RULES,
-                unavailableReason: UnavailabilityReason.MAX_GUESTS_EXCEEDED,
-                unavailableReasonMessage:
-                    UNAVAILABLE_REASON_MESSAGE[
-                        UnavailabilityReason.MAX_GUESTS_EXCEEDED
-                    ],
-            }
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.HOSTING_RULES,
+                    UnavailabilityReason.MAX_GUESTS_EXCEEDED,
+                ),
+            )
         }
 
-        return {
-            available: true,
-            unavailabilitySource: null,
-            unavailableReason: null,
-            unavailableReasonMessage: null,
-        }
+        return currentAvailability
     }
 }

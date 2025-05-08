@@ -15,11 +15,10 @@ import {
     AvailAndPricingPayload,
     AvailAndPricingSearchPayload,
     Calendar,
-    CalendarDay,
     HouseUnitTypeAvailAndPricingPayload,
     HousingUnitTypeAvailAndPrice,
-    HousingUnitTypeAvailAndPriceSummary,
     HousingUnitTypeWithCalendar,
+    PricingSummary,
 } from './types/payload'
 
 @Injectable()
@@ -174,26 +173,37 @@ export class AvailAndPricingService {
         )
     }
 
-    private sumCalendarPrices(
-        calendar: CalendarDay[],
-    ): HousingUnitTypeAvailAndPriceSummary {
-        const summary = calendar.reduce<HousingUnitTypeAvailAndPriceSummary>(
+    private sumCalendarPrices(calendar: PricingSummary[]): PricingSummary {
+        const summary = calendar.reduce<PricingSummary>(
             (acc, day) => {
                 acc.basePrice += day.basePrice
                 acc.finalPrice += day.finalPrice
+                acc.servicesPrice += day.servicesPrice
+                acc.rateOptionPrice += day.rateOptionPrice
+
                 if (!acc.hostingRules) acc.hostingRules = day.hostingRules
+                if (!day.rateOption) acc.rateOption = day.rateOption
+                if (!day.totalStay) acc.totalStay = day.totalStay
+                if (day.finalMinStay > acc.finalMinStay)
+                    acc.finalMinStay = day.finalMinStay
 
-                if (day.seasonRules) acc.seasonRules.push(day.seasonRules)
-                if (day.specialDates) acc.specialDates.push(day.specialDates)
-                if (day.offers) acc.offers.push(day.offers)
+                if (day.seasonRules) acc.seasonRules.push(...day.seasonRules)
+                if (day.specialDates) acc.specialDates.push(...day.specialDates)
+                if (day.offers) acc.offers.push(...day.offers)
                 if (day.reservations) acc.reservations.push(...day.reservations)
+                if (day.services) acc.services.push(...day.services)
+                if (day.rateOptionPrice)
+                    acc.rateOptionPrice = day.rateOptionPrice
 
-                acc.availability.push(day.availability)
+                acc.availability.push(...day.availability)
 
                 return acc
             },
             {
                 totalStay: 0,
+                servicesPrice: 0,
+                rateOptionPrice: 0,
+                finalMinStay: 0,
                 basePrice: 0,
                 finalPrice: 0,
                 hostingRules: null as unknown as AvailAndPricingHostingRules,
@@ -504,6 +514,12 @@ export class AvailAndPricingService {
             searchPayload: searchPayload && {
                 ...searchPayload,
                 totalStay: this.getTotalDays(searchPayload.dateRange),
+                totalAdults: searchPayload.adults,
+                totalChildren:
+                    searchPayload.ageGroups?.reduce(
+                        (acc, ageGroup) => acc + ageGroup.quantity,
+                        0,
+                    ) ?? 0,
             },
             ageGroups,
             viewWindow,
@@ -623,24 +639,22 @@ export class AvailAndPricingService {
 
     private getInitialCalendarDay(
         payload: HouseUnitTypeAvailAndPricingPayload,
-    ): CalendarDay {
+    ): PricingSummary {
         return {
             basePrice: 0,
-            servicesPrice: null,
-            rateOptionPrice: null,
+            servicesPrice: 0,
+            rateOptionPrice: 0,
             finalPrice: 0,
             finalMinStay: payload.hostingRules.minStay,
             hostingRules: payload.hostingRules,
-            seasonRules: null,
-            specialDates: null,
+            totalStay: null,
+            rateOption: null,
+            services: [],
+            seasonRules: [],
+            specialDates: [],
             reservations: [],
-            offers: null,
-            availability: {
-                available: true,
-                unavailabilitySource: null,
-                unavailableReason: null,
-                unavailableReasonMessage: null,
-            },
+            offers: [],
+            availability: [],
         }
     }
 }

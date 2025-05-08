@@ -1,4 +1,4 @@
-import { Prisma, RateOption, Service } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 import { ReservationServiceDTO } from '@/modules/reservation/dto/ReservationService.dto'
@@ -41,29 +41,41 @@ interface AvailAndPricingBasePayload {
     seasonRules: AvailAndPricingSeasonRules[]
     specialDates: AvailAndPricingSpecialDates[]
     reservations: AvailAndPricingReservation[]
-    ageGroups: AvailAndPricingAgeGroup[]
     offers: AvailAndPricingOffer[]
-    services: Service[]
-    rateOption: RateOption | null
-    searchPayload?: AvailAndPricingSearchPayload
-    viewWindow: DateRangeDTO
+    services: AvailAndPricingService[]
+    rateOption: AvailAndPricingRateOption | null
 }
 
-export interface AvailAndPricingPayload extends AvailAndPricingBasePayload {
+interface AvailAndPricingBasePayloadWithSearch
+    extends AvailAndPricingBasePayload {
+    searchPayload?: AvailAndPricingSearchPayload
+    viewWindow: DateRangeDTO
+    ageGroups: AvailAndPricingAgeGroup[]
+}
+
+export interface AvailAndPricingSearchPayloadWithExtra
+    extends AvailAndPricingSearchPayload {
+    totalStay: number
+    totalAdults: number
+    totalChildren: number
+}
+
+export interface AvailAndPricingPayload
+    extends AvailAndPricingBasePayloadWithSearch {
     housingUnitTypes: AvailAndPricingHousingUnitType[]
-    searchPayload?: AvailAndPricingSearchPayload & { totalStay: number }
+    searchPayload?: AvailAndPricingSearchPayloadWithExtra
 }
 
 export interface HouseUnitTypeAvailAndPricingPayload
-    extends Omit<AvailAndPricingBasePayload, 'offers'> {
+    extends Omit<AvailAndPricingBasePayloadWithSearch, 'offers'> {
     housingUnitTypeOffers: AvailAndPricingOffer[]
     serviceOffers: AvailAndPricingOffer[]
     housingUnitType: AvailAndPricingHousingUnitType
-    searchPayload?: AvailAndPricingSearchPayload & { totalStay: number }
+    searchPayload?: AvailAndPricingSearchPayloadWithExtra
 }
 
 export interface Calendar {
-    [date: string]: CalendarDay
+    [date: string]: PricingSummary
 }
 
 export interface HousingUnitTypeWithCalendar
@@ -78,37 +90,20 @@ export interface HousingUnitTypeAvailability {
     unavailableReasonMessage: string | null
 }
 
-export interface CalendarDay {
+export interface PricingSummary extends AvailAndPricingBasePayload {
     basePrice: number
-    servicesPrice: number | null
-    rateOptionPrice: number | null
+    servicesPrice: number
+    rateOptionPrice: number
+    totalStay: number | null
     finalPrice: number
     finalMinStay: number
-    hostingRules: AvailAndPricingHostingRules
-    seasonRules: AvailAndPricingSeasonRules | null
-    specialDates: AvailAndPricingSpecialDates | null
-    offers: AvailAndPricingOffer | null
-    reservations: AvailAndPricingReservation[]
-    availability: HousingUnitTypeAvailability
-}
 
-export interface HousingUnitTypeAvailAndPriceSummary {
-    basePrice: number
-    finalPrice: number
-    hostingRules: AvailAndPricingHostingRules
-    seasonRules: AvailAndPricingSeasonRules[]
-    specialDates: AvailAndPricingSpecialDates[]
-    offers: AvailAndPricingOffer[]
-    reservations: AvailAndPricingReservation[]
-    services: AvailAndPricingService[]
-    rateOption: AvailAndPricingRateOption | null
     availability: HousingUnitTypeAvailability[]
-    totalStay: number
 }
 
 export interface HousingUnitTypeAvailAndPrice
     extends AvailAndPricingHousingUnitType {
-    summary: HousingUnitTypeAvailAndPriceSummary
+    summary: PricingSummary
 }
 
 export interface AvailAndPricingDayPayload {

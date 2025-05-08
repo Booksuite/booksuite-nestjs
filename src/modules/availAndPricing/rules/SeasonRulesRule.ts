@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
 
-import { UNAVAILABLE_REASON_MESSAGE } from '../constants'
 import {
     UnavailabilityReason,
     UnavailableSource,
@@ -52,7 +51,7 @@ export class SeasonRulesRule implements AvailAndPricingRule {
             ? housingUnitTypePrice.finalWeekendPrice
             : housingUnitTypePrice.finalWeekPrice
 
-        payload.calendar[currentDate].seasonRules = seasonRules
+        payload.calendar[currentDate].seasonRules = [seasonRules]
         payload.calendar[currentDate].basePrice = finalPrice
         payload.calendar[currentDate].finalPrice = finalPrice
         payload.calendar[currentDate].finalMinStay = seasonRules.minStay
@@ -67,49 +66,41 @@ export class SeasonRulesRule implements AvailAndPricingRule {
         calendar,
         currentDate,
         pricingPayload,
-    }: AvailAndPricingDayPayload): HousingUnitTypeAvailability {
+    }: AvailAndPricingDayPayload): HousingUnitTypeAvailability[] {
         const { searchPayload } = pricingPayload
 
         const seasonRules = calendar[currentDate].seasonRules
+        const currentAvailability = calendar[currentDate].availability
 
-        if (!seasonRules || !searchPayload)
-            return calendar[currentDate].availability
+        if (!seasonRules || !searchPayload) return currentAvailability
 
         const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
             .day()
 
-        const isWeekDayAvailable = seasonRules.validWeekDays.includes(weekDay)
+        const isWeekDayAvailable =
+            seasonRules[0].validWeekDays.includes(weekDay)
 
         if (!isWeekDayAvailable) {
-            return {
-                available: false,
-                unavailabilitySource: UnavailableSource.SEASON_RULES,
-                unavailableReason: UnavailabilityReason.WEEKDAY_NOT_AVAILABLE,
-                unavailableReasonMessage:
-                    UNAVAILABLE_REASON_MESSAGE[
-                        UnavailabilityReason.WEEKDAY_NOT_AVAILABLE
-                    ],
-            }
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.SEASON_RULES,
+                    UnavailabilityReason.WEEKDAY_NOT_AVAILABLE,
+                ),
+            )
         }
 
         if (searchPayload.totalStay < calendar[currentDate].finalMinStay) {
-            return {
-                available: false,
-                unavailabilitySource: UnavailableSource.SEASON_RULES,
-                unavailableReason: UnavailabilityReason.MIN_DAYS_NOT_REACHED,
-                unavailableReasonMessage:
-                    UNAVAILABLE_REASON_MESSAGE[
-                        UnavailabilityReason.MIN_DAYS_NOT_REACHED
-                    ],
-            }
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.SEASON_RULES,
+                    UnavailabilityReason.MIN_DAYS_NOT_REACHED,
+                ),
+            )
         }
 
-        return {
-            available: true,
-            unavailabilitySource: null,
-            unavailableReason: null,
-            unavailableReasonMessage: null,
-        }
+        return currentAvailability
     }
 }

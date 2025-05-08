@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 
-import { UNAVAILABLE_REASON_MESSAGE } from '../constants'
 import { UnavailableSource } from '../enum/UnavailableReason.enum'
 import { UnavailabilityReason } from '../enum/UnavailableReason.enum'
+import { PricingHelpers } from '../helpers/PricingHelpers'
 import { AvailAndPricingAgeGroup } from '../types'
 import {
     AvailAndPricingDayPayload,
@@ -12,6 +12,8 @@ import {
 
 @Injectable()
 export class AgeGroupRule implements AvailAndPricingRule {
+    constructor(private readonly pricingHelpers: PricingHelpers) {}
+
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const { currentDate, pricingPayload, calendar } = payload
 
@@ -28,14 +30,13 @@ export class AgeGroupRule implements AvailAndPricingRule {
 
     private checkAvailability(
         payload: AvailAndPricingDayPayload,
-    ): HousingUnitTypeAvailability {
+    ): HousingUnitTypeAvailability[] {
         const { searchPayload, housingUnitType } = payload.pricingPayload
 
-        if (
-            !searchPayload?.ageGroups ||
-            !payload.calendar[payload.currentDate].availability.available
-        )
-            return payload.calendar[payload.currentDate].availability
+        const currentAvailability =
+            payload.calendar[payload.currentDate].availability
+
+        if (!searchPayload?.ageGroups) return currentAvailability
 
         const totalChildren = searchPayload.ageGroups.reduce(
             (acc, curr) => acc + curr.quantity,
@@ -46,18 +47,16 @@ export class AgeGroupRule implements AvailAndPricingRule {
             housingUnitType.maxChildren !== null &&
             totalChildren > housingUnitType.maxChildren
         ) {
-            return {
-                available: false,
-                unavailabilitySource: UnavailableSource.HOSTING_RULES,
-                unavailableReason: UnavailabilityReason.MAX_CHILDREN_EXCEEDED,
-                unavailableReasonMessage:
-                    UNAVAILABLE_REASON_MESSAGE[
-                        UnavailabilityReason.MAX_CHILDREN_EXCEEDED
-                    ],
-            }
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.HOSTING_RULES,
+                    UnavailabilityReason.MAX_CHILDREN_EXCEEDED,
+                ),
+            )
         }
 
-        return payload.calendar[payload.currentDate].availability
+        return currentAvailability
     }
 
     private getAgeGroupPrice(

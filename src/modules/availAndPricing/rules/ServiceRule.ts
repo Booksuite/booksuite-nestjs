@@ -74,7 +74,7 @@ export class ServiceRule implements AvailAndPricingRule {
 
         const isServiceIncluded = !!calendar[
             currentDate
-        ].specialDates?.includedServices.some(
+        ].specialDates[0]?.includedServices.some(
             (serv) => serv.serviceId === service.id,
         )
 
@@ -99,14 +99,13 @@ export class ServiceRule implements AvailAndPricingRule {
 
     private checkServiceAvailability(
         payload: AvailAndPricingDayPayload,
-    ): HousingUnitTypeAvailability {
+    ): HousingUnitTypeAvailability[] {
         const { currentDate, pricingPayload, calendar } = payload
 
         const currentDay = calendar[currentDate]
         const currentAvailability = currentDay.availability
 
-        if (!pricingPayload.services.length || !currentAvailability.available)
-            return currentAvailability
+        if (!pricingPayload.services.length) return currentAvailability
 
         const totalStay = pricingPayload.searchPayload?.totalStay
 
@@ -117,10 +116,12 @@ export class ServiceRule implements AvailAndPricingRule {
             )
 
         if (!minStayReach)
-            return this.pricingHelpers.createAvailability(
-                false,
-                UnavailableSource.SERVICE,
-                UnavailabilityReason.MIN_DAYS_NOT_REACHED,
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.SERVICE,
+                    UnavailabilityReason.MIN_DAYS_NOT_REACHED,
+                ),
             )
 
         const serviceWeekDayAvailability = pricingPayload.services.every(
@@ -132,10 +133,12 @@ export class ServiceRule implements AvailAndPricingRule {
         )
 
         if (!serviceWeekDayAvailability)
-            return this.pricingHelpers.createAvailability(
-                false,
-                UnavailableSource.SERVICE,
-                UnavailabilityReason.ITEM_UNAVAILABLE,
+            currentAvailability.push(
+                this.pricingHelpers.createAvailability(
+                    false,
+                    UnavailableSource.SERVICE,
+                    UnavailabilityReason.ITEM_UNAVAILABLE,
+                ),
             )
 
         return currentAvailability
