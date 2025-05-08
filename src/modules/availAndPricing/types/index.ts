@@ -40,6 +40,9 @@ export type AvailAndPricingService = Prisma.ServiceGetPayload<{
 }>
 
 export type AvailAndPricingRateOption = Prisma.RateOptionGetPayload<{
+    include: {
+        ageGroupPrices: true
+    }
     omit: {
         companyId: true
         createdAt: true

@@ -28,8 +28,11 @@ export class SeasonRulesRule implements AvailAndPricingRule {
                     'day',
                     '[)',
                 )
+            const isValidWeekDay = rule.validWeekDays.includes(
+                dayjs.utc(currentDate).startOf('day').day(),
+            )
 
-            return isBetween
+            return isBetween && isValidWeekDay
         })
 
         if (!seasonRules) return payload
@@ -57,7 +60,14 @@ export class SeasonRulesRule implements AvailAndPricingRule {
         payload.calendar[currentDate].finalMinStay = seasonRules.minStay
 
         payload.calendar[currentDate].availability =
-            this.checkAvailability(payload)
+            this.pricingHelpers.removeUnavailability(
+                payload.calendar[currentDate].availability,
+                UnavailabilityReason.MIN_DAYS_NOT_REACHED,
+            )
+
+        payload.calendar[currentDate].availability.push(
+            ...this.checkAvailability(payload),
+        )
 
         return payload
     }
@@ -70,29 +80,13 @@ export class SeasonRulesRule implements AvailAndPricingRule {
         const { searchPayload } = pricingPayload
 
         const seasonRules = calendar[currentDate].seasonRules
-        const currentAvailability = calendar[currentDate].availability
 
-        if (!seasonRules || !searchPayload) return currentAvailability
+        if (!seasonRules || !searchPayload) return []
 
-        const weekDay = dayjs(searchPayload.dateRange.start)
-            .startOf('day')
-            .day()
-
-        const isWeekDayAvailable =
-            seasonRules[0].validWeekDays.includes(weekDay)
-
-        if (!isWeekDayAvailable) {
-            currentAvailability.push(
-                this.pricingHelpers.createAvailability(
-                    false,
-                    UnavailableSource.SEASON_RULES,
-                    UnavailabilityReason.WEEKDAY_NOT_AVAILABLE,
-                ),
-            )
-        }
+        const newAvailability: HousingUnitTypeAvailability[] = []
 
         if (searchPayload.totalStay < calendar[currentDate].finalMinStay) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.SEASON_RULES,
@@ -101,6 +95,6 @@ export class SeasonRulesRule implements AvailAndPricingRule {
             )
         }
 
-        return currentAvailability
+        return newAvailability
     }
 }

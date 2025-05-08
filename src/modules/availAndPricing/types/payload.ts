@@ -94,6 +94,7 @@ export interface PricingSummary extends AvailAndPricingBasePayload {
     basePrice: number
     servicesPrice: number
     rateOptionPrice: number
+    childrenPrice: number
     totalStay: number | null
     finalPrice: number
     finalMinStay: number

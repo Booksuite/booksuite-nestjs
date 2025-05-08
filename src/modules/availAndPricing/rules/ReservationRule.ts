@@ -48,8 +48,9 @@ export class ReservationRule implements AvailAndPricingRule {
         if (!reservations.length) return payload
 
         payload.calendar[currentDate].reservations = reservations
-        payload.calendar[currentDate].availability =
-            this.checkReservationAvailability(payload)
+        payload.calendar[currentDate].availability.push(
+            ...this.checkReservationAvailability(payload),
+        )
 
         return payload
     }
@@ -98,16 +99,14 @@ export class ReservationRule implements AvailAndPricingRule {
     ): HousingUnitTypeAvailability[] {
         const {
             pricingPayload: { searchPayload },
-            calendar,
-            currentDate,
         } = payload
 
-        const currentAvailability = calendar[currentDate].availability
-
-        if (!searchPayload) return currentAvailability
+        if (!searchPayload) return []
 
         if (!payload.calendar[payload.currentDate].reservations.length)
-            return currentAvailability
+            return []
+
+        const newAvailability: HousingUnitTypeAvailability[] = []
 
         const searchStartDate = dayjs
             .utc(searchPayload.dateRange.start)
@@ -147,7 +146,7 @@ export class ReservationRule implements AvailAndPricingRule {
             )
 
         if (!hasAvailability) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.RESERVATION,
@@ -156,6 +155,6 @@ export class ReservationRule implements AvailAndPricingRule {
             )
         }
 
-        return currentAvailability
+        return newAvailability
     }
 }

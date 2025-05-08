@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { OfferType } from '@prisma/client'
 import dayjs from 'dayjs'
 import { omit, unique } from 'radash'
 
@@ -179,11 +180,12 @@ export class AvailAndPricingService {
                 acc.basePrice += day.basePrice
                 acc.finalPrice += day.finalPrice
                 acc.servicesPrice += day.servicesPrice
+                acc.childrenPrice += day.childrenPrice
                 acc.rateOptionPrice += day.rateOptionPrice
 
                 if (!acc.hostingRules) acc.hostingRules = day.hostingRules
-                if (!day.rateOption) acc.rateOption = day.rateOption
-                if (!day.totalStay) acc.totalStay = day.totalStay
+                if (!acc.rateOption) acc.rateOption = day.rateOption
+                if (!acc.totalStay) acc.totalStay = day.totalStay
                 if (day.finalMinStay > acc.finalMinStay)
                     acc.finalMinStay = day.finalMinStay
 
@@ -192,8 +194,6 @@ export class AvailAndPricingService {
                 if (day.offers) acc.offers.push(...day.offers)
                 if (day.reservations) acc.reservations.push(...day.reservations)
                 if (day.services) acc.services.push(...day.services)
-                if (day.rateOptionPrice)
-                    acc.rateOptionPrice = day.rateOptionPrice
 
                 acc.availability.push(...day.availability)
 
@@ -203,6 +203,7 @@ export class AvailAndPricingService {
                 totalStay: 0,
                 servicesPrice: 0,
                 rateOptionPrice: 0,
+                childrenPrice: 0,
                 finalMinStay: 0,
                 basePrice: 0,
                 finalPrice: 0,
@@ -218,6 +219,7 @@ export class AvailAndPricingService {
         )
 
         summary.seasonRules = unique(summary.seasonRules, (item) => item.id)
+        summary.services = unique(summary.services, (item) => item.id)
         summary.specialDates = unique(summary.specialDates, (item) => item.id)
         summary.offers = unique(summary.offers, (item) => item.id)
         summary.reservations = unique(summary.reservations, (item) => item.id)
@@ -279,10 +281,36 @@ export class AvailAndPricingService {
                 housingUnitTypePrices: {
                     some: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 },
-                startDate: { gte: formattedDateRangeStart },
-                endDate: { lte: formattedDateRangeEnd },
                 published: true,
                 AND: [
+                    {
+                        OR: [
+                            {
+                                startDate: {
+                                    lte: formattedDateRangeStart,
+                                },
+                                endDate: {
+                                    gte: formattedDateRangeStart,
+                                },
+                            },
+                            {
+                                startDate: {
+                                    lte: formattedDateRangeEnd,
+                                },
+                                endDate: {
+                                    gte: formattedDateRangeEnd,
+                                },
+                            },
+                            {
+                                startDate: {
+                                    gte: formattedDateRangeStart,
+                                },
+                                endDate: {
+                                    lte: formattedDateRangeEnd,
+                                },
+                            },
+                        ],
+                    },
                     {
                         OR: [
                             { visibilityStartDate: null },
@@ -473,10 +501,8 @@ export class AvailAndPricingService {
         const services = searchPayload?.services
             ? await this.prismaService.service.findMany({
                   where: {
-                      availableHousingUnitTypes: {
-                          some: {
-                              housingUnitTypeId: { in: housingUnitTypesIds },
-                          },
+                      id: {
+                          in: searchPayload.services.map((s) => s.serviceId),
                       },
                   },
               })
@@ -485,6 +511,7 @@ export class AvailAndPricingService {
         const rateOption = searchPayload?.rateOptionId
             ? await this.prismaService.rateOption.findUnique({
                   where: { id: searchPayload.rateOptionId },
+                  include: { ageGroupPrices: true },
               })
             : null
 
@@ -576,10 +603,12 @@ export class AvailAndPricingService {
             ),
         )
 
-        const filteredHousingUnitTypeOffers = offers.filter((offer) =>
-            offer.validHousingUnitTypes.some(
-                (h) => h.housingUnitTypeId === housingUnitType.id,
-            ),
+        const filteredHousingUnitTypeOffers = offers.filter(
+            (offer) =>
+                offer.type === OfferType.HOUSING_UNIT_TYPE &&
+                offer.validHousingUnitTypes.some(
+                    (h) => h.housingUnitTypeId === housingUnitType.id,
+                ),
         )
 
         const housingUnitTypeReservations = reservations.filter(
@@ -593,6 +622,8 @@ export class AvailAndPricingService {
         )
         const filteredServiceOffers = serviceIds
             ? offers.filter((offer) => {
+                  if (offer.type !== OfferType.SERVICE) return false
+
                   const validServices = offer.validServices.some((s) =>
                       serviceIds.includes(s.serviceId),
                   )
@@ -623,12 +654,11 @@ export class AvailAndPricingService {
         const dayjsStart = dayjs.utc(payload.viewWindow.start).startOf('day')
         const dayjsEnd = dayjs.utc(payload.viewWindow.end).endOf('day')
 
-        const initialDay = this.getInitialCalendarDay(payload)
-
         const days = Array.from(
             { length: dayjsEnd.diff(dayjsStart, 'days') + 1 },
             (_, i) => dayjsStart.add(i, 'day').format('YYYY-MM-DD'),
         ).reduce<Calendar>((acc, day) => {
+            const initialDay = this.getInitialCalendarDay(payload)
             acc[day] = { ...initialDay }
 
             return this.pricingRules.applyRules(day, payload, acc)
@@ -643,6 +673,7 @@ export class AvailAndPricingService {
         return {
             basePrice: 0,
             servicesPrice: 0,
+            childrenPrice: 0,
             rateOptionPrice: 0,
             finalPrice: 0,
             finalMinStay: payload.hostingRules.minStay,

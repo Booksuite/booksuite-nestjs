@@ -1,12 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { HostingRulesResponseDTO } from '@/modules/company/dto/HostingRulesResponse.dto'
-import { RateOptionResponseDTO } from '@/modules/rateOption/dto/RateOptionResponse.dto'
 import { ServiceResponseDTO } from '@/modules/service/dtos/ServiceResponse.dto'
 import { PricingSummary } from '../types/payload'
 
 import { AvailabilityDTO } from './Availability.dto'
 import { AvailAndPricingOffersDTO } from './AvailAndPricingOffers.dto'
+import { AvailAndPricingRateOptionDTO } from './AvailAndPricingRateOption.dto'
 import { AvailAndPricingReservationDTO } from './AvailAndPricingReservation.dto'
 import { AvailAndPricingSeasonRulesDTO } from './AvailAndPricingSeasonRules.dto'
 import { AvailAndPricingSpecialDatesDTO } from './AvailAndPricingSpecialDates.dto'
@@ -23,6 +23,12 @@ export class PricingSummaryDTO implements PricingSummary {
         type: Number,
     })
     servicesPrice: number
+
+    @ApiProperty({
+        description: 'Children price for the day',
+        type: Number,
+    })
+    childrenPrice: number
 
     @ApiProperty({
         description: 'Rate option price for the day',
@@ -86,10 +92,10 @@ export class PricingSummaryDTO implements PricingSummary {
 
     @ApiProperty({
         description: 'Rate option for the day',
-        type: RateOptionResponseDTO,
+        type: AvailAndPricingRateOptionDTO,
         nullable: true,
     })
-    rateOption: RateOptionResponseDTO | null
+    rateOption: AvailAndPricingRateOptionDTO | null
 
     @ApiProperty({
         description: 'Total days for the day',

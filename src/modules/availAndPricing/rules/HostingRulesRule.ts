@@ -40,29 +40,13 @@ export class HostingRulesRule implements AvailAndPricingRule {
         if (maxAdults && adults > maxAdults)
             finalPrice += housingUnitType.extraAdultPrice * (adults - maxAdults)
 
-        const newPayload: AvailAndPricingDayPayload = {
-            ...payload,
-            calendar: {
-                ...payload.calendar,
-                [payload.currentDate]: {
-                    ...payload.calendar[payload.currentDate],
-                    basePrice,
-                    finalPrice,
-                },
-            },
-        }
+        payload.calendar[payload.currentDate].availability.push(
+            ...this.checkAvailability(payload),
+        )
+        payload.calendar[payload.currentDate].basePrice = basePrice
+        payload.calendar[payload.currentDate].finalPrice = finalPrice
 
-        return {
-            ...newPayload,
-            calendar: {
-                ...newPayload.calendar,
-                [newPayload.currentDate]: {
-                    ...newPayload.calendar[newPayload.currentDate],
-                    basePrice,
-                    availability: this.checkAvailability(newPayload),
-                },
-            },
-        }
+        return payload
     }
 
     private checkAvailability(
@@ -72,10 +56,9 @@ export class HostingRulesRule implements AvailAndPricingRule {
             pricingPayload: { searchPayload, housingUnitType },
         } = payload
 
-        const currentAvailability =
-            payload.calendar[payload.currentDate].availability
+        if (!searchPayload) return []
 
-        if (!searchPayload) return currentAvailability
+        const newAvailability: HousingUnitTypeAvailability[] = []
 
         const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
@@ -87,7 +70,7 @@ export class HostingRulesRule implements AvailAndPricingRule {
             )
 
         if (!isWeekDayAvailable) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.HOSTING_RULES,
@@ -100,7 +83,7 @@ export class HostingRulesRule implements AvailAndPricingRule {
             searchPayload.totalStay <
             payload.calendar[payload.currentDate].finalMinStay
         ) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.HOSTING_RULES,
@@ -122,7 +105,7 @@ export class HostingRulesRule implements AvailAndPricingRule {
             housingUnitType.maxGuests !== null &&
             totalGuests > housingUnitType.maxGuests
         ) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.HOSTING_RULES,
@@ -131,6 +114,6 @@ export class HostingRulesRule implements AvailAndPricingRule {
             )
         }
 
-        return currentAvailability
+        return newAvailability
     }
 }

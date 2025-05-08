@@ -18,16 +18,18 @@ export class ServiceRule implements AvailAndPricingRule {
     constructor(private readonly pricingHelpers: PricingHelpers) {}
 
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
-        const { currentDate } = payload
+        const { currentDate, pricingPayload } = payload
 
-        payload.calendar[currentDate].availability =
-            this.checkServiceAvailability(payload)
+        payload.calendar[currentDate].availability.push(
+            ...this.checkServiceAvailability(payload),
+        )
 
         const servicePrice = this.calculateServicesPrices(payload)
 
         payload.calendar[currentDate].servicesPrice = servicePrice
 
         payload.calendar[currentDate].finalPrice += servicePrice
+        payload.calendar[currentDate].services = pricingPayload.services
 
         return payload
     }
@@ -65,7 +67,12 @@ export class ServiceRule implements AvailAndPricingRule {
         )?.quantity
         if (!quantity) return 0
 
-        const totalGuests = searchPayload.adults
+        const totalChildren =
+            searchPayload.ageGroups?.reduce((acc, group) => {
+                return acc + group.quantity
+            }, 0) ?? 0
+
+        const totalGuests = searchPayload.adults + totalChildren
         const totalStay = searchPayload.totalStay
 
         const serviceOffer = pricingPayload.serviceOffers.find((offer) =>
@@ -100,12 +107,11 @@ export class ServiceRule implements AvailAndPricingRule {
     private checkServiceAvailability(
         payload: AvailAndPricingDayPayload,
     ): HousingUnitTypeAvailability[] {
-        const { currentDate, pricingPayload, calendar } = payload
+        const { currentDate, pricingPayload } = payload
 
-        const currentDay = calendar[currentDate]
-        const currentAvailability = currentDay.availability
+        if (!pricingPayload.services.length) return []
 
-        if (!pricingPayload.services.length) return currentAvailability
+        const newAvailability: HousingUnitTypeAvailability[] = []
 
         const totalStay = pricingPayload.searchPayload?.totalStay
 
@@ -116,7 +122,7 @@ export class ServiceRule implements AvailAndPricingRule {
             )
 
         if (!minStayReach)
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.SERVICE,
@@ -133,7 +139,7 @@ export class ServiceRule implements AvailAndPricingRule {
         )
 
         if (!serviceWeekDayAvailability)
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.SERVICE,
@@ -141,6 +147,6 @@ export class ServiceRule implements AvailAndPricingRule {
                 ),
             )
 
-        return currentAvailability
+        return newAvailability
     }
 }

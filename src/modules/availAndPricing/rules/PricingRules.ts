@@ -10,7 +10,8 @@ import {
 
 import { AgeGroupRule } from './AgeGroupRule'
 import { HostingRulesRule } from './HostingRulesRule'
-import { OfferRule } from './OfferPricing'
+import { OfferRule } from './OfferRule'
+import { RateOptionRule } from './RateOptionRule'
 import { ReservationRule } from './ReservationRule'
 import { SeasonRulesRule } from './SeasonRulesRule'
 import { ServiceRule } from './ServiceRule'
@@ -26,6 +27,7 @@ export class AvailAndPricingRules {
         private readonly reservations: ReservationRule,
         private readonly ageGroupRule: AgeGroupRule,
         private readonly serviceRule: ServiceRule,
+        private readonly rateOptionRule: RateOptionRule,
     ) {}
 
     private readonly RULES: AvailAndPricingRule[] = [
@@ -34,6 +36,7 @@ export class AvailAndPricingRules {
         this.specialDates,
         this.reservations,
         this.ageGroupRule,
+        this.rateOptionRule,
         this.offers,
         this.serviceRule,
     ]

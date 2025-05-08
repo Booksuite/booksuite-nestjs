@@ -45,8 +45,15 @@ export class SpecialDatesRule implements AvailAndPricingRule {
         payload.calendar[currentDate].basePrice = finalPrice
         payload.calendar[currentDate].finalPrice = finalPrice
         payload.calendar[currentDate].finalMinStay = specialDates.minStay
+
         payload.calendar[currentDate].availability =
-            this.checkAvailability(payload)
+            this.pricingHelpers.removeUnavailability(
+                payload.calendar[currentDate].availability,
+                UnavailabilityReason.MIN_DAYS_NOT_REACHED,
+            )
+        payload.calendar[currentDate].availability.push(
+            ...this.checkAvailability(payload),
+        )
 
         return payload
     }
@@ -59,8 +66,9 @@ export class SpecialDatesRule implements AvailAndPricingRule {
         const { searchPayload } = pricingPayload
 
         const specialDates = calendar[currentDate].specialDates
-        const currentAvailability = calendar[currentDate].availability
-        if (!specialDates || !searchPayload) return currentAvailability
+        if (!specialDates || !searchPayload) return []
+
+        const newAvailability: HousingUnitTypeAvailability[] = []
 
         const weekDay = dayjs(searchPayload.dateRange.start)
             .startOf('day')
@@ -69,7 +77,7 @@ export class SpecialDatesRule implements AvailAndPricingRule {
         const isWeekDayAvailable =
             specialDates[0].validWeekDays.includes(weekDay)
         if (!isWeekDayAvailable) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.SPECIAL_DATES,
@@ -79,7 +87,7 @@ export class SpecialDatesRule implements AvailAndPricingRule {
         }
 
         if (searchPayload.totalStay < calendar[currentDate].finalMinStay) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.SPECIAL_DATES,
@@ -88,6 +96,6 @@ export class SpecialDatesRule implements AvailAndPricingRule {
             )
         }
 
-        return currentAvailability
+        return newAvailability
     }
 }

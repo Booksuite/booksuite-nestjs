@@ -5,6 +5,7 @@ import {
     IsDefined,
     IsNumber,
     IsOptional,
+    IsUUID,
     ValidateNested,
 } from 'class-validator'
 
@@ -53,4 +54,13 @@ export class AvailAndPricingSearchDTO implements AvailAndPricingSearchPayload {
     @ValidateNested({ each: true })
     @Type(() => AvailAndPricingSearchServiceDTO)
     services?: AvailAndPricingSearchServiceDTO[]
+
+    @ApiProperty({
+        type: String,
+        description: 'Rate option ID',
+        required: false,
+    })
+    @IsOptional()
+    @IsUUID()
+    rateOptionId?: string
 }

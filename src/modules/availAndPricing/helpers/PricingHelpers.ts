@@ -52,18 +52,34 @@ export class PricingHelpers {
     ): number {
         switch (billingType) {
             case BillingType.PER_HOUSING_UNIT:
-                return basePrice * quantity
+                return (basePrice * quantity) / totalStay
             case BillingType.PER_GUEST:
-                return basePrice * totalGuests * quantity
+                return (basePrice * totalGuests * quantity) / totalStay
             case BillingType.DAILY:
-                return basePrice * totalStay
-            case BillingType.PER_RESERVATION:
                 return basePrice
+            case BillingType.PER_RESERVATION:
+                return basePrice / totalStay
             case BillingType.PER_GUEST_DAILY:
-                return basePrice * totalGuests * totalStay
+                return basePrice * totalGuests
             default:
                 return basePrice
         }
+    }
+
+    removeUnavailability(
+        currentAvailability: HousingUnitTypeAvailability[],
+        unavailabilityReason: UnavailabilityReason,
+    ): HousingUnitTypeAvailability[] {
+        const minStayUnavailability = currentAvailability.findIndex(
+            (item) => item.unavailableReason === unavailabilityReason,
+        )
+
+        const newAvailability = [...currentAvailability]
+
+        if (minStayUnavailability !== -1)
+            newAvailability.splice(minStayUnavailability, 1)
+
+        return newAvailability
     }
 
     createAvailability(available: true): HousingUnitTypeAvailability

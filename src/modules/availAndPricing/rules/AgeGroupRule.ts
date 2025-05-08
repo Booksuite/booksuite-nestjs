@@ -22,8 +22,11 @@ export class AgeGroupRule implements AvailAndPricingRule {
             pricingPayload.ageGroups,
         )
 
+        calendar[currentDate].childrenPrice = ageGroupPrice
         calendar[currentDate].finalPrice += ageGroupPrice
-        calendar[currentDate].availability = this.checkAvailability(payload)
+        calendar[currentDate].availability.push(
+            ...this.checkAvailability(payload),
+        )
 
         return payload
     }
@@ -33,10 +36,9 @@ export class AgeGroupRule implements AvailAndPricingRule {
     ): HousingUnitTypeAvailability[] {
         const { searchPayload, housingUnitType } = payload.pricingPayload
 
-        const currentAvailability =
-            payload.calendar[payload.currentDate].availability
+        if (!searchPayload?.ageGroups) return []
 
-        if (!searchPayload?.ageGroups) return currentAvailability
+        const newAvailability: HousingUnitTypeAvailability[] = []
 
         const totalChildren = searchPayload.ageGroups.reduce(
             (acc, curr) => acc + curr.quantity,
@@ -47,7 +49,7 @@ export class AgeGroupRule implements AvailAndPricingRule {
             housingUnitType.maxChildren !== null &&
             totalChildren > housingUnitType.maxChildren
         ) {
-            currentAvailability.push(
+            newAvailability.push(
                 this.pricingHelpers.createAvailability(
                     false,
                     UnavailableSource.HOSTING_RULES,
@@ -56,7 +58,7 @@ export class AgeGroupRule implements AvailAndPricingRule {
             )
         }
 
-        return currentAvailability
+        return newAvailability
     }
 
     private getAgeGroupPrice(

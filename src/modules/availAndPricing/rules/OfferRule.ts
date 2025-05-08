@@ -65,7 +65,10 @@ export class OfferRule implements AvailAndPricingRule {
 
         if (!isWeekDayAvailable) return false
 
-        if (!offer.validForPackages && !!calendar[currentDate].specialDates)
+        if (
+            calendar[currentDate].specialDates.length > 0 &&
+            !offer.validForPackages
+        )
             return false
 
         return true
