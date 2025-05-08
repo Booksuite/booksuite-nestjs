@@ -108,7 +108,7 @@ export class OfferService {
         const [offers, total] = await this.prismaService.offer.findManyAndCount(
             {
                 include: {
-                    availableHousingUnitTypes: {
+                    validHousingUnitTypes: {
                         include: { housingUnitType: true },
                     },
                     validPaymentMethods: {
