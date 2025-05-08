@@ -13,6 +13,7 @@ import { HostingRulesRule } from './HostingRulesRule'
 import { OfferRule } from './OfferPricing'
 import { ReservationRule } from './ReservationRule'
 import { SeasonRulesRule } from './SeasonRulesRule'
+import { ServiceRule } from './ServiceRule'
 import { SpecialDatesRule } from './SpecialDatesRule'
 @Injectable()
 export class AvailAndPricingRules {
@@ -24,6 +25,7 @@ export class AvailAndPricingRules {
         private readonly offers: OfferRule,
         private readonly reservations: ReservationRule,
         private readonly ageGroupRule: AgeGroupRule,
+        private readonly serviceRule: ServiceRule,
     ) {}
 
     private readonly RULES: AvailAndPricingRule[] = [
@@ -33,6 +35,7 @@ export class AvailAndPricingRules {
         this.reservations,
         this.ageGroupRule,
         this.offers,
+        this.serviceRule,
     ]
 
     applyRules(

@@ -295,6 +295,7 @@ export class AvailAndPricingService {
         const specialDates = await this.prismaService.specialDate.findMany({
             include: {
                 housingUnitTypePrices: true,
+                includedServices: true,
             },
             where: {
                 housingUnitTypePrices: {
@@ -343,18 +344,41 @@ export class AvailAndPricingService {
             .utc(formattedDateRangeStart)
             .diff(formattedCurrentDate, 'days')
 
-        const offers = await this.prismaService.offer.findMany({
+        const housingUnitTypeOffers = await this.prismaService.offer.findMany({
             include: {
                 validHousingUnitTypes: true,
+                validServices: true,
             },
             where: {
-                validHousingUnitTypes: {
-                    some: {
-                        housingUnitTypeId: { in: housingUnitTypesIds },
-                    },
-                },
                 published: true,
                 AND: [
+                    {
+                        OR: [
+                            {
+                                validHousingUnitTypes: {
+                                    some: {
+                                        housingUnitTypeId: {
+                                            in: housingUnitTypesIds,
+                                        },
+                                    },
+                                },
+                            },
+                            {
+                                validServices: searchPayload?.services?.length
+                                    ? {
+                                          some: {
+                                              serviceId: {
+                                                  in: searchPayload?.services?.map(
+                                                      (service) =>
+                                                          service.serviceId,
+                                                  ),
+                                              },
+                                          },
+                                      }
+                                    : undefined,
+                            },
+                        ],
+                    },
                     {
                         OR: [
                             { minAdvanceDays: null },
@@ -510,7 +534,7 @@ export class AvailAndPricingService {
                     .format('YYYY-MM-DD'),
                 endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
             })),
-            offers,
+            offers: housingUnitTypeOffers,
         }
     }
 
@@ -536,7 +560,7 @@ export class AvailAndPricingService {
             ),
         )
 
-        const housingUnitTypeOffers = offers.filter((offer) =>
+        const filteredHousingUnitTypeOffers = offers.filter((offer) =>
             offer.validHousingUnitTypes.some(
                 (h) => h.housingUnitTypeId === housingUnitType.id,
             ),
@@ -548,11 +572,30 @@ export class AvailAndPricingService {
                 housingUnitType.id,
         )
 
+        const serviceIds = restPayload.searchPayload?.services?.map(
+            (service) => service.serviceId,
+        )
+        const filteredServiceOffers = serviceIds
+            ? offers.filter((offer) => {
+                  const validServices = offer.validServices.some((s) =>
+                      serviceIds.includes(s.serviceId),
+                  )
+                  const validHousingUnitTypes =
+                      offer.validHousingUnitTypes.length === 0 ||
+                      offer.validHousingUnitTypes.some(
+                          (h) => h.housingUnitTypeId === housingUnitType.id,
+                      )
+
+                  return validServices && validHousingUnitTypes
+              })
+            : []
+
         return {
             housingUnitType,
+            serviceOffers: filteredServiceOffers,
+            housingUnitTypeOffers: filteredHousingUnitTypeOffers,
             seasonRules: housingUnitTYpeSeasonRules,
             specialDates: housingUnitTypeSpecialDates,
-            offers: housingUnitTypeOffers,
             reservations: housingUnitTypeReservations,
             ...omit(restPayload, ['housingUnitTypes']),
         }
@@ -583,6 +626,8 @@ export class AvailAndPricingService {
     ): CalendarDay {
         return {
             basePrice: 0,
+            servicesPrice: null,
+            rateOptionPrice: null,
             finalPrice: 0,
             finalMinStay: payload.hostingRules.minStay,
             hostingRules: payload.hostingRules,

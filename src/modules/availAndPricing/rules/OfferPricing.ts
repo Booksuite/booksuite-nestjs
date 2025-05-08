@@ -13,7 +13,7 @@ export class OfferRule implements AvailAndPricingRule {
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const { currentDate, pricingPayload, calendar } = payload
 
-        const offer = pricingPayload.offers.find((rule) => {
+        const offer = pricingPayload.housingUnitTypeOffers.find((rule) => {
             return this.checkOfferApplicability(rule, payload)
         })
 

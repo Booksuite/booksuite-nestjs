@@ -55,7 +55,9 @@ export interface AvailAndPricingPayload extends AvailAndPricingBasePayload {
 }
 
 export interface HouseUnitTypeAvailAndPricingPayload
-    extends AvailAndPricingBasePayload {
+    extends Omit<AvailAndPricingBasePayload, 'offers'> {
+    housingUnitTypeOffers: AvailAndPricingOffer[]
+    serviceOffers: AvailAndPricingOffer[]
     housingUnitType: AvailAndPricingHousingUnitType
     searchPayload?: AvailAndPricingSearchPayload & { totalStay: number }
 }
@@ -78,6 +80,8 @@ export interface HousingUnitTypeAvailability {
 
 export interface CalendarDay {
     basePrice: number
+    servicesPrice: number | null
+    rateOptionPrice: number | null
     finalPrice: number
     finalMinStay: number
     hostingRules: AvailAndPricingHostingRules
