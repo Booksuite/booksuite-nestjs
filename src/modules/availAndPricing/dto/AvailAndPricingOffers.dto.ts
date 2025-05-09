@@ -155,6 +155,13 @@ export class AvailAndPricingOffersDTO implements AvailAndPricingOffer {
     validHousingUnitTypes: { housingUnitTypeId: string }[]
 
     @ApiProperty({
+        description: 'Available services',
+        type: 'array',
+        items: { type: 'string' },
+    })
+    validServices: { serviceId: string }[]
+
+    @ApiProperty({
         description: 'Whether the offer is published',
         type: Boolean,
     })

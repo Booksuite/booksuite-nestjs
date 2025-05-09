@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker/.'
 import {
     Offer,
     OfferHousingUnitType,
+    OfferType,
     PriceVariationType,
     Prisma,
 } from '@prisma/client'
@@ -10,6 +11,7 @@ import { defineFixture } from 'efate'
 
 export const offerFixture = defineFixture<Offer>((fx) => {
     fx.id.as(() => faker.string.uuid())
+    fx.type.as(() => OfferType.HOUSING_UNIT_TYPE)
     fx.name.as(() => faker.lorem.word())
     fx.description.as(() => faker.lorem.sentence())
     fx.published.as(() => true)

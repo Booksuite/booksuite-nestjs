@@ -1,19 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger'
 
 import { HostingRulesResponseDTO } from '@/modules/company/dto/HostingRulesResponse.dto'
-import { RateOptionResponseDTO } from '@/modules/rateOption/dto/RateOptionResponse.dto'
 import { ServiceResponseDTO } from '@/modules/service/dtos/ServiceResponse.dto'
-import { HousingUnitTypeAvailAndPriceSummary } from '../types/payload'
+import { PricingSummary } from '../types/payload'
 
 import { AvailabilityDTO } from './Availability.dto'
 import { AvailAndPricingOffersDTO } from './AvailAndPricingOffers.dto'
+import { AvailAndPricingRateOptionDTO } from './AvailAndPricingRateOption.dto'
 import { AvailAndPricingReservationDTO } from './AvailAndPricingReservation.dto'
 import { AvailAndPricingSeasonRulesDTO } from './AvailAndPricingSeasonRules.dto'
 import { AvailAndPricingSpecialDatesDTO } from './AvailAndPricingSpecialDates.dto'
 
-export class HousingUnitTypeAvailAndPriceSummaryDTO
-    implements HousingUnitTypeAvailAndPriceSummary
-{
+export class PricingSummaryDTO implements PricingSummary {
     @ApiProperty({
         description: 'Base price for the day',
         type: Number,
@@ -21,10 +19,34 @@ export class HousingUnitTypeAvailAndPriceSummaryDTO
     basePrice: number
 
     @ApiProperty({
+        description: 'Services price for the day',
+        type: Number,
+    })
+    servicesPrice: number
+
+    @ApiProperty({
+        description: 'Children price for the day',
+        type: Number,
+    })
+    childrenPrice: number
+
+    @ApiProperty({
+        description: 'Rate option price for the day',
+        type: Number,
+    })
+    rateOptionPrice: number
+
+    @ApiProperty({
         description: 'Final price for the day',
         type: Number,
     })
     finalPrice: number
+
+    @ApiProperty({
+        description: 'Final minimum days required',
+        type: Number,
+    })
+    finalMinStay: number
 
     @ApiProperty({
         description: 'Season rules for the day',
@@ -70,14 +92,15 @@ export class HousingUnitTypeAvailAndPriceSummaryDTO
 
     @ApiProperty({
         description: 'Rate option for the day',
-        type: RateOptionResponseDTO,
+        type: AvailAndPricingRateOptionDTO,
         nullable: true,
     })
-    rateOption: RateOptionResponseDTO | null
+    rateOption: AvailAndPricingRateOptionDTO | null
 
     @ApiProperty({
         description: 'Total days for the day',
         type: Number,
+        nullable: true,
     })
-    totalStay: number
+    totalStay: number | null
 }

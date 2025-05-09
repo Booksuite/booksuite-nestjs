@@ -4,6 +4,7 @@ export enum UnavailableSource {
     SPECIAL_DATES = 'SPECIAL_DATES',
     OFFERS = 'OFFERS',
     RESERVATION = 'RESERVATION',
+    SERVICE = 'SERVICE',
 }
 
 export enum UnavailabilityReason {
@@ -12,4 +13,5 @@ export enum UnavailabilityReason {
     WEEKDAY_NOT_AVAILABLE = 'WEEKDAY_NOT_AVAILABLE',
     MAX_GUESTS_EXCEEDED = 'MAX_GUESTS_EXCEEDED',
     MAX_CHILDREN_EXCEEDED = 'MAX_CHILDREN_EXCEEDED',
+    ITEM_UNAVAILABLE = 'ITEM_UNAVAILABLE',
 }

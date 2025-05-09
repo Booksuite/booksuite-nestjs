@@ -1,7 +1,8 @@
 import { OmitType } from '@nestjs/swagger'
 
-import { ReservationServiceDTO } from '@/modules/reservation/dto/ReservationService.dto'
+import { ServiceResponseFullDTO } from '@/modules/service/dtos/ServiceResponseFull.dto'
+import { AvailAndPricingService } from '../types'
 
-export class AvailAndPricingServiceDTO extends OmitType(ReservationServiceDTO, [
-    'totalPrice',
-]) {}
+export class AvailAndPricingServiceDTO
+    extends OmitType(ServiceResponseFullDTO, ['medias'])
+    implements AvailAndPricingService {}

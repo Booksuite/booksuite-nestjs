@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { OfferType } from '@prisma/client'
 import dayjs from 'dayjs'
 import { omit, unique } from 'radash'
 
@@ -15,11 +16,10 @@ import {
     AvailAndPricingPayload,
     AvailAndPricingSearchPayload,
     Calendar,
-    CalendarDay,
     HouseUnitTypeAvailAndPricingPayload,
     HousingUnitTypeAvailAndPrice,
-    HousingUnitTypeAvailAndPriceSummary,
     HousingUnitTypeWithCalendar,
+    PricingSummary,
 } from './types/payload'
 
 @Injectable()
@@ -174,26 +174,37 @@ export class AvailAndPricingService {
         )
     }
 
-    private sumCalendarPrices(
-        calendar: CalendarDay[],
-    ): HousingUnitTypeAvailAndPriceSummary {
-        const summary = calendar.reduce<HousingUnitTypeAvailAndPriceSummary>(
+    private sumCalendarPrices(calendar: PricingSummary[]): PricingSummary {
+        const summary = calendar.reduce<PricingSummary>(
             (acc, day) => {
                 acc.basePrice += day.basePrice
                 acc.finalPrice += day.finalPrice
+                acc.servicesPrice += day.servicesPrice
+                acc.childrenPrice += day.childrenPrice
+                acc.rateOptionPrice += day.rateOptionPrice
+
                 if (!acc.hostingRules) acc.hostingRules = day.hostingRules
+                if (!acc.rateOption) acc.rateOption = day.rateOption
+                if (!acc.totalStay) acc.totalStay = day.totalStay
+                if (day.finalMinStay > acc.finalMinStay)
+                    acc.finalMinStay = day.finalMinStay
 
-                if (day.seasonRules) acc.seasonRules.push(day.seasonRules)
-                if (day.specialDates) acc.specialDates.push(day.specialDates)
-                if (day.offers) acc.offers.push(day.offers)
+                if (day.seasonRules) acc.seasonRules.push(...day.seasonRules)
+                if (day.specialDates) acc.specialDates.push(...day.specialDates)
+                if (day.offers) acc.offers.push(...day.offers)
                 if (day.reservations) acc.reservations.push(...day.reservations)
+                if (day.services) acc.services.push(...day.services)
 
-                acc.availability.push(day.availability)
+                acc.availability.push(...day.availability)
 
                 return acc
             },
             {
                 totalStay: 0,
+                servicesPrice: 0,
+                rateOptionPrice: 0,
+                childrenPrice: 0,
+                finalMinStay: 0,
                 basePrice: 0,
                 finalPrice: 0,
                 hostingRules: null as unknown as AvailAndPricingHostingRules,
@@ -208,6 +219,7 @@ export class AvailAndPricingService {
         )
 
         summary.seasonRules = unique(summary.seasonRules, (item) => item.id)
+        summary.services = unique(summary.services, (item) => item.id)
         summary.specialDates = unique(summary.specialDates, (item) => item.id)
         summary.offers = unique(summary.offers, (item) => item.id)
         summary.reservations = unique(summary.reservations, (item) => item.id)
@@ -269,10 +281,36 @@ export class AvailAndPricingService {
                 housingUnitTypePrices: {
                     some: { housingUnitTypeId: { in: housingUnitTypesIds } },
                 },
-                startDate: { gte: formattedDateRangeStart },
-                endDate: { lte: formattedDateRangeEnd },
                 published: true,
                 AND: [
+                    {
+                        OR: [
+                            {
+                                startDate: {
+                                    lte: formattedDateRangeStart,
+                                },
+                                endDate: {
+                                    gte: formattedDateRangeStart,
+                                },
+                            },
+                            {
+                                startDate: {
+                                    lte: formattedDateRangeEnd,
+                                },
+                                endDate: {
+                                    gte: formattedDateRangeEnd,
+                                },
+                            },
+                            {
+                                startDate: {
+                                    gte: formattedDateRangeStart,
+                                },
+                                endDate: {
+                                    lte: formattedDateRangeEnd,
+                                },
+                            },
+                        ],
+                    },
                     {
                         OR: [
                             { visibilityStartDate: null },
@@ -295,6 +333,7 @@ export class AvailAndPricingService {
         const specialDates = await this.prismaService.specialDate.findMany({
             include: {
                 housingUnitTypePrices: true,
+                includedServices: true,
             },
             where: {
                 housingUnitTypePrices: {
@@ -343,18 +382,41 @@ export class AvailAndPricingService {
             .utc(formattedDateRangeStart)
             .diff(formattedCurrentDate, 'days')
 
-        const offers = await this.prismaService.offer.findMany({
+        const housingUnitTypeOffers = await this.prismaService.offer.findMany({
             include: {
                 validHousingUnitTypes: true,
+                validServices: true,
             },
             where: {
-                validHousingUnitTypes: {
-                    some: {
-                        housingUnitTypeId: { in: housingUnitTypesIds },
-                    },
-                },
                 published: true,
                 AND: [
+                    {
+                        OR: [
+                            {
+                                validHousingUnitTypes: {
+                                    some: {
+                                        housingUnitTypeId: {
+                                            in: housingUnitTypesIds,
+                                        },
+                                    },
+                                },
+                            },
+                            {
+                                validServices: searchPayload?.services?.length
+                                    ? {
+                                          some: {
+                                              serviceId: {
+                                                  in: searchPayload?.services?.map(
+                                                      (service) =>
+                                                          service.serviceId,
+                                                  ),
+                                              },
+                                          },
+                                      }
+                                    : undefined,
+                            },
+                        ],
+                    },
                     {
                         OR: [
                             { minAdvanceDays: null },
@@ -439,10 +501,8 @@ export class AvailAndPricingService {
         const services = searchPayload?.services
             ? await this.prismaService.service.findMany({
                   where: {
-                      availableHousingUnitTypes: {
-                          some: {
-                              housingUnitTypeId: { in: housingUnitTypesIds },
-                          },
+                      id: {
+                          in: searchPayload.services.map((s) => s.serviceId),
                       },
                   },
               })
@@ -451,6 +511,7 @@ export class AvailAndPricingService {
         const rateOption = searchPayload?.rateOptionId
             ? await this.prismaService.rateOption.findUnique({
                   where: { id: searchPayload.rateOptionId },
+                  include: { ageGroupPrices: true },
               })
             : null
 
@@ -480,6 +541,12 @@ export class AvailAndPricingService {
             searchPayload: searchPayload && {
                 ...searchPayload,
                 totalStay: this.getTotalDays(searchPayload.dateRange),
+                totalAdults: searchPayload.adults,
+                totalChildren:
+                    searchPayload.ageGroups?.reduce(
+                        (acc, ageGroup) => acc + ageGroup.quantity,
+                        0,
+                    ) ?? 0,
             },
             ageGroups,
             viewWindow,
@@ -510,7 +577,7 @@ export class AvailAndPricingService {
                     .format('YYYY-MM-DD'),
                 endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
             })),
-            offers,
+            offers: housingUnitTypeOffers,
         }
     }
 
@@ -536,10 +603,12 @@ export class AvailAndPricingService {
             ),
         )
 
-        const housingUnitTypeOffers = offers.filter((offer) =>
-            offer.validHousingUnitTypes.some(
-                (h) => h.housingUnitTypeId === housingUnitType.id,
-            ),
+        const filteredHousingUnitTypeOffers = offers.filter(
+            (offer) =>
+                offer.type === OfferType.HOUSING_UNIT_TYPE &&
+                offer.validHousingUnitTypes.some(
+                    (h) => h.housingUnitTypeId === housingUnitType.id,
+                ),
         )
 
         const housingUnitTypeReservations = reservations.filter(
@@ -548,11 +617,32 @@ export class AvailAndPricingService {
                 housingUnitType.id,
         )
 
+        const serviceIds = restPayload.searchPayload?.services?.map(
+            (service) => service.serviceId,
+        )
+        const filteredServiceOffers = serviceIds
+            ? offers.filter((offer) => {
+                  if (offer.type !== OfferType.SERVICE) return false
+
+                  const validServices = offer.validServices.some((s) =>
+                      serviceIds.includes(s.serviceId),
+                  )
+                  const validHousingUnitTypes =
+                      offer.validHousingUnitTypes.length === 0 ||
+                      offer.validHousingUnitTypes.some(
+                          (h) => h.housingUnitTypeId === housingUnitType.id,
+                      )
+
+                  return validServices && validHousingUnitTypes
+              })
+            : []
+
         return {
             housingUnitType,
+            serviceOffers: filteredServiceOffers,
+            housingUnitTypeOffers: filteredHousingUnitTypeOffers,
             seasonRules: housingUnitTYpeSeasonRules,
             specialDates: housingUnitTypeSpecialDates,
-            offers: housingUnitTypeOffers,
             reservations: housingUnitTypeReservations,
             ...omit(restPayload, ['housingUnitTypes']),
         }
@@ -564,12 +654,11 @@ export class AvailAndPricingService {
         const dayjsStart = dayjs.utc(payload.viewWindow.start).startOf('day')
         const dayjsEnd = dayjs.utc(payload.viewWindow.end).endOf('day')
 
-        const initialDay = this.getInitialCalendarDay(payload)
-
         const days = Array.from(
             { length: dayjsEnd.diff(dayjsStart, 'days') + 1 },
             (_, i) => dayjsStart.add(i, 'day').format('YYYY-MM-DD'),
         ).reduce<Calendar>((acc, day) => {
+            const initialDay = this.getInitialCalendarDay(payload)
             acc[day] = { ...initialDay }
 
             return this.pricingRules.applyRules(day, payload, acc)
@@ -580,22 +669,23 @@ export class AvailAndPricingService {
 
     private getInitialCalendarDay(
         payload: HouseUnitTypeAvailAndPricingPayload,
-    ): CalendarDay {
+    ): PricingSummary {
         return {
             basePrice: 0,
+            servicesPrice: 0,
+            childrenPrice: 0,
+            rateOptionPrice: 0,
             finalPrice: 0,
             finalMinStay: payload.hostingRules.minStay,
             hostingRules: payload.hostingRules,
-            seasonRules: null,
-            specialDates: null,
+            totalStay: null,
+            rateOption: null,
+            services: [],
+            seasonRules: [],
+            specialDates: [],
             reservations: [],
-            offers: null,
-            availability: {
-                available: true,
-                unavailabilitySource: null,
-                unavailableReason: null,
-                unavailableReasonMessage: null,
-            },
+            offers: [],
+            availability: [],
         }
     }
 }
