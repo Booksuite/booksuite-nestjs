@@ -18,12 +18,13 @@ import { AvailAndPricingService } from './availAndPricing.service'
 import { PricingHelpers } from './helpers/PricingHelpers'
 import { AgeGroupRule } from './rules/AgeGroupRule'
 import { HostingRulesRule } from './rules/HostingRulesRule'
-import { OfferRule } from './rules/OfferPricing'
+import { OfferRule } from './rules/OfferRule'
 import { AvailAndPricingRules } from './rules/PricingRules'
+import { RateOptionRule } from './rules/RateOptionRule'
 import { ReservationRule } from './rules/ReservationRule'
 import { SeasonRulesRule } from './rules/SeasonRulesRule'
+import { ServiceRule } from './rules/ServiceRule'
 import { SpecialDatesRule } from './rules/SpecialDatesRule'
-
 describe('getTotalPrice', () => {
     let service: AvailAndPricingService
     const prismaMock = mockDeep<PrismaService>()
@@ -43,6 +44,8 @@ describe('getTotalPrice', () => {
                 SpecialDatesRule,
                 AgeGroupRule,
                 OfferRule,
+                ServiceRule,
+                RateOptionRule,
                 PipeFns,
                 { provide: PrismaService, useValue: prismaMock },
             ],
@@ -116,14 +119,8 @@ describe('getTotalPrice', () => {
                     specialDates: [],
                     offers,
                     reservations: [],
-                    availability: [
-                        {
-                            available: true,
-                            unavailabilitySource: null,
-                            unavailableReason: null,
-                            unavailableReasonMessage: null,
-                        },
-                    ],
+                    services: [],
+                    availability: [],
                 },
             },
         ]
@@ -164,14 +161,7 @@ describe('getTotalPrice', () => {
                     specialDates: [],
                     offers: [],
                     reservations: [],
-                    availability: [
-                        {
-                            available: true,
-                            unavailabilitySource: null,
-                            unavailableReason: null,
-                            unavailableReasonMessage: null,
-                        },
-                    ],
+                    availability: [],
                 },
             },
         ]
@@ -218,14 +208,8 @@ describe('getTotalPrice', () => {
                     specialDates: [],
                     offers: [],
                     reservations: [],
-                    availability: [
-                        {
-                            available: true,
-                            unavailabilitySource: null,
-                            unavailableReason: null,
-                            unavailableReasonMessage: null,
-                        },
-                    ],
+                    services: [],
+                    availability: [],
                 },
             },
         ]

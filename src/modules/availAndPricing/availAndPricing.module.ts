@@ -7,10 +7,12 @@ import { AvailAndPricingService } from './availAndPricing.service'
 import { PricingHelpers } from './helpers/PricingHelpers'
 import { AgeGroupRule } from './rules/AgeGroupRule'
 import { HostingRulesRule } from './rules/HostingRulesRule'
-import { OfferRule } from './rules/OfferPricing'
+import { OfferRule } from './rules/OfferRule'
 import { AvailAndPricingRules } from './rules/PricingRules'
+import { RateOptionRule } from './rules/RateOptionRule'
 import { ReservationRule } from './rules/ReservationRule'
 import { SeasonRulesRule } from './rules/SeasonRulesRule'
+import { ServiceRule } from './rules/ServiceRule'
 import { SpecialDatesRule } from './rules/SpecialDatesRule'
 
 @Module({
@@ -26,6 +28,8 @@ import { SpecialDatesRule } from './rules/SpecialDatesRule'
         SpecialDatesRule,
         OfferRule,
         AgeGroupRule,
+        ServiceRule,
+        RateOptionRule,
     ],
 })
 export class AvailAndPricingModule {}

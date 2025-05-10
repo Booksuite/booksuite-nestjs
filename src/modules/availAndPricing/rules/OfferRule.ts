@@ -13,7 +13,7 @@ export class OfferRule implements AvailAndPricingRule {
     apply(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload {
         const { currentDate, pricingPayload, calendar } = payload
 
-        const offer = pricingPayload.offers.find((rule) => {
+        const offer = pricingPayload.housingUnitTypeOffers.find((rule) => {
             return this.checkOfferApplicability(rule, payload)
         })
 
@@ -26,7 +26,7 @@ export class OfferRule implements AvailAndPricingRule {
             priceVariationType: offer.priceAdjustmentType,
         })
 
-        payload.calendar[currentDate].offers = offer
+        payload.calendar[currentDate].offers = [offer]
         payload.calendar[currentDate].finalPrice = finalPrice
 
         return payload
@@ -65,7 +65,10 @@ export class OfferRule implements AvailAndPricingRule {
 
         if (!isWeekDayAvailable) return false
 
-        if (!offer.validForPackages && !!calendar[currentDate].specialDates)
+        if (
+            calendar[currentDate].specialDates.length > 0 &&
+            !offer.validForPackages
+        )
             return false
 
         return true

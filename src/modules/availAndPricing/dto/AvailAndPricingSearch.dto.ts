@@ -5,6 +5,7 @@ import {
     IsDefined,
     IsNumber,
     IsOptional,
+    IsUUID,
     ValidateNested,
 } from 'class-validator'
 
@@ -12,7 +13,7 @@ import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 import { AvailAndPricingSearchPayload } from '../types/payload'
 
 import { AvailAndPricingAgeGroupSearchDTO } from './AvailAndPricingAgeGroupSearch.dto'
-import { AvailAndPricingServiceDTO } from './AvailAndPricingService.dto'
+import { AvailAndPricingSearchServiceDTO } from './AvailAndPricingSearchService.dto'
 
 export class AvailAndPricingSearchDTO implements AvailAndPricingSearchPayload {
     @ApiProperty({
@@ -44,13 +45,22 @@ export class AvailAndPricingSearchDTO implements AvailAndPricingSearchPayload {
     ageGroups?: AvailAndPricingAgeGroupSearchDTO[]
 
     @ApiProperty({
-        type: [AvailAndPricingServiceDTO],
+        type: [AvailAndPricingSearchServiceDTO],
         description: 'Services',
         required: false,
     })
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
-    @Type(() => AvailAndPricingServiceDTO)
-    services?: AvailAndPricingServiceDTO[]
+    @Type(() => AvailAndPricingSearchServiceDTO)
+    services?: AvailAndPricingSearchServiceDTO[]
+
+    @ApiProperty({
+        type: String,
+        description: 'Rate option ID',
+        required: false,
+    })
+    @IsOptional()
+    @IsUUID()
+    rateOptionId?: string
 }
