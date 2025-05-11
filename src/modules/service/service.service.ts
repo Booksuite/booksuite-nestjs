@@ -161,6 +161,14 @@ export class ServiceService {
 
         if (filters) data.published = filters?.published
 
+        if (filters?.housingUnitTypeIds) {
+            data.availableHousingUnitTypes = {
+                some: {
+                    housingUnitTypeId: { in: filters.housingUnitTypeIds },
+                },
+            }
+        }
+
         return data
     }
 }

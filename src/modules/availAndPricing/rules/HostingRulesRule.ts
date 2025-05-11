@@ -43,7 +43,7 @@ export class HostingRulesRule implements AvailAndPricingRule {
         payload.calendar[payload.currentDate].availability.push(
             ...this.checkAvailability(payload),
         )
-        payload.calendar[payload.currentDate].basePrice = basePrice
+        payload.calendar[payload.currentDate].basePrice = finalPrice
         payload.calendar[payload.currentDate].finalPrice = finalPrice
 
         return payload

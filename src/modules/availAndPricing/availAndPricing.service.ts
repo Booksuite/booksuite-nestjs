@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { omit, unique } from 'radash'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
+import { HousingUnitResponseDTO } from '../housingUnitType/dto/HousingUnitResponse.dto'
 import { PrismaService } from '../prisma/prisma.service'
 
 import { OCCUPIED_RESERVATION_STATUS } from './constants'
@@ -15,11 +16,11 @@ import {
 import {
     AvailAndPricingPayload,
     AvailAndPricingSearchPayload,
+    AvailAndPricingSummary,
     Calendar,
     HouseUnitTypeAvailAndPricingPayload,
     HousingUnitTypeAvailAndPrice,
     HousingUnitTypeWithCalendar,
-    PricingSummary,
 } from './types/payload'
 
 @Injectable()
@@ -106,6 +107,34 @@ export class AvailAndPricingService {
         return housingUnitTypeCalendars
     }
 
+    async getTotalPricesFromHousingUnitTypeId(
+        housingUnitTypeId: string,
+        currentDate: string,
+        searchPayload: AvailAndPricingSearchPayload,
+    ): Promise<HousingUnitTypeAvailAndPrice> {
+        const adjustedSearchPayload = this.adjustSearchPayload(searchPayload)
+        if (!adjustedSearchPayload)
+            throw new Error('Search payload is required')
+
+        const housingUnitTypeAP = await this.getCalendarFromHousingUnitTypeId(
+            housingUnitTypeId,
+            currentDate,
+            adjustedSearchPayload.dateRange,
+            searchPayload,
+        )
+
+        return {
+            ...housingUnitTypeAP,
+
+            summary: {
+                ...this.sumCalendarPrices(
+                    Object.values(housingUnitTypeAP.calendar),
+                ),
+                totalStay: this.getTotalDays(adjustedSearchPayload.dateRange),
+            },
+        }
+    }
+
     async getTotalPrices(
         companyId: string,
         currentDate: string,
@@ -174,8 +203,10 @@ export class AvailAndPricingService {
         )
     }
 
-    private sumCalendarPrices(calendar: PricingSummary[]): PricingSummary {
-        const summary = calendar.reduce<PricingSummary>(
+    private sumCalendarPrices(
+        calendar: AvailAndPricingSummary[],
+    ): AvailAndPricingSummary {
+        const summary = calendar.reduce<AvailAndPricingSummary>(
             (acc, day) => {
                 acc.basePrice += day.basePrice
                 acc.finalPrice += day.finalPrice
@@ -194,6 +225,7 @@ export class AvailAndPricingService {
                 if (day.offers) acc.offers.push(...day.offers)
                 if (day.reservations) acc.reservations.push(...day.reservations)
                 if (day.services) acc.services.push(...day.services)
+                if (day.services) acc.services.push(...day.services)
 
                 acc.availability.push(...day.availability)
 
@@ -208,6 +240,7 @@ export class AvailAndPricingService {
                 basePrice: 0,
                 finalPrice: 0,
                 hostingRules: null as unknown as AvailAndPricingHostingRules,
+                availableHousingUnits: [],
                 seasonRules: [],
                 specialDates: [],
                 offers: [],
@@ -217,7 +250,20 @@ export class AvailAndPricingService {
                 rateOption: null,
             },
         )
+        const availableHousingUnits = unique(
+            calendar.flatMap((day) => day.availableHousingUnits),
+            (item) => item.id,
+        ).reduce<HousingUnitResponseDTO[]>((acc, housingUnit) => {
+            const isAvailableAllDays = calendar.every((day) =>
+                day.availableHousingUnits.some((h) => h.id === housingUnit.id),
+            )
 
+            if (isAvailableAllDays) acc.push(housingUnit)
+
+            return acc
+        }, [])
+
+        summary.availableHousingUnits = availableHousingUnits
         summary.seasonRules = unique(summary.seasonRules, (item) => item.id)
         summary.services = unique(summary.services, (item) => item.id)
         summary.specialDates = unique(summary.specialDates, (item) => item.id)
@@ -494,6 +540,7 @@ export class AvailAndPricingService {
             },
             include: {
                 housingUnit: true,
+                housingUnitType: true,
                 guestUser: true,
             },
         })
@@ -669,7 +716,7 @@ export class AvailAndPricingService {
 
     private getInitialCalendarDay(
         payload: HouseUnitTypeAvailAndPricingPayload,
-    ): PricingSummary {
+    ): AvailAndPricingSummary {
         return {
             basePrice: 0,
             servicesPrice: 0,
@@ -678,6 +725,7 @@ export class AvailAndPricingService {
             finalPrice: 0,
             finalMinStay: payload.hostingRules.minStay,
             hostingRules: payload.hostingRules,
+            availableHousingUnits: [],
             totalStay: null,
             rateOption: null,
             services: [],

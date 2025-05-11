@@ -1,106 +1,47 @@
 import { ApiProperty } from '@nestjs/swagger'
+import { IsNumber } from 'class-validator'
+import { IsDefined } from 'class-validator'
 
-import { HostingRulesResponseDTO } from '@/modules/company/dto/HostingRulesResponse.dto'
-import { ServiceResponseDTO } from '@/modules/service/dtos/ServiceResponse.dto'
 import { PricingSummary } from '../types/payload'
-
-import { AvailabilityDTO } from './Availability.dto'
-import { AvailAndPricingOffersDTO } from './AvailAndPricingOffers.dto'
-import { AvailAndPricingRateOptionDTO } from './AvailAndPricingRateOption.dto'
-import { AvailAndPricingReservationDTO } from './AvailAndPricingReservation.dto'
-import { AvailAndPricingSeasonRulesDTO } from './AvailAndPricingSeasonRules.dto'
-import { AvailAndPricingSpecialDatesDTO } from './AvailAndPricingSpecialDates.dto'
 
 export class PricingSummaryDTO implements PricingSummary {
     @ApiProperty({
         description: 'Base price for the day',
         type: Number,
     })
+    @IsDefined()
+    @IsNumber()
     basePrice: number
 
     @ApiProperty({
         description: 'Services price for the day',
         type: Number,
     })
+    @IsDefined()
+    @IsNumber()
     servicesPrice: number
 
     @ApiProperty({
         description: 'Children price for the day',
         type: Number,
     })
+    @IsDefined()
+    @IsNumber()
     childrenPrice: number
 
     @ApiProperty({
         description: 'Rate option price for the day',
         type: Number,
     })
+    @IsDefined()
+    @IsNumber()
     rateOptionPrice: number
 
     @ApiProperty({
         description: 'Final price for the day',
         type: Number,
     })
+    @IsDefined()
+    @IsNumber()
     finalPrice: number
-
-    @ApiProperty({
-        description: 'Final minimum days required',
-        type: Number,
-    })
-    finalMinStay: number
-
-    @ApiProperty({
-        description: 'Season rules for the day',
-        type: [AvailAndPricingSeasonRulesDTO],
-    })
-    seasonRules: AvailAndPricingSeasonRulesDTO[]
-
-    @ApiProperty({
-        description: 'Special dates for the day',
-        type: [AvailAndPricingSpecialDatesDTO],
-    })
-    specialDates: AvailAndPricingSpecialDatesDTO[]
-
-    @ApiProperty({
-        description: 'Offers for the day',
-        type: [AvailAndPricingOffersDTO],
-    })
-    offers: AvailAndPricingOffersDTO[]
-
-    @ApiProperty({
-        description: 'Reservations for the day',
-        type: [AvailAndPricingReservationDTO],
-    })
-    reservations: AvailAndPricingReservationDTO[]
-
-    @ApiProperty({
-        description: 'Availability for the day',
-        type: [AvailabilityDTO],
-    })
-    availability: AvailabilityDTO[]
-
-    @ApiProperty({
-        description: 'Hosting rules for the day',
-        type: HostingRulesResponseDTO,
-    })
-    hostingRules: HostingRulesResponseDTO
-
-    @ApiProperty({
-        description: 'Services for the day',
-        type: [ServiceResponseDTO],
-    })
-    services: ServiceResponseDTO[]
-
-    @ApiProperty({
-        description: 'Rate option for the day',
-        type: AvailAndPricingRateOptionDTO,
-        nullable: true,
-    })
-    rateOption: AvailAndPricingRateOptionDTO | null
-
-    @ApiProperty({
-        description: 'Total days for the day',
-        type: Number,
-        nullable: true,
-    })
-    totalStay: number | null
 }

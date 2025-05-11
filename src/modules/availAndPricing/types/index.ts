@@ -80,7 +80,14 @@ export type AvailAndPricingHousingUnitType = Prisma.HousingUnitTypeGetPayload<{
     include: {
         housingUnits: { orderBy: { order: 'asc' } }
     }
-    omit: {
-        companyId: true
-    }
 }>
+
+export type AvailAndPricingReservation = Omit<
+    Prisma.ReservationGetPayload<{
+        include: { housingUnit: true; guestUser: true; housingUnitType: true }
+    }>,
+    'startDate' | 'endDate'
+> & {
+    startDate: string
+    endDate: string
+}

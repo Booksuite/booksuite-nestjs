@@ -393,15 +393,19 @@ CREATE TABLE "reservations" (
     "reservationCode" TEXT NOT NULL,
     "startDate" DATE NOT NULL,
     "endDate" DATE NOT NULL,
-    "totalDays" INTEGER DEFAULT 1,
     "adults" INTEGER NOT NULL,
     "notes" TEXT NOT NULL,
     "status" "ReservationStatus" NOT NULL,
+    "basePrice" DOUBLE PRECISION NOT NULL,
+    "servicesPrice" DOUBLE PRECISION NOT NULL,
+    "childrenPrice" DOUBLE PRECISION NOT NULL,
+    "rateOptionPrice" DOUBLE PRECISION NOT NULL,
     "finalPrice" DOUBLE PRECISION NOT NULL,
     "saleChannel" "ReservationSaleChannel" NOT NULL DEFAULT 'BOOKSUITE',
     "sellerUserId" TEXT,
     "guestUserId" TEXT NOT NULL,
     "companyId" TEXT NOT NULL,
+    "housingUnitTypeId" TEXT,
     "housingUnitId" TEXT,
     "rateOptionId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -804,6 +808,9 @@ ALTER TABLE "reservations" ADD CONSTRAINT "reservations_guestUserId_fkey" FOREIG
 
 -- AddForeignKey
 ALTER TABLE "reservations" ADD CONSTRAINT "reservations_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "reservations" ADD CONSTRAINT "reservations_housingUnitTypeId_fkey" FOREIGN KEY ("housingUnitTypeId") REFERENCES "housing_unit_types"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "reservations" ADD CONSTRAINT "reservations_housingUnitId_fkey" FOREIGN KEY ("housingUnitId") REFERENCES "housing_units"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -7,18 +7,18 @@ import {
     IsDefined,
     IsEnum,
     IsInt,
-    IsNumber,
     IsOptional,
     IsString,
     IsUUID,
 } from 'class-validator'
 
+import { PricingSummaryDTO } from '@/modules/availAndPricing/dto/PricingSummary.dto'
 import { UserCreateDTO } from '@/modules/user/dto/UserCreate.dto'
 
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
-export class ReservationCreateDTO {
+export class ReservationCreateDTO extends PricingSummaryDTO {
     @ApiProperty({
         enum: ReservationStatus,
         example: ReservationStatus.CONFIRMED,
@@ -58,16 +58,6 @@ export class ReservationCreateDTO {
     @IsDateString()
     endDate!: string
 
-    @ApiProperty({ example: '7' })
-    @IsOptional()
-    @IsInt()
-    totalDays?: number
-
-    @ApiProperty({ example: 7, type: Number })
-    @IsDefined()
-    @IsNumber()
-    finalPrice: number
-
     @ApiProperty({ example: '2' })
     @IsDefined()
     @IsInt()
@@ -87,6 +77,11 @@ export class ReservationCreateDTO {
     @IsDefined()
     @IsUUID()
     housingUnitId: string
+
+    @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
+    @IsDefined()
+    @IsUUID()
+    housingUnitTypeId: string
 
     @ApiProperty({ type: [ReservationServiceDTO] })
     @IsDefined()

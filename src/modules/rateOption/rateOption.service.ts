@@ -184,6 +184,14 @@ export class RateOptionService {
             data.billingType = { in: filters?.billingType }
         }
 
+        if (filters?.housingUnitTypeIds) {
+            data.availableHousingUnitTypes = {
+                some: {
+                    housingUnitTypeId: { in: filters?.housingUnitTypeIds },
+                },
+            }
+        }
+
         return data
     }
 }

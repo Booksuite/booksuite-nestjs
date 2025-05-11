@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { HousingUnit } from '@prisma/client'
 import dayjs from 'dayjs'
 
 import { OCCUPIED_RESERVATION_STATUS } from '../constants'
@@ -7,9 +8,9 @@ import {
     UnavailableSource,
 } from '../enum/UnavailableReason.enum'
 import { PricingHelpers } from '../helpers/PricingHelpers'
+import { AvailAndPricingReservation } from '../types'
 import {
     AvailAndPricingDayPayload,
-    AvailAndPricingReservation,
     HousingUnitTypeAvailability,
 } from '../types/payload'
 import { AvailAndPricingRule } from '../types/payload'
@@ -44,8 +45,6 @@ export class ReservationRule implements AvailAndPricingRule {
                 searchEndDate,
             ),
         )
-
-        if (!reservations.length) return payload
 
         payload.calendar[currentDate].reservations = reservations
         payload.calendar[currentDate].availability.push(
@@ -103,9 +102,6 @@ export class ReservationRule implements AvailAndPricingRule {
 
         if (!searchPayload) return []
 
-        if (!payload.calendar[payload.currentDate].reservations.length)
-            return []
-
         const newAvailability: HousingUnitTypeAvailability[] = []
 
         const searchStartDate = dayjs
@@ -116,34 +112,24 @@ export class ReservationRule implements AvailAndPricingRule {
             .subtract(1, 'day')
             .endOf('day')
 
-        const hasAvailability =
-            payload.pricingPayload.housingUnitType.housingUnits.some(
-                (housingUnit) => {
-                    const hasAvailabilityInSomeHousingUnit = !payload.calendar[
-                        payload.currentDate
-                    ].reservations.some((reservation) => {
-                        if (reservation.housingUnit?.id !== housingUnit.id)
-                            return false
-
-                        if (
-                            !OCCUPIED_RESERVATION_STATUS.includes(
-                                reservation.status,
-                            )
-                        )
-                            return false
-
-                        const conflicts = this.conflictsWithReservations(
-                            reservation,
-                            searchStartDate,
-                            searchEndDate,
-                        )
-
-                        return conflicts
-                    })
-
-                    return hasAvailabilityInSomeHousingUnit
-                },
+        const availableHousingUnits =
+            payload.pricingPayload.housingUnitType.housingUnits.filter(
+                (housingUnit) =>
+                    this.housingUnitAvailable(
+                        searchStartDate,
+                        searchEndDate,
+                        housingUnit,
+                        payload.calendar[payload.currentDate].reservations,
+                    ),
             )
+
+        payload.calendar[payload.currentDate].availableHousingUnits =
+            availableHousingUnits
+
+        if (!payload.calendar[payload.currentDate].reservations.length)
+            return []
+
+        const hasAvailability = availableHousingUnits.length > 0
 
         if (!hasAvailability) {
             newAvailability.push(
@@ -156,5 +142,27 @@ export class ReservationRule implements AvailAndPricingRule {
         }
 
         return newAvailability
+    }
+
+    private housingUnitAvailable(
+        searchStartDate: dayjs.Dayjs,
+        searchEndDate: dayjs.Dayjs,
+        housingUnit: HousingUnit,
+        reservations: AvailAndPricingReservation[],
+    ): boolean {
+        return !reservations.some((reservation) => {
+            if (reservation.housingUnit?.id !== housingUnit.id) return false
+
+            if (!OCCUPIED_RESERVATION_STATUS.includes(reservation.status))
+                return false
+
+            const conflicts = this.conflictsWithReservations(
+                reservation,
+                searchStartDate,
+                searchEndDate,
+            )
+
+            return conflicts
+        })
     }
 }

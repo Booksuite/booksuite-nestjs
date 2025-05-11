@@ -23,6 +23,7 @@ model HousingUnitType {
     company   Company? @relation(fields: [companyId], references: [id])
 
     medias       HousingUnitTypeMedia[]
+    reservations Reservation[]
     housingUnits HousingUnit[]
     facilities   HousingUnitTypeFacility[]
     services     ServiceHousingUnitType[]

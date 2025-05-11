@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiProperty, PartialType } from '@nestjs/swagger'
 import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 import { Type } from 'class-transformer'
 import {
@@ -11,10 +11,12 @@ import {
     IsUUID,
 } from 'class-validator'
 
+import { PricingSummaryDTO } from '@/modules/availAndPricing/dto/PricingSummary.dto'
+
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
-export class ReservationUpdateDTO {
+export class ReservationUpdateDTO extends PartialType(PricingSummaryDTO) {
     @ApiProperty({
         enum: ReservationStatus,
         example: ReservationStatus.CONFIRMED,
@@ -70,16 +72,6 @@ export class ReservationUpdateDTO {
     @IsDateString()
     endDate?: string
 
-    @ApiProperty({
-        example: '7',
-        required: false,
-
-        type: Number,
-    })
-    @IsOptional()
-    @IsInt()
-    totalDays?: number
-
     @ApiProperty({ example: '2', required: false, type: Number })
     @IsOptional()
     @IsInt()
@@ -104,9 +96,14 @@ export class ReservationUpdateDTO {
     @IsUUID()
     housingUnitId?: string
 
-    @ApiProperty({ example: 7, type: Number, required: false })
+    @ApiProperty({
+        example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+        required: false,
+        type: String,
+    })
     @IsOptional()
-    finalPrice?: number
+    @IsUUID()
+    housingUnitTypeId?: string
 
     @ApiProperty({ type: [ReservationServiceDTO], required: false })
     @IsOptional()

@@ -66,6 +66,34 @@ export class PricingController {
         )
     }
 
+    @Post('/calculatePrice/:housingUnitTypeId')
+    @ApiParam({
+        name: 'companyId',
+        type: String,
+    })
+    @ApiParam({
+        name: 'housingUnitTypeId',
+        type: String,
+    })
+    @ApiOperation({
+        operationId: 'calculatePriceFromHousingUnitTypeId',
+        summary: 'Calculate price for a housing unit type',
+    })
+    @ApiOkResponse({
+        description: 'Summary of price data for a housing unit type',
+        type: HousingUnitTypeAvailAndPriceDTO,
+    })
+    async calculatePriceFromHousingUnitTypeId(
+        @Param('housingUnitTypeId') housingUnitTypeId: string,
+        @Body() body: CalculatePriceBody,
+    ): Promise<HousingUnitTypeAvailAndPriceDTO> {
+        return this.pricingService.getTotalPricesFromHousingUnitTypeId(
+            housingUnitTypeId,
+            body.currentDate,
+            body.search,
+        )
+    }
+
     @Post('/calculatePrice')
     @ApiParam({
         name: 'companyId',

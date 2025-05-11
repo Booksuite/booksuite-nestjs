@@ -1,10 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 
+import { PricingSummaryDTO } from '@/modules/availAndPricing/dto/PricingSummary.dto'
 import { HousingUnitResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitResponse.dto'
 import { UserResponseDTO } from '@/modules/user/dto/UserCreateResponse.dto'
 
-export class ReservationResponseDTO {
+export class ReservationResponseDTO extends PricingSummaryDTO {
     @ApiProperty({
         example: '123e4567-e89b-12d3-a456-426614174000',
     })
@@ -27,12 +28,6 @@ export class ReservationResponseDTO {
 
     @ApiProperty({ example: '2025-10-20', type: String, format: 'date' })
     endDate!: string
-
-    @ApiProperty({ example: 2, nullable: true, type: Number })
-    totalDays: number | null
-
-    @ApiProperty({ example: 3000, type: Number })
-    finalPrice: number
 
     @ApiProperty({ example: 2, type: Number })
     adults!: number
@@ -70,6 +65,13 @@ export class ReservationResponseDTO {
         type: String,
     })
     housingUnitId: string | null
+
+    @ApiProperty({
+        example: '123e4567-e89b-12d3-a456-426614174000',
+        nullable: true,
+        type: String,
+    })
+    housingUnitTypeId: string | null
 
     @ApiProperty({
         example: '123e4567-e89b-12d3-a456-426614174000',

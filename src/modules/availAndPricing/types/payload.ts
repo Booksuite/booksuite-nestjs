@@ -1,6 +1,5 @@
-import { Prisma } from '@prisma/client'
-
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
+import { HousingUnitResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitResponse.dto'
 import { ReservationServiceDTO } from '@/modules/reservation/dto/ReservationService.dto'
 import { AvailAndPricingAgeGroupSearchDTO } from '../dto/AvailAndPricingAgeGroupSearch.dto'
 import {
@@ -9,24 +8,15 @@ import {
 } from '../enum/UnavailableReason.enum'
 import {
     AvailAndPricingAgeGroup,
+    AvailAndPricingHostingRules,
     AvailAndPricingHousingUnitType,
     AvailAndPricingOffer,
     AvailAndPricingRateOption,
+    AvailAndPricingReservation,
     AvailAndPricingSeasonRules,
     AvailAndPricingService,
     AvailAndPricingSpecialDates,
 } from '.'
-import { AvailAndPricingHostingRules } from '.'
-
-export type AvailAndPricingReservation = Omit<
-    Prisma.ReservationGetPayload<{
-        include: { housingUnit: true; guestUser: true }
-    }>,
-    'startDate' | 'endDate'
-> & {
-    startDate: string
-    endDate: string
-}
 
 export interface AvailAndPricingSearchPayload {
     dateRange: DateRangeDTO
@@ -75,7 +65,7 @@ export interface HouseUnitTypeAvailAndPricingPayload
 }
 
 export interface Calendar {
-    [date: string]: PricingSummary
+    [date: string]: AvailAndPricingSummary
 }
 
 export interface HousingUnitTypeWithCalendar
@@ -90,21 +80,26 @@ export interface HousingUnitTypeAvailability {
     unavailableReasonMessage: string | null
 }
 
-export interface PricingSummary extends AvailAndPricingBasePayload {
+export interface PricingSummary {
     basePrice: number
     servicesPrice: number
     rateOptionPrice: number
     childrenPrice: number
-    totalStay: number | null
     finalPrice: number
-    finalMinStay: number
+}
 
+export interface AvailAndPricingSummary
+    extends AvailAndPricingBasePayload,
+        PricingSummary {
+    totalStay: number | null
+    finalMinStay: number
+    availableHousingUnits: HousingUnitResponseDTO[]
     availability: HousingUnitTypeAvailability[]
 }
 
 export interface HousingUnitTypeAvailAndPrice
     extends AvailAndPricingHousingUnitType {
-    summary: PricingSummary
+    summary: AvailAndPricingSummary
 }
 
 export interface AvailAndPricingDayPayload {
@@ -115,14 +110,4 @@ export interface AvailAndPricingDayPayload {
 
 export interface AvailAndPricingRule {
     apply?(payload: AvailAndPricingDayPayload): AvailAndPricingDayPayload
-}
-
-export interface ReservationPricing {
-    basePrice: number
-    ageGroupsPrice: number
-    extraAdultsPrice: number
-    offerPrice: number
-    servicesPrice: number
-    rateOptionPrice: number
-    totalAmount: number
 }

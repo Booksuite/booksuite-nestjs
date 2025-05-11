@@ -8,6 +8,7 @@ import {
 import { HousingUnitTypeResponseFullDTO } from '@/modules/housingUnitType/dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitTypeWithCalendar } from '../types/payload'
 
+import { AvailAndPricingSummaryDTO } from './AvailAndPricingSummary.dto'
 import { PricingSummaryDTO } from './PricingSummary.dto'
 
 @ApiExtraModels(PricingSummaryDTO)
@@ -22,5 +23,5 @@ export class HousingUnitTypeWithCalendarDTO
             $ref: getSchemaPath(PricingSummaryDTO),
         },
     })
-    calendar: Record<string, PricingSummaryDTO>
+    calendar: Record<string, AvailAndPricingSummaryDTO>
 }

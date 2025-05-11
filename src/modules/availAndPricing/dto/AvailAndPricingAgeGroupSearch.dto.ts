@@ -4,7 +4,7 @@ import { IsNumber } from 'class-validator'
 
 export class AvailAndPricingAgeGroupSearchDTO {
     @ApiProperty({
-        type: Number,
+        type: String,
     })
     @IsDefined()
     @IsUUID()

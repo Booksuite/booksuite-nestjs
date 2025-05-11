@@ -5,11 +5,15 @@ model Reservation {
 
     startDate  DateTime          @db.Date
     endDate    DateTime          @db.Date
-    totalDays  Int?              @default(1)
     adults     Int
     notes      String            @db.Text
     status     ReservationStatus
-    finalPrice Float             @db.DoublePrecision
+
+    basePrice       Float             @db.DoublePrecision
+    servicesPrice   Float             @db.DoublePrecision
+    childrenPrice   Float             @db.DoublePrecision
+    rateOptionPrice Float             @db.DoublePrecision
+    finalPrice      Float             @db.DoublePrecision
 
     saleChannel ReservationSaleChannel @default(BOOKSUITE)
 
@@ -18,10 +22,12 @@ model Reservation {
     guestUserId  String
     guestUser    User   @relation("guestUser", fields: [guestUserId], references: [id], onDelete: SetNull)
 
-    companyId     String
-    company       Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
-    housingUnitId String?
-    housingUnit   HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
+    companyId         String
+    company           Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+    housingUnitTypeId String?
+    housingUnitType   HousingUnitType? @relation(fields: [housingUnitTypeId], references: [id], onDelete: SetNull)
+    housingUnitId     String?
+    housingUnit       HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
     services     ReservationService[]
     ageGroups    ReservationAgeGroup[]

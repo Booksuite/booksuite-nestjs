@@ -238,11 +238,27 @@ export class ReservationService {
             where: { id },
             include: {
                 housingUnit: true,
-                services: { include: { service: true } },
+                services: {
+                    include: {
+                        service: {
+                            include: {
+                                medias: { include: { media: true } },
+                                availableHousingUnitTypes: {
+                                    include: { housingUnitType: true },
+                                },
+                            },
+                        },
+                    },
+                },
                 sellerUser: true,
                 guestUser: true,
                 ageGroups: { include: { ageGroup: true } },
-                rateOption: true,
+                rateOption: {
+                    include: {
+                        ageGroupPrices: { include: { ageGroup: true } },
+                    },
+                },
+                housingUnitType: true,
             },
         })
         if (!reservation) return null
