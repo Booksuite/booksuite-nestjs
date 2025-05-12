@@ -4,7 +4,6 @@ import { CompanyType } from '@prisma/client'
 import { MapCoordinatesDTO } from '@/common/dto/MapCoodinates.dto'
 import { MediaResponseDTO } from '@/modules/media/dto/MediaResponse.dto'
 
-import { CompanyMediaResponseDTO } from './CompanyMediaResponse.dto'
 export class CompanyResponseDTO {
     @ApiProperty({ example: 'bcd82497-2cc3-4998-b3d9-99db2f56b159' })
     id!: string
@@ -169,11 +168,4 @@ export class CompanyResponseDTO {
         nullable: true,
     })
     bannerImage: MediaResponseDTO | null
-
-    @ApiProperty({
-        example: 'Company Media',
-        type: [CompanyMediaResponseDTO],
-        nullable: true,
-    })
-    companyMedias: CompanyMediaResponseDTO[] | null
 }
