@@ -64,6 +64,7 @@ model Company {
     bannerImage       Media?  @relation("BannerImage", fields: [bannerImageId], references: [id], onDelete: Cascade)
     bannerTitle       String?
     bannerDescription String?
+    companyMedias     CompanyMedia[] @relation("CompanyMedias")
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -123,3 +124,18 @@ model CompanyFacility {
     @@unique([companyId, facilityId], name: "company_facility_unique")
     @@map("company_facilities")
 }
+
+model CompanyMedia {
+    id String @id @default(uuid())
+
+    order Int? @default(0)
+
+    companyId  String
+    company    Company  @relation("CompanyMedias", fields: [companyId], references: [id], onDelete: Cascade)
+    mediaId    String
+    media      Media    @relation("CompanyMedias", fields: [mediaId], references: [id], onDelete: Cascade)
+
+    @@unique([companyId, mediaId], name: "company_media_unique")
+    @@map("company_medias")
+}
+

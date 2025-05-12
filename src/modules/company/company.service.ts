@@ -21,9 +21,9 @@ import { CompanyUpdateDTO } from './dto/CompanyUpdate.dto'
 export class CompanyService {
     constructor(private prismaService: PrismaService) {}
 
-    create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
+    async create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyCreateInput>()({
-            ...omit(rawData, ['bannerImageId']),
+            ...omit(rawData, ['bannerImageId', 'companyMedias']),
             bannerImage: {
                 connect: { id: rawData.bannerImageId },
             },
@@ -33,16 +33,23 @@ export class CompanyService {
                   }
                 : undefined,
             contacts: rawData.contacts || undefined,
+            companyMedias: rawData.companyMedias
+                ? {
+                      createMany: { data: rawData.companyMedias },
+                  }
+                : undefined,
         })
 
-        return this.prismaService.company.create({
+        const result = await this.prismaService.company.create({
             data: normalizedData,
             include: { bannerImage: true },
         })
+
+        return result
     }
 
     async getById(id: string): Promise<CompanyResponseFullDTO | null> {
-        return this.prismaService.company.findUnique({
+        const result = await this.prismaService.company.findUnique({
             where: { id },
             include: {
                 facilities: {
@@ -50,8 +57,16 @@ export class CompanyService {
                     orderBy: { order: 'asc' },
                 },
                 bannerImage: true,
+                companyMedias: {
+                    include: { media: true },
+                    orderBy: { order: 'asc' },
+                },
             },
         })
+
+        if (!result) return null
+
+        return result
     }
 
     async search(
@@ -66,6 +81,7 @@ export class CompanyService {
             await this.prismaService.company.findManyAndCount({
                 include: {
                     bannerImage: true,
+                    medias: true,
                 },
                 where: this.buildSearchParams(query, filters),
                 ...paginationParams,
@@ -82,7 +98,12 @@ export class CompanyService {
         rawData: CompanyUpdateDTO,
     ): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyUpdateInput>()({
-            ...omit(rawData, ['settings', 'contacts']),
+            ...omit(rawData, [
+                'settings',
+                'contacts',
+                'companyMedias',
+                'bannerImageId',
+            ]),
             settings:
                 rawData.settings !== null ? rawData.settings : Prisma.DbNull,
             contacts: rawData.contacts ? rawData.contacts : undefined,
@@ -90,6 +111,9 @@ export class CompanyService {
                 rawData.mapCoordinates !== null
                     ? rawData.mapCoordinates
                     : Prisma.DbNull,
+            bannerImage: rawData.bannerImageId
+                ? { connect: { id: rawData.bannerImageId } }
+                : { disconnect: true },
             facilities: rawData.facilities && {
                 deleteMany: {
                     companyId: id,
@@ -111,13 +135,37 @@ export class CompanyService {
                     create: pick(facility, ['facilityId', 'order']),
                 })),
             },
+            companyMedias: rawData.companyMedias && {
+                deleteMany: {
+                    companyId: id,
+                    mediaId: {
+                        notIn: rawData.companyMedias
+                            .map((media) => media.mediaId)
+                            .filter(Boolean),
+                    },
+                },
+                upsert: rawData.companyMedias.map((media) => ({
+                    where: {
+                        company_media_unique: {
+                            companyId: id,
+                            mediaId: media.mediaId,
+                        },
+                    },
+                    update: {
+                        order: media.order,
+                    },
+                    create: pick(media, ['mediaId', 'order']),
+                })),
+            },
         })
 
-        return this.prismaService.company.update({
+        const result = await this.prismaService.company.update({
             where: { id },
             data: normalizedData,
             include: { bannerImage: true },
         })
+
+        return result
     }
 
     detele(id: string) {
