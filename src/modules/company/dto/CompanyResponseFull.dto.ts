@@ -2,6 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 
 import { CompanyContactResponseDTO } from './CompanyContactResponse.dto'
 import { CompanyFacilityResponseDTO } from './CompanyFacilityResponse.dto'
+import { CompanyMediaResponseDTO } from './CompanyMediaResponse.dto'
 import { CompanyResponseDTO } from './CompanyResponse.dto'
 import { CompanySettingsResponseDTO } from './CompanySettingsResponse.dto'
 
@@ -18,4 +19,7 @@ export class CompanyResponseFullDTO extends CompanyResponseDTO {
 
     @ApiProperty({ type: [CompanyFacilityResponseDTO] })
     facilities!: CompanyFacilityResponseDTO[]
+
+    @ApiProperty({ type: [CompanyMediaResponseDTO] })
+    companyMedias!: CompanyMediaResponseDTO[]
 }

@@ -23,7 +23,7 @@ export class CompanyService {
 
     async create(rawData: CompanyCreateDTO): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyCreateInput>()({
-            ...omit(rawData, ['bannerImageId']),
+            ...omit(rawData, ['bannerImageId', 'companyMedias']),
             bannerImage: {
                 connect: { id: rawData.bannerImageId },
             },
@@ -33,22 +33,19 @@ export class CompanyService {
                   }
                 : undefined,
             contacts: rawData.contacts || undefined,
+            companyMedias: rawData.companyMedias
+                ? {
+                      createMany: { data: rawData.companyMedias },
+                  }
+                : undefined,
         })
 
         const result = await this.prismaService.company.create({
             data: normalizedData,
-            include: { bannerImage: true, medias: true },
+            include: { bannerImage: true },
         })
 
-        return {
-            ...result,
-            companyMedias: result.medias.map((media) => ({
-                id: media.id,
-                isFeatured: false,
-                order: null,
-                media,
-            })),
-        }
+        return result
     }
 
     async getById(id: string): Promise<CompanyResponseFullDTO | null> {
@@ -60,21 +57,16 @@ export class CompanyService {
                     orderBy: { order: 'asc' },
                 },
                 bannerImage: true,
-                medias: true,
+                companyMedias: {
+                    include: { media: true },
+                    orderBy: { order: 'asc' },
+                },
             },
         })
 
         if (!result) return null
 
-        return {
-            ...result,
-            companyMedias: result.medias.map((media) => ({
-                id: media.id,
-                isFeatured: false,
-                order: null,
-                media,
-            })),
-        }
+        return result
     }
 
     async search(
@@ -116,7 +108,12 @@ export class CompanyService {
         rawData: CompanyUpdateDTO,
     ): Promise<CompanyResponseDTO> {
         const normalizedData = Prisma.validator<Prisma.CompanyUpdateInput>()({
-            ...omit(rawData, ['settings', 'contacts', 'companyMedias']),
+            ...omit(rawData, [
+                'settings',
+                'contacts',
+                'companyMedias',
+                'bannerImageId',
+            ]),
             settings:
                 rawData.settings !== null ? rawData.settings : Prisma.DbNull,
             contacts: rawData.contacts ? rawData.contacts : undefined,
@@ -124,6 +121,9 @@ export class CompanyService {
                 rawData.mapCoordinates !== null
                     ? rawData.mapCoordinates
                     : Prisma.DbNull,
+            bannerImage: rawData.bannerImageId
+                ? { connect: { id: rawData.bannerImageId } }
+                : { disconnect: true },
             facilities: rawData.facilities && {
                 deleteMany: {
                     companyId: id,
@@ -152,30 +152,37 @@ export class CompanyService {
                       })),
                   }
                 : undefined,
+            companyMedias: rawData.companyMedias && {
+                deleteMany: {
+                    companyId: id,
+                    mediaId: {
+                        notIn: rawData.companyMedias
+                            .map((media) => media.mediaId)
+                            .filter(Boolean),
+                    },
+                },
+                upsert: rawData.companyMedias.map((media) => ({
+                    where: {
+                        company_media_unique: {
+                            companyId: id,
+                            mediaId: media.mediaId,
+                        },
+                    },
+                    update: {
+                        order: media.order,
+                    },
+                    create: pick(media, ['mediaId', 'order']),
+                })),
+            },
         })
 
         const result = await this.prismaService.company.update({
             where: { id },
             data: normalizedData,
-            include: { bannerImage: true, medias: true },
+            include: { bannerImage: true },
         })
 
-        return {
-            ...result,
-            companyMedias: result.medias.map((media) => ({
-                id: media.id,
-                isFeatured: false,
-                order: null,
-                media: {
-                    id: media.id,
-                    url: media.url,
-                    metadata: media.metadata,
-                    companyId: id,
-                    createdAt: media.createdAt,
-                    updatedAt: media.updatedAt,
-                },
-            })),
-        }
+        return result
     }
 
     detele(id: string) {
