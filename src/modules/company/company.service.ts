@@ -90,17 +90,7 @@ export class CompanyService {
                     : undefined,
             })
 
-        const transformedCompanies = companies.map((company) => ({
-            ...company,
-            companyMedias: company.medias.map((media) => ({
-                id: media.id,
-                isFeatured: false,
-                order: null,
-                media,
-            })),
-        }))
-
-        return buildPaginatedResponse(transformedCompanies, total, pagination)
+        return buildPaginatedResponse(companies, total, pagination)
     }
 
     async update(
@@ -145,13 +135,6 @@ export class CompanyService {
                     create: pick(facility, ['facilityId', 'order']),
                 })),
             },
-            medias: rawData.companyMedias
-                ? {
-                      connect: rawData.companyMedias.map((media) => ({
-                          id: media.mediaId,
-                      })),
-                  }
-                : undefined,
             companyMedias: rawData.companyMedias && {
                 deleteMany: {
                     companyId: id,
