@@ -379,7 +379,6 @@ export class AvailAndPricingService {
         const specialDates = await this.prismaService.specialDate.findMany({
             include: {
                 housingUnitTypePrices: true,
-                includedServices: true,
             },
             where: {
                 housingUnitTypePrices: {

@@ -4,7 +4,6 @@ import { HousingUnitTypePricingChangeDTO } from '@/common/dto/HousingUnitTypePri
 
 import { SpecialDateMediaResponseDTO } from './SpecialDateMediaResponse.dto'
 import { SpecialDateResponseDTO } from './SpecialDateResponse.dto'
-import { SpecialDateServiceResponseDTO } from './SpecialDateServiceResponse.dto'
 
 export class SpecialDateResponseFullDTO extends SpecialDateResponseDTO {
     @ApiProperty({ type: [SpecialDateMediaResponseDTO] })
@@ -15,7 +14,4 @@ export class SpecialDateResponseFullDTO extends SpecialDateResponseDTO {
         nullable: true,
     })
     housingUnitTypePrices: HousingUnitTypePricingChangeDTO[] | null
-
-    @ApiProperty({ type: [SpecialDateServiceResponseDTO], nullable: true })
-    includedServices: SpecialDateServiceResponseDTO[] | null
 }

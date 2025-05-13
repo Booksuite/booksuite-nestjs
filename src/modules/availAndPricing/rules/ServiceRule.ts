@@ -79,14 +79,6 @@ export class ServiceRule implements AvailAndPricingRule {
             offer.validServices.some((serv) => serv.serviceId === service.id),
         )
 
-        const isServiceIncluded = !!calendar[
-            currentDate
-        ].specialDates[0]?.includedServices.some(
-            (serv) => serv.serviceId === service.id,
-        )
-
-        if (isServiceIncluded) return 0
-
         const serviceBasePrice = this.pricingHelpers.calculateBillingType(
             service.price,
             service.billingType,

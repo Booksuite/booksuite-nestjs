@@ -16,7 +16,6 @@ import {
 import { IsWeekDays } from '@/common/decorators/IsWeekDays.decorator'
 import { HousingUnitTypePricingChangeDTO } from '@/common/dto/HousingUnitTypePricingChange.dto'
 
-import { SpecialDateServiceDTO } from './SpecialDateService.dto'
 import { SpecialDateMediaDTO } from './SpecialDatesMedias.dto'
 
 export class SpecialDateUpdateDTO {
@@ -91,13 +90,6 @@ export class SpecialDateUpdateDTO {
     @ValidateNested()
     @Type(() => HousingUnitTypePricingChangeDTO)
     housingUnitTypePrices?: HousingUnitTypePricingChangeDTO[]
-
-    @ApiProperty({ type: [SpecialDateServiceDTO], required: false })
-    @IsOptional()
-    @IsArray()
-    @ValidateNested()
-    @Type(() => SpecialDateServiceDTO)
-    includedServices?: SpecialDateServiceDTO[]
 
     @ApiProperty({ type: [SpecialDateMediaDTO], required: false })
     @IsOptional()

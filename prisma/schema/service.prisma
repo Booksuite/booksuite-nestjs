@@ -30,7 +30,6 @@ model Service {
     medias                    ServiceMedia[]
     reservations              ReservationService[]
     availableHousingUnitTypes ServiceHousingUnitType[]
-    specialDate               SpecialDateServices[]
     offers                    OfferService[]
 
     companyId String

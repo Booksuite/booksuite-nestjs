@@ -2,16 +2,11 @@ import { ApiProperty } from '@nestjs/swagger'
 import { PriceVariationType } from '@prisma/client'
 
 import { HousingUnitTypePricingChangeDTO } from '@/common/dto/HousingUnitTypePricingChange.dto'
-import { AvailAndPricingSpecialDateIncludedServiceDTO } from '@/modules/specialDate/dtos/AvailAndPricingSpecialDateIncludedService.dto'
 import { AvailAndPricingSpecialDates } from '../types'
 
 export class AvailAndPricingSpecialDatesDTO
     implements AvailAndPricingSpecialDates
 {
-    @ApiProperty({
-        description: 'Special date rule ID',
-        type: String,
-    })
     id: string
 
     @ApiProperty({
@@ -90,12 +85,6 @@ export class AvailAndPricingSpecialDatesDTO
         },
     })
     housingUnitTypePrices: HousingUnitTypePricingChangeDTO[]
-
-    @ApiProperty({
-        description: 'Included services',
-        type: [AvailAndPricingSpecialDateIncludedServiceDTO],
-    })
-    includedServices: AvailAndPricingSpecialDateIncludedServiceDTO[]
 
     @ApiProperty({
         description: 'Special date description',

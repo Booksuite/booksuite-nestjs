@@ -56,7 +56,6 @@ export type AvailAndPricingAgeGroup = AgeGroup & {
 
 export type AvailAndPricingSpecialDates = Prisma.SpecialDateGetPayload<{
     include: {
-        includedServices: { omit: { specialDateId: true } }
         housingUnitTypePrices: {
             select: {
                 housingUnitTypeId: true
