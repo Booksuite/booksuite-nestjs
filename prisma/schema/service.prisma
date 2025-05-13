@@ -4,7 +4,6 @@ model Service {
     name        String
     billingType BillingType
     price       Float       @db.DoublePrecision
-    adults      Int
     minStay     Int
     minNotice   Int
 
