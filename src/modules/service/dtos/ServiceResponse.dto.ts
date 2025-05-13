@@ -23,9 +23,6 @@ export class ServiceResponseDTO {
     @ApiProperty({ example: 200 })
     price!: number
 
-    @ApiProperty({ example: 3 })
-    adults!: number
-
     @ApiProperty({ example: 1 })
     minStay!: number
 
