@@ -39,9 +39,6 @@ export class SpecialDateService {
                         data: rawData.housingUnitTypePrices,
                     },
                 },
-                includedServices: {
-                    createMany: { data: rawData.includedServices },
-                },
                 medias: {
                     createMany: {
                         data: rawData.medias,
@@ -76,7 +73,6 @@ export class SpecialDateService {
                         include: { housingUnitType: true },
                     },
                     medias: { include: { media: true } },
-                    includedServices: { include: { service: true } },
                 },
             })
             .then((specialDate) => {
@@ -138,27 +134,6 @@ export class SpecialDateService {
                             ]),
                         }),
                     ),
-                },
-                includedServices: rawData.housingUnitTypePrices && {
-                    deleteMany: {
-                        specialDateId: id,
-                        serviceId: {
-                            notIn:
-                                rawData.includedServices?.map(
-                                    (service) => service.serviceId,
-                                ) || [],
-                        },
-                    },
-                    upsert: rawData.includedServices?.map((service) => ({
-                        where: {
-                            special_date_service_unique: {
-                                specialDateId: id,
-                                serviceId: service.serviceId,
-                            },
-                        },
-                        update: pick(service, ['serviceId']),
-                        create: pick(service, ['serviceId']),
-                    })),
                 },
                 medias: rawData.medias && {
                     deleteMany: {
@@ -223,7 +198,6 @@ export class SpecialDateService {
                     housingUnitTypePrices: {
                         include: { housingUnitType: true },
                     },
-                    includedServices: { include: { service: true } },
                     medias: {
                         orderBy: { order: 'asc' } as any,
                         include: { media: true },
