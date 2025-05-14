@@ -56,10 +56,12 @@ export class SpecialDateService {
                     visibilityStartDate: dayjs(
                         specialDate.visibilityStartDate,
                     ).format('YYYY-MM-DD'),
-                    startDate: dayjs(specialDate.startDate).format(
-                        'YYYY-MM-DD',
-                    ),
-                    endDate: dayjs(specialDate.endDate).format('YYYY-MM-DD'),
+                    startDate: dayjs(specialDate.startDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
+                    endDate: dayjs(specialDate.endDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
                 }
             })
     }
@@ -80,13 +82,15 @@ export class SpecialDateService {
 
                 return {
                     ...specialDate,
-                    visibilityStartDate: dayjs(
-                        specialDate.visibilityStartDate,
-                    ).format('YYYY-MM-DD'),
-                    startDate: dayjs(specialDate.startDate).format(
-                        'YYYY-MM-DD',
-                    ),
-                    endDate: dayjs(specialDate.endDate).format('YYYY-MM-DD'),
+                    visibilityStartDate: dayjs(specialDate.visibilityStartDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
+                    startDate: dayjs(specialDate.startDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
+                    endDate: dayjs(specialDate.endDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
                 }
             })
     }
