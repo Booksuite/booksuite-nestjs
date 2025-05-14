@@ -9,9 +9,8 @@ import { HousingUnitTypeResponseFullDTO } from '@/modules/housingUnitType/dto/Ho
 import { HousingUnitTypeWithCalendar } from '../types/payload'
 
 import { AvailAndPricingSummaryDTO } from './AvailAndPricingSummary.dto'
-import { PricingSummaryDTO } from './PricingSummary.dto'
 
-@ApiExtraModels(PricingSummaryDTO)
+@ApiExtraModels(AvailAndPricingSummaryDTO)
 export class HousingUnitTypeWithCalendarDTO
     extends OmitType(HousingUnitTypeResponseFullDTO, ['facilities', 'medias'])
     implements HousingUnitTypeWithCalendar
@@ -20,7 +19,7 @@ export class HousingUnitTypeWithCalendarDTO
         description: 'Calendar data',
         type: 'object',
         additionalProperties: {
-            $ref: getSchemaPath(PricingSummaryDTO),
+            $ref: getSchemaPath(AvailAndPricingSummaryDTO),
         },
     })
     calendar: Record<string, AvailAndPricingSummaryDTO>
