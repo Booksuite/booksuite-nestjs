@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger'
 
 import { HousingUnitTypeResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitTypeResponse.dto'
 import { RateOptionResponseFullDTO } from '@/modules/rateOption/dto/RateOptionResponseFull.dto'
-import { UserResponseDTO } from '@/modules/user/dto/UserCreateResponse.dto'
+import { UserResponseDTO } from '@/modules/user/dto/UserResponse.dto'
 
 import { ReservationAgeGroupResponseDTO } from './ReservationAgeGroupResponse.dto'
 import { ReservationResponseDTO } from './ReservationResponse.dto'

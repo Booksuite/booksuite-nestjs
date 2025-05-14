@@ -15,6 +15,7 @@ import { SeasonRulesModule } from './modules/seasonRules/seasonRules.module'
 import { ServiceModule } from './modules/service/service.module'
 import { SpecialDateModule } from './modules/specialDate/specialDate.module'
 import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
+import { AuthModule } from './modules/auth/auth.module'
 
 @Module({
     imports: [
@@ -33,6 +34,7 @@ import { UtilityLinksModule } from './modules/utilityLinks/utilityLinks.module'
         SpecialDateModule,
         RateOptionModule,
         SeasonRulesModule,
+        AuthModule,
     ],
 })
 export class AppModule {}

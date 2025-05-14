@@ -3,7 +3,7 @@ import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 
 import { PricingSummaryDTO } from '@/modules/availAndPricing/dto/PricingSummary.dto'
 import { HousingUnitResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitResponse.dto'
-import { UserResponseDTO } from '@/modules/user/dto/UserCreateResponse.dto'
+import { UserResponseDTO } from '@/modules/user/dto/UserResponse.dto'
 
 export class ReservationResponseDTO extends PricingSummaryDTO {
     @ApiProperty({

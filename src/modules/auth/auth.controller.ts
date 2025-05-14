@@ -1,9 +1,9 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body,  Headers,  BadRequestException } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { SignupDto } from './dto/signup.dto';
-import { AuthResponseDto } from './dto/auth-response.dto';
+import { LoginDto } from './dto/Login.dto';
+import { SignupDto } from './dto/Signup.dto';
+import { AuthResponseDto } from './dto/AuthResponse.dto';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -13,14 +13,17 @@ export class AuthController {
   @Post('signup')
   @ApiOperation({ summary: 'User registration' })
   @ApiResponse({ type: AuthResponseDto })
-  async signup(@Body() signupDto: SignupDto): Promise<AuthResponseDto> {
-    return this.authService.signup(signupDto);
+  async signup(@Body() signupDto: SignupDto, @Headers('x-company-id') companyId: string): Promise<AuthResponseDto> {
+    return this.authService.signup(signupDto, companyId);
   }
 
   @Post('login')
   @ApiOperation({ summary: 'User login' })
   @ApiResponse({ type: AuthResponseDto })
-  async login(@Body() loginDto: LoginDto): Promise<AuthResponseDto> {
-    return this.authService.login(loginDto);
+  async login(@Body() loginDto: LoginDto, @Headers('x-company-id') companyId: string): Promise<AuthResponseDto> {
+    if(!companyId){
+      throw new BadRequestException('Company ID is required');
+    }
+    return this.authService.login(loginDto, companyId);
   }
 } 

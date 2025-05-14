@@ -7,6 +7,7 @@ import {
     Patch,
     Post,
     Query,
+    UseGuards,
 } from '@nestjs/common'
 import {
     ApiBody,
@@ -21,6 +22,9 @@ import { FacilityResponseDTO } from './dto/FacilityResponse.dto'
 import { FacilityResponsePaginatedDTO } from './dto/FacilityResponsePaginated.dto'
 import { FacilitySearchBodyDTO } from './dto/FacilitySearchBody.dto'
 import { FacilityService } from './facility.service'
+import { RequirePermissions } from '../auth/decorators/permissions.decorator'
+import { AuthGuard } from '../auth/guards/auth.guard'
+
 
 @Controller('facility')
 export class FacilityController {
@@ -43,8 +47,10 @@ export class FacilityController {
             ],
         },
     })
+    @UseGuards(AuthGuard)
     @ApiOperation({ operationId: 'getFacilityById' })
     @Get(':id')
+    @RequirePermissions('read:facility')
     getById(
         @Param('id') facilityId: string,
     ): Promise<FacilityResponseDTO | null> {
