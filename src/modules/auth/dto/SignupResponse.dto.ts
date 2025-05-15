@@ -5,6 +5,9 @@ export class SignupResponseDto {
   @ApiProperty()
   access_token: string;
 
+  @ApiProperty()
+  refresh_token: string;
+
   @ApiProperty({ type: UserAuthResponseDTO })
   user: UserAuthResponseDTO
 } 

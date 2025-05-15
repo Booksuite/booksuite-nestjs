@@ -7,6 +7,7 @@ import { SignupDto } from './dto/Signup.dto';
 import { AuthResponseDto } from './dto/AuthResponse.dto';
 import { UserAuthResponseDTO } from '../user/dto/UserAuthResponse.dto copy';
 import { SignupResponseDto } from './dto/SignupResponse.dto';
+import { RefreshTokenDto } from './dto/RefreshToken.dto';
 
 @Injectable()
 export class AuthService {
@@ -39,15 +40,23 @@ export class AuthService {
       password: hashedPassword,
     }, companyId);
 
-    // Generate JWT token
-    const payload = { 
-      email: user.email, 
-      sub: user.id,
-      permissions: userCompanyRelation.permissions
-    };
+    // Generate JWT tokens
+    const [access_token, refresh_token] = await Promise.all([
+      this.jwtService.sign({ 
+        email: user.email, 
+        sub: user.id,
+        permissions: userCompanyRelation.permissions
+      }, { expiresIn: '10m' }),
+      this.jwtService.sign({ 
+        email: user.email, 
+        sub: user.id,
+        companyId: companyId
+      }, { expiresIn: '1d' })
+    ]);
 
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token,
+      refresh_token,
       user: {...user, userCompanyRelation: [userCompanyRelation]}
     };
   }
@@ -61,15 +70,51 @@ export class AuthService {
       throw new UnauthorizedException('User has no roles for this company');
     }
 
-    const payload = { 
-      email: user.email, 
-      sub: user.id,
-      permissions: user.userCompanyRelation[0].permissions
-    };
+    // Generate JWT tokens
+    const [access_token, refresh_token] = await Promise.all([
+      this.jwtService.sign({ 
+        email: user.email, 
+        sub: user.id,
+        permissions: user.userCompanyRelation[0].permissions
+      }, { expiresIn: '10m' }),
+      this.jwtService.sign({ 
+        email: user.email, 
+        sub: user.id,
+        companyId: companyId
+      }, { expiresIn: '1d' })
+    ]);
 
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token,
+      refresh_token,
       user: user
     };
+  }
+
+  async getNewAccessToken(refreshTokenDto: RefreshTokenDto): Promise<{ access_token: string }> {
+    try {
+      const payload = await this.jwtService.verify(refreshTokenDto.refresh_token);
+      
+
+      // Get the user's company relations to get current permissions
+      const userWithRelations = await this.userService.findByEmail(payload.email, payload.companyId);
+      if (!userWithRelations) {
+        throw new UnauthorizedException('User not found');
+      }
+      if (!userWithRelations || userWithRelations.userCompanyRelation.length === 0) {
+        throw new UnauthorizedException('User has no company relations');
+      }
+
+      // Generate new access token with fresh permissions
+      const access_token = this.jwtService.sign({
+        email: userWithRelations.email,
+        sub: userWithRelations.id,
+        permissions: userWithRelations.userCompanyRelation[0].permissions
+      }, { expiresIn: '1m' });
+
+      return { access_token };
+    } catch (error) {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
   }
 } 

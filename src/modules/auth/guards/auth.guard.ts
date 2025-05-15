@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, HttpException, HttpStatus } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 
@@ -40,20 +40,11 @@ export class AuthGuard implements CanActivate {
       const userPermissions = decoded.permissions;
       
       // Check if user has all required permissions
-      return requiredPermissions.every(permission => {
-        // Handle wildcard permissions (e.g., 'read:*' matches 'read:own' and 'read:any')
-        if (permission.includes('*')) {
-          const [action, resource] = permission.split(':');
-          return userPermissions.some(userPerm => {
-            const [userAction, userResource] = userPerm.split(':');
-            return userAction === action && (userResource === resource || userResource === '*');
-          });
-        }
-        
+      return requiredPermissions.every(permission => {        
         return userPermissions.includes(permission);
       });
     } catch (error) {
-      throw new UnauthorizedException('Invalid token');
+      throw new HttpException(error.message, 498);
     }
   }
 } 

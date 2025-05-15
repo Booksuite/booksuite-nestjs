@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/Login.dto';
 import { SignupDto } from './dto/Signup.dto';
 import { AuthResponseDto } from './dto/AuthResponse.dto';
+import { RefreshTokenDto } from './dto/RefreshToken.dto';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -25,5 +26,12 @@ export class AuthController {
       throw new BadRequestException('Company ID is required');
     }
     return this.authService.login(loginDto, companyId);
+  }
+
+  @Post('refresh')
+  @ApiOperation({ summary: 'Refresh access token' })
+  @ApiResponse({ type: AuthResponseDto })
+  async refreshToken(@Body() refreshTokenDto: RefreshTokenDto) {
+    return this.authService.getNewAccessToken(refreshTokenDto);
   }
 } 
