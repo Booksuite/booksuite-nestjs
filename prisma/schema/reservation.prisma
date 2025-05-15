@@ -9,11 +9,8 @@ model Reservation {
     notes      String            @db.Text
     status     ReservationStatus
 
-    basePrice       Float             @db.DoublePrecision
-    servicesPrice   Float             @db.DoublePrecision
-    childrenPrice   Float             @db.DoublePrecision
-    rateOptionPrice Float             @db.DoublePrecision
-    finalPrice      Float             @db.DoublePrecision
+    /// [ReservationSummary]
+    summary Json
 
     saleChannel ReservationSaleChannel @default(BOOKSUITE)
 
@@ -24,15 +21,16 @@ model Reservation {
 
     companyId         String
     company           Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
-    housingUnitTypeId String?
-    housingUnitType   HousingUnitType? @relation(fields: [housingUnitTypeId], references: [id], onDelete: SetNull)
-    housingUnitId     String?
-    housingUnit       HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
 
-    services     ReservationService[]
-    ageGroups    ReservationAgeGroup[]
-    rateOptionId String?
-    rateOption   RateOption? @relation(fields: [rateOptionId], references: [id], onDelete: SetNull)
+    housingUnitTypeId String?
+    housingUnitId     String?
+    rateOptionId      String?
+    
+    housingUnitType   HousingUnitType? @relation(fields: [housingUnitTypeId], references: [id], onDelete: SetNull)
+    housingUnit       HousingUnit? @relation(fields: [housingUnitId], references: [id], onDelete: SetNull)
+    services          ReservationService[]
+    ageGroups         ReservationAgeGroup[]
+    rateOption        RateOption? @relation(fields: [rateOptionId], references: [id], onDelete: SetNull)
 
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt

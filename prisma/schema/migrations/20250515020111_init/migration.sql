@@ -139,6 +139,16 @@ CREATE TABLE "company_facilities" (
 );
 
 -- CreateTable
+CREATE TABLE "company_medias" (
+    "id" TEXT NOT NULL,
+    "order" INTEGER DEFAULT 0,
+    "companyId" TEXT NOT NULL,
+    "mediaId" TEXT NOT NULL,
+
+    CONSTRAINT "company_medias_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "facilities" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -396,11 +406,7 @@ CREATE TABLE "reservations" (
     "adults" INTEGER NOT NULL,
     "notes" TEXT NOT NULL,
     "status" "ReservationStatus" NOT NULL,
-    "basePrice" DOUBLE PRECISION NOT NULL,
-    "servicesPrice" DOUBLE PRECISION NOT NULL,
-    "childrenPrice" DOUBLE PRECISION NOT NULL,
-    "rateOptionPrice" DOUBLE PRECISION NOT NULL,
-    "finalPrice" DOUBLE PRECISION NOT NULL,
+    "summary" JSONB NOT NULL,
     "saleChannel" "ReservationSaleChannel" NOT NULL DEFAULT 'BOOKSUITE',
     "sellerUserId" TEXT,
     "guestUserId" TEXT NOT NULL,
@@ -648,6 +654,9 @@ CREATE UNIQUE INDEX "hosting_rules_companyId_key" ON "hosting_rules"("companyId"
 CREATE UNIQUE INDEX "company_facilities_companyId_facilityId_key" ON "company_facilities"("companyId", "facilityId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "company_medias_companyId_mediaId_key" ON "company_medias"("companyId", "mediaId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "housing_unit_types_slug_key" ON "housing_unit_types"("slug");
 
 -- CreateIndex
@@ -730,6 +739,12 @@ ALTER TABLE "company_facilities" ADD CONSTRAINT "company_facilities_companyId_fk
 
 -- AddForeignKey
 ALTER TABLE "company_facilities" ADD CONSTRAINT "company_facilities_facilityId_fkey" FOREIGN KEY ("facilityId") REFERENCES "facilities"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "company_medias" ADD CONSTRAINT "company_medias_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "company_medias" ADD CONSTRAINT "company_medias_mediaId_fkey" FOREIGN KEY ("mediaId") REFERENCES "medias"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "housing_unit_types" ADD CONSTRAINT "housing_unit_types_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "companies"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

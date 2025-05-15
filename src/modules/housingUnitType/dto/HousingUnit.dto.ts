@@ -7,10 +7,10 @@ export class HousingUnitDTO {
     @IsUUID()
     id?: string
 
-    @ApiProperty({ example: 1, required: false })
+    @ApiProperty({ example: 1 })
     @IsOptional()
     @IsInt()
-    order?: number
+    order: number
 
     @ApiProperty({ example: '204' })
     @IsDefined()

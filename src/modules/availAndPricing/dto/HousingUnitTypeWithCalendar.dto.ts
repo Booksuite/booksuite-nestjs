@@ -1,20 +1,19 @@
-import {
-    ApiExtraModels,
-    ApiProperty,
-    getSchemaPath,
-    OmitType,
-} from '@nestjs/swagger'
+import { ApiExtraModels, ApiProperty, getSchemaPath } from '@nestjs/swagger'
 
-import { HousingUnitTypeResponseFullDTO } from '@/modules/housingUnitType/dto/HousingUnitTypeResponseFull.dto'
 import { HousingUnitTypeWithCalendar } from '../types/payload'
 
+import { AvailAndPricingHousingUnitTypeDTO } from './AvailAndPricingHousingUnitType.dto'
 import { AvailAndPricingSummaryDTO } from './AvailAndPricingSummary.dto'
 
 @ApiExtraModels(AvailAndPricingSummaryDTO)
 export class HousingUnitTypeWithCalendarDTO
-    extends OmitType(HousingUnitTypeResponseFullDTO, ['facilities', 'medias'])
     implements HousingUnitTypeWithCalendar
 {
+    @ApiProperty({
+        type: AvailAndPricingHousingUnitTypeDTO,
+    })
+    housingUnitType: AvailAndPricingHousingUnitTypeDTO
+
     @ApiProperty({
         description: 'Calendar data',
         type: 'object',

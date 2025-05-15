@@ -27,12 +27,12 @@ export class HostingRulesDTO {
     @ApiProperty({ example: '2025-12-01', type: String, nullable: true })
     @IsDateString()
     @IsOptional()
-    reservationWindowStart?: string
+    reservationWindowStart: string | null
 
     @ApiProperty({ example: '2025-12-31', type: String, nullable: true })
     @IsDateString()
     @IsOptional()
-    reservationWindowEnd?: string
+    reservationWindowEnd: string | null
 
     @ApiProperty({ type: Number, isArray: true })
     @IsDefined()

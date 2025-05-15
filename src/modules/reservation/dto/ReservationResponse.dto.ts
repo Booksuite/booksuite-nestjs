@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { ReservationSaleChannel, ReservationStatus } from '@prisma/client'
 
-import { PricingSummaryDTO } from '@/modules/availAndPricing/dto/PricingSummary.dto'
+import { ReservationSummaryDTO } from '@/modules/availAndPricing/dto/ReservationSummary.dto'
 import { HousingUnitResponseDTO } from '@/modules/housingUnitType/dto/HousingUnitResponse.dto'
 import { UserResponseDTO } from '@/modules/user/dto/UserCreateResponse.dto'
 
-export class ReservationResponseDTO extends PricingSummaryDTO {
+export class ReservationResponseDTO {
     @ApiProperty({
         example: '123e4567-e89b-12d3-a456-426614174000',
     })
@@ -16,6 +16,11 @@ export class ReservationResponseDTO extends PricingSummaryDTO {
         example: ReservationStatus.CONFIRMED,
     })
     status!: ReservationStatus
+
+    @ApiProperty({
+        type: ReservationSummaryDTO,
+    })
+    summary: ReservationSummaryDTO
 
     @ApiProperty({
         enum: ReservationSaleChannel,

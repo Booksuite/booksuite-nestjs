@@ -9,9 +9,11 @@ import {
     IsOptional,
     IsString,
     IsUUID,
+    ValidateNested,
 } from 'class-validator'
 
 import { PricingSummaryDTO } from '@/modules/availAndPricing/dto/PricingSummary.dto'
+import { ReservationSummaryDTO } from '@/modules/availAndPricing/dto/ReservationSummary.dto'
 
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
@@ -25,6 +27,15 @@ export class ReservationUpdateDTO extends PartialType(PricingSummaryDTO) {
     @IsOptional()
     @IsEnum(ReservationStatus)
     status?: ReservationStatus
+
+    @ApiProperty({
+        type: ReservationSummaryDTO,
+        required: false,
+    })
+    @IsOptional()
+    @Type(() => ReservationSummaryDTO)
+    @ValidateNested()
+    summary?: ReservationSummaryDTO
 
     @ApiProperty({
         example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',

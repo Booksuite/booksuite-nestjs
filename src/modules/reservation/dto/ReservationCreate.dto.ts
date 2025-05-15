@@ -10,15 +10,16 @@ import {
     IsOptional,
     IsString,
     IsUUID,
+    ValidateNested,
 } from 'class-validator'
 
-import { PricingSummaryDTO } from '@/modules/availAndPricing/dto/PricingSummary.dto'
+import { ReservationSummaryDTO } from '@/modules/availAndPricing/dto/ReservationSummary.dto'
 import { UserCreateDTO } from '@/modules/user/dto/UserCreate.dto'
 
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
 
-export class ReservationCreateDTO extends PricingSummaryDTO {
+export class ReservationCreateDTO {
     @ApiProperty({
         enum: ReservationStatus,
         example: ReservationStatus.CONFIRMED,
@@ -26,6 +27,14 @@ export class ReservationCreateDTO extends PricingSummaryDTO {
     @IsDefined()
     @IsEnum(ReservationStatus)
     status!: ReservationStatus
+
+    @ApiProperty({
+        type: ReservationSummaryDTO,
+    })
+    @IsDefined()
+    @Type(() => ReservationSummaryDTO)
+    @ValidateNested()
+    summary: ReservationSummaryDTO
 
     @ApiProperty({
         type: UserCreateDTO,

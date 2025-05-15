@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { OfferType } from '@prisma/client'
 import dayjs from 'dayjs'
-import { omit, unique } from 'radash'
+import { omit, sort, unique } from 'radash'
 
 import { DateRangeDTO } from '@/common/dto/DateRange.dto'
 import { HousingUnitResponseDTO } from '../housingUnitType/dto/HousingUnitResponse.dto'
@@ -19,8 +19,8 @@ import {
     AvailAndPricingSummary,
     Calendar,
     HouseUnitTypeAvailAndPricingPayload,
-    HousingUnitTypeAvailAndPrice,
     HousingUnitTypeWithCalendar,
+    ReservationSummary,
 } from './types/payload'
 
 @Injectable()
@@ -111,7 +111,7 @@ export class AvailAndPricingService {
         housingUnitTypeId: string,
         currentDate: string,
         searchPayload: AvailAndPricingSearchPayload,
-    ): Promise<HousingUnitTypeAvailAndPrice> {
+    ): Promise<ReservationSummary> {
         const adjustedSearchPayload = this.adjustSearchPayload(searchPayload)
         if (!adjustedSearchPayload)
             throw new Error('Search payload is required')
@@ -123,15 +123,18 @@ export class AvailAndPricingService {
             searchPayload,
         )
 
-        return {
-            ...housingUnitTypeAP,
+        const summary = {
+            ...this.sumCalendarPrices(
+                Object.values(housingUnitTypeAP.calendar),
+            ),
+            totalStay: this.getTotalDays(adjustedSearchPayload.dateRange),
+        }
 
-            summary: {
-                ...this.sumCalendarPrices(
-                    Object.values(housingUnitTypeAP.calendar),
-                ),
-                totalStay: this.getTotalDays(adjustedSearchPayload.dateRange),
-            },
+        return {
+            housingUnitType: housingUnitTypeAP.housingUnitType,
+            housingUnit:
+                sort(summary.availableHousingUnits, (h) => h.order)[0] ?? null,
+            summary,
         }
     }
 
@@ -139,7 +142,7 @@ export class AvailAndPricingService {
         companyId: string,
         currentDate: string,
         searchPayload: AvailAndPricingSearchPayload,
-    ): Promise<HousingUnitTypeAvailAndPrice[]> {
+    ): Promise<ReservationSummary[]> {
         const adjustedSearchPayload = this.adjustSearchPayload(searchPayload)
         if (!adjustedSearchPayload)
             throw new Error('Search payload is required')
@@ -154,20 +157,26 @@ export class AvailAndPricingService {
         if (!adjustedSearchPayload)
             throw new Error('Search payload is required')
 
-        return housingUnitTypeAP.reduce<HousingUnitTypeAvailAndPrice[]>(
+        return housingUnitTypeAP.reduce<ReservationSummary[]>(
             (acc, housingUnitType) => {
+                const summary = {
+                    ...this.sumCalendarPrices(
+                        Object.values(housingUnitType.calendar),
+                    ),
+                    totalStay: this.getTotalDays(
+                        adjustedSearchPayload.dateRange,
+                    ),
+                }
                 return [
                     ...acc,
                     {
-                        ...omit(housingUnitType, ['calendar']),
-                        summary: {
-                            ...this.sumCalendarPrices(
-                                Object.values(housingUnitType.calendar),
-                            ),
-                            totalStay: this.getTotalDays(
-                                adjustedSearchPayload.dateRange,
-                            ),
-                        },
+                        housingUnitType: housingUnitType.housingUnitType,
+                        housingUnit:
+                            sort(
+                                summary.availableHousingUnits,
+                                (h) => h.order,
+                            )[0] ?? null,
+                        summary,
                     },
                 ]
             },
@@ -263,7 +272,10 @@ export class AvailAndPricingService {
             return acc
         }, [])
 
-        summary.availableHousingUnits = availableHousingUnits
+        summary.availableHousingUnits = sort(
+            availableHousingUnits,
+            (item) => item.order,
+        )
         summary.seasonRules = unique(summary.seasonRules, (item) => item.id)
         summary.services = unique(summary.services, (item) => item.id)
         summary.specialDates = unique(summary.specialDates, (item) => item.id)
@@ -287,7 +299,7 @@ export class AvailAndPricingService {
         )
 
         return {
-            ...housingUnitType,
+            housingUnitType,
             calendar,
         }
     }

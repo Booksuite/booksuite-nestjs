@@ -4,8 +4,8 @@ import { ApiOkResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger'
 import { AvailAndPricingService } from './availAndPricing.service'
 import { CalculatePriceBody } from './dto/CalculatePriceBody.dto'
 import { CalendarBodyDTO } from './dto/CalendarBody.dto'
-import { HousingUnitTypeAvailAndPriceDTO } from './dto/HousingUnitTypeAvailAndPrice.dto'
 import { HousingUnitTypeWithCalendarDTO } from './dto/HousingUnitTypeWithCalendar.dto'
+import { ReservationSummaryDTO } from './dto/ReservationSummary.dto'
 
 @ApiTags('Availability and Pricing')
 @Controller('/company/:companyId')
@@ -81,12 +81,12 @@ export class PricingController {
     })
     @ApiOkResponse({
         description: 'Summary of price data for a housing unit type',
-        type: HousingUnitTypeAvailAndPriceDTO,
+        type: ReservationSummaryDTO,
     })
     async calculatePriceFromHousingUnitTypeId(
         @Param('housingUnitTypeId') housingUnitTypeId: string,
         @Body() body: CalculatePriceBody,
-    ): Promise<HousingUnitTypeAvailAndPriceDTO> {
+    ): Promise<ReservationSummaryDTO> {
         return this.pricingService.getTotalPricesFromHousingUnitTypeId(
             housingUnitTypeId,
             body.currentDate,
@@ -105,12 +105,12 @@ export class PricingController {
     })
     @ApiOkResponse({
         description: 'Summary of price data for all housing unit types',
-        type: [HousingUnitTypeAvailAndPriceDTO],
+        type: [ReservationSummaryDTO],
     })
     async calculatePrice(
         @Param('companyId') companyId: string,
         @Body() body: CalculatePriceBody,
-    ): Promise<HousingUnitTypeAvailAndPriceDTO[]> {
+    ): Promise<ReservationSummaryDTO[]> {
         return this.pricingService.getTotalPrices(
             companyId,
             body.currentDate,

@@ -34,7 +34,9 @@ export class ServiceService {
                 createMany: { data: rawData.availableHousingUnitTypes },
             },
             medias: { createMany: { data: rawData.medias } },
-            coverMedia: { connect: { id: rawData.coverMediaId } },
+            coverMedia: rawData.coverMediaId
+                ? { connect: { id: rawData.coverMediaId } }
+                : undefined,
         })
 
         return this.prismaService.service.create({ data: normalizedData })

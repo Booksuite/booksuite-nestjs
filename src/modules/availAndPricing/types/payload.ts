@@ -68,8 +68,8 @@ export interface Calendar {
     [date: string]: AvailAndPricingSummary
 }
 
-export interface HousingUnitTypeWithCalendar
-    extends AvailAndPricingHousingUnitType {
+export interface HousingUnitTypeWithCalendar {
+    housingUnitType: AvailAndPricingHousingUnitType
     calendar: Calendar
 }
 
@@ -97,8 +97,9 @@ export interface AvailAndPricingSummary
     availability: HousingUnitTypeAvailability[]
 }
 
-export interface HousingUnitTypeAvailAndPrice
-    extends AvailAndPricingHousingUnitType {
+export interface ReservationSummary {
+    housingUnitType: AvailAndPricingHousingUnitType
+    housingUnit: HousingUnitResponseDTO | null
     summary: AvailAndPricingSummary
 }
 
