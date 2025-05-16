@@ -42,6 +42,16 @@ export class ReservationCreateDTO {
     @IsUUID()
     guestUserId: string
 
+    @ApiProperty({
+        example: '2025-01-14',
+        type: String,
+        format: 'date',
+        nullable: true,
+    })
+    @IsOptional()
+    @IsDateString()
+    preOrderExpiraiton: string | null
+
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsOptional()
     @IsUUID()

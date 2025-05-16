@@ -9,6 +9,8 @@ model Reservation {
     notes      String            @db.Text
     status     ReservationStatus
 
+    preOrderExpiraiton DateTime?
+
     /// [ReservationSummary]
     summary Json
 
@@ -51,11 +53,13 @@ enum ReservationSaleChannel {
 }
 
 enum ReservationStatus {
+    PRE_ORDER
     WAITING_PAYMENT
     CONFIRMED
     CHECKED_IN
     CHECKED_OUT
 
+    ESTIMATE
     ABANDONED
     CANCELLED
     PAYMENT_FAILED

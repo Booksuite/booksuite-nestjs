@@ -61,6 +61,11 @@ export class ReservationService {
             .then((reservation) => {
                 return {
                     ...reservation,
+                    preOrderExpiraiton: reservation.preOrderExpiraiton
+                        ? dayjs
+                              .utc(reservation.preOrderExpiraiton)
+                              .format('YYYY-MM-DD')
+                        : null,
                     startDate: dayjs
                         .utc(reservation.startDate)
                         .format('YYYY-MM-DD'),
@@ -117,6 +122,11 @@ export class ReservationService {
         const formattedReservations = reservations.map((reservation) => {
             return {
                 ...reservation,
+                preOrderExpiraiton: reservation.preOrderExpiraiton
+                    ? dayjs
+                          .utc(reservation.preOrderExpiraiton)
+                          .format('YYYY-MM-DD')
+                    : null,
                 startDate: dayjs
                     .utc(reservation.startDate)
                     .format('YYYY-MM-DD'),
@@ -271,6 +281,9 @@ export class ReservationService {
 
         return {
             ...reservation,
+            preOrderExpiraiton: reservation.preOrderExpiraiton
+                ? dayjs.utc(reservation.preOrderExpiraiton).format('YYYY-MM-DD')
+                : null,
             startDate: dayjs.utc(reservation.startDate).format('YYYY-MM-DD'),
             endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
         }
@@ -350,6 +363,9 @@ export class ReservationService {
 
         return {
             ...reservation,
+            preOrderExpiraiton: reservation.preOrderExpiraiton
+                ? dayjs.utc(reservation.preOrderExpiraiton).format('YYYY-MM-DD')
+                : null,
             startDate: dayjs.utc(reservation.startDate).format('YYYY-MM-DD'),
             endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
         }

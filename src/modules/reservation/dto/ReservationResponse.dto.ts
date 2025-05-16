@@ -18,6 +18,14 @@ export class ReservationResponseDTO {
     status!: ReservationStatus
 
     @ApiProperty({
+        example: '2025-01-14',
+        type: String,
+        format: 'date',
+        nullable: true,
+    })
+    preOrderExpiraiton!: string | null
+
+    @ApiProperty({
         type: () => ReservationSummaryDTO,
     })
     summary: ReservationSummaryDTO

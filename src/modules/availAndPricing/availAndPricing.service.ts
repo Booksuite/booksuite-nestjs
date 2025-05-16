@@ -637,6 +637,11 @@ export class AvailAndPricingService {
                     .utc(reservation.startDate)
                     .format('YYYY-MM-DD'),
                 endDate: dayjs.utc(reservation.endDate).format('YYYY-MM-DD'),
+                preOrderExpiraiton: reservation.preOrderExpiraiton
+                    ? dayjs
+                          .utc(reservation.preOrderExpiraiton)
+                          .format('YYYY-MM-DD')
+                    : null,
             })),
             offers: housingUnitTypeOffers,
         }

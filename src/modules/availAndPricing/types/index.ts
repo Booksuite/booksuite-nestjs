@@ -87,8 +87,9 @@ export type AvailAndPricingReservation = Omit<
         include: { housingUnit: true; guestUser: true; housingUnitType: true }
         omit: { summary: true }
     }>,
-    'startDate' | 'endDate'
+    'startDate' | 'endDate' | 'preOrderExpiraiton'
 > & {
     startDate: string
     endDate: string
+    preOrderExpiraiton: string | null
 }

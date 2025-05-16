@@ -29,6 +29,17 @@ export class ReservationUpdateDTO extends PartialType(PricingSummaryDTO) {
     status?: ReservationStatus
 
     @ApiProperty({
+        example: '2025-01-14',
+        type: String,
+        format: 'date',
+        nullable: true,
+        required: false,
+    })
+    @IsOptional()
+    @IsDateString()
+    preOrderExpiraiton?: string | null
+
+    @ApiProperty({
         type: () => ReservationSummaryDTO,
         required: false,
     })
