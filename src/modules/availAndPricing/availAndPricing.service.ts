@@ -531,7 +531,7 @@ export class AvailAndPricingService {
                             lte: formattedDateRangeStart,
                         },
                         endDate: {
-                            gte: formattedDateRangeEnd,
+                            gte: formattedDateRangeStart,
                         },
                     },
                     {

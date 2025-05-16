@@ -189,26 +189,37 @@ export class ReservationService {
             FILTER.push({ status: { in: filter.status } })
 
             if (filter.dateRange) {
+                const formattedDateRangeStart = dayjs
+                    .utc(filter.dateRange.start)
+                    .toDate()
+                const formattedDateRangeEnd = dayjs
+                    .utc(filter.dateRange.end)
+                    .toDate()
+
                 FILTER.push({
                     OR: [
                         {
                             startDate: {
-                                lte: dayjs.utc(filter.dateRange.start).toDate(),
-                                gte: dayjs.utc(filter.dateRange.start).toDate(),
+                                lte: formattedDateRangeStart,
                             },
-                        },
-                        {
                             endDate: {
-                                lte: dayjs.utc(filter.dateRange.end).toDate(),
-                                gte: dayjs.utc(filter.dateRange.end).toDate(),
+                                gte: formattedDateRangeStart,
                             },
                         },
                         {
                             startDate: {
-                                gte: dayjs.utc(filter.dateRange.start).toDate(),
+                                lte: formattedDateRangeEnd,
                             },
                             endDate: {
-                                lte: dayjs.utc(filter.dateRange.end).toDate(),
+                                gte: formattedDateRangeEnd,
+                            },
+                        },
+                        {
+                            startDate: {
+                                gte: formattedDateRangeStart,
+                            },
+                            endDate: {
+                                lte: formattedDateRangeEnd,
                             },
                         },
                     ],
