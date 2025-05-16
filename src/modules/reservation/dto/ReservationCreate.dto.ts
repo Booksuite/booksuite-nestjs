@@ -14,7 +14,6 @@ import {
 } from 'class-validator'
 
 import { ReservationSummaryDTO } from '@/modules/availAndPricing/dto/ReservationSummary.dto'
-import { UserCreateDTO } from '@/modules/user/dto/UserCreate.dto'
 
 import { ReservationAgeGroupDTO } from './ReservationAgeGroup.dto'
 import { ReservationServiceDTO } from './ReservationService.dto'
@@ -37,11 +36,11 @@ export class ReservationCreateDTO {
     summary: ReservationSummaryDTO
 
     @ApiProperty({
-        type: UserCreateDTO,
+        type: String,
     })
     @IsDefined()
-    @Type(() => UserCreateDTO)
-    guestUser: UserCreateDTO
+    @IsUUID()
+    guestUserId: string
 
     @ApiProperty({ example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479' })
     @IsOptional()

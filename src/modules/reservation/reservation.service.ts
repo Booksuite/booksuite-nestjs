@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma, ReservationSaleChannel } from '@prisma/client'
 import dayjs from 'dayjs'
-import { omit, pick } from 'radash'
+import { pick } from 'radash'
 
 import { PaginationQuery } from '@/common/types/pagination'
 import {
@@ -31,14 +31,11 @@ export class ReservationService {
             companyId,
             rawData.saleChannel,
         )
-        const newUser = await this.prismaService.user.create({
-            data: rawData.guestUser,
-        })
 
         const normalizedData = Prisma.validator<
             Prisma.ReservationCreateArgs['data']
         >()({
-            ...omit(rawData, ['guestUser']),
+            ...rawData,
             startDate: dayjs.utc(rawData.startDate).toDate(),
             endDate: dayjs.utc(rawData.endDate).toDate(),
             companyId,
@@ -51,7 +48,6 @@ export class ReservationService {
             ageGroups: {
                 createMany: { data: rawData.ageGroups },
             },
-            guestUserId: newUser.id,
         })
 
         const reservation = await this.prismaService.reservation
@@ -146,7 +142,6 @@ export class ReservationService {
                             mode: 'insensitive',
                         },
                     },
-
                     {
                         housingUnit: {
                             housingUnitType: {
