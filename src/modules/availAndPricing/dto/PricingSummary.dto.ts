@@ -14,6 +14,14 @@ export class PricingSummaryDTO implements PricingSummary {
     basePrice: number
 
     @ApiProperty({
+        description: 'Offer amount for the day',
+        type: Number,
+    })
+    @IsDefined()
+    @IsNumber()
+    offerAmount: number
+
+    @ApiProperty({
         description: 'Services price for the day',
         type: Number,
     })

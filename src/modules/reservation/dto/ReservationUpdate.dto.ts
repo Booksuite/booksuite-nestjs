@@ -29,7 +29,7 @@ export class ReservationUpdateDTO extends PartialType(PricingSummaryDTO) {
     status?: ReservationStatus
 
     @ApiProperty({
-        type: ReservationSummaryDTO,
+        type: () => ReservationSummaryDTO,
         required: false,
     })
     @IsOptional()

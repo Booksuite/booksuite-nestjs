@@ -18,7 +18,7 @@ export class ReservationResponseDTO {
     status!: ReservationStatus
 
     @ApiProperty({
-        type: ReservationSummaryDTO,
+        type: () => ReservationSummaryDTO,
     })
     summary: ReservationSummaryDTO
 

@@ -9,5 +9,6 @@ export class AvailAndPricingReservationDTO
         'ageGroups',
         'services',
         'rateOption',
+        'summary',
     ])
     implements AvailAndPricingReservation {}

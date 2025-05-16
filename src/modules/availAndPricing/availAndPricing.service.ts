@@ -222,6 +222,7 @@ export class AvailAndPricingService {
                 acc.servicesPrice += day.servicesPrice
                 acc.childrenPrice += day.childrenPrice
                 acc.rateOptionPrice += day.rateOptionPrice
+                acc.offerAmount += day.offerAmount
 
                 if (!acc.hostingRules) acc.hostingRules = day.hostingRules
                 if (!acc.rateOption) acc.rateOption = day.rateOption
@@ -241,6 +242,7 @@ export class AvailAndPricingService {
                 return acc
             },
             {
+                offerAmount: 0,
                 totalStay: 0,
                 servicesPrice: 0,
                 rateOptionPrice: 0,
@@ -730,6 +732,7 @@ export class AvailAndPricingService {
         payload: HouseUnitTypeAvailAndPricingPayload,
     ): AvailAndPricingSummary {
         return {
+            offerAmount: 0,
             basePrice: 0,
             servicesPrice: 0,
             childrenPrice: 0,

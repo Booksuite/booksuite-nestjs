@@ -99,7 +99,11 @@ export class ServiceCreateDTO {
     @IsString()
     notes!: string
 
-    @ApiProperty({ example: 'https://www.example.com/video', nullable: true })
+    @ApiProperty({
+        example: 'https://www.example.com/video',
+        type: String,
+        nullable: true,
+    })
     @IsOptional()
     @IsString()
     coverMediaId: string | null

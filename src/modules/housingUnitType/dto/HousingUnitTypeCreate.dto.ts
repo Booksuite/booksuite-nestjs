@@ -30,7 +30,11 @@ export class HousingUnitTypeCreateDTO {
     @IsString()
     slug!: string
 
-    @ApiProperty({ example: 'a deluxe suite for 2 people', nullable: true })
+    @ApiProperty({
+        example: 'a deluxe suite for 2 people',
+        type: String,
+        nullable: true,
+    })
     @IsString()
     @IsOptional()
     shortDescription: string | null
@@ -38,6 +42,7 @@ export class HousingUnitTypeCreateDTO {
     @ApiProperty({
         example:
             'The Deluxe Suite offers a spacious room with a king-size bed, a private balcony, and premium amenities.',
+        type: String,
         nullable: true,
     })
     @IsOptional()
@@ -49,27 +54,27 @@ export class HousingUnitTypeCreateDTO {
     @IsInt()
     order!: number
 
-    @ApiProperty({ example: 2, nullable: true })
+    @ApiProperty({ example: 2, type: Number, nullable: true })
     @IsOptional()
     @IsInt()
     minGuests: number | null
 
-    @ApiProperty({ example: 6, nullable: true })
+    @ApiProperty({ example: 6, type: Number, nullable: true })
     @IsOptional()
     @IsInt()
     maxGuests: number | null
 
-    @ApiProperty({ example: 4, nullable: true })
+    @ApiProperty({ example: 4, type: Number, nullable: true })
     @IsOptional()
     @IsInt()
     maxAdults: number | null
 
-    @ApiProperty({ example: 3, nullable: true })
+    @ApiProperty({ example: 3, type: Number, nullable: true })
     @IsOptional()
     @IsInt()
     maxChildren: number | null
 
-    @ApiProperty({ example: 300 })
+    @ApiProperty({ example: 300, type: Number })
     @IsDefined()
     weekdaysPrice!: number
 

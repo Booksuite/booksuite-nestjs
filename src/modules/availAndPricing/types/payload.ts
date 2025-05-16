@@ -82,6 +82,7 @@ export interface HousingUnitTypeAvailability {
 
 export interface PricingSummary {
     basePrice: number
+    offerAmount: number
     servicesPrice: number
     rateOptionPrice: number
     childrenPrice: number

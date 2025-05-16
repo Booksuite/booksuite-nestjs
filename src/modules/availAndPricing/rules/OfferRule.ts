@@ -26,6 +26,7 @@ export class OfferRule implements AvailAndPricingRule {
             priceVariationType: offer.priceAdjustmentType,
         })
 
+        payload.calendar[currentDate].offerAmount = finalPrice - basePrice
         payload.calendar[currentDate].offers = [offer]
         payload.calendar[currentDate].finalPrice = finalPrice
 

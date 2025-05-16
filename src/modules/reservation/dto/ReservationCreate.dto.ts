@@ -29,7 +29,7 @@ export class ReservationCreateDTO {
     status!: ReservationStatus
 
     @ApiProperty({
-        type: ReservationSummaryDTO,
+        type: () => ReservationSummaryDTO,
     })
     @IsDefined()
     @Type(() => ReservationSummaryDTO)

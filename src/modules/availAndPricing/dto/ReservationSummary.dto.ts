@@ -20,7 +20,7 @@ export class ReservationSummaryDTO implements ReservationSummary {
     housingUnit: HousingUnitResponseDTO | null
 
     @ApiProperty({
-        type: AvailAndPricingSummaryDTO,
+        type: () => AvailAndPricingSummaryDTO,
     })
     summary: AvailAndPricingSummaryDTO
 }
