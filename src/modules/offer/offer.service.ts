@@ -87,11 +87,13 @@ export class OfferService {
 
                 return {
                     ...offer,
-                    visibilityStartDate: dayjs(
-                        offer.visibilityStartDate,
-                    ).format('YYYY-MM-DD'),
-                    startDate: dayjs(offer.startDate).format('YYYY-MM-DD'),
-                    endDate: dayjs(offer.endDate).format('YYYY-MM-DD'),
+                    visibilityStartDate: dayjs(offer.visibilityStartDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
+                    startDate: dayjs(offer.startDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
+                    endDate: dayjs(offer.endDate).utc().format('YYYY-MM-DD'),
                 }
             })
     }
@@ -129,11 +131,11 @@ export class OfferService {
         return buildPaginatedResponse(
             offers.map((offer) => ({
                 ...offer,
-                visibilityStartDate: dayjs(offer.visibilityStartDate).format(
-                    'YYYY-MM-DD',
-                ),
-                startDate: dayjs(offer.startDate).format('YYYY-MM-DD'),
-                endDate: dayjs(offer.endDate).format('YYYY-MM-DD'),
+                visibilityStartDate: dayjs(offer.visibilityStartDate)
+                    .utc()
+                    .format('YYYY-MM-DD'),
+                startDate: dayjs(offer.startDate).utc().format('YYYY-MM-DD'),
+                endDate: dayjs(offer.endDate).utc().format('YYYY-MM-DD'),
             })),
             total,
             pagination,

@@ -4,7 +4,6 @@ model Service {
     name        String
     billingType BillingType
     price       Float       @db.DoublePrecision
-    adults      Int
     minStay     Int
     minNotice   Int
 
@@ -30,7 +29,6 @@ model Service {
     medias                    ServiceMedia[]
     reservations              ReservationService[]
     availableHousingUnitTypes ServiceHousingUnitType[]
-    specialDate               SpecialDateServices[]
     offers                    OfferService[]
 
     companyId String

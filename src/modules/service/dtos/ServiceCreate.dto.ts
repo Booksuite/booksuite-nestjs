@@ -42,11 +42,6 @@ export class ServiceCreateDTO {
     @IsDefined()
     price!: number
 
-    @ApiProperty({ example: 3 })
-    @IsDefined()
-    @IsInt()
-    adults!: number
-
     @ApiProperty({ example: 1 })
     @IsDefined()
     @IsInt()

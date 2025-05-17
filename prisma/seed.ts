@@ -37,7 +37,6 @@ async function seedDatabase() {
             'serviceMedia',
             'specialDate',
             'specialDateHousingUnitType',
-            'specialDateServices',
             'specialDateMedias',
             'offer',
             'offerHousingUnitType',

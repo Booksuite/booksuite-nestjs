@@ -38,12 +38,16 @@ export class SeasonRulesService {
                 return {
                     ...seasonRule,
                     visibilityStartDate: seasonRule.visibilityStartDate
-                        ? dayjs(seasonRule.visibilityStartDate).format(
-                              'YYYY-MM-DD',
-                          )
+                        ? dayjs(seasonRule.visibilityStartDate)
+                              .utc()
+                              .format('YYYY-MM-DD')
                         : null,
-                    startDate: dayjs(seasonRule.startDate).format('YYYY-MM-DD'),
-                    endDate: dayjs(seasonRule.endDate).format('YYYY-MM-DD'),
+                    startDate: dayjs(seasonRule.startDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
+                    endDate: dayjs(seasonRule.endDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
                 }
             })
     }
@@ -71,12 +75,16 @@ export class SeasonRulesService {
                 return {
                     ...seasonRule,
                     visibilityStartDate: seasonRule.visibilityStartDate
-                        ? dayjs(seasonRule.visibilityStartDate).format(
-                              'YYYY-MM-DD',
-                          )
+                        ? dayjs(seasonRule.visibilityStartDate)
+                              .utc()
+                              .format('YYYY-MM-DD')
                         : null,
-                    startDate: dayjs(seasonRule.startDate).format('YYYY-MM-DD'),
-                    endDate: dayjs(seasonRule.endDate).format('YYYY-MM-DD'),
+                    startDate: dayjs(seasonRule.startDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
+                    endDate: dayjs(seasonRule.endDate)
+                        .utc()
+                        .format('YYYY-MM-DD'),
                 }
             })
     }

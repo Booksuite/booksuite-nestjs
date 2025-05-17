@@ -42,11 +42,6 @@ export class ServiceUpdateDTO {
     @IsOptional()
     price?: number
 
-    @ApiProperty({ example: 3, required: false, type: Number })
-    @IsOptional()
-    @IsInt()
-    adults?: number
-
     @ApiProperty({ example: 1, required: false, type: Number })
     @IsOptional()
     @IsInt()
